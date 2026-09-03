@@ -9,9 +9,12 @@ const checkOnly = process.argv.includes("--check");
 
 const outputs = async (model) => {
   const { ts, css } = emitTs(model);
+  const colourSource = await readFile(new URL("tools/color.mjs", root), "utf8");
+  const asMjs = "// Generated from tools/color.mjs. Do not edit.\n\n" + colourSource;
   return [
     ["packages/npm/src/tokens.ts", ts],
     ["packages/npm/src/tokens.css", css],
+    ["packages/npm/src/oklch.mjs", asMjs],
     ["packages/dart/lib/src/tokens.dart", emitDart(model)],
     ["golden/kasseneck.json", `${JSON.stringify(model, null, 2)}\n`],
   ];
