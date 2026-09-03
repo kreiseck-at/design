@@ -50,4 +50,20 @@ describe("check", () => {
     expect(result.ok).toBe(false);
     expect(result.problems.join(" ")).toMatch(/data/);
   });
+
+  test("catches semantic ink that is unreadable on a card", () => {
+    const broken = structuredClone(model);
+    broken.roles.light.success = "#A9D8C0";
+    const result = check(broken);
+    expect(result.ok).toBe(false);
+    expect(result.problems.join(" ")).toMatch(/success.*surface/);
+  });
+
+  test("catches a border that vanishes against a raised surface", () => {
+    const broken = structuredClone(model);
+    broken.roles.light["surface-raised"] = broken.roles.light.border;
+    const result = check(broken);
+    expect(result.ok).toBe(false);
+    expect(result.problems.join(" ")).toMatch(/border.*surface-raised/);
+  });
 });

@@ -36,7 +36,13 @@ export function check(model) {
 
     // 3. The boundary of a control (WCAG 1.4.11) — the rule the whole house
     //    was failing: 1.24 to 1.56 instead of 3.
-    for (const [role, against] of [["border", "surface"], ["border", "ground"], ["focus", "ground"]]) {
+    for (const [role, against] of [
+      ["border", "surface"],
+      ["border", "ground"],
+      ["border", "surface-raised"],
+      ["focus", "ground"],
+      ["focus", "surface-raised"],
+    ]) {
       const value = contrast(roles[role], roles[against]);
       if (value < CONTROL) {
         problems.push(
@@ -54,6 +60,32 @@ export function check(model) {
         );
       }
     });
+
+    // 5. Semantic ink is written on cards and on the page, not only inside
+    //    its own tinted surface. `surface-raised` is deliberately absent:
+    //    it carries header text and active-field chrome in `ink`, never
+    //    coloured text.
+    for (const role of ["success", "warning", "danger", "info", "brand"]) {
+      for (const against of ["surface", "ground"]) {
+        const value = contrast(roles[role], roles[against]);
+        if (value < TEXT) {
+          problems.push(
+            `${mode}: "${role}" on "${against}" is ${value.toFixed(2)}, needs ${TEXT}`,
+          );
+        }
+      }
+    }
+
+    // `danger-strong` is a signal tone for surfaces and icons, not body
+    // text — it answers to the control threshold.
+    for (const against of ["surface", "ground"]) {
+      const value = contrast(roles["danger-strong"], roles[against]);
+      if (value < CONTROL) {
+        problems.push(
+          `${mode}: "danger-strong" on "${against}" is ${value.toFixed(2)}, needs ${CONTROL}`,
+        );
+      }
+    }
   }
 
   return { ok: problems.length === 0, problems };
