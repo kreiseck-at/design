@@ -1,10 +1,18 @@
 import { test, expect, describe } from "vitest";
+import { readFile } from "node:fs/promises";
 import { buildRamp } from "./ramps.mjs";
 import { hexToOklch } from "./color.mjs";
 
-const STEPS = [50, 100, 200, 300, 400, 500, 600, 700, 800, 900, 950];
-const L_COLOUR = [0.972, 0.94, 0.884, 0.812, 0.73, 0.648, 0.566, 0.48, 0.4, 0.325, 0.25];
-const C_COLOUR = [0.1, 0.18, 0.36, 0.58, 0.8, 1.0, 0.98, 0.88, 0.74, 0.56, 0.42];
+// Read from the token source rather than a fourth hand-typed copy of the
+// same numbers — resolve.mjs, brand-ramp.ts and brand_ramp.dart already
+// each carry their own, and a fixed test copy would happily keep passing
+// after the real ladder moved out from under it.
+const base = JSON.parse(await readFile(new URL("../tokens/base.json", import.meta.url)));
+const STEPS = base.steps;
+const L_COLOUR = base.ladders.colour;
+const C_COLOUR = base.chromaProfiles.colour;
+const L_NEUTRAL = base.ladders.neutral;
+const C_NEUTRAL = base.chromaProfiles.neutral;
 
 const brand = () =>
   buildRamp({
@@ -59,8 +67,8 @@ describe("buildRamp", () => {
     const neutral = buildRamp({
       hue: 195.5,
       chroma: 0.03,
-      lightness: [0.975, 0.95, 0.9, 0.83, 0.75, 0.66, 0.54, 0.46, 0.36, 0.266, 0.214],
-      chromaProfile: [0.14, 0.22, 0.34, 0.48, 0.62, 0.78, 0.9, 1.0, 1.0, 0.95, 0.55],
+      lightness: L_NEUTRAL,
+      chromaProfile: C_NEUTRAL,
       steps: STEPS,
       anchors: { 900: "#132A2A", 950: "#131B1B" },
     });

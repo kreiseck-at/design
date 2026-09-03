@@ -35,6 +35,10 @@ export function check(model) {
 
     // 1. Every surface carries its ink, and the pair is readable.
     for (const [surface, ink] of Object.entries(model.surfacePairs)) {
+      if (!roles[surface]) {
+        problems.push(`${mode}: role "${surface}" is missing`);
+        continue;
+      }
       if (!roles[ink]) {
         problems.push(`${mode}: surface "${surface}" has no ink token "${ink}"`);
         continue;

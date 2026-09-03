@@ -96,4 +96,24 @@ describe("check", () => {
     expect(result.ok).toBe(false);
     expect(result.problems.join(" ")).toMatch(/"ink-muted" is missing/);
   });
+
+  test("reports a missing surface (not only a missing ink) instead of throwing", () => {
+    // Rule 1 guarded the ink side of a surface pair but not the surface
+    // itself: deleting "danger" (a surfacePairs key) used to reach the
+    // colour code with `undefined` and throw a bare TypeError.
+    const broken = structuredClone(model);
+    delete broken.roles.light.danger;
+    expect(() => check(broken)).not.toThrow();
+    const result = check(broken);
+    expect(result.ok).toBe(false);
+    expect(result.problems.join(" ")).toMatch(/"danger" is missing/);
+  });
+
+  test("every role can be dropped without the checker throwing", () => {
+    for (const role of Object.keys(model.roles.light)) {
+      const broken = structuredClone(model);
+      delete broken.roles.light[role];
+      expect(() => check(broken), `dropping "${role}"`).not.toThrow();
+    }
+  });
 });
