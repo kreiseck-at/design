@@ -55,8 +55,8 @@ describe("resolve", () => {
     expect(Object.keys(model.roles).sort()).toEqual(["contrast", "dark", "light", "warm"]);
     expect(model.roles.warm.ground).not.toBe(model.roles.light.ground);   // own ramp
     expect(model.roles.warm.brand).toBe(model.roles.light.brand);         // fallback
-    expect(model.roles.contrast.border).toBe(model.ramps.neutral[950]);   // own value
-    expect(model.roles.contrast.ground).toBe(model.roles.light.ground);   // fallback
+    expect(model.roles.contrast.border).toBe("#000000");                  // own value
+    expect(model.roles.contrast.danger).toBe(model.roles.light.danger);   // fallback
   });
 
   test("throws naming the role when a mandatory column is missing", () => {

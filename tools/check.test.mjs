@@ -124,4 +124,10 @@ describe("check", () => {
     expect(result.ok).toBe(false);
     expect(result.problems.join(" ")).toMatch(/warm: "on-surface"/);
   });
+
+  test("contrast mode is black on white for body text", () => {
+    expect(model.roles.contrast.ink).toBe("#000000");
+    expect(model.roles.contrast.ground).toBe("#FFFFFF");
+    expect(contrast(model.roles.contrast.ink, model.roles.contrast.ground)).toBeCloseTo(21, 0);
+  });
 });
