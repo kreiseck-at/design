@@ -346,4 +346,4 @@ export const fonts = {
 } as const;
 
 export type Role = keyof typeof roles.light;
-export type Mode = "light" | "warm" | "dark" | "contrast";
+export type Mode = "light" | "dark" | "contrast";

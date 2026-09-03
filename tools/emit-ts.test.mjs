@@ -71,4 +71,11 @@ describe("emitTs", () => {
     expect(out.ts).toContain("export const form =");
     expect(out.ts).toContain("export const typography =");
   });
+
+  test("does not offer a deferred mode nobody built role values for", () => {
+    // `warm` used to be selectable while silently returning the light
+    // table — a mode a caller can pass has to be a mode the roles table
+    // actually has values for.
+    expect(out.ts).toContain('export type Mode = "light" | "dark" | "contrast";');
+  });
 });

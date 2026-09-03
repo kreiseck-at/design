@@ -14,5 +14,6 @@
     "sans": { "family": "Archivo", "fallback": ["system-ui", "Helvetica", "Arial", "sans-serif"] },
     "mono": { "family": "DM Mono", "fallback": ["ui-monospace", "SFMono-Regular", "monospace"] }
   },
-  "modes": ["light", "warm", "dark", "contrast"]
+  "modes": ["light", "dark", "contrast"],
+  "_comment": "warm returns once it has role values of its own — see the design spec"
 }

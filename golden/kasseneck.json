@@ -415,7 +415,6 @@
   },
   "modes": [
     "light",
-    "warm",
     "dark",
     "contrast"
   ],
