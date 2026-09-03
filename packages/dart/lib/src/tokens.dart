@@ -2,6 +2,10 @@
 
 import 'dart:ui' show Color;
 
+/// The modes a brand can offer, in the order `tokens/brands/` declares
+/// them.
+enum KdMode { light, warm, dark, contrast }
+
 /// The lightness ladder, chroma profile and step list a ramp is built
 /// from — the same numbers `KdRamps` was generated with, so a runtime
 /// ramp built from an arbitrary seed colour stays the twin of the
@@ -54,6 +58,20 @@ class KdRamps {
     800: Color(0xFF2A4242),
     900: Color(0xFF132A2A),
     950: Color(0xFF131B1B),
+  };
+
+  static const Map<int, Color> neutralWarm = {
+    50: Color(0xFFF8F6F4),
+    100: Color(0xFFF1EEEA),
+    200: Color(0xFFE1DDD8),
+    300: Color(0xFFCCC6BE),
+    400: Color(0xFFB4ADA3),
+    500: Color(0xFF999185),
+    600: Color(0xFF6F6659),
+    700: Color(0xFF605748),
+    800: Color(0xFF453C2E),
+    900: Color(0xFF2C2418),
+    950: Color(0xFF1D1812),
   };
 
   static const Map<int, Color> success = {
@@ -113,7 +131,8 @@ class KdRamps {
   };
 }
 
-/// Roles resolved for both modes. An app reads a role, never a step.
+/// Roles resolved for every mode the brand offers. An app reads a role,
+/// never a step.
 class KdRoles {
   const KdRoles._();
 
@@ -133,6 +152,39 @@ class KdRoles {
     'ink-muted': Color(0xFF566D6C),
     'border': Color(0xFF566D6C),
     'divider': Color(0xFFD7E0E0),
+    'focus': Color(0xFF268686),
+    'success': Color(0xFF136F47),
+    'success-surface': Color(0xFFF0F8F3),
+    'on-success-surface': Color(0xFF0C3E27),
+    'warning': Color(0xFF8F470D),
+    'warning-surface': Color(0xFFFEF4EE),
+    'on-warning-surface': Color(0xFF512709),
+    'danger': Color(0xFFAB1F18),
+    'on-danger': Color(0xFFFFFFFF),
+    'danger-strong': Color(0xFFD13329),
+    'danger-surface': Color(0xFFFFF3F1),
+    'on-danger-surface': Color(0xFF61130E),
+    'info': Color(0xFF3659A7),
+    'info-surface': Color(0xFFF1F6FF),
+    'on-info-surface': Color(0xFF1D325F),
+  };
+
+  static const Map<String, Color> warm = {
+    'brand': Color(0xFF136B6B),
+    'on-brand': Color(0xFFFFFFFF),
+    'brand-pressed': Color(0xFF0A5252),
+    'brand-surface': Color(0xFFE0EFEE),
+    'on-brand-surface': Color(0xFF2C2418),
+    'ground': Color(0xFFF8F6F4),
+    'on-ground': Color(0xFF2C2418),
+    'surface': Color(0xFFFFFFFF),
+    'on-surface': Color(0xFF2C2418),
+    'surface-raised': Color(0xFFF1EEEA),
+    'on-surface-raised': Color(0xFF2C2418),
+    'ink': Color(0xFF2C2418),
+    'ink-muted': Color(0xFF6F6659),
+    'border': Color(0xFF6F6659),
+    'divider': Color(0xFFE1DDD8),
     'focus': Color(0xFF268686),
     'success': Color(0xFF136F47),
     'success-surface': Color(0xFFF0F8F3),
@@ -181,6 +233,46 @@ class KdRoles {
     'info': Color(0xFF81A6F3),
     'info-surface': Color(0xFF122040),
     'on-info-surface': Color(0xFFF1F6FF),
+  };
+
+  static const Map<String, Color> contrast = {
+    'brand': Color(0xFF136B6B),
+    'on-brand': Color(0xFFFFFFFF),
+    'brand-pressed': Color(0xFF0A5252),
+    'brand-surface': Color(0xFFE0EFEE),
+    'on-brand-surface': Color(0xFF132A2A),
+    'ground': Color(0xFFF4F8F8),
+    'on-ground': Color(0xFF132A2A),
+    'surface': Color(0xFFFFFFFF),
+    'on-surface': Color(0xFF132A2A),
+    'surface-raised': Color(0xFFEAF0F0),
+    'on-surface-raised': Color(0xFF132A2A),
+    'ink': Color(0xFF132A2A),
+    'ink-muted': Color(0xFF2A4242),
+    'border': Color(0xFF131B1B),
+    'divider': Color(0xFF445E5D),
+    'focus': Color(0xFF131B1B),
+    'success': Color(0xFF136F47),
+    'success-surface': Color(0xFFF0F8F3),
+    'on-success-surface': Color(0xFF0C3E27),
+    'warning': Color(0xFF8F470D),
+    'warning-surface': Color(0xFFFEF4EE),
+    'on-warning-surface': Color(0xFF512709),
+    'danger': Color(0xFFAB1F18),
+    'on-danger': Color(0xFFFFFFFF),
+    'danger-strong': Color(0xFFD13329),
+    'danger-surface': Color(0xFFFFF3F1),
+    'on-danger-surface': Color(0xFF61130E),
+    'info': Color(0xFF3659A7),
+    'info-surface': Color(0xFFF1F6FF),
+    'on-info-surface': Color(0xFF1D325F),
+  };
+
+  static const Map<KdMode, Map<String, Color>> byMode = {
+    KdMode.light: light,
+    KdMode.warm: warm,
+    KdMode.dark: dark,
+    KdMode.contrast: contrast,
   };
 }
 

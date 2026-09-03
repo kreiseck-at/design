@@ -35,10 +35,25 @@ export function resolve(base, brand) {
     });
   }
 
-  const roles = { light: {}, dark: {} };
-  for (const [role, modes] of Object.entries(base.roles)) {
-    roles.light[role] = lookup(ramps, modes.light);
-    roles.dark[role] = lookup(ramps, modes.dark);
+  // `light` and `dark` are mandatory columns for every role, whether or not
+  // the brand actually offers `dark` — a mode built later (say a second
+  // dark variant) still needs a base to fall back to.
+  for (const [role, columns] of Object.entries(base.roles)) {
+    for (const required of ["light", "dark"]) {
+      if (columns[required] === undefined) {
+        throw new Error(`role "${role}" is missing its "${required}" column`);
+      }
+    }
+  }
+
+  const roles = {};
+  for (const mode of brand.modes) {
+    roles[mode] = {};
+    for (const [role, columns] of Object.entries(base.roles)) {
+      // A mode without its own value inherits light: warm only re-colours
+      // the neutrals, contrast only sharpens edges.
+      roles[mode][role] = lookup(ramps, columns[mode] ?? columns.light);
+    }
   }
 
   // The runtime `brandRamp(seed)` twin, generated once here with the same

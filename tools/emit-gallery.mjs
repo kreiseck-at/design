@@ -25,12 +25,13 @@ export function emitGallery(model) {
     })
     .join("");
 
+  const roleHead = model.modes.map((mode) => `<th>${mode}</th>`).join("");
   const roleRows = Object.keys(model.roles.light)
     .map(
       (role) =>
         `<tr><td><code>${role}</code></td>` +
-        `<td>${swatch("", model.roles.light[role])}</td>` +
-        `<td>${swatch("", model.roles.dark[role])}</td></tr>`,
+        model.modes.map((mode) => `<td>${swatch("", model.roles[mode][role])}</td>`).join("") +
+        `</tr>`,
     )
     .join("");
 
@@ -50,6 +51,6 @@ export function emitGallery(model) {
 <h1>Kreiseck Design — ${model.brand}</h1>
 <p>Generated from <code>golden/kasseneck.json</code>. Modes: ${model.modes.join(", ")}.</p>
 <h2>Ramps</h2>${ramps}
-<h2>Roles</h2><table><tr><th>role</th><th>light</th><th>dark</th></tr>${roleRows}</table>
+<h2>Roles</h2><table><tr><th>role</th>${roleHead}</tr>${roleRows}</table>
 </body></html>`;
 }

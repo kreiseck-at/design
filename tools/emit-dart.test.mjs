@@ -40,4 +40,10 @@ describe("emitDart", () => {
     expect(dart).toContain("static const double focusRingWidth = 2;");
     expect(dart).toContain("static const String shadow1 = '0 1px 2px rgba(19, 27, 27, 0.08)';");
   });
+
+  test("emits a role table and an enum entry per mode", () => {
+    expect(dart).toMatch(/static const Map<String, Color> warm/);
+    expect(dart).toMatch(/static const Map<String, Color> contrast/);
+    expect(dart).toContain("enum KdMode { light, warm, dark, contrast }");
+  });
 });

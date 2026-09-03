@@ -3,9 +3,12 @@ import 'package:kreiseck_design/kreiseck_design.dart';
 
 void main() {
   test('KdMode offers only the modes the roles table has values for', () {
-    // `warm` used to be selectable while silently returning the light
-    // table. A deferred mode should not be a value anyone can pass.
-    expect(KdMode.values, [KdMode.light, KdMode.dark, KdMode.contrast]);
+    // A deferred mode should not be a value anyone can pass — every entry
+    // here has its own row in `KdRoles.byMode`.
+    expect(KdMode.values, [KdMode.light, KdMode.warm, KdMode.dark, KdMode.contrast]);
+    for (final mode in KdMode.values) {
+      expect(KdRoles.byMode[mode], isNotNull, reason: mode.name);
+    }
   });
 
   test('onError is the ink Material paints on the solid error colour, not '

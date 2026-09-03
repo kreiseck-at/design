@@ -22,6 +22,26 @@ export function emitTs(model) {
     `export type Role = keyof typeof roles.light;\n` +
     `export type Mode = ${model.modes.map((m) => `"${m}"`).join(" | ")};\n`;
 
+  // One block per mode besides `light` (which lives in `:root`), each with
+  // the full role set — a mode is never just its overrides, so a page
+  // pinned to it never falls back to `:root`'s light colours for a role
+  // the override list did not think to mention.
+  const modeBlocks = model.modes
+    .filter((mode) => mode !== "light")
+    .map((mode) => {
+      const overrides = model.modeOverrides[mode];
+      const overrideVars = overrides
+        ? `\n  --kd-border-width: ${overrides.borderWidth}px;` +
+          `\n  --kd-focus-ring-width: ${overrides.focusRing.width}px;` +
+          `\n  --kd-focus-ring-offset: ${overrides.focusRing.offset}px;` +
+          `\n  --kd-shadow-1: ${overrides.shadow["1"]};` +
+          `\n  --kd-shadow-2: ${overrides.shadow["2"]};` +
+          `\n  --kd-shadow-3: ${overrides.shadow["3"]};`
+        : "";
+      return `[data-kd-mode="${mode}"] {\n${vars(model.roles[mode])}${overrideVars}\n}\n`;
+    })
+    .join("\n");
+
   const css =
     HEAD_CSS +
     `:root {\n${vars(model.roles.light)}\n` +
@@ -42,16 +62,9 @@ export function emitTs(model) {
     `  --kd-font-sans: "${model.fonts.sans.family}", ${model.fonts.sans.fallback.join(", ")};\n` +
     `  --kd-font-mono: "${model.fonts.mono.family}", ${model.fonts.mono.fallback.join(", ")};\n` +
     `}\n\n` +
-    `[data-kd-mode="dark"] {\n${vars(model.roles.dark)}\n}\n\n` +
+    `${modeBlocks}\n` +
     `@media (prefers-color-scheme: dark) {\n` +
     `  :root:not([data-kd-mode]) {\n${vars(model.roles.dark, "    ")}\n  }\n}\n\n` +
-    `[data-kd-mode="contrast"] {\n` +
-    `  --kd-border-width: ${model.modeOverrides.contrast.borderWidth}px;\n` +
-    `  --kd-focus-ring-width: ${model.modeOverrides.contrast.focusRing.width}px;\n` +
-    `  --kd-focus-ring-offset: ${model.modeOverrides.contrast.focusRing.offset}px;\n` +
-    `  --kd-shadow-1: ${model.modeOverrides.contrast.shadow["1"]};\n` +
-    `  --kd-shadow-2: ${model.modeOverrides.contrast.shadow["2"]};\n` +
-    `  --kd-shadow-3: ${model.modeOverrides.contrast.shadow["3"]};\n}\n\n` +
     `@media (prefers-reduced-motion: reduce) {\n` +
     `  :root { --kd-motion-fast: 0ms; --kd-motion-base: 0ms; --kd-motion-slow: 0ms; }\n}\n`;
 

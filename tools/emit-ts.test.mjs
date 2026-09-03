@@ -4,12 +4,14 @@ import { resolve } from "./resolve.mjs";
 import { emitTs } from "./emit-ts.mjs";
 
 let out;
+let model;
 beforeAll(async () => {
   const base = JSON.parse(await readFile(new URL("../tokens/base.json", import.meta.url)));
   const brand = JSON.parse(
     await readFile(new URL("../tokens/brands/kasseneck.json", import.meta.url)),
   );
-  out = emitTs(resolve(base, brand));
+  model = resolve(base, brand);
+  out = emitTs(model);
 });
 
 describe("emitTs", () => {
@@ -73,9 +75,18 @@ describe("emitTs", () => {
   });
 
   test("does not offer a deferred mode nobody built role values for", () => {
-    // `warm` used to be selectable while silently returning the light
-    // table — a mode a caller can pass has to be a mode the roles table
-    // actually has values for.
-    expect(out.ts).toContain('export type Mode = "light" | "dark" | "contrast";');
+    // A mode a caller can pass has to be a mode the roles table actually
+    // has values for — the type union always matches `brand.modes`.
+    expect(out.ts).toContain('export type Mode = "light" | "warm" | "dark" | "contrast";');
+  });
+
+  test("emits one block per mode with the full role set", () => {
+    for (const mode of ["warm", "contrast"]) {
+      const block = out.css.split(`[data-kd-mode="${mode}"]`)[1].split("}")[0];
+      expect([...block.matchAll(/--kd-([a-z-]+): #/g)].length).toBe(
+        Object.keys(model.roles.light).length,
+      );
+    }
+    expect(out.ts).toContain('"light" | "warm" | "dark" | "contrast"');
   });
 });

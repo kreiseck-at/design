@@ -116,4 +116,12 @@ describe("check", () => {
       expect(() => check(broken), `dropping "${role}"`).not.toThrow();
     }
   });
+
+  test("checks every mode, not only light and dark", () => {
+    const broken = structuredClone(model);
+    broken.roles.warm["on-surface"] = "#CCCCCC";
+    const result = check(broken);
+    expect(result.ok).toBe(false);
+    expect(result.problems.join(" ")).toMatch(/warm: "on-surface"/);
+  });
 });

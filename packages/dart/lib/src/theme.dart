@@ -2,14 +2,9 @@ import 'package:flutter/material.dart';
 
 import 'tokens.dart';
 
-/// The modes a brand can offer. `warm` returns once it has role values of
-/// its own — see the design spec. `contrast` changes more than colour.
-enum KdMode { light, dark, contrast }
-
 /// Colour by role. Never reach for a ramp step in application code.
 Color kdColor(KdMode mode, String role) {
-  final table = mode == KdMode.dark ? KdRoles.dark : KdRoles.light;
-  final colour = table[role];
+  final colour = KdRoles.byMode[mode]?[role];
   if (colour == null) throw ArgumentError('unknown role: $role');
   return colour;
 }

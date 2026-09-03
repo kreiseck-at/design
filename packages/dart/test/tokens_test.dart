@@ -23,6 +23,7 @@ void main() {
     final dartRamps = <String, Map<int, Color>>{
       'brand': KdRamps.brand,
       'neutral': KdRamps.neutral,
+      'neutralWarm': KdRamps.neutralWarm,
       'success': KdRamps.success,
       'warning': KdRamps.warning,
       'danger': KdRamps.danger,
@@ -40,10 +41,11 @@ void main() {
     }
   });
 
-  test('every role matches the golden file in both modes', () {
+  test('every role matches the golden file in every mode', () {
     final roles = golden['roles'] as Map<String, dynamic>;
-    for (final mode in ['light', 'dark']) {
-      final table = mode == 'light' ? KdRoles.light : KdRoles.dark;
+    final modes = (golden['modes'] as List).cast<String>();
+    for (final mode in modes) {
+      final table = KdRoles.byMode[KdMode.values.byName(mode)]!;
       for (final entry in (roles[mode] as Map<String, dynamic>).entries) {
         expect(table[entry.key]!.toARGB32(), argb(entry.value as String),
             reason: '$mode/${entry.key}');
@@ -64,11 +66,13 @@ void main() {
   });
 
   test('the golden file is not degenerate', () {
-    expect((golden['ramps'] as Map).length, 6);
+    expect((golden['ramps'] as Map).length, 7);
+    final modes = (golden['modes'] as List).cast<String>();
     final light = golden['roles']['light'] as Map;
-    final dark = golden['roles']['dark'] as Map;
     expect(light.length, greaterThanOrEqualTo(30));
-    expect(dark.length, light.length);
+    for (final mode in modes) {
+      expect((golden['roles'][mode] as Map).length, light.length, reason: mode);
+    }
     expect((golden['data']['light'] as List).length, 8);
   });
 

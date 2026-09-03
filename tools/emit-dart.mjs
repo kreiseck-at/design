@@ -31,9 +31,18 @@ export function emitDart(model) {
   const dataList = (mode) =>
     model.data[mode].map((c) => `Color(${argb(c)})`).join(", ");
 
+  const roleTables = model.modes
+    .map((mode) => `  static const Map<String, Color> ${mode} = {\n${map(model.roles[mode])}\n  };`)
+    .join("\n\n");
+
+  const byMode = model.modes.map((mode) => `    KdMode.${mode}: ${mode},`).join("\n");
+
   return (
     "// Generated from tokens/. Do not edit; run `pnpm build` in the design repo.\n\n" +
     "import 'dart:ui' show Color;\n\n" +
+    "/// The modes a brand can offer, in the order `tokens/brands/` declares\n" +
+    "/// them.\n" +
+    `enum KdMode { ${model.modes.join(", ")} }\n\n` +
     "/// The lightness ladder, chroma profile and step list a ramp is built\n" +
     "/// from — the same numbers `KdRamps` was generated with, so a runtime\n" +
     "/// ramp built from an arbitrary seed colour stays the twin of the\n" +
@@ -44,10 +53,11 @@ export function emitDart(model) {
     `  static const Map<String, List<double>> ladders = {\n${doubleListMap(model.ladders)}\n  };\n\n` +
     `  static const Map<String, List<double>> chromaProfiles = {\n${doubleListMap(model.chromaProfiles)}\n  };\n}\n\n` +
     `/// The ramps of the ${model.brand} brand.\nclass KdRamps {\n  const KdRamps._();\n\n${ramps}\n}\n\n` +
-    "/// Roles resolved for both modes. An app reads a role, never a step.\n" +
+    "/// Roles resolved for every mode the brand offers. An app reads a role,\n" +
+    "/// never a step.\n" +
     "class KdRoles {\n  const KdRoles._();\n\n" +
-    `  static const Map<String, Color> light = {\n${map(model.roles.light)}\n  };\n\n` +
-    `  static const Map<String, Color> dark = {\n${map(model.roles.dark)}\n  };\n}\n\n` +
+    `${roleTables}\n\n` +
+    `  static const Map<KdMode, Map<String, Color>> byMode = {\n${byMode}\n  };\n}\n\n` +
     "/// Categorical colours for tiles and charts. Fixed order, never cycled.\n" +
     "class KdData {\n  const KdData._();\n\n" +
     `  static const List<Color> light = [${dataList("light")}];\n` +

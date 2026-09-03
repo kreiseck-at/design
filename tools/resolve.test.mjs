@@ -12,9 +12,9 @@ beforeAll(async () => {
 });
 
 describe("resolve", () => {
-  test("produces six ramps of eleven steps", () => {
+  test("produces seven ramps of eleven steps", () => {
     expect(Object.keys(model.ramps).sort()).toEqual(
-      ["brand", "danger", "info", "neutral", "success", "warning"],
+      ["brand", "danger", "info", "neutral", "neutralWarm", "success", "warning"],
     );
     for (const ramp of Object.values(model.ramps)) {
       expect(Object.keys(ramp)).toHaveLength(11);
@@ -49,5 +49,22 @@ describe("resolve", () => {
     const brand = { name: "t", ramps: { brand: { hue: 0, chroma: 0.1, ladder: "colour" } },
       fonts: {}, modes: ["light"] };
     expect(() => resolve(base, brand)).toThrow(/brand-999/);
+  });
+
+  test("resolves every mode the brand offers, falling back to light", () => {
+    expect(Object.keys(model.roles).sort()).toEqual(["contrast", "dark", "light", "warm"]);
+    expect(model.roles.warm.ground).not.toBe(model.roles.light.ground);   // own ramp
+    expect(model.roles.warm.brand).toBe(model.roles.light.brand);         // fallback
+    expect(model.roles.contrast.border).toBe(model.ramps.neutral[950]);   // own value
+    expect(model.roles.contrast.ground).toBe(model.roles.light.ground);   // fallback
+  });
+
+  test("throws naming the role when a mandatory column is missing", () => {
+    const base = { steps: [50], ladders: { colour: [0.9] }, chromaProfiles: { colour: [1] },
+      roles: { x: { light: "brand-50" } }, surfacePairs: {},
+      data: { light: [], dark: [] }, form: {}, type: {}, modeOverrides: {} };
+    const brand = { name: "t", ramps: { brand: { hue: 0, chroma: 0.1, ladder: "colour" } },
+      fonts: {}, modes: ["light"] };
+    expect(() => resolve(base, brand)).toThrow(/"x".*"dark"/);
   });
 });

@@ -30,7 +30,7 @@ function pairContrast(mode, roles, role, against, threshold, verb, problems) {
 export function check(model) {
   const problems = [];
 
-  for (const mode of ["light", "dark"]) {
+  for (const mode of Object.keys(model.roles)) {
     const roles = model.roles[mode];
 
     // 1. Every surface carries its ink, and the pair is readable.
@@ -72,10 +72,13 @@ export function check(model) {
     }
 
     // 4. Data colours must be visible on the ground they are drawn on.
+    // `model.data` only distinguishes light/dark; `warm` (a re-coloured
+    // neutral ladder) and `contrast` (sharper edges, same hues) check
+    // their categorical colours against the light set.
     if (!roles.ground) {
       problems.push(`${mode}: role "ground" is missing`);
     } else {
-      model.data[mode].forEach((colour, i) => {
+      (model.data[mode] ?? model.data.light).forEach((colour, i) => {
         const value = contrast(colour, roles.ground);
         if (value < CONTROL) {
           problems.push(
