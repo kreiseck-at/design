@@ -1,0 +1,12 @@
+{
+  "name": "@kreiseck/design-workspace",
+  "private": true,
+  "type": "module",
+  "engines": { "node": ">=22" },
+  "scripts": {
+    "build": "node tools/build.mjs",
+    "check": "node tools/build.mjs --check",
+    "test": "vitest run"
+  },
+  "devDependencies": { "vitest": "^2.1.0" }
+}

@@ -1,0 +1,4 @@
+node_modules/
+.dart_tool/
+packages/dart/build/
+.DS_Store
