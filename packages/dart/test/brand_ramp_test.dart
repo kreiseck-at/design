@@ -1,3 +1,5 @@
+import 'dart:convert';
+import 'dart:io';
 import 'dart:math' as math;
 import 'dart:ui' show Color;
 
@@ -34,5 +36,32 @@ void main() {
 
   test('petrol reproduces the brand anchor', () {
     expect(brandRamp(const Color(0xFF136B6B))[700]!.toARGB32(), 0xFF136B6B);
+  });
+
+  // Pins the runtime function against the fixture generated in resolve.mjs,
+  // the twin's contract with the TypeScript side. If _maxChroma or the
+  // ladder drifted from what the build used, this — not a live-rendered
+  // gallery — is what would catch it.
+  test('matches the golden brandRamp fixture step by step, for every seed', () {
+    final golden = jsonDecode(File('../../golden/kasseneck.json').readAsStringSync())
+        as Map<String, dynamic>;
+    final fixture = golden['brandRamp'] as Map<String, dynamic>;
+    expect(fixture.length, 4);
+
+    int argb(String hex) => int.parse('FF${hex.substring(1)}', radix: 16);
+
+    for (final entry in fixture.entries) {
+      final seedHex = entry.key;
+      final seed = Color(argb(seedHex));
+      final ramp = brandRamp(seed);
+      final expected = entry.value as Map<String, dynamic>;
+      for (final step in expected.entries) {
+        expect(
+          ramp[int.parse(step.key)]!.toARGB32(),
+          argb(step.value as String),
+          reason: '$seedHex step ${step.key}',
+        );
+      }
+    }
   });
 }

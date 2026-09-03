@@ -8,6 +8,7 @@
     "colour": [0.1, 0.18, 0.36, 0.58, 0.8, 1.0, 0.98, 0.88, 0.74, 0.56, 0.42],
     "neutral": [0.14, 0.22, 0.34, 0.48, 0.62, 0.78, 0.9, 1.0, 1.0, 0.95, 0.55]
   },
+  "brandRampMaxChroma": 0.2,
   "roles": {
     "brand":           { "light": "brand-700",   "dark": "brand-500" },
     "on-brand":        { "light": "#FFFFFF",     "dark": "neutral-950" },

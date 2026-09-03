@@ -1,5 +1,67 @@
 // Generated from tokens/. Do not edit; run `pnpm build`.
 
+export const steps = [50,100,200,300,400,500,600,700,800,900,950] as const;
+
+export const ladders = {
+  "colour": [
+    0.972,
+    0.94,
+    0.884,
+    0.812,
+    0.73,
+    0.648,
+    0.566,
+    0.48,
+    0.4,
+    0.325,
+    0.25
+  ],
+  "neutral": [
+    0.975,
+    0.95,
+    0.9,
+    0.83,
+    0.75,
+    0.66,
+    0.515,
+    0.46,
+    0.36,
+    0.266,
+    0.214
+  ]
+} as const;
+
+export const chromaProfiles = {
+  "colour": [
+    0.1,
+    0.18,
+    0.36,
+    0.58,
+    0.8,
+    1,
+    0.98,
+    0.88,
+    0.74,
+    0.56,
+    0.42
+  ],
+  "neutral": [
+    0.14,
+    0.22,
+    0.34,
+    0.48,
+    0.62,
+    0.78,
+    0.9,
+    1,
+    1,
+    0.95,
+    0.55
+  ]
+} as const;
+
+export const brandRampMaxChroma = 0.2;
+
 export const ramps = {
   "brand": {
     "50": "#EFF8F7",

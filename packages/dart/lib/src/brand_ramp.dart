@@ -1,10 +1,7 @@
 import 'dart:math' as math;
 import 'dart:ui' show Color;
 
-const _steps = [50, 100, 200, 300, 400, 500, 600, 700, 800, 900, 950];
-const _ladder = [0.972, 0.94, 0.884, 0.812, 0.73, 0.648, 0.566, 0.48, 0.4, 0.325, 0.25];
-const _profile = [0.1, 0.18, 0.36, 0.58, 0.8, 1.0, 0.98, 0.88, 0.74, 0.56, 0.42];
-const _maxChroma = 0.2;
+import 'tokens.dart';
 
 double _srgbToLinear(int c) {
   final v = c / 255;
@@ -70,13 +67,17 @@ Color _fromOklch(double l, double c, double h) {
 }
 
 /// The twin of `brandRamp` in the npm package: same ladder, same profile,
-/// same eleven values for the same input.
+/// same eleven values for the same input — read from the generated
+/// `KdLadders`, the exact numbers `pnpm build` used for the shipped ramps,
+/// not a second hand-typed copy of them.
 Map<int, Color> brandRamp(Color seed) {
   final oklch = _toOklch(seed);
-  final chroma = math.min(oklch[1] / 0.88, _maxChroma);
+  final ladder = KdLadders.ladders['colour']!;
+  final profile = KdLadders.chromaProfiles['colour']!;
+  final chroma = math.min(oklch[1] / 0.88, KdLadders.brandRampMaxChroma);
   final ramp = <int, Color>{};
-  for (var i = 0; i < _steps.length; i++) {
-    ramp[_steps[i]] = _fromOklch(_ladder[i], chroma * _profile[i], oklch[2]);
+  for (var i = 0; i < KdLadders.steps.length; i++) {
+    ramp[KdLadders.steps[i]] = _fromOklch(ladder[i], chroma * profile[i], oklch[2]);
   }
   return ramp;
 }

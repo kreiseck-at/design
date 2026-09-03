@@ -9,6 +9,10 @@ const vars = (roles, indent = "  ") =>
 export function emitTs(model) {
   const ts =
     HEAD_TS +
+    `export const steps = ${JSON.stringify(model.steps)} as const;\n\n` +
+    `export const ladders = ${JSON.stringify(model.ladders, null, 2)} as const;\n\n` +
+    `export const chromaProfiles = ${JSON.stringify(model.chromaProfiles, null, 2)} as const;\n\n` +
+    `export const brandRampMaxChroma = ${JSON.stringify(model.brandRampMaxChroma)};\n\n` +
     `export const ramps = ${JSON.stringify(model.ramps, null, 2)} as const;\n\n` +
     `export const roles = ${JSON.stringify(model.roles, null, 2)} as const;\n\n` +
     `export const data = ${JSON.stringify(model.data, null, 2)} as const;\n\n` +
