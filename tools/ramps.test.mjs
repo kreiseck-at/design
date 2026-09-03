@@ -67,4 +67,22 @@ describe("buildRamp", () => {
     expect(neutral[900]).toBe("#132A2A");
     expect(neutral[950]).toBe("#131B1B");
   });
+
+  test("applies the chroma profile step by step", () => {
+    const ramp = brand();
+    // Not an ordering check: gamut clipping alone would produce a falling
+    // curve even with the profile removed. This pins each step to the
+    // chroma the profile asks for — the anchors are excluded because they
+    // carry their own.
+    STEPS.forEach((step, i) => {
+      if (step === 500 || step === 700) return;
+      expect(hexToOklch(ramp[step]).c).toBeCloseTo(0.0875 * C_COLOUR[i], 2);
+    });
+  });
+
+  test("refuses a ladder that does not match the steps", () => {
+    expect(() =>
+      buildRamp({ hue: 194.9, chroma: 0.0875, lightness: [0.5], chromaProfile: C_COLOUR, steps: STEPS }),
+    ).toThrow(/11 entries/);
+  });
 });
