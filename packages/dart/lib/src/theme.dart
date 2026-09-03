@@ -73,6 +73,32 @@ double _kdElevation(KdMode mode) {
   }
 }
 
+/// Disabled means grey and bordered, not translucent — a till is read in
+/// bad light. Material's own 12 %/38 % alpha reads as a soft smudge under
+/// counter lighting; a flat `surface-raised` fill with an `ink-muted`
+/// label and a `border` outline stays legible as a control that is there,
+/// just not pressable right now.
+WidgetStateProperty<Color?> _kdDisabledBackground(KdMode mode, Color? enabled) =>
+    WidgetStateProperty.resolveWith(
+      (s) => s.contains(WidgetState.disabled) ? kdColor(mode, 'surface-raised') : enabled,
+    );
+
+WidgetStateProperty<Color?> _kdDisabledForeground(KdMode mode, Color? enabled) =>
+    WidgetStateProperty.resolveWith(
+      (s) => s.contains(WidgetState.disabled) ? kdColor(mode, 'ink-muted') : enabled,
+    );
+
+WidgetStateProperty<BorderSide?> _kdDisabledSide(
+  KdMode mode,
+  double borderWidth,
+  BorderSide? enabled,
+) =>
+    WidgetStateProperty.resolveWith(
+      (s) => s.contains(WidgetState.disabled)
+          ? BorderSide(color: kdColor(mode, 'border'), width: borderWidth)
+          : enabled,
+    );
+
 /// A Flutter theme built from the roles, so widgets nobody styles by hand
 /// still look right.
 ThemeData kdTheme(KdMode mode) {
@@ -146,24 +172,39 @@ ThemeData kdTheme(KdMode mode) {
         shape: controlShape,
         textStyle: text.titleMedium,
         elevation: elevation,
-        side: contrast
-            ? BorderSide(color: kdColor(mode, 'ink'), width: 2)
-            : BorderSide.none,
+      ).copyWith(
+        backgroundColor: _kdDisabledBackground(mode, kdColor(mode, 'brand')),
+        foregroundColor: _kdDisabledForeground(mode, kdColor(mode, 'on-brand')),
+        side: _kdDisabledSide(
+          mode,
+          borderWidth,
+          contrast ? BorderSide(color: kdColor(mode, 'ink'), width: 2) : BorderSide.none,
+        ),
       ),
     ),
     outlinedButtonTheme: OutlinedButtonThemeData(
       style: OutlinedButton.styleFrom(
         minimumSize: const Size(KdForm.tapMin, KdForm.controlPos),
         shape: controlShape,
-        side: BorderSide(color: kdColor(mode, 'border'), width: borderWidth),
-        foregroundColor: kdColor(mode, 'ink'),
         textStyle: text.titleMedium,
+      ).copyWith(
+        backgroundColor: _kdDisabledBackground(mode, null),
+        foregroundColor: _kdDisabledForeground(mode, kdColor(mode, 'ink')),
+        side: _kdDisabledSide(
+          mode,
+          borderWidth,
+          BorderSide(color: kdColor(mode, 'border'), width: borderWidth),
+        ),
       ),
     ),
     textButtonTheme: TextButtonThemeData(
       style: TextButton.styleFrom(
         minimumSize: const Size(KdForm.tapMin, KdForm.controlPos),
         shape: controlShape,
+      ).copyWith(
+        backgroundColor: _kdDisabledBackground(mode, null),
+        foregroundColor: _kdDisabledForeground(mode, kdColor(mode, 'brand')),
+        side: _kdDisabledSide(mode, borderWidth, BorderSide.none),
       ),
     ),
     chipTheme: ChipThemeData(
@@ -174,6 +215,7 @@ ThemeData kdTheme(KdMode mode) {
         side: BorderSide(color: kdColor(mode, 'border'), width: borderWidth),
       ),
       backgroundColor: kdColor(mode, 'surface'),
+      disabledColor: kdColor(mode, 'surface-raised'),
       selectedColor: kdColor(mode, 'brand-surface'),
       labelStyle: text.bodyMedium,
       secondaryLabelStyle: text.bodyMedium?.copyWith(
@@ -220,9 +262,11 @@ ThemeData kdTheme(KdMode mode) {
             : kdColor(mode, 'ink-muted'),
       ),
       trackColor: WidgetStateProperty.resolveWith(
-        (s) => s.contains(WidgetState.selected)
-            ? kdColor(mode, 'brand')
-            : kdColor(mode, 'surface'),
+        (s) => s.contains(WidgetState.disabled)
+            ? kdColor(mode, 'surface-raised')
+            : s.contains(WidgetState.selected)
+                ? kdColor(mode, 'brand')
+                : kdColor(mode, 'surface'),
       ),
       // The outline keeps the track separate from the ground.
       trackOutlineColor: WidgetStateProperty.resolveWith(

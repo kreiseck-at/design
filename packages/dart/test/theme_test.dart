@@ -74,4 +74,15 @@ void main() {
     final sw = kdTheme(KdMode.light).switchTheme;
     expect(sw.thumbColor!.resolve({}), kdColor(KdMode.light, 'ink-muted'));
   });
+
+  test('a disabled button is grey and bordered, not translucent', () {
+    final theme = kdTheme(KdMode.light);
+    final style = theme.filledButtonTheme.style!;
+    final disabled = {WidgetState.disabled};
+    expect(style.backgroundColor!.resolve(disabled), kdColor(KdMode.light, 'surface-raised'));
+    expect(style.foregroundColor!.resolve(disabled), kdColor(KdMode.light, 'ink-muted'));
+    expect(style.side!.resolve(disabled)!.color, kdColor(KdMode.light, 'border'));
+    // Enabled stays brand on on-brand.
+    expect(style.backgroundColor!.resolve({}), kdColor(KdMode.light, 'brand'));
+  });
 }
