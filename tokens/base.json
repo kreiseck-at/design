@@ -21,7 +21,7 @@
     "surface-raised":  { "light": "neutral-100", "dark": "neutral-800" },
     "on-surface-raised":{ "light": "neutral-900","dark": "neutral-50" },
     "ink":             { "light": "neutral-900", "dark": "neutral-50" },
-    "ink-muted":       { "light": "neutral-600", "dark": "neutral-400" },
+    "ink-muted":       { "light": "neutral-700", "dark": "neutral-400" },
     "border":          { "light": "neutral-600", "dark": "neutral-500" },
     "divider":         { "light": "neutral-200", "dark": "neutral-800" },
     "focus":           { "light": "brand-600",   "dark": "brand-400" },
@@ -53,7 +53,7 @@
     "info-surface": "on-info-surface"
   },
   "data": {
-    "light": ["#0D9488", "#B45309", "#4F46E5", "#DB2777", "#65A30D", "#0284C7", "#A16207", "#7E22CE"],
+    "light": ["#0D9488", "#B45309", "#4F46E5", "#DB2777", "#4D7C0F", "#0284C7", "#A16207", "#7E22CE"],
     "dark":  ["#0D9488", "#B45309", "#6366F1", "#DB2777", "#65A30D", "#0284C7", "#A16207", "#A855F7"]
   },
   "form": {
