@@ -6,7 +6,8 @@
   "scripts": {
     "build": "node tools/build.mjs",
     "check": "node tools/build.mjs --check",
-    "test": "vitest run"
+    "test": "vitest run",
+    "gallery": "node gallery/build.mjs"
   },
   "devDependencies": { "vitest": "^2.1.0" }
 }
