@@ -85,4 +85,25 @@ void main() {
     // Enabled stays brand on on-brand.
     expect(style.backgroundColor!.resolve({}), kdColor(KdMode.light, 'brand'));
   });
+
+  test('every text role has a size, so apply(fontSizeFactor:) cannot crash', () {
+    final t = kdTextTheme(KdMode.light);
+    for (final style in [t.displayLarge, t.displayMedium, t.displaySmall, t.headlineLarge,
+        t.headlineMedium, t.headlineSmall, t.titleLarge, t.titleMedium, t.titleSmall,
+        t.bodyLarge, t.bodyMedium, t.bodySmall, t.labelLarge, t.labelMedium, t.labelSmall]) {
+      expect(style, isNotNull);
+      expect(style!.fontSize, isNotNull);
+      expect(style.fontFamily, contains('Archivo'));
+    }
+    expect(() => t.apply(fontSizeFactor: 1.2), returnsNormally);
+    expect(t.labelLarge!.fontWeight, FontWeight.w500);
+  });
+
+  test('the colour scheme carries the roles Material derives otherwise', () {
+    final s = kdTheme(KdMode.light).colorScheme;
+    expect(s.secondaryContainer, kdColor(KdMode.light, 'brand-surface'));
+    expect(s.surfaceContainerHighest, kdColor(KdMode.light, 'surface-raised'));
+    expect(s.inverseSurface, kdColor(KdMode.light, 'ink'));
+    expect(s.shadow, const Color(0xFF000000));
+  });
 }

@@ -13,25 +13,36 @@ Color kdColor(KdMode mode, String role) {
 /// tracking come from the generated `KdType`; nothing here is typed by hand.
 TextTheme kdTextTheme(KdMode mode) {
   final ink = kdColor(mode, 'ink');
-  TextStyle s(KdTypeStyle t, {Color? color}) => TextStyle(
+  final muted = kdColor(mode, 'ink-muted');
+  TextStyle s(KdTypeStyle t, {Color? color, int? weight}) => TextStyle(
         fontFamily: t.mono ? KdFonts.mono : KdFonts.sans,
         package: KdFonts.package,
         fontSize: t.size,
         height: t.leading,
-        fontWeight: FontWeight.values[(t.weight ~/ 100) - 1],
+        fontWeight: FontWeight.values[((weight ?? t.weight) ~/ 100) - 1],
         letterSpacing: t.size * t.tracking,
         color: color ?? ink,
       );
   final r = KdType.roles;
+  // Every one of Material's fifteen text roles gets a size — a role left
+  // at `fontSize: null` makes `TextTheme.apply(fontSizeFactor:)` throw,
+  // and a till needs that call for its font-scale setting.
   return TextTheme(
+    displayLarge: s(r['display']!),
+    displayMedium: s(r['display']!),
     displaySmall: s(r['display']!),
+    headlineLarge: s(r['title']!),
+    headlineMedium: s(r['title']!),
     headlineSmall: s(r['title']!),
     titleLarge: s(r['heading']!),
     titleMedium: s(r['heading']!),
+    titleSmall: s(r['body']!, weight: 600),
     bodyLarge: s(r['body']!),
     bodyMedium: s(r['body']!),
-    bodySmall: s(r['small']!, color: kdColor(mode, 'ink-muted')),
-    labelSmall: s(r['label']!, color: kdColor(mode, 'ink-muted')),
+    bodySmall: s(r['small']!, color: muted),
+    labelLarge: s(r['body']!, weight: 500),
+    labelMedium: s(r['small']!, weight: 500),
+    labelSmall: s(r['label']!, color: muted),
   );
 }
 
@@ -113,6 +124,8 @@ ThemeData kdTheme(KdMode mode) {
     // One colour for action. Two would compete for the same glance.
     secondary: kdColor(mode, 'brand'),
     onSecondary: kdColor(mode, 'on-brand'),
+    secondaryContainer: kdColor(mode, 'brand-surface'),
+    onSecondaryContainer: kdColor(mode, 'on-brand-surface'),
     error: kdColor(mode, 'danger'),
     onError: kdColor(mode, 'on-danger'),
     errorContainer: kdColor(mode, 'danger-surface'),
@@ -122,6 +135,17 @@ ThemeData kdTheme(KdMode mode) {
     onSurfaceVariant: kdColor(mode, 'ink-muted'),
     outline: kdColor(mode, 'border'),
     outlineVariant: kdColor(mode, 'divider'),
+    // Shadows are black, in every mode — a role, not a token.
+    shadow: const Color(0xFF000000),
+    scrim: const Color(0xFF000000),
+    inverseSurface: kdColor(mode, 'ink'),
+    onInverseSurface: kdColor(mode, 'surface'),
+    inversePrimary: kdColor(mode, 'brand-surface'),
+    surfaceContainerLowest: kdColor(mode, 'surface'),
+    surfaceContainerLow: kdColor(mode, 'surface-raised'),
+    surfaceContainer: kdColor(mode, 'surface-raised'),
+    surfaceContainerHigh: kdColor(mode, 'surface-raised'),
+    surfaceContainerHighest: kdColor(mode, 'surface-raised'),
   );
 
   final text = kdTextTheme(mode);
