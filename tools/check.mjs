@@ -4,6 +4,25 @@ const TEXT = 4.5;
 const CONTROL = 3.0;
 
 /**
+ * Contrast between two roles, guarded: a role missing from the table (e.g.
+ * a deleted token) reports a proper problem string instead of throwing out
+ * of the colour code with a bare TypeError.
+ */
+function pairContrast(mode, roles, role, against, threshold, verb, problems) {
+  const a = roles[role];
+  const b = roles[against];
+  if (!a || !b) {
+    const missing = !a ? role : against;
+    problems.push(`${mode}: role "${missing}" is missing`);
+    return;
+  }
+  const value = contrast(a, b);
+  if (value < threshold) {
+    problems.push(`${mode}: "${role}" ${verb} "${against}" is ${value.toFixed(2)}, needs ${threshold}`);
+  }
+}
+
+/**
  * Every rule here is one that was broken somewhere in the house before this
  * package existed. The build fails on a problem; a design system that only
  * documents its promises does not keep them.
@@ -28,10 +47,11 @@ export function check(model) {
       }
     }
 
-    // 2. Muted text still has to be readable on the page ground.
-    const muted = contrast(roles["ink-muted"], roles.ground);
-    if (muted < TEXT) {
-      problems.push(`${mode}: "ink-muted" on "ground" is ${muted.toFixed(2)}, needs ${TEXT}`);
+    // 2. Muted text still has to be readable everywhere it is actually put
+    //    down, not only on the page ground — a table header on a raised
+    //    card and helper text on a tinted brand surface are ordinary spots.
+    for (const against of ["ground", "surface", "surface-raised", "brand-surface"]) {
+      pairContrast(mode, roles, "ink-muted", against, TEXT, "on", problems);
     }
 
     // 3. The boundary of a control (WCAG 1.4.11) — the rule the whole house
@@ -42,24 +62,24 @@ export function check(model) {
       ["border", "surface-raised"],
       ["focus", "ground"],
       ["focus", "surface-raised"],
+      ["focus", "surface"],
     ]) {
-      const value = contrast(roles[role], roles[against]);
-      if (value < CONTROL) {
-        problems.push(
-          `${mode}: "${role}" against "${against}" is ${value.toFixed(2)}, needs ${CONTROL}`,
-        );
-      }
+      pairContrast(mode, roles, role, against, CONTROL, "against", problems);
     }
 
     // 4. Data colours must be visible on the ground they are drawn on.
-    model.data[mode].forEach((colour, i) => {
-      const value = contrast(colour, roles.ground);
-      if (value < CONTROL) {
-        problems.push(
-          `${mode}: data slot ${i + 1} (${colour}) against "ground" is ${value.toFixed(2)}, needs ${CONTROL}`,
-        );
-      }
-    });
+    if (!roles.ground) {
+      problems.push(`${mode}: role "ground" is missing`);
+    } else {
+      model.data[mode].forEach((colour, i) => {
+        const value = contrast(colour, roles.ground);
+        if (value < CONTROL) {
+          problems.push(
+            `${mode}: data slot ${i + 1} (${colour}) against "ground" is ${value.toFixed(2)}, needs ${CONTROL}`,
+          );
+        }
+      });
+    }
 
     // 5. Semantic ink is written on cards and on the page, not only inside
     //    its own tinted surface. `surface-raised` is deliberately absent:
@@ -67,24 +87,14 @@ export function check(model) {
     //    coloured text.
     for (const role of ["success", "warning", "danger", "info", "brand"]) {
       for (const against of ["surface", "ground"]) {
-        const value = contrast(roles[role], roles[against]);
-        if (value < TEXT) {
-          problems.push(
-            `${mode}: "${role}" on "${against}" is ${value.toFixed(2)}, needs ${TEXT}`,
-          );
-        }
+        pairContrast(mode, roles, role, against, TEXT, "on", problems);
       }
     }
 
     // `danger-strong` is a signal tone for surfaces and icons, not body
     // text — it answers to the control threshold.
     for (const against of ["surface", "ground"]) {
-      const value = contrast(roles["danger-strong"], roles[against]);
-      if (value < CONTROL) {
-        problems.push(
-          `${mode}: "danger-strong" on "${against}" is ${value.toFixed(2)}, needs ${CONTROL}`,
-        );
-      }
+      pairContrast(mode, roles, "danger-strong", against, CONTROL, "on", problems);
     }
   }
 

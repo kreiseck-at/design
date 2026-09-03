@@ -29,7 +29,7 @@ ThemeData kdTheme(KdMode mode) {
     secondary: kdColor(mode, 'brand'),
     onSecondary: kdColor(mode, 'on-brand'),
     error: kdColor(mode, 'danger'),
-    onError: kdColor(mode, 'on-danger-surface'),
+    onError: kdColor(mode, 'on-danger'),
     errorContainer: kdColor(mode, 'danger-surface'),
     onErrorContainer: kdColor(mode, 'on-danger-surface'),
     surface: kdColor(mode, 'surface'),
