@@ -1,4 +1,5 @@
 node_modules/
 .dart_tool/
 packages/dart/build/
+packages/dart/pubspec.lock
 .DS_Store

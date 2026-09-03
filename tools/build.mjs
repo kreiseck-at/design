@@ -2,6 +2,7 @@ import { readFile, writeFile, mkdir } from "node:fs/promises";
 import { resolve as resolveTokens } from "./resolve.mjs";
 import { check } from "./check.mjs";
 import { emitTs } from "./emit-ts.mjs";
+import { emitDart } from "./emit-dart.mjs";
 
 const root = new URL("../", import.meta.url);
 const checkOnly = process.argv.includes("--check");
@@ -11,6 +12,7 @@ const outputs = async (model) => {
   return [
     ["packages/npm/src/tokens.ts", ts],
     ["packages/npm/src/tokens.css", css],
+    ["packages/dart/lib/src/tokens.dart", emitDart(model)],
     ["golden/kasseneck.json", `${JSON.stringify(model, null, 2)}\n`],
   ];
 };
