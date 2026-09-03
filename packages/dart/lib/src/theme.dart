@@ -56,6 +56,23 @@ TextStyle kdMonoStyle(KdMode mode, {bool large = false}) {
 String kdSignet(KdMode mode) =>
     mode == KdMode.dark ? 'assets/signet-invers.svg' : 'assets/signet.svg';
 
+/// Elevation by mode. Not a token — the till app tuned these four numbers
+/// by eye per style, and this keeps that tuning rather than inventing a
+/// token for a single call site. `contrast` gets none: a shadow is a soft
+/// edge, and contrast mode draws every edge with a hard line instead.
+double _kdElevation(KdMode mode) {
+  switch (mode) {
+    case KdMode.light:
+      return 1;
+    case KdMode.warm:
+      return 1;
+    case KdMode.dark:
+      return 0.5;
+    case KdMode.contrast:
+      return 0;
+  }
+}
+
 /// A Flutter theme built from the roles, so widgets nobody styles by hand
 /// still look right.
 ThemeData kdTheme(KdMode mode) {
@@ -81,8 +98,14 @@ ThemeData kdTheme(KdMode mode) {
     outlineVariant: kdColor(mode, 'divider'),
   );
 
-  final shape = RoundedRectangleBorder(
+  final text = kdTextTheme(mode);
+  final elevation = _kdElevation(mode);
+  final borderWidth = contrast ? 2.0 : KdForm.borderWidth;
+  final controlShape = RoundedRectangleBorder(
     borderRadius: BorderRadius.circular(KdForm.radius),
+  );
+  final cardShape = RoundedRectangleBorder(
+    borderRadius: BorderRadius.circular(KdForm.radiusLg),
   );
 
   return ThemeData(
@@ -91,26 +114,141 @@ ThemeData kdTheme(KdMode mode) {
     scaffoldBackgroundColor: kdColor(mode, 'ground'),
     fontFamily: KdFonts.sans,
     package: KdFonts.package,
-    textTheme: kdTextTheme(mode),
+    textTheme: text,
+    // Nobody aims precisely at a till: no control under 56 dp.
+    materialTapTargetSize: MaterialTapTargetSize.padded,
+    appBarTheme: AppBarTheme(
+      backgroundColor: kdColor(mode, 'surface'),
+      foregroundColor: kdColor(mode, 'ink'),
+      surfaceTintColor: Colors.transparent,
+      elevation: 0,
+      scrolledUnderElevation: elevation * 2,
+      shadowColor: const Color(0xFF000000),
+      titleTextStyle: text.titleLarge,
+    ),
+    cardTheme: CardThemeData(
+      color: kdColor(mode, 'surface'),
+      surfaceTintColor: Colors.transparent,
+      elevation: elevation * 1.5,
+      shape: cardShape.copyWith(
+        side: BorderSide(color: kdColor(mode, 'border'), width: borderWidth),
+      ),
+      margin: EdgeInsets.zero,
+    ),
+    dividerTheme: DividerThemeData(
+      color: kdColor(mode, 'divider'),
+      thickness: borderWidth,
+      space: borderWidth,
+    ),
     filledButtonTheme: FilledButtonThemeData(
       style: FilledButton.styleFrom(
         minimumSize: const Size(KdForm.tapMin, KdForm.controlPos),
-        shape: shape,
+        shape: controlShape,
+        textStyle: text.titleMedium,
+        elevation: elevation,
         side: contrast
             ? BorderSide(color: kdColor(mode, 'ink'), width: 2)
             : BorderSide.none,
       ),
     ),
+    outlinedButtonTheme: OutlinedButtonThemeData(
+      style: OutlinedButton.styleFrom(
+        minimumSize: const Size(KdForm.tapMin, KdForm.controlPos),
+        shape: controlShape,
+        side: BorderSide(color: kdColor(mode, 'border'), width: borderWidth),
+        foregroundColor: kdColor(mode, 'ink'),
+        textStyle: text.titleMedium,
+      ),
+    ),
+    textButtonTheme: TextButtonThemeData(
+      style: TextButton.styleFrom(
+        minimumSize: const Size(KdForm.tapMin, KdForm.controlPos),
+        shape: controlShape,
+      ),
+    ),
+    chipTheme: ChipThemeData(
+      // Not fully round: a pill reads as a label, and a selection at a
+      // till is a switch.
+      shape: RoundedRectangleBorder(
+        borderRadius: BorderRadius.circular(KdForm.radius),
+        side: BorderSide(color: kdColor(mode, 'border'), width: borderWidth),
+      ),
+      backgroundColor: kdColor(mode, 'surface'),
+      selectedColor: kdColor(mode, 'brand-surface'),
+      labelStyle: text.bodyMedium,
+      secondaryLabelStyle: text.bodyMedium?.copyWith(
+        color: kdColor(mode, 'brand'),
+        fontWeight: FontWeight.w600,
+      ),
+      side: BorderSide(color: kdColor(mode, 'border'), width: borderWidth),
+      showCheckmark: false,
+      padding: const EdgeInsets.symmetric(horizontal: 11, vertical: 8),
+    ),
     inputDecorationTheme: InputDecorationTheme(
       filled: true,
-      fillColor: kdColor(mode, 'surface'),
+      fillColor: kdColor(mode, 'surface-raised'),
       border: OutlineInputBorder(
         borderRadius: BorderRadius.circular(KdForm.radius),
-        borderSide: BorderSide(
-          color: kdColor(mode, 'border'),
-          width: contrast ? 2 : KdForm.borderWidth,
-        ),
+        borderSide: BorderSide(color: kdColor(mode, 'border'), width: borderWidth),
       ),
+      enabledBorder: OutlineInputBorder(
+        borderRadius: BorderRadius.circular(KdForm.radius),
+        borderSide: BorderSide(color: kdColor(mode, 'border'), width: borderWidth),
+      ),
+      focusedBorder: OutlineInputBorder(
+        borderRadius: BorderRadius.circular(KdForm.radius),
+        borderSide: BorderSide(color: kdColor(mode, 'brand'), width: borderWidth + 1),
+      ),
+      labelStyle: text.bodyMedium?.copyWith(color: kdColor(mode, 'ink-muted')),
+      helperStyle: text.bodySmall,
+      helperMaxLines: 3,
+    ),
+    listTileTheme: ListTileThemeData(
+      titleTextStyle: text.bodyLarge,
+      subtitleTextStyle: text.bodySmall,
+      iconColor: kdColor(mode, 'ink-muted'),
+      shape: controlShape,
+    ),
+    switchTheme: SwitchThemeData(
+      thumbColor: WidgetStateProperty.resolveWith(
+        // Off is a **grey** thumb, not a white one: white on near-white
+        // is not a track with a button seen from across a counter — it
+        // is an empty patch of surface, and the owner is left hunting
+        // for the switch that is right in front of them.
+        (s) => s.contains(WidgetState.selected)
+            ? kdColor(mode, 'on-brand')
+            : kdColor(mode, 'ink-muted'),
+      ),
+      trackColor: WidgetStateProperty.resolveWith(
+        (s) => s.contains(WidgetState.selected)
+            ? kdColor(mode, 'brand')
+            : kdColor(mode, 'surface'),
+      ),
+      // The outline keeps the track separate from the ground.
+      trackOutlineColor: WidgetStateProperty.resolveWith(
+        (s) => s.contains(WidgetState.selected)
+            ? kdColor(mode, 'brand')
+            : kdColor(mode, 'border'),
+      ),
+      trackOutlineWidth: WidgetStateProperty.all(borderWidth + 0.5),
+    ),
+    sliderTheme: SliderThemeData(
+      activeTrackColor: kdColor(mode, 'brand'),
+      thumbColor: kdColor(mode, 'brand'),
+      inactiveTrackColor: kdColor(mode, 'border'),
+    ),
+    snackBarTheme: SnackBarThemeData(
+      backgroundColor: kdColor(mode, 'ink'),
+      contentTextStyle: text.bodyLarge?.copyWith(color: kdColor(mode, 'surface')),
+      shape: controlShape,
+      behavior: SnackBarBehavior.floating,
+    ),
+    progressIndicatorTheme: ProgressIndicatorThemeData(color: kdColor(mode, 'brand')),
+    expansionTileTheme: ExpansionTileThemeData(
+      textColor: kdColor(mode, 'ink'),
+      collapsedTextColor: kdColor(mode, 'ink'),
+      iconColor: kdColor(mode, 'ink-muted'),
+      collapsedIconColor: kdColor(mode, 'ink-muted'),
     ),
   );
 }

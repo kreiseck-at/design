@@ -54,4 +54,24 @@ void main() {
     final shape = style.shape!.resolve({}) as RoundedRectangleBorder;
     expect((shape.borderRadius as BorderRadius).topLeft.x, 10);
   });
+
+  test('contrast mode draws a 2 px ink border on every control', () {
+    final theme = kdTheme(KdMode.contrast);
+    final card = theme.cardTheme.shape as RoundedRectangleBorder;
+    expect(card.side.width, 2);
+    expect(card.side.color, kdColor(KdMode.contrast, 'border'));
+    final input = theme.inputDecorationTheme.enabledBorder as OutlineInputBorder;
+    expect(input.borderSide.width, 2);
+    expect(theme.cardTheme.elevation, 0);
+  });
+
+  test('chips are not pills', () {
+    final chip = kdTheme(KdMode.light).chipTheme.shape as RoundedRectangleBorder;
+    expect((chip.borderRadius as BorderRadius).topLeft.x, 10);
+  });
+
+  test('a switched-off switch is grey, not white', () {
+    final sw = kdTheme(KdMode.light).switchTheme;
+    expect(sw.thumbColor!.resolve({}), kdColor(KdMode.light, 'ink-muted'));
+  });
 }
