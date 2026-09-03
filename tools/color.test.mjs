@@ -25,7 +25,7 @@ describe("color", () => {
   test("contrast matches the WCAG reference values", () => {
     expect(contrast("#FFFFFF", "#000000")).toBeCloseTo(21, 1);
     expect(contrast("#FFFFFF", "#136B6B")).toBeCloseTo(6.28, 2);
-    expect(contrast("#132A2A", "#F4F8F8")).toBeCloseTo(14.0, 1);
+    expect(contrast("#132A2A", "#F4F8F8")).toBeCloseTo(14.098, 2);
   });
 
   test("relative luminance of white is 1", () => {
