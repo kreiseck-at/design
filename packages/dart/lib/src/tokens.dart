@@ -25,6 +25,7 @@ class KdLadders {
   static const Map<String, List<double>> chromaProfiles = {
     'colour': [0.1, 0.18, 0.36, 0.58, 0.8, 1, 0.98, 0.88, 0.74, 0.56, 0.42],
     'neutral': [0.14, 0.22, 0.34, 0.48, 0.62, 0.78, 0.9, 1, 1, 0.95, 0.55],
+    'warm': [0.42, 0.5, 0.62, 0.75, 0.88, 0.96, 1, 1, 0.96, 0.8, 0.6],
   };
 }
 
@@ -61,17 +62,17 @@ class KdRamps {
   };
 
   static const Map<int, Color> neutralWarm = {
-    50: Color(0xFFF8F6F4),
-    100: Color(0xFFF1EEEA),
-    200: Color(0xFFE1DDD8),
-    300: Color(0xFFCCC6BE),
-    400: Color(0xFFB4ADA3),
-    500: Color(0xFF999185),
-    600: Color(0xFF6F6659),
-    700: Color(0xFF605748),
-    800: Color(0xFF453C2E),
-    900: Color(0xFF2C2418),
-    950: Color(0xFF1D1812),
+    50: Color(0xFFFBF6EE),
+    100: Color(0xFFF4EEE4),
+    200: Color(0xFFE4DDD2),
+    300: Color(0xFFCFC6B9),
+    400: Color(0xFFB7AC9D),
+    500: Color(0xFF9B9180),
+    600: Color(0xFF716656),
+    700: Color(0xFF615647),
+    800: Color(0xFF453C2D),
+    900: Color(0xFF2C2419),
+    950: Color(0xFF1E1810),
   };
 
   static const Map<int, Color> success = {
@@ -174,17 +175,17 @@ class KdRoles {
     'on-brand': Color(0xFFFFFFFF),
     'brand-pressed': Color(0xFF0A5252),
     'brand-surface': Color(0xFFE0EFEE),
-    'on-brand-surface': Color(0xFF2C2418),
-    'ground': Color(0xFFF8F6F4),
-    'on-ground': Color(0xFF2C2418),
+    'on-brand-surface': Color(0xFF2C2419),
+    'ground': Color(0xFFFBF6EE),
+    'on-ground': Color(0xFF2C2419),
     'surface': Color(0xFFFFFFFF),
-    'on-surface': Color(0xFF2C2418),
-    'surface-raised': Color(0xFFF1EEEA),
-    'on-surface-raised': Color(0xFF2C2418),
-    'ink': Color(0xFF2C2418),
-    'ink-muted': Color(0xFF6F6659),
-    'border': Color(0xFF6F6659),
-    'divider': Color(0xFFE1DDD8),
+    'on-surface': Color(0xFF2C2419),
+    'surface-raised': Color(0xFFF4EEE4),
+    'on-surface-raised': Color(0xFF2C2419),
+    'ink': Color(0xFF2C2419),
+    'ink-muted': Color(0xFF716656),
+    'border': Color(0xFF716656),
+    'divider': Color(0xFFE4DDD2),
     'focus': Color(0xFF268686),
     'success': Color(0xFF136F47),
     'success-surface': Color(0xFFF0F8F3),

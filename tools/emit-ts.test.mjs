@@ -81,7 +81,7 @@ describe("emitTs", () => {
   });
 
   test("emits one block per mode with the full role set", () => {
-    for (const mode of ["warm", "contrast"]) {
+    for (const mode of model.modes.filter((m) => m !== "light")) {
       const block = out.css.split(`[data-kd-mode="${mode}"]`)[1].split("}")[0];
       expect([...block.matchAll(/--kd-([a-z-]+): #/g)].length).toBe(
         Object.keys(model.roles.light).length,

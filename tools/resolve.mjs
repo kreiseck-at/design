@@ -29,7 +29,10 @@ export function resolve(base, brand) {
       hue: spec.hue,
       chroma: spec.chroma,
       lightness: base.ladders[spec.ladder],
-      chromaProfile: base.chromaProfiles[spec.ladder],
+      // A ramp normally shares its ladder's chroma profile, but a ramp can
+      // opt into a different one (e.g. a warm neutral needs more chroma at
+      // the pale end than the cool neutral profile gives it).
+      chromaProfile: base.chromaProfiles[spec.profile ?? spec.ladder],
       steps: base.steps,
       anchors: spec.anchors ?? {},
     });

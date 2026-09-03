@@ -67,4 +67,13 @@ describe("resolve", () => {
       fonts: {}, modes: ["light"] };
     expect(() => resolve(base, brand)).toThrow(/"x".*"dark"/);
   });
+
+  test("a ramp can opt into a chroma profile different from its ladder's", () => {
+    // Same hue, same chroma, same ladder — `neutralWarm` only adds
+    // `profile: "warm"`. If the field were ignored it would be identical to
+    // `neutral` at every step; the pale end is where the warm profile (more
+    // chroma at 50/100) makes the biggest difference.
+    expect(model.ramps.neutralWarm[50]).not.toBe(model.ramps.neutral[50]);
+    expect(model.ramps.neutralWarm[50]).toBe("#FBF6EE");
+  });
 });

@@ -5,7 +5,7 @@
                  "anchors": { "500": "#139E9B", "700": "#136B6B" } },
     "neutral": { "hue": 195.5, "chroma": 0.03,   "ladder": "neutral",
                  "anchors": { "900": "#132A2A", "950": "#131B1B" } },
-    "neutralWarm": { "hue": 78.0, "chroma": 0.026, "ladder": "neutral" },
+    "neutralWarm": { "hue": 78.0, "chroma": 0.028, "ladder": "neutral", "profile": "warm" },
     "success": { "hue": 158.4, "chroma": 0.119,  "ladder": "colour" },
     "warning": { "hue": 52.1,  "chroma": 0.133,  "ladder": "colour" },
     "danger":  { "hue": 28.7,  "chroma": 0.2,    "ladder": "colour" },
