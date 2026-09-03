@@ -1,0 +1,89 @@
+{
+  "steps": [50, 100, 200, 300, 400, 500, 600, 700, 800, 900, 950],
+  "ladders": {
+    "colour": [0.972, 0.94, 0.884, 0.812, 0.73, 0.648, 0.566, 0.48, 0.4, 0.325, 0.25],
+    "neutral": [0.975, 0.95, 0.9, 0.83, 0.75, 0.66, 0.56, 0.46, 0.36, 0.266, 0.214]
+  },
+  "chromaProfiles": {
+    "colour": [0.1, 0.18, 0.36, 0.58, 0.8, 1.0, 0.98, 0.88, 0.74, 0.56, 0.42],
+    "neutral": [0.14, 0.22, 0.34, 0.48, 0.62, 0.78, 0.9, 1.0, 1.0, 0.95, 0.55]
+  },
+  "roles": {
+    "brand":           { "light": "brand-700",   "dark": "brand-500" },
+    "on-brand":        { "light": "#FFFFFF",     "dark": "neutral-950" },
+    "brand-pressed":   { "light": "brand-800",   "dark": "brand-400" },
+    "brand-surface":   { "light": "brand-100",   "dark": "brand-900" },
+    "on-brand-surface":{ "light": "neutral-900", "dark": "neutral-50" },
+    "ground":          { "light": "neutral-50",  "dark": "neutral-950" },
+    "on-ground":       { "light": "neutral-900", "dark": "neutral-50" },
+    "surface":         { "light": "#FFFFFF",     "dark": "neutral-900" },
+    "on-surface":      { "light": "neutral-900", "dark": "neutral-50" },
+    "surface-raised":  { "light": "neutral-100", "dark": "neutral-800" },
+    "on-surface-raised":{ "light": "neutral-900","dark": "neutral-50" },
+    "ink":             { "light": "neutral-900", "dark": "neutral-50" },
+    "ink-muted":       { "light": "neutral-600", "dark": "neutral-400" },
+    "border":          { "light": "neutral-600", "dark": "neutral-500" },
+    "divider":         { "light": "neutral-200", "dark": "neutral-800" },
+    "focus":           { "light": "brand-600",   "dark": "brand-400" },
+    "success":         { "light": "success-700", "dark": "success-400" },
+    "success-surface": { "light": "success-50",  "dark": "success-950" },
+    "on-success-surface": { "light": "success-900", "dark": "success-50" },
+    "warning":         { "light": "warning-700", "dark": "warning-400" },
+    "warning-surface": { "light": "warning-50",  "dark": "warning-950" },
+    "on-warning-surface": { "light": "warning-900", "dark": "warning-50" },
+    "danger":          { "light": "danger-700",  "dark": "danger-400" },
+    "on-danger":       { "light": "#FFFFFF",     "dark": "neutral-950" },
+    "danger-strong":   { "light": "danger-600",  "dark": "danger-500" },
+    "danger-surface":  { "light": "danger-50",   "dark": "danger-950" },
+    "on-danger-surface": { "light": "danger-900","dark": "danger-50" },
+    "info":            { "light": "info-700",    "dark": "info-400" },
+    "info-surface":    { "light": "info-50",     "dark": "info-950" },
+    "on-info-surface": { "light": "info-900",    "dark": "info-50" }
+  },
+  "surfacePairs": {
+    "brand": "on-brand",
+    "danger": "on-danger",
+    "brand-surface": "on-brand-surface",
+    "ground": "on-ground",
+    "surface": "on-surface",
+    "surface-raised": "on-surface-raised",
+    "success-surface": "on-success-surface",
+    "warning-surface": "on-warning-surface",
+    "danger-surface": "on-danger-surface",
+    "info-surface": "on-info-surface"
+  },
+  "data": {
+    "light": ["#0D9488", "#B45309", "#4F46E5", "#DB2777", "#65A30D", "#0284C7", "#A16207", "#7E22CE"],
+    "dark":  ["#0D9488", "#B45309", "#6366F1", "#DB2777", "#65A30D", "#0284C7", "#A16207", "#A855F7"]
+  },
+  "form": {
+    "radius": { "sm": 6, "md": 10, "lg": 14, "full": 999 },
+    "space": [4, 8, 12, 16, 24, 32, 48],
+    "size": { "tapMin": 44, "controlPos": 56, "controlWeb": 40 },
+    "borderWidth": 1.5,
+    "focusRing": { "width": 2, "offset": 2 },
+    "shadow": {
+      "1": "0 1px 2px rgba(19, 27, 27, 0.08)",
+      "2": "0 4px 12px rgba(19, 27, 27, 0.10)",
+      "3": "0 12px 32px rgba(19, 27, 27, 0.14)"
+    },
+    "motion": { "fast": 120, "base": 200, "slow": 320 }
+  },
+  "type": {
+    "display":  { "size": 32, "leading": 1.15, "weight": 600, "tracking": -0.015 },
+    "title":    { "size": 24, "leading": 1.25, "weight": 600, "tracking": -0.015 },
+    "heading":  { "size": 18, "leading": 1.35, "weight": 600, "tracking": 0 },
+    "body":     { "size": 16, "leading": 1.6,  "weight": 400, "tracking": 0 },
+    "small":    { "size": 14, "leading": 1.5,  "weight": 400, "tracking": 0 },
+    "label":    { "size": 11, "leading": 1.4,  "weight": 500, "tracking": 0.1, "uppercase": true },
+    "mono":     { "size": 16, "leading": 1.5,  "weight": 400, "tracking": 0, "mono": true },
+    "mono-lg":  { "size": 20, "leading": 1.3,  "weight": 500, "tracking": 0, "mono": true }
+  },
+  "modeOverrides": {
+    "contrast": {
+      "borderWidth": 2,
+      "focusRing": { "width": 3, "offset": 2 },
+      "shadow": { "1": "none", "2": "none", "3": "none" }
+    }
+  }
+}

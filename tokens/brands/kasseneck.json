@@ -1,0 +1,18 @@
+{
+  "name": "kasseneck",
+  "ramps": {
+    "brand":   { "hue": 194.9, "chroma": 0.0875, "ladder": "colour",
+                 "anchors": { "500": "#139E9B", "700": "#136B6B" } },
+    "neutral": { "hue": 195.5, "chroma": 0.03,   "ladder": "neutral",
+                 "anchors": { "900": "#132A2A", "950": "#131B1B" } },
+    "success": { "hue": 158.4, "chroma": 0.119,  "ladder": "colour" },
+    "warning": { "hue": 52.1,  "chroma": 0.133,  "ladder": "colour" },
+    "danger":  { "hue": 28.7,  "chroma": 0.2,    "ladder": "colour" },
+    "info":    { "hue": 264.0, "chroma": 0.15,   "ladder": "colour" }
+  },
+  "fonts": {
+    "sans": { "family": "Archivo", "fallback": ["system-ui", "Helvetica", "Arial", "sans-serif"] },
+    "mono": { "family": "DM Mono", "fallback": ["ui-monospace", "SFMono-Regular", "monospace"] }
+  },
+  "modes": ["light", "warm", "dark", "contrast"]
+}
