@@ -1,21 +1,40 @@
 // sRGB <-> OKLab/OKLCH and WCAG contrast. No dependencies: these numbers
 // have to be identical in the Dart twin, so nothing may drift with a library.
 
+/** @typedef {{l: number, c: number, h: number}} Oklch */
+/** @typedef {[number, number, number]} Rgb */
+
+/**
+ * @param {number} c
+ * @returns {number}
+ */
 const srgbToLinear = (c) => {
   const v = c / 255;
   return v <= 0.04045 ? v / 12.92 : ((v + 0.055) / 1.055) ** 2.4;
 };
 
+/**
+ * @param {number} c
+ * @returns {number}
+ */
 const linearToSrgb = (c) => {
   const v = c <= 0.0031308 ? 12.92 * c : 1.055 * c ** (1 / 2.4) - 0.055;
   return Math.max(0, Math.min(1, v));
 };
 
+/**
+ * @param {string} hex
+ * @returns {Rgb}
+ */
 const parse = (hex) => {
   const h = hex.replace("#", "");
-  return [0, 2, 4].map((i) => parseInt(h.slice(i, i + 2), 16));
+  return /** @type {Rgb} */ ([0, 2, 4].map((i) => parseInt(h.slice(i, i + 2), 16)));
 };
 
+/**
+ * @param {string} hex
+ * @returns {Oklch}
+ */
 export function hexToOklch(hex) {
   const [r, g, b] = parse(hex).map(srgbToLinear);
   const l = Math.cbrt(0.4122214708 * r + 0.5363325363 * g + 0.0514459929 * b);
@@ -28,6 +47,10 @@ export function hexToOklch(hex) {
   return { l: L, c: Math.hypot(a, bb), h };
 }
 
+/**
+ * @param {Oklch} col
+ * @returns {Rgb}
+ */
 function oklchToRgb({ l: L, c: C, h: H }) {
   const a = C * Math.cos((H * Math.PI) / 180);
   const b = C * Math.sin((H * Math.PI) / 180);
@@ -41,9 +64,17 @@ function oklchToRgb({ l: L, c: C, h: H }) {
   ];
 }
 
+/**
+ * @param {Oklch} col
+ * @returns {boolean}
+ */
 const inGamut = (col) =>
   oklchToRgb(col).every((v) => v >= -0.0001 && v <= 1.0001);
 
+/**
+ * @param {Oklch} col
+ * @returns {string}
+ */
 export function oklchToHex(col) {
   let { l, c, h } = col;
   if (!inGamut({ l, c, h })) {
@@ -64,11 +95,20 @@ export function oklchToHex(col) {
   return `#${hex.toUpperCase()}`;
 }
 
+/**
+ * @param {string} hex
+ * @returns {number}
+ */
 export function relativeLuminance(hex) {
   const [r, g, b] = parse(hex).map(srgbToLinear);
   return 0.2126 * r + 0.7152 * g + 0.0722 * b;
 }
 
+/**
+ * @param {string} a
+ * @param {string} b
+ * @returns {number}
+ */
 export function contrast(a, b) {
   const la = relativeLuminance(a);
   const lb = relativeLuminance(b);
