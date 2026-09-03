@@ -82,7 +82,11 @@ export function emitDart(model) {
     `  static const String shadow3 = '${model.form.shadow["3"]}';\n}\n\n` +
     "class KdFonts {\n  const KdFonts._();\n\n" +
     `  static const String sans = '${model.fonts.sans.family}';\n` +
-    `  static const String mono = '${model.fonts.mono.family}';\n}\n\n` +
+    `  static const String mono = '${model.fonts.mono.family}';\n\n` +
+    "  /// The Dart package these fonts ship in. Every `TextStyle` built from\n" +
+    "  /// `KdType` sets `package:` to this, or a consuming app never finds\n" +
+    "  /// the bundled font — fixed regardless of brand.\n" +
+    "  static const String package = 'kreiseck_design';\n}\n\n" +
     "/// One typography role: size in logical pixels, `leading` as a\n" +
     "/// multiplier of size, `weight` as a `FontWeight` value (400, 600, …),\n" +
     "/// `tracking` in em. Matches `TextStyle`'s own units, so a caller can\n" +

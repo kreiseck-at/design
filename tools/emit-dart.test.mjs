@@ -46,4 +46,8 @@ describe("emitDart", () => {
     expect(dart).toMatch(/static const Map<String, Color> contrast/);
     expect(dart).toContain("enum KdMode { light, warm, dark, contrast }");
   });
+
+  test("carries the fixed package name so a consuming app can find the fonts", () => {
+    expect(dart).toContain("static const String package = 'kreiseck_design';");
+  });
 });

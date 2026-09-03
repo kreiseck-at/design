@@ -312,6 +312,11 @@ class KdFonts {
 
   static const String sans = 'Archivo';
   static const String mono = 'DM Mono';
+
+  /// The Dart package these fonts ship in. Every `TextStyle` built from
+  /// `KdType` sets `package:` to this, or a consuming app never finds
+  /// the bundled font — fixed regardless of brand.
+  static const String package = 'kreiseck_design';
 }
 
 /// One typography role: size in logical pixels, `leading` as a
