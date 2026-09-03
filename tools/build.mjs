@@ -3,6 +3,7 @@ import { resolve as resolveTokens } from "./resolve.mjs";
 import { check } from "./check.mjs";
 import { emitTs } from "./emit-ts.mjs";
 import { emitDart } from "./emit-dart.mjs";
+import { emitGallery } from "./emit-gallery.mjs";
 
 const root = new URL("../", import.meta.url);
 const checkOnly = process.argv.includes("--check");
@@ -16,6 +17,7 @@ const outputs = async (model) => {
     ["packages/npm/src/tokens.css", css],
     ["packages/npm/src/oklch.mjs", asMjs],
     ["packages/dart/lib/src/tokens.dart", emitDart(model)],
+    ["gallery/index.html", emitGallery(model)],
     ["golden/kasseneck.json", `${JSON.stringify(model, null, 2)}\n`],
   ];
 };

@@ -7,7 +7,6 @@
     "build": "node tools/build.mjs",
     "check": "node tools/build.mjs --check",
     "test": "vitest run",
-    "gallery": "node gallery/build.mjs",
     "typecheck": "tsc --noEmit -p packages/npm/tsconfig.json"
   },
   "devDependencies": { "typescript": "^5.6.0", "vitest": "^2.1.0" }

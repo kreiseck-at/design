@@ -1,41 +1,40 @@
-import { readFile, writeFile } from "node:fs/promises";
-import { contrast } from "../tools/color.mjs";
-
-const model = JSON.parse(
-  await readFile(new URL("../golden/kasseneck.json", import.meta.url)),
-);
+import { contrast } from "./color.mjs";
 
 // Pick whichever of black/white reads better on this background, instead of
 // guessing from the step number: a fixed cutoff puts white text on several
 // mid-tone swatches (e.g. any ramp's 500) at well under 4.5:1.
 const pickInk = (colour) =>
-  contrast(colour, "#FFFFFF") >= contrast(colour, "#000000")
-    ? "#FFFFFF"
-    : "#000000";
+  contrast(colour, "#FFFFFF") >= contrast(colour, "#000000") ? "#FFFFFF" : "#000000";
 
 const swatch = (label, colour) =>
   `<div class="sw" style="background:${colour};color:${pickInk(colour)}">` +
   `<b>${label}</b><span>${colour}</span></div>`;
 
-const ramps = Object.entries(model.ramps)
-  .map(([name, ramp]) => {
-    const cells = Object.entries(ramp)
-      .map(([step, colour]) => swatch(step, colour))
-      .join("");
-    return `<h3>${name}</h3><div class="row">${cells}</div>`;
-  })
-  .join("");
+/**
+ * The visual proving ground, as a pure function of the model — so it is one
+ * of `outputs()` and `pnpm check` covers it like every other generated file
+ * instead of a page nobody notices going stale.
+ */
+export function emitGallery(model) {
+  const ramps = Object.entries(model.ramps)
+    .map(([name, ramp]) => {
+      const cells = Object.entries(ramp)
+        .map(([step, colour]) => swatch(step, colour))
+        .join("");
+      return `<h3>${name}</h3><div class="row">${cells}</div>`;
+    })
+    .join("");
 
-const roleRows = Object.keys(model.roles.light)
-  .map(
-    (role) =>
-      `<tr><td><code>${role}</code></td>` +
-      `<td>${swatch("", model.roles.light[role])}</td>` +
-      `<td>${swatch("", model.roles.dark[role])}</td></tr>`,
-  )
-  .join("");
+  const roleRows = Object.keys(model.roles.light)
+    .map(
+      (role) =>
+        `<tr><td><code>${role}</code></td>` +
+        `<td>${swatch("", model.roles.light[role])}</td>` +
+        `<td>${swatch("", model.roles.dark[role])}</td></tr>`,
+    )
+    .join("");
 
-const html = `<!doctype html>
+  return `<!doctype html>
 <html lang="en"><head><meta charset="utf-8">
 <title>Kreiseck Design — ${model.brand}</title>
 <style>
@@ -53,6 +52,4 @@ const html = `<!doctype html>
 <h2>Ramps</h2>${ramps}
 <h2>Roles</h2><table><tr><th>role</th><th>light</th><th>dark</th></tr>${roleRows}</table>
 </body></html>`;
-
-await writeFile(new URL("index.html", import.meta.url), html);
-console.log("wrote gallery/index.html");
+}
