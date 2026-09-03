@@ -20,10 +20,13 @@ describe("emitTs", () => {
   });
 
   test("never leaves a colour defined in only one mode", () => {
-    const light = [...out.css.matchAll(/--kd-([a-z-]+): #/g)].map((m) => m[1]);
-    const dark = [...out.css.split('[data-kd-mode="dark"]')[1].matchAll(/--kd-([a-z-]+): #/g)]
-      .map((m) => m[1]);
-    expect(new Set(dark)).toEqual(new Set(light));
+    // Both sets must be scoped to their own block. Matching over the whole
+    // document made the light set pick up the dark block's declarations, so
+    // a role missing from :root alone went unnoticed.
+    const [lightBlock, darkBlock] = out.css.split('[data-kd-mode="dark"]');
+    const names = (block) => new Set([...block.matchAll(/--kd-([a-z-]+): #/g)].map((m) => m[1]));
+    expect(names(lightBlock).size).toBeGreaterThan(0);
+    expect(names(darkBlock)).toEqual(names(lightBlock));
   });
 
   test("exports typed ramps and roles", () => {
