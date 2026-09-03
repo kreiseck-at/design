@@ -51,6 +51,27 @@ void main() {
     }
   });
 
+  test('every data colour matches the golden file in both modes', () {
+    final data = golden['data'] as Map<String, dynamic>;
+    for (final mode in ['light', 'dark']) {
+      final expected = (data[mode] as List).cast<String>();
+      final actual = mode == 'light' ? KdData.light : KdData.dark;
+      expect(actual.length, expected.length, reason: '$mode slot count');
+      for (var i = 0; i < expected.length; i++) {
+        expect(actual[i].toARGB32(), argb(expected[i]), reason: '$mode slot ${i + 1}');
+      }
+    }
+  });
+
+  test('the golden file is not degenerate', () {
+    expect((golden['ramps'] as Map).length, 6);
+    final light = golden['roles']['light'] as Map;
+    final dark = golden['roles']['dark'] as Map;
+    expect(light.length, greaterThanOrEqualTo(30));
+    expect(dark.length, light.length);
+    expect((golden['data']['light'] as List).length, 8);
+  });
+
   test('the anchors are exact', () {
     expect(KdRamps.brand[700]!.toARGB32(), 0xFF136B6B);
     expect(KdRamps.brand[500]!.toARGB32(), 0xFF139E9B);
