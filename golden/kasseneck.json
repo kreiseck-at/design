@@ -1,0 +1,312 @@
+{
+  "brand": "kasseneck",
+  "ramps": {
+    "brand": {
+      "50": "#EFF8F7",
+      "100": "#E0EFEE",
+      "200": "#C2E0DF",
+      "300": "#9CCCCC",
+      "400": "#71B6B5",
+      "500": "#139E9B",
+      "600": "#268686",
+      "700": "#136B6B",
+      "800": "#0A5252",
+      "900": "#0C3C3C",
+      "950": "#072727"
+    },
+    "neutral": {
+      "50": "#F4F8F8",
+      "100": "#EAF0F0",
+      "200": "#D7E0E0",
+      "300": "#BDCACA",
+      "400": "#A1B2B2",
+      "500": "#829797",
+      "600": "#5D7474",
+      "700": "#445E5D",
+      "800": "#2A4242",
+      "900": "#132A2A",
+      "950": "#131B1B"
+    },
+    "success": {
+      "50": "#F0F8F3",
+      "100": "#E0F0E6",
+      "200": "#C2E2CE",
+      "300": "#9CD0B1",
+      "400": "#71BA91",
+      "500": "#42A473",
+      "600": "#268A5C",
+      "700": "#136F47",
+      "800": "#0A5635",
+      "900": "#0C3E27",
+      "950": "#072918"
+    },
+    "warning": {
+      "50": "#FEF4EE",
+      "100": "#F9E7DD",
+      "200": "#F4D1BC",
+      "300": "#EAB494",
+      "400": "#DD9467",
+      "500": "#CD7439",
+      "600": "#B05C1F",
+      "700": "#8F470D",
+      "800": "#703506",
+      "900": "#512709",
+      "950": "#361905"
+    },
+    "danger": {
+      "50": "#FFF3F1",
+      "100": "#FFE4E0",
+      "200": "#FFCAC2",
+      "300": "#FFA79A",
+      "400": "#FC7B6C",
+      "500": "#F04E41",
+      "600": "#D13329",
+      "700": "#AB1F18",
+      "800": "#861510",
+      "900": "#61130E",
+      "950": "#410B07"
+    },
+    "info": {
+      "50": "#F1F6FF",
+      "100": "#E2ECFE",
+      "200": "#C7D9FD",
+      "300": "#A5C2FB",
+      "400": "#81A6F3",
+      "500": "#5F8BE9",
+      "600": "#4971CC",
+      "700": "#3659A7",
+      "800": "#284483",
+      "900": "#1D325F",
+      "950": "#122040"
+    }
+  },
+  "roles": {
+    "light": {
+      "brand": "#136B6B",
+      "on-brand": "#FFFFFF",
+      "brand-pressed": "#0A5252",
+      "brand-surface": "#E0EFEE",
+      "on-brand-surface": "#132A2A",
+      "ground": "#F4F8F8",
+      "on-ground": "#132A2A",
+      "surface": "#FFFFFF",
+      "on-surface": "#132A2A",
+      "surface-raised": "#EAF0F0",
+      "on-surface-raised": "#132A2A",
+      "ink": "#132A2A",
+      "ink-muted": "#5D7474",
+      "border": "#5D7474",
+      "divider": "#D7E0E0",
+      "focus": "#268686",
+      "success": "#136F47",
+      "success-surface": "#F0F8F3",
+      "on-success-surface": "#0C3E27",
+      "warning": "#8F470D",
+      "warning-surface": "#FEF4EE",
+      "on-warning-surface": "#512709",
+      "danger": "#AB1F18",
+      "on-danger": "#FFFFFF",
+      "danger-strong": "#D13329",
+      "danger-surface": "#FFF3F1",
+      "on-danger-surface": "#61130E",
+      "info": "#3659A7",
+      "info-surface": "#F1F6FF",
+      "on-info-surface": "#1D325F"
+    },
+    "dark": {
+      "brand": "#139E9B",
+      "on-brand": "#131B1B",
+      "brand-pressed": "#71B6B5",
+      "brand-surface": "#0C3C3C",
+      "on-brand-surface": "#F4F8F8",
+      "ground": "#131B1B",
+      "on-ground": "#F4F8F8",
+      "surface": "#132A2A",
+      "on-surface": "#F4F8F8",
+      "surface-raised": "#2A4242",
+      "on-surface-raised": "#F4F8F8",
+      "ink": "#F4F8F8",
+      "ink-muted": "#A1B2B2",
+      "border": "#829797",
+      "divider": "#2A4242",
+      "focus": "#71B6B5",
+      "success": "#71BA91",
+      "success-surface": "#072918",
+      "on-success-surface": "#F0F8F3",
+      "warning": "#DD9467",
+      "warning-surface": "#361905",
+      "on-warning-surface": "#FEF4EE",
+      "danger": "#FC7B6C",
+      "on-danger": "#131B1B",
+      "danger-strong": "#F04E41",
+      "danger-surface": "#410B07",
+      "on-danger-surface": "#FFF3F1",
+      "info": "#81A6F3",
+      "info-surface": "#122040",
+      "on-info-surface": "#F1F6FF"
+    }
+  },
+  "surfacePairs": {
+    "brand": "on-brand",
+    "danger": "on-danger",
+    "brand-surface": "on-brand-surface",
+    "ground": "on-ground",
+    "surface": "on-surface",
+    "surface-raised": "on-surface-raised",
+    "success-surface": "on-success-surface",
+    "warning-surface": "on-warning-surface",
+    "danger-surface": "on-danger-surface",
+    "info-surface": "on-info-surface"
+  },
+  "data": {
+    "light": [
+      "#0D9488",
+      "#B45309",
+      "#4F46E5",
+      "#DB2777",
+      "#4D7C0F",
+      "#0284C7",
+      "#A16207",
+      "#7E22CE"
+    ],
+    "dark": [
+      "#0D9488",
+      "#B45309",
+      "#6366F1",
+      "#DB2777",
+      "#65A30D",
+      "#0284C7",
+      "#A16207",
+      "#A855F7"
+    ]
+  },
+  "form": {
+    "radius": {
+      "sm": 6,
+      "md": 10,
+      "lg": 14,
+      "full": 999
+    },
+    "space": [
+      4,
+      8,
+      12,
+      16,
+      24,
+      32,
+      48
+    ],
+    "size": {
+      "tapMin": 44,
+      "controlPos": 56,
+      "controlWeb": 40
+    },
+    "borderWidth": 1.5,
+    "focusRing": {
+      "width": 2,
+      "offset": 2
+    },
+    "shadow": {
+      "1": "0 1px 2px rgba(19, 27, 27, 0.08)",
+      "2": "0 4px 12px rgba(19, 27, 27, 0.10)",
+      "3": "0 12px 32px rgba(19, 27, 27, 0.14)"
+    },
+    "motion": {
+      "fast": 120,
+      "base": 200,
+      "slow": 320
+    }
+  },
+  "type": {
+    "display": {
+      "size": 32,
+      "leading": 1.15,
+      "weight": 600,
+      "tracking": -0.015
+    },
+    "title": {
+      "size": 24,
+      "leading": 1.25,
+      "weight": 600,
+      "tracking": -0.015
+    },
+    "heading": {
+      "size": 18,
+      "leading": 1.35,
+      "weight": 600,
+      "tracking": 0
+    },
+    "body": {
+      "size": 16,
+      "leading": 1.6,
+      "weight": 400,
+      "tracking": 0
+    },
+    "small": {
+      "size": 14,
+      "leading": 1.5,
+      "weight": 400,
+      "tracking": 0
+    },
+    "label": {
+      "size": 11,
+      "leading": 1.4,
+      "weight": 500,
+      "tracking": 0.1,
+      "uppercase": true
+    },
+    "mono": {
+      "size": 16,
+      "leading": 1.5,
+      "weight": 400,
+      "tracking": 0,
+      "mono": true
+    },
+    "mono-lg": {
+      "size": 20,
+      "leading": 1.3,
+      "weight": 500,
+      "tracking": 0,
+      "mono": true
+    }
+  },
+  "fonts": {
+    "sans": {
+      "family": "Archivo",
+      "fallback": [
+        "system-ui",
+        "Helvetica",
+        "Arial",
+        "sans-serif"
+      ]
+    },
+    "mono": {
+      "family": "DM Mono",
+      "fallback": [
+        "ui-monospace",
+        "SFMono-Regular",
+        "monospace"
+      ]
+    }
+  },
+  "modes": [
+    "light",
+    "warm",
+    "dark",
+    "contrast"
+  ],
+  "modeOverrides": {
+    "contrast": {
+      "borderWidth": 2,
+      "focusRing": {
+        "width": 3,
+        "offset": 2
+      },
+      "shadow": {
+        "1": "none",
+        "2": "none",
+        "3": "none"
+      }
+    }
+  }
+}
