@@ -1,0 +1,70 @@
+import { test, expect, describe } from "vitest";
+import { buildRamp } from "./ramps.mjs";
+import { hexToOklch } from "./color.mjs";
+
+const STEPS = [50, 100, 200, 300, 400, 500, 600, 700, 800, 900, 950];
+const L_COLOUR = [0.972, 0.94, 0.884, 0.812, 0.73, 0.648, 0.566, 0.48, 0.4, 0.325, 0.25];
+const C_COLOUR = [0.1, 0.18, 0.36, 0.58, 0.8, 1.0, 0.98, 0.88, 0.74, 0.56, 0.42];
+
+const brand = () =>
+  buildRamp({
+    hue: 194.9,
+    chroma: 0.0875,
+    lightness: L_COLOUR,
+    chromaProfile: C_COLOUR,
+    steps: STEPS,
+    anchors: { 500: "#139E9B", 700: "#136B6B" },
+  });
+
+describe("buildRamp", () => {
+  test("returns one colour per step", () => {
+    expect(Object.keys(brand()).map(Number)).toEqual(STEPS);
+  });
+
+  test("anchors win over the generated value", () => {
+    expect(brand()[500]).toBe("#139E9B");
+    expect(brand()[700]).toBe("#136B6B");
+  });
+
+  test("lightness decreases monotonically", () => {
+    const ramp = brand();
+    const ls = STEPS.map((s) => hexToOklch(ramp[s]).l);
+    for (let i = 1; i < ls.length; i += 1) expect(ls[i]).toBeLessThan(ls[i - 1]);
+  });
+
+  test("keeps the hue wherever chroma makes hue meaningful", () => {
+    const ramp = brand();
+    // Below roughly c = 0.05 the 8-bit rounding of a channel moves the hue by
+    // degrees: at step 50 the requested chroma is 0.0087, where one step of
+    // 1/255 in a channel is a large share of the whole chroma. Measured on
+    // this ladder: 5.8° at step 50, 2.8° at 100, under 1.4° from 200 down.
+    const wide = { 50: 6, 100: 6, 200: 2 };
+    for (const step of STEPS) {
+      if (step === 500 || step === 700) continue;
+      const tolerance = wide[step] ?? 1.5;
+      expect(Math.abs(hexToOklch(ramp[step]).h - 194.9)).toBeLessThan(tolerance);
+    }
+  });
+
+  test("stays in the petrol family even where the hue is unstable", () => {
+    const ramp = brand();
+    for (const step of [50, 100]) {
+      const [r, g, b] = [1, 3, 5].map((i) => parseInt(ramp[step].slice(i, i + 2), 16));
+      expect(r).toBeLessThan(g); // petrol: red is the quiet channel
+      expect(Math.abs(g - b)).toBeLessThanOrEqual(4); // green and blue stay together
+    }
+  });
+
+  test("neutral ramp lands on the two paragraph anchors", () => {
+    const neutral = buildRamp({
+      hue: 195.5,
+      chroma: 0.03,
+      lightness: [0.975, 0.95, 0.9, 0.83, 0.75, 0.66, 0.56, 0.46, 0.36, 0.266, 0.214],
+      chromaProfile: [0.14, 0.22, 0.34, 0.48, 0.62, 0.78, 0.9, 1.0, 1.0, 0.95, 0.55],
+      steps: STEPS,
+      anchors: { 900: "#132A2A", 950: "#131B1B" },
+    });
+    expect(neutral[900]).toBe("#132A2A");
+    expect(neutral[950]).toBe("#131B1B");
+  });
+});
