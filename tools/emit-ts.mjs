@@ -30,18 +30,28 @@ export function emitTs(model) {
     `  --kd-radius-lg: ${model.form.radius.lg}px;\n` +
     `  --kd-radius-full: ${model.form.radius.full}px;\n` +
     `  --kd-border-width: ${model.form.borderWidth}px;\n` +
+    `  --kd-focus-ring-width: ${model.form.focusRing.width}px;\n` +
+    `  --kd-focus-ring-offset: ${model.form.focusRing.offset}px;\n` +
     model.form.space.map((v, i) => `  --kd-space-${i + 1}: ${v}px;`).join("\n") +
     `\n  --kd-motion-fast: ${model.form.motion.fast}ms;\n` +
     `  --kd-motion-base: ${model.form.motion.base}ms;\n` +
     `  --kd-motion-slow: ${model.form.motion.slow}ms;\n` +
+    `  --kd-shadow-1: ${model.form.shadow["1"]};\n` +
+    `  --kd-shadow-2: ${model.form.shadow["2"]};\n` +
+    `  --kd-shadow-3: ${model.form.shadow["3"]};\n` +
     `  --kd-font-sans: "${model.fonts.sans.family}", ${model.fonts.sans.fallback.join(", ")};\n` +
     `  --kd-font-mono: "${model.fonts.mono.family}", ${model.fonts.mono.fallback.join(", ")};\n` +
     `}\n\n` +
     `[data-kd-mode="dark"] {\n${vars(model.roles.dark)}\n}\n\n` +
     `@media (prefers-color-scheme: dark) {\n` +
-    `  :root:not([data-kd-mode="light"]) {\n${vars(model.roles.dark, "    ")}\n  }\n}\n\n` +
+    `  :root:not([data-kd-mode]) {\n${vars(model.roles.dark, "    ")}\n  }\n}\n\n` +
     `[data-kd-mode="contrast"] {\n` +
-    `  --kd-border-width: ${model.modeOverrides.contrast.borderWidth}px;\n}\n\n` +
+    `  --kd-border-width: ${model.modeOverrides.contrast.borderWidth}px;\n` +
+    `  --kd-focus-ring-width: ${model.modeOverrides.contrast.focusRing.width}px;\n` +
+    `  --kd-focus-ring-offset: ${model.modeOverrides.contrast.focusRing.offset}px;\n` +
+    `  --kd-shadow-1: ${model.modeOverrides.contrast.shadow["1"]};\n` +
+    `  --kd-shadow-2: ${model.modeOverrides.contrast.shadow["2"]};\n` +
+    `  --kd-shadow-3: ${model.modeOverrides.contrast.shadow["3"]};\n}\n\n` +
     `@media (prefers-reduced-motion: reduce) {\n` +
     `  :root { --kd-motion-fast: 0ms; --kd-motion-base: 0ms; --kd-motion-slow: 0ms; }\n}\n`;
 

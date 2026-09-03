@@ -12,6 +12,15 @@ const doubleListMap = (entries, indent = "    ") =>
     .map(([key, values]) => `${indent}'${key}': ${doubleList(values)},`)
     .join("\n");
 
+const typeStyle = (role) =>
+  `KdTypeStyle(size: ${role.size}, leading: ${role.leading}, weight: ${role.weight}, ` +
+  `tracking: ${role.tracking}, mono: ${role.mono ?? false}, uppercase: ${role.uppercase ?? false})`;
+
+const typeMap = (type, indent = "    ") =>
+  Object.entries(type)
+    .map(([name, role]) => `${indent}'${name}': ${typeStyle(role)},`)
+    .join("\n");
+
 export function emitDart(model) {
   const ramps = Object.entries(model.ramps)
     .map(([name, ramp]) => `  static const Map<int, Color> ${name} = {\n${
@@ -52,9 +61,41 @@ export function emitDart(model) {
     `  static const double tapMin = ${model.form.size.tapMin};\n` +
     `  static const double controlPos = ${model.form.size.controlPos};\n` +
     `  static const double controlWeb = ${model.form.size.controlWeb};\n` +
-    `  static const List<double> space = [${model.form.space.join(", ")}];\n}\n\n` +
+    `  static const List<double> space = [${model.form.space.join(", ")}];\n` +
+    `  static const double focusRingWidth = ${model.form.focusRing.width};\n` +
+    `  static const double focusRingOffset = ${model.form.focusRing.offset};\n` +
+    `  static const double motionFast = ${model.form.motion.fast};\n` +
+    `  static const double motionBase = ${model.form.motion.base};\n` +
+    `  static const double motionSlow = ${model.form.motion.slow};\n` +
+    `  static const String shadow1 = '${model.form.shadow["1"]}';\n` +
+    `  static const String shadow2 = '${model.form.shadow["2"]}';\n` +
+    `  static const String shadow3 = '${model.form.shadow["3"]}';\n}\n\n` +
     "class KdFonts {\n  const KdFonts._();\n\n" +
     `  static const String sans = '${model.fonts.sans.family}';\n` +
-    `  static const String mono = '${model.fonts.mono.family}';\n}\n`
+    `  static const String mono = '${model.fonts.mono.family}';\n}\n\n` +
+    "/// One typography role: size in logical pixels, `leading` as a\n" +
+    "/// multiplier of size, `weight` as a `FontWeight` value (400, 600, …),\n" +
+    "/// `tracking` in em. Matches `TextStyle`'s own units, so a caller can\n" +
+    "/// spread these straight into one.\n" +
+    "class KdTypeStyle {\n" +
+    "  const KdTypeStyle({\n" +
+    "    required this.size,\n" +
+    "    required this.leading,\n" +
+    "    required this.weight,\n" +
+    "    required this.tracking,\n" +
+    "    this.mono = false,\n" +
+    "    this.uppercase = false,\n" +
+    "  });\n\n" +
+    "  final double size;\n" +
+    "  final double leading;\n" +
+    "  final int weight;\n" +
+    "  final double tracking;\n" +
+    "  final bool mono;\n" +
+    "  final bool uppercase;\n" +
+    "}\n\n" +
+    "/// The type scale, by role. Never hand-type a size or a weight in an\n" +
+    "/// app — the drift this package exists to end.\n" +
+    "class KdType {\n  const KdType._();\n\n" +
+    `  static const Map<String, KdTypeStyle> roles = {\n${typeMap(model.type)}\n  };\n}\n`
   );
 }

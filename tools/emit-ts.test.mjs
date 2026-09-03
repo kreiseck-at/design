@@ -40,4 +40,35 @@ describe("emitTs", () => {
     expect(out.ts.startsWith("// Generated from tokens/")).toBe(true);
     expect(out.css.startsWith("/* Generated from tokens/")).toBe(true);
   });
+
+  test("declares shadow and focus-ring custom properties", () => {
+    expect(out.css).toContain("--kd-shadow-1: 0 1px 2px rgba(19, 27, 27, 0.08);");
+    expect(out.css).toContain("--kd-shadow-2:");
+    expect(out.css).toContain("--kd-shadow-3:");
+    expect(out.css).toContain("--kd-focus-ring-width: 2px;");
+    expect(out.css).toContain("--kd-focus-ring-offset: 2px;");
+  });
+
+  test("the contrast mode override carries border width, focus ring and shadows", () => {
+    const block = out.css.split('[data-kd-mode="contrast"]')[1].split("}")[0];
+    expect(block).toContain("--kd-border-width: 2px;");
+    expect(block).toContain("--kd-focus-ring-width: 3px;");
+    expect(block).toContain("--kd-focus-ring-offset: 2px;");
+    expect(block).toContain("--kd-shadow-1: none;");
+    expect(block).toContain("--kd-shadow-2: none;");
+    expect(block).toContain("--kd-shadow-3: none;");
+  });
+
+  test("the dark media guard applies whenever no mode is pinned, not only light", () => {
+    // A page pinned to `contrast` on a dark-scheme OS must not silently get
+    // the dark palette: the guard has to exclude every explicit mode, not
+    // just "light".
+    expect(out.css).toContain(":root:not([data-kd-mode]) {");
+    expect(out.css).not.toContain(':root:not([data-kd-mode="light"])');
+  });
+
+  test("exports form and typography", () => {
+    expect(out.ts).toContain("export const form =");
+    expect(out.ts).toContain("export const typography =");
+  });
 });

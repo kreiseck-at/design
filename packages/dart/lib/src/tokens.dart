@@ -204,6 +204,14 @@ class KdForm {
   static const double controlPos = 56;
   static const double controlWeb = 40;
   static const List<double> space = [4, 8, 12, 16, 24, 32, 48];
+  static const double focusRingWidth = 2;
+  static const double focusRingOffset = 2;
+  static const double motionFast = 120;
+  static const double motionBase = 200;
+  static const double motionSlow = 320;
+  static const String shadow1 = '0 1px 2px rgba(19, 27, 27, 0.08)';
+  static const String shadow2 = '0 4px 12px rgba(19, 27, 27, 0.10)';
+  static const String shadow3 = '0 12px 32px rgba(19, 27, 27, 0.14)';
 }
 
 class KdFonts {
@@ -211,4 +219,43 @@ class KdFonts {
 
   static const String sans = 'Archivo';
   static const String mono = 'DM Mono';
+}
+
+/// One typography role: size in logical pixels, `leading` as a
+/// multiplier of size, `weight` as a `FontWeight` value (400, 600, …),
+/// `tracking` in em. Matches `TextStyle`'s own units, so a caller can
+/// spread these straight into one.
+class KdTypeStyle {
+  const KdTypeStyle({
+    required this.size,
+    required this.leading,
+    required this.weight,
+    required this.tracking,
+    this.mono = false,
+    this.uppercase = false,
+  });
+
+  final double size;
+  final double leading;
+  final int weight;
+  final double tracking;
+  final bool mono;
+  final bool uppercase;
+}
+
+/// The type scale, by role. Never hand-type a size or a weight in an
+/// app — the drift this package exists to end.
+class KdType {
+  const KdType._();
+
+  static const Map<String, KdTypeStyle> roles = {
+    'display': KdTypeStyle(size: 32, leading: 1.15, weight: 600, tracking: -0.015, mono: false, uppercase: false),
+    'title': KdTypeStyle(size: 24, leading: 1.25, weight: 600, tracking: -0.015, mono: false, uppercase: false),
+    'heading': KdTypeStyle(size: 18, leading: 1.35, weight: 600, tracking: 0, mono: false, uppercase: false),
+    'body': KdTypeStyle(size: 16, leading: 1.6, weight: 400, tracking: 0, mono: false, uppercase: false),
+    'small': KdTypeStyle(size: 14, leading: 1.5, weight: 400, tracking: 0, mono: false, uppercase: false),
+    'label': KdTypeStyle(size: 11, leading: 1.4, weight: 500, tracking: 0.1, mono: false, uppercase: true),
+    'mono': KdTypeStyle(size: 16, leading: 1.5, weight: 400, tracking: 0, mono: true, uppercase: false),
+    'mono-lg': KdTypeStyle(size: 20, leading: 1.3, weight: 500, tracking: 0, mono: true, uppercase: false),
+  };
 }

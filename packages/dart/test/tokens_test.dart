@@ -82,4 +82,48 @@ void main() {
   test('an unknown role throws instead of returning a wrong colour', () {
     expect(() => kdColor(KdMode.light, 'nope'), throwsArgumentError);
   });
+
+  test('every typography role matches the golden file', () {
+    final type = golden['type'] as Map<String, dynamic>;
+    expect(KdType.roles.keys.toSet(), type.keys.toSet());
+    for (final entry in type.entries) {
+      final expected = entry.value as Map<String, dynamic>;
+      final actual = KdType.roles[entry.key]!;
+      expect(actual.size, (expected['size'] as num).toDouble(), reason: '${entry.key}.size');
+      expect(actual.leading, (expected['leading'] as num).toDouble(),
+          reason: '${entry.key}.leading');
+      expect(actual.weight, expected['weight'], reason: '${entry.key}.weight');
+      expect(actual.tracking, (expected['tracking'] as num).toDouble(),
+          reason: '${entry.key}.tracking');
+      expect(actual.mono, expected['mono'] ?? false, reason: '${entry.key}.mono');
+      expect(actual.uppercase, expected['uppercase'] ?? false, reason: '${entry.key}.uppercase');
+    }
+  });
+
+  test('form (radii, motion, focus ring, shadow) matches the golden file', () {
+    final form = golden['form'] as Map<String, dynamic>;
+    final radius = form['radius'] as Map<String, dynamic>;
+    final size = form['size'] as Map<String, dynamic>;
+    final focusRing = form['focusRing'] as Map<String, dynamic>;
+    final motion = form['motion'] as Map<String, dynamic>;
+    final shadow = form['shadow'] as Map<String, dynamic>;
+
+    expect(KdForm.radiusSm, (radius['sm'] as num).toDouble());
+    expect(KdForm.radius, (radius['md'] as num).toDouble());
+    expect(KdForm.radiusLg, (radius['lg'] as num).toDouble());
+    expect(KdForm.radiusFull, (radius['full'] as num).toDouble());
+    expect(KdForm.borderWidth, (form['borderWidth'] as num).toDouble());
+    expect(KdForm.tapMin, (size['tapMin'] as num).toDouble());
+    expect(KdForm.controlPos, (size['controlPos'] as num).toDouble());
+    expect(KdForm.controlWeb, (size['controlWeb'] as num).toDouble());
+    expect(KdForm.space, (form['space'] as List).map((v) => (v as num).toDouble()).toList());
+    expect(KdForm.focusRingWidth, (focusRing['width'] as num).toDouble());
+    expect(KdForm.focusRingOffset, (focusRing['offset'] as num).toDouble());
+    expect(KdForm.motionFast, (motion['fast'] as num).toDouble());
+    expect(KdForm.motionBase, (motion['base'] as num).toDouble());
+    expect(KdForm.motionSlow, (motion['slow'] as num).toDouble());
+    expect(KdForm.shadow1, shadow['1']);
+    expect(KdForm.shadow2, shadow['2']);
+    expect(KdForm.shadow3, shadow['3']);
+  });
 }
