@@ -2,12 +2,18 @@
   "name": "@kreiseck/design-workspace",
   "private": true,
   "type": "module",
-  "engines": { "node": ">=22" },
+  "engines": {
+    "node": ">=22"
+  },
   "scripts": {
     "build": "node tools/build.mjs",
     "check": "node tools/build.mjs --check",
     "test": "vitest run",
     "typecheck": "tsc --noEmit -p packages/npm/tsconfig.json"
   },
-  "devDependencies": { "typescript": "^5.6.0", "vitest": "^2.1.0" }
+  "devDependencies": {
+    "@types/node": "^22",
+    "typescript": "^5.6.0",
+    "vitest": "^2.1.0"
+  }
 }
