@@ -3,5 +3,5 @@ import { createIcon } from "./create-icon.js";
 
 export const ShieldX = createIcon("shield-x", [
     ["path", { d: "M12 3l8 3v6c0 5-3.5 8-8 9-4.5-1-8-4-8-9V6z" }],
-    ["path", { d: "M9.5 9.5l5 5M14.5 9.5l-5 5" }]
+    ["path", { d: "M9 9l6 6M15 9l-6 6" }]
 ]);

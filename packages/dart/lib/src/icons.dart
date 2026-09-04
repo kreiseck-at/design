@@ -279,7 +279,7 @@ abstract final class KdIcons {
   static const KdIconData shieldAlert = KdIconData(stroke: [KdMove(12, 3), KdLine(20, 6), KdLine(20, 12), KdCubic(20, 17, 16.5, 20, 12, 21), KdCubic(7.5, 20, 4, 17, 4, 12), KdLine(4, 6), KdClose(), KdMove(12, 8), KdLine(12, 13), KdMove(12, 16.5), KdLine(12.1, 16.5)]);
 
   /// Sicherheit verletzt (shield-x)
-  static const KdIconData shieldX = KdIconData(stroke: [KdMove(12, 3), KdLine(20, 6), KdLine(20, 12), KdCubic(20, 17, 16.5, 20, 12, 21), KdCubic(7.5, 20, 4, 17, 4, 12), KdLine(4, 6), KdClose(), KdMove(9.5, 9.5), KdLine(14.5, 14.5), KdMove(14.5, 9.5), KdLine(9.5, 14.5)]);
+  static const KdIconData shieldX = KdIconData(stroke: [KdMove(12, 3), KdLine(20, 6), KdLine(20, 12), KdCubic(20, 17, 16.5, 20, 12, 21), KdCubic(7.5, 20, 4, 17, 4, 12), KdLine(4, 6), KdClose(), KdMove(9, 9), KdLine(15, 15), KdMove(15, 9), KdLine(9, 15)]);
 
   /// Sicherheit offen (shield-question)
   static const KdIconData shieldQuestion = KdIconData(stroke: [KdMove(12, 3), KdLine(20, 6), KdLine(20, 12), KdCubic(20, 17, 16.5, 20, 12, 21), KdCubic(7.5, 20, 4, 17, 4, 12), KdLine(4, 6), KdClose(), KdMove(10, 9.5), KdCubic(10.033, 8.469, 10.844, 7.633, 11.873, 7.568), KdCubic(12.902, 7.503, 13.812, 8.231, 13.974, 9.249), KdCubic(14.136, 10.267, 13.498, 11.242, 12.5, 11.5), KdCubic(12, 11.7, 12, 12.2, 12, 12.7), KdMove(12, 16), KdLine(12.1, 16)]);
@@ -297,7 +297,7 @@ abstract final class KdIcons {
   static const KdIconData calendarCheck = KdIconData(stroke: [KdMove(5.5, 5), KdLine(18.5, 5), KdCubic(19.881, 5, 21, 6.119, 21, 7.5), KdLine(21, 18.5), KdCubic(21, 19.881, 19.881, 21, 18.5, 21), KdLine(5.5, 21), KdCubic(4.119, 21, 3, 19.881, 3, 18.5), KdLine(3, 7.5), KdCubic(3, 6.119, 4.119, 5, 5.5, 5), KdClose(), KdMove(3, 10), KdLine(21, 10), KdMove(8, 3), KdLine(8, 7), KdMove(16, 3), KdLine(16, 7), KdMove(9, 15.5), KdLine(11, 17.5), KdLine(15, 13.5)]);
 
   /// Termin geplant (calendar-clock)
-  static const KdIconData calendarClock = KdIconData(stroke: [KdMove(3, 5), KdLine(15, 5), KdLine(15, 8), KdLine(7, 17), KdLine(3, 17), KdClose(), KdMove(3, 8), KdLine(15, 8), KdMove(6, 3), KdLine(6, 7), KdMove(11, 3), KdLine(11, 7), KdMove(21, 17), KdCubic(21, 19.209, 19.209, 21, 17, 21), KdCubic(14.791, 21, 13, 19.209, 13, 17), KdCubic(13, 14.791, 14.791, 13, 17, 13), KdCubic(19.209, 13, 21, 14.791, 21, 17), KdClose(), KdMove(17, 15), KdLine(17, 17), KdLine(18.5, 18)]);
+  static const KdIconData calendarClock = KdIconData(stroke: [KdMove(21, 10), KdLine(21, 7.5), KdCubic(21, 6.119, 19.881, 5, 18.5, 5), KdLine(5.5, 5), KdCubic(4.119, 5, 3, 6.119, 3, 7.5), KdLine(3, 18.5), KdCubic(3, 19.881, 4.119, 21, 5.5, 21), KdLine(10, 21), KdMove(3, 10), KdLine(21, 10), KdMove(8, 3), KdLine(8, 7), KdMove(16, 3), KdLine(16, 7), KdMove(21.5, 17), KdCubic(21.5, 19.485, 19.485, 21.5, 17, 21.5), KdCubic(14.515, 21.5, 12.5, 19.485, 12.5, 17), KdCubic(12.5, 14.515, 14.515, 12.5, 17, 12.5), KdCubic(19.485, 12.5, 21.5, 14.515, 21.5, 17), KdClose(), KdMove(17, 14.5), KdLine(17, 17), KdLine(18.8, 18.8)]);
 
   /// Überwachung (radar)
   static const KdIconData radar = KdIconData(stroke: [KdMove(12, 4), KdCubic(16.971, 4, 21, 8.029, 21, 13), KdCubic(21, 17.971, 16.971, 22, 12, 22), KdCubic(7.029, 22, 3, 17.971, 3, 13), KdMove(12, 7), KdCubic(15.314, 7, 18, 9.686, 18, 13), KdCubic(18, 16.314, 15.314, 19, 12, 19), KdCubic(8.686, 19, 6, 16.314, 6, 13), KdMove(12, 10), KdCubic(13.657, 10, 15, 11.343, 15, 13), KdCubic(15, 14.657, 13.657, 16, 12, 16), KdCubic(10.343, 16, 9, 14.657, 9, 13), KdMove(12, 13), KdLine(19, 6)]);
