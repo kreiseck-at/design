@@ -366,7 +366,7 @@ abstract final class KdIcons {
   static const KdIconData fileDown = KdIconData(stroke: [KdMove(14, 3), KdLine(6, 3), KdLine(6, 21), KdLine(18, 21), KdLine(18, 7), KdClose(), KdMove(14, 3), KdLine(14, 7), KdLine(18, 7), KdMove(12, 11), KdLine(12, 18), KdMove(9.5, 15.5), KdLine(12, 18), KdLine(14.5, 15.5)]);
 
   /// Tabelle (file-spreadsheet)
-  static const KdIconData fileSpreadsheet = KdIconData(stroke: [KdMove(14, 3), KdLine(6, 3), KdLine(6, 21), KdLine(18, 21), KdLine(18, 7), KdClose(), KdMove(14, 3), KdLine(14, 7), KdLine(18, 7), KdMove(8, 12), KdLine(16, 12), KdMove(8, 16), KdLine(16, 16), KdMove(12, 12), KdLine(12, 18)]);
+  static const KdIconData fileSpreadsheet = KdIconData(stroke: [KdMove(14, 3), KdLine(6, 3), KdLine(6, 21), KdLine(18, 21), KdLine(18, 7), KdClose(), KdMove(14, 3), KdLine(14, 7), KdLine(18, 7), KdMove(9, 12), KdLine(15, 12), KdMove(9, 16), KdLine(15, 16), KdMove(12, 12), KdLine(12, 18)]);
 
   /// Datei mit Warnung (file-warning)
   static const KdIconData fileWarning = KdIconData(stroke: [KdMove(14, 3), KdLine(6, 3), KdLine(6, 21), KdLine(18, 21), KdLine(18, 7), KdClose(), KdMove(14, 3), KdLine(14, 7), KdLine(18, 7), KdMove(12, 11), KdLine(12, 15), KdMove(12, 18), KdLine(12.1, 18)]);
@@ -381,10 +381,10 @@ abstract final class KdIcons {
   static const KdIconData image = KdIconData(stroke: [KdMove(5.5, 3), KdLine(18.5, 3), KdCubic(19.881, 3, 21, 4.119, 21, 5.5), KdLine(21, 18.5), KdCubic(21, 19.881, 19.881, 21, 18.5, 21), KdLine(5.5, 21), KdCubic(4.119, 21, 3, 19.881, 3, 18.5), KdLine(3, 5.5), KdCubic(3, 4.119, 4.119, 3, 5.5, 3), KdClose(), KdMove(10, 8.5), KdCubic(10, 9.328, 9.328, 10, 8.5, 10), KdCubic(7.672, 10, 7, 9.328, 7, 8.5), KdCubic(7, 7.672, 7.672, 7, 8.5, 7), KdCubic(9.328, 7, 10, 7.672, 10, 8.5), KdClose(), KdMove(21, 15), KdLine(16, 10), KdLine(7, 19)]);
 
   /// Kein Bild (image-off)
-  static const KdIconData imageOff = KdIconData(stroke: [KdMove(5.5, 3), KdLine(18.5, 3), KdCubic(19.881, 3, 21, 4.119, 21, 5.5), KdLine(21, 18.5), KdCubic(21, 19.881, 19.881, 21, 18.5, 21), KdLine(5.5, 21), KdCubic(4.119, 21, 3, 19.881, 3, 18.5), KdLine(3, 5.5), KdCubic(3, 4.119, 4.119, 3, 5.5, 3), KdClose(), KdMove(10, 8.5), KdCubic(10, 9.328, 9.328, 10, 8.5, 10), KdCubic(7.672, 10, 7, 9.328, 7, 8.5), KdCubic(7, 7.672, 7.672, 7, 8.5, 7), KdCubic(9.328, 7, 10, 7.672, 10, 8.5), KdClose(), KdMove(21, 15), KdLine(16, 10), KdLine(7, 19), KdMove(4, 4), KdLine(20, 20)]);
+  static const KdIconData imageOff = KdIconData(stroke: [KdMove(5.5, 3), KdLine(18.5, 3), KdCubic(19.881, 3, 21, 4.119, 21, 5.5), KdLine(21, 18.5), KdCubic(21, 19.881, 19.881, 21, 18.5, 21), KdLine(5.5, 21), KdCubic(4.119, 21, 3, 19.881, 3, 18.5), KdLine(3, 5.5), KdCubic(3, 4.119, 4.119, 3, 5.5, 3), KdClose(), KdMove(12.5, 6), KdCubic(12.5, 6.828, 11.828, 7.5, 11, 7.5), KdCubic(10.172, 7.5, 9.5, 6.828, 9.5, 6), KdCubic(9.5, 5.172, 10.172, 4.5, 11, 4.5), KdCubic(11.828, 4.5, 12.5, 5.172, 12.5, 6), KdClose(), KdMove(21, 15), KdLine(16, 10), KdLine(7, 19), KdMove(4, 4), KdLine(20, 20)]);
 
   /// Bild hinzufügen (image-plus)
-  static const KdIconData imagePlus = KdIconData(stroke: [KdMove(17, 3), KdLine(3, 3), KdLine(3, 21), KdLine(21, 21), KdLine(21, 9), KdMove(15, 6), KdLine(21, 6), KdMove(18, 3), KdLine(18, 9)]);
+  static const KdIconData imagePlus = KdIconData(stroke: [KdMove(21, 9), KdLine(21, 19), KdCubic(21, 20.105, 20.105, 21, 19, 21), KdLine(5, 21), KdCubic(3.895, 21, 3, 20.105, 3, 19), KdLine(3, 5), KdCubic(3, 3.895, 3.895, 3, 5, 3), KdLine(15, 3), KdMove(15, 6), KdLine(21, 6), KdMove(18, 3), KdLine(18, 9)]);
 
   /// Lookup by source name, e.g. `KdIcons.byName['id']`.
   static const Map<String, KdIconData> byName = {

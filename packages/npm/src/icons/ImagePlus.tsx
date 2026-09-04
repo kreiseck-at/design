@@ -2,6 +2,6 @@
 import { createIcon } from "./create-icon.js";
 
 export const ImagePlus = createIcon("image-plus", [
-    ["path", { d: "M17 3H3v18h18V9" }],
+    ["path", { d: "M21 9v10a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h10" }],
     ["path", { d: "M15 6h6M18 3v6" }]
 ]);
