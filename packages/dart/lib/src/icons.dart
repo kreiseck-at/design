@@ -353,6 +353,39 @@ abstract final class KdIcons {
   /// Bericht (chart-bar)
   static const KdIconData chartBar = KdIconData(stroke: [KdMove(3, 3), KdLine(3, 21), KdLine(21, 21), KdMove(8, 17), KdLine(8, 11), KdMove(13, 17), KdLine(13, 7), KdMove(18, 17), KdLine(18, 14)]);
 
+  /// Datei (file)
+  static const KdIconData file = KdIconData(stroke: [KdMove(14, 3), KdLine(6, 3), KdLine(6, 21), KdLine(18, 21), KdLine(18, 7), KdClose(), KdMove(14, 3), KdLine(14, 7), KdLine(18, 7), KdMove(9, 13), KdLine(15, 13), KdMove(9, 17), KdLine(15, 17)]);
+
+  /// Datei geprüft (file-check)
+  static const KdIconData fileCheck = KdIconData(stroke: [KdMove(14, 3), KdLine(6, 3), KdLine(6, 21), KdLine(18, 21), KdLine(18, 7), KdClose(), KdMove(14, 3), KdLine(14, 7), KdLine(18, 7), KdMove(9, 15), KdLine(11, 17), KdLine(15, 13)]);
+
+  /// Datei (XML/JSON) (file-code)
+  static const KdIconData fileCode = KdIconData(stroke: [KdMove(14, 3), KdLine(6, 3), KdLine(6, 21), KdLine(18, 21), KdLine(18, 7), KdClose(), KdMove(14, 3), KdLine(14, 7), KdLine(18, 7), KdMove(11, 13), KdLine(9, 15), KdLine(11, 17), KdMove(13, 13), KdLine(15, 15), KdLine(13, 17)]);
+
+  /// Datei herunterladen (file-down)
+  static const KdIconData fileDown = KdIconData(stroke: [KdMove(14, 3), KdLine(6, 3), KdLine(6, 21), KdLine(18, 21), KdLine(18, 7), KdClose(), KdMove(14, 3), KdLine(14, 7), KdLine(18, 7), KdMove(12, 11), KdLine(12, 18), KdMove(9.5, 15.5), KdLine(12, 18), KdLine(14.5, 15.5)]);
+
+  /// Tabelle (file-spreadsheet)
+  static const KdIconData fileSpreadsheet = KdIconData(stroke: [KdMove(14, 3), KdLine(6, 3), KdLine(6, 21), KdLine(18, 21), KdLine(18, 7), KdClose(), KdMove(14, 3), KdLine(14, 7), KdLine(18, 7), KdMove(8, 12), KdLine(16, 12), KdMove(8, 16), KdLine(16, 16), KdMove(12, 12), KdLine(12, 18)]);
+
+  /// Datei mit Warnung (file-warning)
+  static const KdIconData fileWarning = KdIconData(stroke: [KdMove(14, 3), KdLine(6, 3), KdLine(6, 21), KdLine(18, 21), KdLine(18, 7), KdClose(), KdMove(14, 3), KdLine(14, 7), KdLine(18, 7), KdMove(12, 11), KdLine(12, 15), KdMove(12, 18), KdLine(12.1, 18)]);
+
+  /// Anleitung (book)
+  static const KdIconData book = KdIconData(stroke: [KdMove(4, 4), KdLine(10, 4), KdCubic(11.657, 4, 13, 5.343, 13, 7), KdLine(13, 21), KdCubic(13, 19.895, 12.105, 19, 11, 19), KdLine(4, 19), KdClose(), KdMove(20, 4), KdLine(14, 4), KdCubic(12.343, 4, 11, 5.343, 11, 7), KdLine(11, 21), KdCubic(11, 19.895, 11.895, 19, 13, 19), KdLine(20, 19), KdClose()]);
+
+  /// Eingang (inbox)
+  static const KdIconData inbox = KdIconData(stroke: [KdMove(3, 13), KdLine(6, 5), KdLine(18, 5), KdLine(21, 13), KdLine(21, 19), KdLine(3, 19), KdClose(), KdMove(3, 13), KdLine(8, 13), KdLine(9.5, 16), KdLine(14.5, 16), KdLine(16, 13), KdLine(21, 13)]);
+
+  /// Bild (image)
+  static const KdIconData image = KdIconData(stroke: [KdMove(5.5, 3), KdLine(18.5, 3), KdCubic(19.881, 3, 21, 4.119, 21, 5.5), KdLine(21, 18.5), KdCubic(21, 19.881, 19.881, 21, 18.5, 21), KdLine(5.5, 21), KdCubic(4.119, 21, 3, 19.881, 3, 18.5), KdLine(3, 5.5), KdCubic(3, 4.119, 4.119, 3, 5.5, 3), KdClose(), KdMove(10, 8.5), KdCubic(10, 9.328, 9.328, 10, 8.5, 10), KdCubic(7.672, 10, 7, 9.328, 7, 8.5), KdCubic(7, 7.672, 7.672, 7, 8.5, 7), KdCubic(9.328, 7, 10, 7.672, 10, 8.5), KdClose(), KdMove(21, 15), KdLine(16, 10), KdLine(7, 19)]);
+
+  /// Kein Bild (image-off)
+  static const KdIconData imageOff = KdIconData(stroke: [KdMove(5.5, 3), KdLine(18.5, 3), KdCubic(19.881, 3, 21, 4.119, 21, 5.5), KdLine(21, 18.5), KdCubic(21, 19.881, 19.881, 21, 18.5, 21), KdLine(5.5, 21), KdCubic(4.119, 21, 3, 19.881, 3, 18.5), KdLine(3, 5.5), KdCubic(3, 4.119, 4.119, 3, 5.5, 3), KdClose(), KdMove(10, 8.5), KdCubic(10, 9.328, 9.328, 10, 8.5, 10), KdCubic(7.672, 10, 7, 9.328, 7, 8.5), KdCubic(7, 7.672, 7.672, 7, 8.5, 7), KdCubic(9.328, 7, 10, 7.672, 10, 8.5), KdClose(), KdMove(21, 15), KdLine(16, 10), KdLine(7, 19), KdMove(4, 4), KdLine(20, 20)]);
+
+  /// Bild hinzufügen (image-plus)
+  static const KdIconData imagePlus = KdIconData(stroke: [KdMove(17, 3), KdLine(3, 3), KdLine(3, 21), KdLine(21, 21), KdLine(21, 9), KdMove(15, 6), KdLine(21, 6), KdMove(18, 3), KdLine(18, 9)]);
+
   /// Lookup by source name, e.g. `KdIcons.byName['id']`.
   static const Map<String, KdIconData> byName = {
     'arrow-left': arrowLeft,
@@ -471,5 +504,16 @@ abstract final class KdIcons {
     'trending-up': trendingUp,
     'trending-down': trendingDown,
     'chart-bar': chartBar,
+    'file': file,
+    'file-check': fileCheck,
+    'file-code': fileCode,
+    'file-down': fileDown,
+    'file-spreadsheet': fileSpreadsheet,
+    'file-warning': fileWarning,
+    'book': book,
+    'inbox': inbox,
+    'image': image,
+    'image-off': imageOff,
+    'image-plus': imagePlus,
   };
 }

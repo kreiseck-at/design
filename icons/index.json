@@ -114,5 +114,16 @@
   "flask":           { "group": "status", "de": "Testumgebung", "terms": ["test environment", "sandbox", "testumgebung", "laborflasche"] },
   "trending-up":     { "group": "status", "de": "Steigend", "terms": ["trending up", "increase trend", "steigend", "aufwärtstrend"] },
   "trending-down":   { "group": "status", "de": "Fallend", "terms": ["trending down", "decrease trend", "fallend", "abwärtstrend"] },
-  "chart-bar":       { "group": "status", "de": "Bericht", "terms": ["bar chart", "report", "bericht", "balkendiagramm"] }
+  "chart-bar":       { "group": "status", "de": "Bericht", "terms": ["bar chart", "report", "bericht", "balkendiagramm"] },
+  "file":              { "group": "document", "de": "Datei", "terms": ["file", "document", "datei", "dokument"] },
+  "file-check":        { "group": "document", "de": "Datei geprüft", "terms": ["file check", "verified file", "datei geprüft", "dokument geprüft"] },
+  "file-code":         { "group": "document", "de": "Datei (XML/JSON)", "terms": ["file code", "datei code", "xml", "json"] },
+  "file-down":         { "group": "document", "de": "Datei herunterladen", "terms": ["file download", "export file", "datei herunterladen", "datei exportieren"] },
+  "file-spreadsheet":  { "group": "document", "de": "Tabelle", "terms": ["spreadsheet", "table", "tabelle", "excel", "csv"] },
+  "file-warning":      { "group": "document", "de": "Datei mit Warnung", "terms": ["file warning", "file issue", "datei mit warnung", "fehlerhafte datei"] },
+  "book":              { "group": "document", "de": "Anleitung", "terms": ["book", "guide", "anleitung", "handbuch", "dokumentation"] },
+  "inbox":             { "group": "document", "de": "Eingang", "terms": ["inbox", "tray", "eingang", "posteingang"] },
+  "image":             { "group": "document", "de": "Bild", "terms": ["image", "picture", "bild", "foto", "photo"] },
+  "image-off":         { "group": "document", "de": "Kein Bild", "terms": ["image off", "no image", "kein bild", "bild fehlt"] },
+  "image-plus":        { "group": "document", "de": "Bild hinzufügen", "terms": ["image plus", "add image", "bild hinzufügen", "bild hochladen"] }
 }
