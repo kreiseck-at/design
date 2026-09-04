@@ -3,7 +3,6 @@ import { createIcon } from "./create-icon.js";
 
 export const ImageOff = createIcon("image-off", [
     ["rect", { x: "3", y: "3", width: "18", height: "18", rx: "2.5" }],
-    ["circle", { cx: "11", cy: "6", r: "1.5" }],
     ["path", { d: "M21 15l-5-5-9 9" }],
     ["path", { d: "M4 4l16 16" }]
 ]);
