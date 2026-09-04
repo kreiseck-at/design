@@ -2,7 +2,7 @@
 import { createIcon } from "./create-icon.js";
 
 export const History = createIcon("history", [
-    ["path", { d: "M12 3A9 9 0 1 1 3 12" }],
-    ["path", { d: "M3 8v4h4" }],
+    ["path", { d: "M3 12a9 9 0 1 0 2.6-6.4L3 8" }],
+    ["path", { d: "M3 3.5V8h4.5" }],
     ["path", { d: "M12 8v4l3 2" }]
 ]);

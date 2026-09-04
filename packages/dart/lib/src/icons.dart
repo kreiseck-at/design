@@ -102,7 +102,7 @@ abstract final class KdIcons {
   static const KdIconData folderTree = KdIconData(stroke: [KdMove(6, 4), KdLine(6, 18), KdMove(6, 9), KdLine(10, 9), KdMove(6, 18), KdLine(10, 18), KdMove(13.5, 6), KdLine(18.5, 6), KdCubic(19.881, 6, 21, 7.119, 21, 8.5), KdLine(21, 9.5), KdCubic(21, 10.881, 19.881, 12, 18.5, 12), KdLine(13.5, 12), KdCubic(12.119, 12, 11, 10.881, 11, 9.5), KdLine(11, 8.5), KdCubic(11, 7.119, 12.119, 6, 13.5, 6), KdClose(), KdMove(13.5, 15), KdLine(18.5, 15), KdCubic(19.881, 15, 21, 16.119, 21, 17.5), KdLine(21, 18.5), KdCubic(21, 19.881, 19.881, 21, 18.5, 21), KdLine(13.5, 21), KdCubic(12.119, 21, 11, 19.881, 11, 18.5), KdLine(11, 17.5), KdCubic(11, 16.119, 12.119, 15, 13.5, 15), KdClose()]);
 
   /// Verlauf (history)
-  static const KdIconData history = KdIconData(stroke: [KdMove(12, 3), KdCubic(16.971, 3, 21, 7.029, 21, 12), KdCubic(21, 16.971, 16.971, 21, 12, 21), KdCubic(7.029, 21, 3, 16.971, 3, 12), KdMove(3, 8), KdLine(3, 12), KdLine(7, 12), KdMove(12, 8), KdLine(12, 12), KdLine(15, 14)]);
+  static const KdIconData history = KdIconData(stroke: [KdMove(3, 12), KdCubic(3.034, 16.292, 6.094, 19.962, 10.309, 20.768), KdCubic(14.525, 21.574, 18.723, 19.291, 20.338, 15.315), KdCubic(21.953, 11.339, 20.536, 6.776, 16.953, 4.414), KdCubic(13.37, 2.052, 8.618, 2.548, 5.6, 5.6), KdLine(3, 8), KdMove(3, 3.5), KdLine(3, 8), KdLine(7.5, 8), KdMove(12, 8), KdLine(12, 12), KdLine(15, 14)]);
 
   /// Rückgängig (undo)
   static const KdIconData undo = KdIconData(stroke: [KdMove(8, 8), KdLine(4, 8), KdLine(4, 4), KdMove(4, 8), KdCubic(7, 4, 12, 3, 16, 6), KdCubic(18.106, 7.266, 19.394, 9.543, 19.394, 12), KdCubic(19.394, 14.457, 18.106, 16.734, 16, 18)]);
@@ -117,7 +117,7 @@ abstract final class KdIcons {
   static const KdIconData repeat = KdIconData(stroke: [KdMove(17, 3), KdLine(21, 7), KdLine(17, 11), KdMove(3, 11), KdLine(3, 9), KdCubic(3, 7.895, 3.895, 7, 5, 7), KdLine(21, 7), KdMove(7, 21), KdLine(3, 17), KdLine(7, 13), KdMove(21, 13), KdLine(21, 15), KdCubic(21, 16.105, 20.105, 17, 19, 17), KdLine(3, 17)]);
 
   /// Zurücksetzen (reset)
-  static const KdIconData reset = KdIconData(stroke: [KdMove(12, 3), KdCubic(16.971, 3, 21, 7.029, 21, 12), KdCubic(21, 16.971, 16.971, 21, 12, 21), KdCubic(7.029, 21, 3, 16.971, 3, 12), KdMove(3, 8), KdLine(3, 12), KdLine(7, 12)]);
+  static const KdIconData reset = KdIconData(stroke: [KdMove(3, 12), KdCubic(3.034, 16.292, 6.094, 19.962, 10.309, 20.768), KdCubic(14.525, 21.574, 18.723, 19.291, 20.338, 15.315), KdCubic(21.953, 11.339, 20.536, 6.776, 16.953, 4.414), KdCubic(13.37, 2.052, 8.618, 2.548, 5.6, 5.6), KdLine(3, 8), KdMove(3, 3.5), KdLine(3, 8), KdLine(7.5, 8)]);
 
   /// Vergrößern (zoom-in)
   static const KdIconData zoomIn = KdIconData(stroke: [KdMove(16.5, 10.5), KdCubic(16.5, 13.814, 13.814, 16.5, 10.5, 16.5), KdCubic(7.186, 16.5, 4.5, 13.814, 4.5, 10.5), KdCubic(4.5, 7.186, 7.186, 4.5, 10.5, 4.5), KdCubic(13.814, 4.5, 16.5, 7.186, 16.5, 10.5), KdClose(), KdMove(15, 15), KdLine(20.5, 20.5), KdMove(7.5, 10.5), KdLine(13.5, 10.5), KdMove(10.5, 7.5), KdLine(10.5, 13.5)]);
