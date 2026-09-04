@@ -59,6 +59,81 @@ abstract final class KdIcons {
   /// QR-Code (qr-code)
   static const KdIconData qrCode = KdIconData(stroke: [KdMove(4, 3), KdLine(9, 3), KdCubic(9.552, 3, 10, 3.448, 10, 4), KdLine(10, 9), KdCubic(10, 9.552, 9.552, 10, 9, 10), KdLine(4, 10), KdCubic(3.448, 10, 3, 9.552, 3, 9), KdLine(3, 4), KdCubic(3, 3.448, 3.448, 3, 4, 3), KdClose(), KdMove(15, 3), KdLine(20, 3), KdCubic(20.552, 3, 21, 3.448, 21, 4), KdLine(21, 9), KdCubic(21, 9.552, 20.552, 10, 20, 10), KdLine(15, 10), KdCubic(14.448, 10, 14, 9.552, 14, 9), KdLine(14, 4), KdCubic(14, 3.448, 14.448, 3, 15, 3), KdClose(), KdMove(4, 14), KdLine(9, 14), KdCubic(9.552, 14, 10, 14.448, 10, 15), KdLine(10, 20), KdCubic(10, 20.552, 9.552, 21, 9, 21), KdLine(4, 21), KdCubic(3.448, 21, 3, 20.552, 3, 20), KdLine(3, 15), KdCubic(3, 14.448, 3.448, 14, 4, 14), KdClose(), KdMove(14, 14), KdLine(17, 14), KdLine(17, 17), KdLine(14, 17), KdClose(), KdMove(21, 14), KdLine(21, 17), KdMove(14, 21), KdLine(17, 21), KdMove(21, 21), KdLine(21.1, 21)]);
 
+  /// Weiter (arrow-right)
+  static const KdIconData arrowRight = KdIconData(stroke: [KdMove(10, 6), KdLine(16, 12), KdLine(10, 18)]);
+
+  /// Nach oben (arrow-up)
+  static const KdIconData arrowUp = KdIconData(stroke: [KdMove(6, 14), KdLine(12, 8), KdLine(18, 14)]);
+
+  /// Nach unten (arrow-down)
+  static const KdIconData arrowDown = KdIconData(stroke: [KdMove(6, 10), KdLine(12, 16), KdLine(18, 10)]);
+
+  /// Vorherige (chevron-left)
+  static const KdIconData chevronLeft = KdIconData(stroke: [KdMove(15, 6), KdLine(9, 12), KdLine(15, 18)]);
+
+  /// Nächste (chevron-right)
+  static const KdIconData chevronRight = KdIconData(stroke: [KdMove(9, 6), KdLine(15, 12), KdLine(9, 18)]);
+
+  /// Zuklappen (chevron-up)
+  static const KdIconData chevronUp = KdIconData(stroke: [KdMove(6, 15), KdLine(12, 9), KdLine(18, 15)]);
+
+  /// Aufklappen (chevron-down)
+  static const KdIconData chevronDown = KdIconData(stroke: [KdMove(6, 9), KdLine(12, 15), KdLine(18, 9)]);
+
+  /// Extern öffnen (external-link)
+  static const KdIconData externalLink = KdIconData(stroke: [KdMove(20, 10), KdLine(20, 18), KdCubic(20, 19.105, 19.105, 20, 18, 20), KdLine(6, 20), KdCubic(4.895, 20, 4, 19.105, 4, 18), KdLine(4, 6), KdCubic(4, 4.895, 4.895, 4, 6, 4), KdLine(14, 4), KdMove(14, 4), KdLine(20, 4), KdLine(20, 10), KdMove(20, 4), KdLine(11, 13)]);
+
+  /// Menü (menu)
+  static const KdIconData menu = KdIconData(stroke: [KdMove(4, 7), KdLine(20, 7), KdMove(4, 12), KdLine(20, 12), KdMove(4, 17), KdLine(20, 17)]);
+
+  /// Mehr (more)
+  static const KdIconData more = KdIconData(stroke: [KdMove(12, 6), KdLine(12.1, 6), KdMove(12, 12), KdLine(12.1, 12), KdMove(12, 18), KdLine(12.1, 18)]);
+
+  /// Übersicht (dashboard)
+  static const KdIconData dashboard = KdIconData(stroke: [KdMove(4, 3), KdLine(12, 3), KdCubic(12.552, 3, 13, 3.448, 13, 4), KdLine(13, 12), KdCubic(13, 12.552, 12.552, 13, 12, 13), KdLine(4, 13), KdCubic(3.448, 13, 3, 12.552, 3, 12), KdLine(3, 4), KdCubic(3, 3.448, 3.448, 3, 4, 3), KdClose(), KdMove(17, 3), KdLine(20, 3), KdCubic(20.552, 3, 21, 3.448, 21, 4), KdLine(21, 12), KdCubic(21, 12.552, 20.552, 13, 20, 13), KdLine(17, 13), KdCubic(16.448, 13, 16, 12.552, 16, 12), KdLine(16, 4), KdCubic(16, 3.448, 16.448, 3, 17, 3), KdClose(), KdMove(17, 16), KdLine(20, 16), KdCubic(20.552, 16, 21, 16.448, 21, 17), KdLine(21, 20), KdCubic(21, 20.552, 20.552, 21, 20, 21), KdLine(17, 21), KdCubic(16.448, 21, 16, 20.552, 16, 20), KdLine(16, 17), KdCubic(16, 16.448, 16.448, 16, 17, 16), KdClose(), KdMove(4, 16), KdLine(12, 16), KdCubic(12.552, 16, 13, 16.448, 13, 17), KdLine(13, 20), KdCubic(13, 20.552, 12.552, 21, 12, 21), KdLine(4, 21), KdCubic(3.448, 21, 3, 20.552, 3, 20), KdLine(3, 17), KdCubic(3, 16.448, 3.448, 16, 4, 16), KdClose()]);
+
+  /// Raster (grid)
+  static const KdIconData grid = KdIconData(stroke: [KdMove(4, 3), KdLine(9, 3), KdCubic(9.552, 3, 10, 3.448, 10, 4), KdLine(10, 9), KdCubic(10, 9.552, 9.552, 10, 9, 10), KdLine(4, 10), KdCubic(3.448, 10, 3, 9.552, 3, 9), KdLine(3, 4), KdCubic(3, 3.448, 3.448, 3, 4, 3), KdClose(), KdMove(15, 3), KdLine(20, 3), KdCubic(20.552, 3, 21, 3.448, 21, 4), KdLine(21, 9), KdCubic(21, 9.552, 20.552, 10, 20, 10), KdLine(15, 10), KdCubic(14.448, 10, 14, 9.552, 14, 9), KdLine(14, 4), KdCubic(14, 3.448, 14.448, 3, 15, 3), KdClose(), KdMove(4, 14), KdLine(9, 14), KdCubic(9.552, 14, 10, 14.448, 10, 15), KdLine(10, 20), KdCubic(10, 20.552, 9.552, 21, 9, 21), KdLine(4, 21), KdCubic(3.448, 21, 3, 20.552, 3, 20), KdLine(3, 15), KdCubic(3, 14.448, 3.448, 14, 4, 14), KdClose(), KdMove(15, 14), KdLine(20, 14), KdCubic(20.552, 14, 21, 14.448, 21, 15), KdLine(21, 20), KdCubic(21, 20.552, 20.552, 21, 20, 21), KdLine(15, 21), KdCubic(14.448, 21, 14, 20.552, 14, 20), KdLine(14, 15), KdCubic(14, 14.448, 14.448, 14, 15, 14), KdClose()]);
+
+  /// Ebenen (layers)
+  static const KdIconData layers = KdIconData(stroke: [KdMove(12, 3), KdLine(21, 8), KdLine(12, 13), KdLine(3, 8), KdClose(), KdMove(3, 12), KdLine(12, 17), KdLine(21, 12), KdMove(3, 16), KdLine(12, 21), KdLine(21, 16)]);
+
+  /// Ordnerstruktur (folder-tree)
+  static const KdIconData folderTree = KdIconData(stroke: [KdMove(6, 4), KdLine(6, 18), KdMove(6, 9), KdLine(12, 9), KdMove(6, 18), KdLine(12, 18), KdMove(14.5, 6), KdLine(17.5, 6), KdCubic(18.881, 6, 20, 7.119, 20, 8.5), KdLine(20, 9.5), KdCubic(20, 10.881, 18.881, 12, 17.5, 12), KdLine(14.5, 12), KdCubic(13.119, 12, 12, 10.881, 12, 9.5), KdLine(12, 8.5), KdCubic(12, 7.119, 13.119, 6, 14.5, 6), KdClose(), KdMove(14.5, 15), KdLine(17.5, 15), KdCubic(18.881, 15, 20, 16.119, 20, 17.5), KdLine(20, 18.5), KdCubic(20, 19.881, 18.881, 21, 17.5, 21), KdLine(14.5, 21), KdCubic(13.119, 21, 12, 19.881, 12, 18.5), KdLine(12, 17.5), KdCubic(12, 16.119, 13.119, 15, 14.5, 15), KdClose()]);
+
+  /// Verlauf (history)
+  static const KdIconData history = KdIconData(stroke: [KdMove(3, 12), KdCubic(3, 7.029, 7.029, 3, 12, 3), KdCubic(16.971, 3, 21, 7.029, 21, 12), KdCubic(21, 16.971, 16.971, 21, 12, 21), KdMove(3, 8), KdLine(3, 12), KdLine(7, 12), KdMove(12, 8), KdLine(12, 12), KdLine(15, 14)]);
+
+  /// Rückgängig (undo)
+  static const KdIconData undo = KdIconData(stroke: [KdMove(8, 8), KdLine(4, 8), KdLine(4, 4), KdMove(4, 8), KdCubic(7, 4, 12, 3, 16, 6), KdCubic(18.106, 7.266, 19.394, 9.543, 19.394, 12), KdCubic(19.394, 14.457, 18.106, 16.734, 16, 18)]);
+
+  /// Wiederholen (redo)
+  static const KdIconData redo = KdIconData(stroke: [KdMove(16, 8), KdLine(20, 8), KdLine(20, 4), KdMove(20, 8), KdCubic(17, 4, 12, 3, 8, 6), KdCubic(5.894, 7.266, 4.606, 9.543, 4.606, 12), KdCubic(4.606, 14.457, 5.894, 16.734, 8, 18)]);
+
+  /// Aktualisieren (refresh)
+  static const KdIconData refresh = KdIconData(stroke: [KdMove(4, 12), KdCubic(4.466, 8.9, 6.699, 6.358, 9.713, 5.497), KdCubic(12.727, 4.636, 15.967, 5.614, 18, 8), KdMove(22, 5), KdLine(22, 9), KdLine(18, 9), KdMove(20, 12), KdCubic(19.534, 15.1, 17.301, 17.642, 14.287, 18.503), KdCubic(11.273, 19.364, 8.033, 18.386, 6, 16), KdMove(2, 19), KdLine(2, 15), KdLine(6, 15)]);
+
+  /// Schleife (repeat)
+  static const KdIconData repeat = KdIconData(stroke: [KdMove(17, 3), KdLine(21, 7), KdLine(17, 11), KdMove(3, 11), KdLine(3, 9), KdCubic(3, 7.895, 3.895, 7, 5, 7), KdLine(21, 7), KdMove(7, 21), KdLine(3, 17), KdLine(7, 13), KdMove(21, 13), KdLine(21, 15), KdCubic(21, 16.105, 20.105, 17, 19, 17), KdLine(3, 17)]);
+
+  /// Zurücksetzen (reset)
+  static const KdIconData reset = KdIconData(stroke: [KdMove(3, 12), KdCubic(3, 7.029, 7.029, 3, 12, 3), KdCubic(16.971, 3, 21, 7.029, 21, 12), KdCubic(21, 16.971, 16.971, 21, 12, 21), KdMove(3, 8), KdLine(3, 12), KdLine(7, 12)]);
+
+  /// Vergrößern (zoom-in)
+  static const KdIconData zoomIn = KdIconData(stroke: [KdMove(16.5, 10.5), KdCubic(16.5, 13.814, 13.814, 16.5, 10.5, 16.5), KdCubic(7.186, 16.5, 4.5, 13.814, 4.5, 10.5), KdCubic(4.5, 7.186, 7.186, 4.5, 10.5, 4.5), KdCubic(13.814, 4.5, 16.5, 7.186, 16.5, 10.5), KdClose(), KdMove(15, 15), KdLine(20.5, 20.5), KdMove(7.5, 10.5), KdLine(13.5, 10.5), KdMove(10.5, 7.5), KdLine(10.5, 13.5)]);
+
+  /// Verkleinern (zoom-out)
+  static const KdIconData zoomOut = KdIconData(stroke: [KdMove(16.5, 10.5), KdCubic(16.5, 13.814, 13.814, 16.5, 10.5, 16.5), KdCubic(7.186, 16.5, 4.5, 13.814, 4.5, 10.5), KdCubic(4.5, 7.186, 7.186, 4.5, 10.5, 4.5), KdCubic(13.814, 4.5, 16.5, 7.186, 16.5, 10.5), KdClose(), KdMove(15, 15), KdLine(20.5, 20.5), KdMove(7.5, 10.5), KdLine(13.5, 10.5)]);
+
+  /// Vollbild (fullscreen)
+  static const KdIconData fullscreen = KdIconData(stroke: [KdMove(4, 8), KdLine(4, 4), KdLine(8, 4), KdMove(20, 8), KdLine(20, 4), KdLine(16, 4), KdMove(4, 16), KdLine(4, 20), KdLine(8, 20), KdMove(20, 16), KdLine(20, 20), KdLine(16, 20)]);
+
+  /// Vollbild verlassen (fullscreen-exit)
+  static const KdIconData fullscreenExit = KdIconData(stroke: [KdMove(9, 5), KdLine(9, 9), KdLine(5, 9), KdMove(15, 5), KdLine(15, 9), KdLine(19, 9), KdMove(9, 19), KdLine(9, 15), KdLine(5, 15), KdMove(15, 19), KdLine(15, 15), KdLine(19, 15)]);
+
+  /// Griff zum Ziehen (drag)
+  static const KdIconData drag = KdIconData(stroke: [KdMove(9, 6), KdLine(9.1, 6), KdMove(9, 12), KdLine(9.1, 12), KdMove(9, 18), KdLine(9.1, 18), KdMove(15, 6), KdLine(15.1, 6), KdMove(15, 12), KdLine(15.1, 12), KdMove(15, 18), KdLine(15.1, 18)]);
+
   /// Lookup by source name, e.g. `KdIcons.byName['id']`.
   static const Map<String, KdIconData> byName = {
     'arrow-left': arrowLeft,
@@ -79,5 +154,30 @@ abstract final class KdIcons {
     'hand-coins': handCoins,
     'pos': pos,
     'qr-code': qrCode,
+    'arrow-right': arrowRight,
+    'arrow-up': arrowUp,
+    'arrow-down': arrowDown,
+    'chevron-left': chevronLeft,
+    'chevron-right': chevronRight,
+    'chevron-up': chevronUp,
+    'chevron-down': chevronDown,
+    'external-link': externalLink,
+    'menu': menu,
+    'more': more,
+    'dashboard': dashboard,
+    'grid': grid,
+    'layers': layers,
+    'folder-tree': folderTree,
+    'history': history,
+    'undo': undo,
+    'redo': redo,
+    'refresh': refresh,
+    'repeat': repeat,
+    'reset': reset,
+    'zoom-in': zoomIn,
+    'zoom-out': zoomOut,
+    'fullscreen': fullscreen,
+    'fullscreen-exit': fullscreenExit,
+    'drag': drag,
   };
 }
