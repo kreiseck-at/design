@@ -17,6 +17,14 @@ describe("emitIconsWeb", () => {
   it("keeps source shapes (rect stays rect, rx filled in) for crisp SVG", () => {
     expect(files["packages/npm/src/icons/CashDrawer.tsx"]).toContain('["rect", { x: "3", y: "10", width: "18", height: "10", rx: "2.5" }]');
   });
+  it("clamps the default rx so it never exceeds half the shorter side", () => {
+    const thin = { order: ["band"], icons: {
+      band: { group: "action", de: "Band", terms: [], filled: false, stroke: [{ tag: "rect", attrs: { x: "3", y: "10", width: "18", height: "4" } }] },
+    } };
+    const thinFiles = Object.fromEntries(emitIconsWeb(thin).files);
+    expect(thinFiles["packages/npm/src/icons/Band.tsx"]).toContain('["rect", { x: "3", y: "10", width: "18", height: "4", rx: "2" }]');
+    expect(thinFiles["packages/npm/svg/band.svg"]).toContain('rx="2"');
+  });
   it("writes an index that re-exports every component", () => {
     const index = files["packages/npm/src/icons/index.ts"];
     expect(index).toContain('export { ArrowLeft } from "./ArrowLeft.js";');
@@ -32,6 +40,9 @@ describe("emitIconsWeb", () => {
     const svg = files["packages/npm/svg/cash-drawer-filled.svg"];
     expect(svg.startsWith('<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" stroke="none">')).toBe(true);
     expect(svg).not.toContain("stroke-width");
+  });
+  it("marks the component call /* @__PURE__ */ so bundlers can tree-shake unused icons", () => {
+    expect(files["packages/npm/src/icons/ArrowLeft.tsx"]).toContain('export const ArrowLeft = /* @__PURE__ */ createIcon(');
   });
   it("passes { filled: true } to createIcon for a filled component", () => {
     expect(files["packages/npm/src/icons/CashDrawerFilled.tsx"]).toContain("{ filled: true }");

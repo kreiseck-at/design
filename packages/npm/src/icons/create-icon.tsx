@@ -21,8 +21,11 @@ export interface CreateIconOptions {
 
 /** Builds one icon component from its source nodes; used by the generated files. */
 export function createIcon(name: string, nodes: IconNode[], { filled = false }: CreateIconOptions = {}) {
-  const Icon = forwardRef<SVGSVGElement, IconProps>(({ size = 24, strokeWidth = 1.75, title, className, ...rest }, ref) =>
-    createElement(
+  const Icon = forwardRef<SVGSVGElement, IconProps>(({ size = 24, strokeWidth = 1.75, title, className, ...rest }, ref) => {
+    // An aria-label or aria-labelledby on the element gives it an accessible
+    // name just as much as `title` does; either way it's no longer decorative.
+    const named = Boolean(title) || rest["aria-label"] != null || rest["aria-labelledby"] != null;
+    return createElement(
       "svg",
       {
         ref,
@@ -34,14 +37,14 @@ export function createIcon(name: string, nodes: IconNode[], { filled = false }: 
           ? { fill: "currentColor", stroke: "none" }
           : { fill: "none", stroke: "currentColor", strokeWidth, strokeLinecap: "round", strokeLinejoin: "round" }),
         className: className ? `kd-icon kd-icon-${name} ${className}` : `kd-icon kd-icon-${name}`,
-        "aria-hidden": title ? undefined : true,
-        role: title ? "img" : undefined,
+        "aria-hidden": named ? undefined : true,
+        role: named ? "img" : undefined,
         ...rest,
       },
       title ? createElement("title", null, title) : null,
       ...nodes.map(([tag, attrs], i) => createElement(tag, { key: i, ...camelAttrs(attrs) })),
-    ),
-  );
+    );
+  });
   Icon.displayName = name;
   return Icon;
 }

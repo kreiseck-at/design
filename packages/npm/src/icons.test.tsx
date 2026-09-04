@@ -27,6 +27,12 @@ describe("icon components", () => {
     expect(html).toContain('stroke="none"');
     expect(html).not.toContain("stroke-width");
   });
+  it("an aria-label makes the icon accessible too, without needing title", () => {
+    const html = renderToStaticMarkup(createElement(Receipt, { "aria-label": "Beleg" }));
+    expect(html).not.toContain("aria-hidden");
+    expect(html).toContain('role="img"');
+    expect(html).toContain('aria-label="Beleg"');
+  });
   it("the sprite carries every name", () => {
     const sprite = readFileSync(new URL("../svg/sprite.svg", import.meta.url), "utf8");
     for (const name of iconNames) expect(sprite).toContain(`id="kd-${name}"`);
