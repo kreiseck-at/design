@@ -46,4 +46,22 @@ describe("emitGallery", () => {
     expect(html).toContain("kd-receipt-filled");
     expect(html).toContain('<input type="search" id="icon-search"');
   });
+
+  it("orders groups by the canonical GROUPS list, not first-seen order", () => {
+    const icons = { order: ["a", "b"], icons: {
+      a: { group: "cash", de: "A", terms: [], stroke: [] },
+      b: { group: "navigation", de: "B", terms: [], stroke: [] },
+    } };
+    const html = emitGallery(model, icons);
+    expect(html.indexOf("<h3>navigation</h3>")).toBeLessThan(html.indexOf("<h3>cash</h3>"));
+  });
+
+  it("escapes id, de and terms wherever they land", () => {
+    const icons = { order: ["a"], icons: {
+      a: { group: "cash", de: 'A "b" <c>', terms: [], stroke: [] },
+    } };
+    const html = emitGallery(model, icons);
+    expect(html).toContain('data-terms="a a &quot;b&quot; &lt;c&gt;"');
+    expect(html).toContain("<small>A &quot;b&quot; &lt;c&gt;</small>");
+  });
 });
