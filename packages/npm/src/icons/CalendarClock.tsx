@@ -4,6 +4,6 @@ import { createIcon } from "./create-icon.js";
 export const CalendarClock = /* @__PURE__ */ createIcon("calendar-clock", [
     ["path", { d: "M21 10V7.5a2.5 2.5 0 0 0-2.5-2.5h-13A2.5 2.5 0 0 0 3 7.5v11A2.5 2.5 0 0 0 5.5 21H10" }],
     ["path", { d: "M3 10h18M8 3v4M16 3v4" }],
-    ["circle", { cx: "17", cy: "17", r: "4.5" }],
-    ["path", { d: "M17 14.5V17l1.8 1.8" }]
+    ["circle", { cx: "17", cy: "17.5", r: "4" }],
+    ["path", { d: "M17 15.5V17.5L18.5 19" }]
 ]);
