@@ -3,4 +3,4 @@ import { createIcon } from "./create-icon.js";
 
 export const CircleFilled = createIcon("circle-filled", [
     ["circle", { cx: "12", cy: "12", r: "9", fill: "currentColor" }]
-]);
+], { filled: true });

@@ -3,4 +3,4 @@ import { createIcon } from "./create-icon.js";
 
 export const CheckFilled = createIcon("check-filled", [
     ["path", { fill: "currentColor", d: "M9.5 17.5L4 12l2.1-2.1 3.4 3.4L17.9 5.5 20 7.6z" }]
-]);
+], { filled: true });

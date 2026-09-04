@@ -11,8 +11,16 @@ export interface IconProps extends SVGProps<SVGSVGElement> {
   title?: string;
 }
 
+export interface CreateIconOptions {
+  /** The icon's elements already carry their own fill/fill-rule; a filled
+   * icon must not also inherit the stroke hand onto them, or the stroke
+   * paints right over every punched-out hole (stroke is an inherited
+   * SVG property). */
+  filled?: boolean;
+}
+
 /** Builds one icon component from its source nodes; used by the generated files. */
-export function createIcon(name: string, nodes: IconNode[]) {
+export function createIcon(name: string, nodes: IconNode[], { filled = false }: CreateIconOptions = {}) {
   const Icon = forwardRef<SVGSVGElement, IconProps>(({ size = 24, strokeWidth = 1.75, title, className, ...rest }, ref) =>
     createElement(
       "svg",
@@ -22,11 +30,9 @@ export function createIcon(name: string, nodes: IconNode[]) {
         viewBox: "0 0 24 24",
         width: size,
         height: size,
-        fill: "none",
-        stroke: "currentColor",
-        strokeWidth,
-        strokeLinecap: "round",
-        strokeLinejoin: "round",
+        ...(filled
+          ? { fill: "currentColor", stroke: "none" }
+          : { fill: "none", stroke: "currentColor", strokeWidth, strokeLinecap: "round", strokeLinejoin: "round" }),
         className: className ? `kd-icon kd-icon-${name} ${className}` : `kd-icon kd-icon-${name}`,
         "aria-hidden": title ? undefined : true,
         role: title ? "img" : undefined,

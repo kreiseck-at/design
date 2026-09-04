@@ -28,10 +28,22 @@ describe("emitIconsWeb", () => {
     expect(svg).toBe('<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"><path d="M14 6l-6 6 6 6"/></svg>\n');
     expect(files["packages/npm/svg/cash-drawer-filled.svg"]).toContain('<rect x="3" y="10" width="18" height="10" fill="currentColor" rx="2.5"/>');
   });
+  it("gives a filled svg file the filled hand instead of the stroke hand, so it doesn't inherit a stroke over its holes", () => {
+    const svg = files["packages/npm/svg/cash-drawer-filled.svg"];
+    expect(svg.startsWith('<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" stroke="none">')).toBe(true);
+    expect(svg).not.toContain("stroke-width");
+  });
+  it("passes { filled: true } to createIcon for a filled component", () => {
+    expect(files["packages/npm/src/icons/CashDrawerFilled.tsx"]).toContain("{ filled: true }");
+    expect(files["packages/npm/src/icons/CashDrawer.tsx"]).not.toContain("{ filled: true }");
+  });
   it("writes one sprite with a symbol per icon", () => {
     const sprite = files["packages/npm/svg/sprite.svg"];
     expect(sprite).toContain('<symbol id="kd-arrow-left" viewBox="0 0 24 24">');
-    expect(sprite).toContain('<symbol id="kd-cash-drawer-filled" viewBox="0 0 24 24">');
     expect(sprite.startsWith('<svg xmlns="http://www.w3.org/2000/svg" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" style="display:none">')).toBe(true);
+  });
+  it("gives a filled symbol its own stroke=\"none\" so it overrides the sprite root's inherited stroke hand", () => {
+    const sprite = files["packages/npm/svg/sprite.svg"];
+    expect(sprite).toContain('<symbol id="kd-cash-drawer-filled" viewBox="0 0 24 24" fill="currentColor" stroke="none">');
   });
 });

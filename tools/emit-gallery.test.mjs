@@ -47,6 +47,15 @@ describe("emitGallery", () => {
     expect(html).toContain('<input type="search" id="icon-search"');
   });
 
+  it("gives the filled cell fill=currentColor and stroke=none instead of the stroke hand, so it doesn't paint over its holes", () => {
+    const icons = { order: ["receipt"], icons: { receipt: { group: "cash", de: "Beleg", terms: ["bon"], filled: true,
+      stroke: [{ tag: "path", attrs: { d: "M6 3h12v18" } }], fill: [{ tag: "path", attrs: { d: "M6 3h12v18z", fill: "currentColor" } }] } } };
+    const html = emitGallery(model, icons);
+    expect(html).toContain('<svg class="kd-receipt-filled" viewBox="0 0 24 24" fill="currentColor" stroke="none">');
+    const filledCell = html.slice(html.indexOf('class="kd-receipt-filled"'));
+    expect(filledCell.slice(0, filledCell.indexOf("</svg>"))).not.toContain("stroke-width");
+  });
+
   it("orders groups by the canonical GROUPS list, not first-seen order", () => {
     const icons = { order: ["a", "b"], icons: {
       a: { group: "cash", de: "A", terms: [], stroke: [] },

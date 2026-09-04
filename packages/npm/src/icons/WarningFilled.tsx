@@ -3,4 +3,4 @@ import { createIcon } from "./create-icon.js";
 
 export const WarningFilled = createIcon("warning-filled", [
     ["path", { fill: "currentColor", "fill-rule": "evenodd", d: "M12 3.5l9.5 16.5h-19zM11 9h2v5h-2zM11 16h2v2h-2z" }]
-]);
+], { filled: true });

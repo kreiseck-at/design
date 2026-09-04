@@ -3,4 +3,4 @@ import { createIcon } from "./create-icon.js";
 
 export const PosFilled = createIcon("pos-filled", [
     ["path", { fill: "currentColor", "fill-rule": "evenodd", d: "M6.5 3H17.5A2.5 2.5 0 0 1 20 5.5V18.5A2.5 2.5 0 0 1 17.5 21H6.5A2.5 2.5 0 0 1 4 18.5V5.5A2.5 2.5 0 0 1 6.5 3ZM7 6H17V11H7Z" }]
-]);
+], { filled: true });

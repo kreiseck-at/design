@@ -6,4 +6,4 @@ export const SettingsFilled = createIcon("settings-filled", [
     ["rect", { x: "4", y: "16", width: "16", height: "2", fill: "currentColor", rx: "2.5" }],
     ["circle", { cx: "9", cy: "7", r: "2.5", fill: "currentColor" }],
     ["circle", { cx: "15", cy: "17", r: "2.5", fill: "currentColor" }]
-]);
+], { filled: true });

@@ -3,4 +3,4 @@ import { createIcon } from "./create-icon.js";
 
 export const CheckCircleFilled = createIcon("check-circle-filled", [
     ["path", { fill: "currentColor", "fill-rule": "evenodd", d: "M12 3a9 9 0 1 0 0 18 9 9 0 0 0 0-18zM10.5 16.5L7.3 13.2 8.7 11.8 10.5 13.5 15.3 8.8 16.7 10.2z" }]
-]);
+], { filled: true });

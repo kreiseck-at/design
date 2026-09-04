@@ -44,15 +44,19 @@ export function emitGallery(model, iconsModel = { order: [], icons: {} }) {
     .join("");
 
   const hand = 'fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"';
-  const iconSvg = (elements, cls) => `<svg class="${cls}" viewBox="0 0 24 24" ${hand}>${iconSvgInner(elements)}</svg>`;
+  // A filled icon's elements already carry their own fill/fill-rule; giving
+  // it the stroke hand too would paint a stroke right over its holes (stroke
+  // is an inherited SVG property), so its cell gets the filled hand instead.
+  const filledHand = 'fill="currentColor" stroke="none"';
+  const iconSvg = (elements, cls, filled) => `<svg class="${cls}" viewBox="0 0 24 24" ${filled ? filledHand : hand}>${iconSvgInner(elements)}</svg>`;
   const byGroup = {};
   for (const id of iconsModel.order) (byGroup[iconsModel.icons[id].group] ??= []).push(id);
   const iconCells = GROUPS.filter((group) => byGroup[group]).map((group) => {
     const ids = byGroup[group];
     return `<h3>${group}</h3><div class="icons">` + ids.map((id) => {
       const icon = iconsModel.icons[id];
-      const sizes = ["s16", "s20", "s24", "s40"].map((s) => `<span class="ic ${s}">${iconSvg(icon.stroke, `kd-${id}`)}</span>`).join("");
-      const filled = icon.filled ? `<span class="ic s24">${iconSvg(icon.fill, `kd-${id}-filled`)}</span>` : "";
+      const sizes = ["s16", "s20", "s24", "s40"].map((s) => `<span class="ic ${s}">${iconSvg(icon.stroke, `kd-${id}`, false)}</span>`).join("");
+      const filled = icon.filled ? `<span class="ic s24">${iconSvg(icon.fill, `kd-${id}-filled`, true)}</span>` : "";
       const terms = [esc(id), esc(icon.de), ...icon.terms.map(esc)].join(" ").toLowerCase();
       return `<div class="icon" data-terms="${terms}"><div class="sizes">${sizes}${filled}</div><code>${esc(id)}</code><small>${esc(icon.de)}</small></div>`;
     }).join("") + `</div>`;
