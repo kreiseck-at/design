@@ -4,5 +4,5 @@ import { createIcon } from "./create-icon.js";
 export const Coins = createIcon("coins", [
     ["circle", { cx: "9", cy: "9", r: "6" }],
     ["path", { d: "M15.5 8.3a6 6 0 1 1-7.2 7.2" }],
-    ["path", { d: "M8 6.5h1.5v5" }]
+    ["path", { d: "M8 6.5h2v5" }]
 ]);

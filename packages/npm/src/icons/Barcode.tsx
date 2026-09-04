@@ -2,5 +2,5 @@
 import { createIcon } from "./create-icon.js";
 
 export const Barcode = createIcon("barcode", [
-    ["path", { d: "M3.5 5v14M6.5 5v14M9.5 5v14M12 5v14M14.5 5v14M17.5 5v14M20.5 5v14" }]
+    ["path", { d: "M3.5 5v14M6.5 5v14M9.5 5v14M12.5 5v14M15.5 5v14M18.5 5v14M21.5 5v14" }]
 ]);

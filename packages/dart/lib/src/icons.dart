@@ -66,7 +66,7 @@ abstract final class KdIcons {
   static const KdIconData cardTerminal = KdIconData(stroke: [KdMove(7.5, 3), KdLine(16.5, 3), KdCubic(17.881, 3, 19, 4.119, 19, 5.5), KdLine(19, 18.5), KdCubic(19, 19.881, 17.881, 21, 16.5, 21), KdLine(7.5, 21), KdCubic(6.119, 21, 5, 19.881, 5, 18.5), KdLine(5, 5.5), KdCubic(5, 4.119, 6.119, 3, 7.5, 3), KdClose(), KdMove(9, 6), KdLine(15, 6), KdCubic(15.552, 6, 16, 6.448, 16, 7), KdLine(16, 9), KdCubic(16, 9.552, 15.552, 10, 15, 10), KdLine(9, 10), KdCubic(8.448, 10, 8, 9.552, 8, 9), KdLine(8, 7), KdCubic(8, 6.448, 8.448, 6, 9, 6), KdClose(), KdMove(8, 14), KdLine(8.1, 14), KdMove(12, 14), KdLine(12.1, 14), KdMove(16, 14), KdLine(16.1, 14), KdMove(8, 18), KdLine(8.1, 18), KdMove(12, 18), KdLine(12.1, 18), KdMove(16, 18), KdLine(16.1, 18), KdMove(3, 14), KdLine(5, 14), KdMove(19, 14), KdLine(21, 14)]);
 
   /// Münzen (coins)
-  static const KdIconData coins = KdIconData(stroke: [KdMove(15, 9), KdCubic(15, 12.314, 12.314, 15, 9, 15), KdCubic(5.686, 15, 3, 12.314, 3, 9), KdCubic(3, 5.686, 5.686, 3, 9, 3), KdCubic(12.314, 3, 15, 5.686, 15, 9), KdClose(), KdMove(15.5, 8.3), KdCubic(18.387, 8.969, 20.352, 11.645, 20.128, 14.6), KdCubic(19.903, 17.555, 17.555, 19.903, 14.6, 20.128), KdCubic(11.645, 20.352, 8.969, 18.387, 8.3, 15.5), KdMove(8, 6.5), KdLine(9.5, 6.5), KdLine(9.5, 11.5)]);
+  static const KdIconData coins = KdIconData(stroke: [KdMove(15, 9), KdCubic(15, 12.314, 12.314, 15, 9, 15), KdCubic(5.686, 15, 3, 12.314, 3, 9), KdCubic(3, 5.686, 5.686, 3, 9, 3), KdCubic(12.314, 3, 15, 5.686, 15, 9), KdClose(), KdMove(15.5, 8.3), KdCubic(18.387, 8.969, 20.352, 11.645, 20.128, 14.6), KdCubic(19.903, 17.555, 17.555, 19.903, 14.6, 20.128), KdCubic(11.645, 20.352, 8.969, 18.387, 8.3, 15.5), KdMove(8, 6.5), KdLine(10, 6.5), KdLine(10, 11.5)]);
 
   /// Geldbörse (wallet)
   static const KdIconData wallet = KdIconData(stroke: [KdMove(3, 7), KdCubic(3, 5.895, 3.895, 5, 5, 5), KdLine(19, 5), KdLine(19, 9), KdMove(3, 7), KdLine(3, 18), KdCubic(3, 19.105, 3.895, 20, 5, 20), KdLine(19, 20), KdCubic(20.105, 20, 21, 19.105, 21, 18), KdLine(21, 9), KdLine(5, 9), KdCubic(3.895, 9, 3, 8.105, 3, 7), KdMove(17, 14), KdLine(17.1, 14)]);
@@ -81,7 +81,7 @@ abstract final class KdIcons {
   static const KdIconData landmark = KdIconData(stroke: [KdMove(3, 9), KdLine(12, 4), KdLine(21, 9), KdMove(3, 21), KdLine(21, 21), KdMove(5, 18), KdLine(19, 18), KdMove(6, 9), KdLine(6, 18), KdMove(10, 9), KdLine(10, 18), KdMove(14, 9), KdLine(14, 18), KdMove(18, 9), KdLine(18, 18)]);
 
   /// Strichcode (barcode)
-  static const KdIconData barcode = KdIconData(stroke: [KdMove(3.5, 5), KdLine(3.5, 19), KdMove(6.5, 5), KdLine(6.5, 19), KdMove(9.5, 5), KdLine(9.5, 19), KdMove(12, 5), KdLine(12, 19), KdMove(14.5, 5), KdLine(14.5, 19), KdMove(17.5, 5), KdLine(17.5, 19), KdMove(20.5, 5), KdLine(20.5, 19)]);
+  static const KdIconData barcode = KdIconData(stroke: [KdMove(3.5, 5), KdLine(3.5, 19), KdMove(6.5, 5), KdLine(6.5, 19), KdMove(9.5, 5), KdLine(9.5, 19), KdMove(12.5, 5), KdLine(12.5, 19), KdMove(15.5, 5), KdLine(15.5, 19), KdMove(18.5, 5), KdLine(18.5, 19), KdMove(21.5, 5), KdLine(21.5, 19)]);
 
   /// Artikel / Preis (tag)
   static const KdIconData tag = KdIconData(stroke: [KdMove(20.5, 12.5), KdLine(12.5, 20.5), KdLine(3, 11), KdLine(3, 3), KdLine(11, 3), KdLine(20.5, 12.5), KdClose(), KdMove(8.5, 7), KdCubic(8.5, 7.828, 7.828, 8.5, 7, 8.5), KdCubic(6.172, 8.5, 5.5, 7.828, 5.5, 7), KdCubic(5.5, 6.172, 6.172, 5.5, 7, 5.5), KdCubic(7.828, 5.5, 8.5, 6.172, 8.5, 7), KdClose()]);
