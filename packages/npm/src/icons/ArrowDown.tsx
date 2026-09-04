@@ -2,5 +2,5 @@
 import { createIcon } from "./create-icon.js";
 
 export const ArrowDown = createIcon("arrow-down", [
-    ["path", { d: "M6 10l6 6 6-6" }]
+    ["path", { d: "M12 5v14M6 13l6 6 6-6" }]
 ]);

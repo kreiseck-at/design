@@ -6,7 +6,7 @@ import 'icon.dart';
 /// Every icon of the set as path data; draw one with [KdIcon].
 abstract final class KdIcons {
   /// Zurück (arrow-left)
-  static const KdIconData arrowLeft = KdIconData(stroke: [KdMove(14, 6), KdLine(8, 12), KdLine(14, 18)]);
+  static const KdIconData arrowLeft = KdIconData(stroke: [KdMove(19, 12), KdLine(5, 12), KdMove(11, 6), KdLine(5, 12), KdLine(11, 18)]);
 
   /// Suchen (search)
   static const KdIconData search = KdIconData(stroke: [KdMove(16.5, 10.5), KdCubic(16.5, 13.814, 13.814, 16.5, 10.5, 16.5), KdCubic(7.186, 16.5, 4.5, 13.814, 4.5, 10.5), KdCubic(4.5, 7.186, 7.186, 4.5, 10.5, 4.5), KdCubic(13.814, 4.5, 16.5, 7.186, 16.5, 10.5), KdClose(), KdMove(15, 15), KdLine(20.5, 20.5)]);
@@ -60,13 +60,13 @@ abstract final class KdIcons {
   static const KdIconData qrCode = KdIconData(stroke: [KdMove(4, 3), KdLine(9, 3), KdCubic(9.552, 3, 10, 3.448, 10, 4), KdLine(10, 9), KdCubic(10, 9.552, 9.552, 10, 9, 10), KdLine(4, 10), KdCubic(3.448, 10, 3, 9.552, 3, 9), KdLine(3, 4), KdCubic(3, 3.448, 3.448, 3, 4, 3), KdClose(), KdMove(15, 3), KdLine(20, 3), KdCubic(20.552, 3, 21, 3.448, 21, 4), KdLine(21, 9), KdCubic(21, 9.552, 20.552, 10, 20, 10), KdLine(15, 10), KdCubic(14.448, 10, 14, 9.552, 14, 9), KdLine(14, 4), KdCubic(14, 3.448, 14.448, 3, 15, 3), KdClose(), KdMove(4, 14), KdLine(9, 14), KdCubic(9.552, 14, 10, 14.448, 10, 15), KdLine(10, 20), KdCubic(10, 20.552, 9.552, 21, 9, 21), KdLine(4, 21), KdCubic(3.448, 21, 3, 20.552, 3, 20), KdLine(3, 15), KdCubic(3, 14.448, 3.448, 14, 4, 14), KdClose(), KdMove(14, 14), KdLine(17, 14), KdLine(17, 17), KdLine(14, 17), KdClose(), KdMove(21, 14), KdLine(21, 17), KdMove(14, 21), KdLine(17, 21), KdMove(21, 21), KdLine(21.1, 21)]);
 
   /// Weiter (arrow-right)
-  static const KdIconData arrowRight = KdIconData(stroke: [KdMove(10, 6), KdLine(16, 12), KdLine(10, 18)]);
+  static const KdIconData arrowRight = KdIconData(stroke: [KdMove(5, 12), KdLine(19, 12), KdMove(13, 6), KdLine(19, 12), KdLine(13, 18)]);
 
   /// Nach oben (arrow-up)
-  static const KdIconData arrowUp = KdIconData(stroke: [KdMove(6, 14), KdLine(12, 8), KdLine(18, 14)]);
+  static const KdIconData arrowUp = KdIconData(stroke: [KdMove(12, 19), KdLine(12, 5), KdMove(6, 11), KdLine(12, 5), KdLine(18, 11)]);
 
   /// Nach unten (arrow-down)
-  static const KdIconData arrowDown = KdIconData(stroke: [KdMove(6, 10), KdLine(12, 16), KdLine(18, 10)]);
+  static const KdIconData arrowDown = KdIconData(stroke: [KdMove(12, 5), KdLine(12, 19), KdMove(6, 13), KdLine(12, 19), KdLine(18, 13)]);
 
   /// Vorherige (chevron-left)
   static const KdIconData chevronLeft = KdIconData(stroke: [KdMove(15, 6), KdLine(9, 12), KdLine(15, 18)]);
@@ -99,10 +99,10 @@ abstract final class KdIcons {
   static const KdIconData layers = KdIconData(stroke: [KdMove(12, 3), KdLine(21, 8), KdLine(12, 13), KdLine(3, 8), KdClose(), KdMove(3, 12), KdLine(12, 17), KdLine(21, 12), KdMove(3, 16), KdLine(12, 21), KdLine(21, 16)]);
 
   /// Ordnerstruktur (folder-tree)
-  static const KdIconData folderTree = KdIconData(stroke: [KdMove(6, 4), KdLine(6, 18), KdMove(6, 9), KdLine(12, 9), KdMove(6, 18), KdLine(12, 18), KdMove(14.5, 6), KdLine(17.5, 6), KdCubic(18.881, 6, 20, 7.119, 20, 8.5), KdLine(20, 9.5), KdCubic(20, 10.881, 18.881, 12, 17.5, 12), KdLine(14.5, 12), KdCubic(13.119, 12, 12, 10.881, 12, 9.5), KdLine(12, 8.5), KdCubic(12, 7.119, 13.119, 6, 14.5, 6), KdClose(), KdMove(14.5, 15), KdLine(17.5, 15), KdCubic(18.881, 15, 20, 16.119, 20, 17.5), KdLine(20, 18.5), KdCubic(20, 19.881, 18.881, 21, 17.5, 21), KdLine(14.5, 21), KdCubic(13.119, 21, 12, 19.881, 12, 18.5), KdLine(12, 17.5), KdCubic(12, 16.119, 13.119, 15, 14.5, 15), KdClose()]);
+  static const KdIconData folderTree = KdIconData(stroke: [KdMove(6, 4), KdLine(6, 18), KdMove(6, 9), KdLine(10, 9), KdMove(6, 18), KdLine(10, 18), KdMove(13.5, 6), KdLine(18.5, 6), KdCubic(19.881, 6, 21, 7.119, 21, 8.5), KdLine(21, 9.5), KdCubic(21, 10.881, 19.881, 12, 18.5, 12), KdLine(13.5, 12), KdCubic(12.119, 12, 11, 10.881, 11, 9.5), KdLine(11, 8.5), KdCubic(11, 7.119, 12.119, 6, 13.5, 6), KdClose(), KdMove(13.5, 15), KdLine(18.5, 15), KdCubic(19.881, 15, 21, 16.119, 21, 17.5), KdLine(21, 18.5), KdCubic(21, 19.881, 19.881, 21, 18.5, 21), KdLine(13.5, 21), KdCubic(12.119, 21, 11, 19.881, 11, 18.5), KdLine(11, 17.5), KdCubic(11, 16.119, 12.119, 15, 13.5, 15), KdClose()]);
 
   /// Verlauf (history)
-  static const KdIconData history = KdIconData(stroke: [KdMove(3, 12), KdCubic(3, 7.029, 7.029, 3, 12, 3), KdCubic(16.971, 3, 21, 7.029, 21, 12), KdCubic(21, 16.971, 16.971, 21, 12, 21), KdMove(3, 8), KdLine(3, 12), KdLine(7, 12), KdMove(12, 8), KdLine(12, 12), KdLine(15, 14)]);
+  static const KdIconData history = KdIconData(stroke: [KdMove(12, 3), KdCubic(16.971, 3, 21, 7.029, 21, 12), KdCubic(21, 16.971, 16.971, 21, 12, 21), KdCubic(7.029, 21, 3, 16.971, 3, 12), KdMove(3, 8), KdLine(3, 12), KdLine(7, 12), KdMove(12, 8), KdLine(12, 12), KdLine(15, 14)]);
 
   /// Rückgängig (undo)
   static const KdIconData undo = KdIconData(stroke: [KdMove(8, 8), KdLine(4, 8), KdLine(4, 4), KdMove(4, 8), KdCubic(7, 4, 12, 3, 16, 6), KdCubic(18.106, 7.266, 19.394, 9.543, 19.394, 12), KdCubic(19.394, 14.457, 18.106, 16.734, 16, 18)]);
@@ -117,7 +117,7 @@ abstract final class KdIcons {
   static const KdIconData repeat = KdIconData(stroke: [KdMove(17, 3), KdLine(21, 7), KdLine(17, 11), KdMove(3, 11), KdLine(3, 9), KdCubic(3, 7.895, 3.895, 7, 5, 7), KdLine(21, 7), KdMove(7, 21), KdLine(3, 17), KdLine(7, 13), KdMove(21, 13), KdLine(21, 15), KdCubic(21, 16.105, 20.105, 17, 19, 17), KdLine(3, 17)]);
 
   /// Zurücksetzen (reset)
-  static const KdIconData reset = KdIconData(stroke: [KdMove(3, 12), KdCubic(3, 7.029, 7.029, 3, 12, 3), KdCubic(16.971, 3, 21, 7.029, 21, 12), KdCubic(21, 16.971, 16.971, 21, 12, 21), KdMove(3, 8), KdLine(3, 12), KdLine(7, 12)]);
+  static const KdIconData reset = KdIconData(stroke: [KdMove(12, 3), KdCubic(16.971, 3, 21, 7.029, 21, 12), KdCubic(21, 16.971, 16.971, 21, 12, 21), KdCubic(7.029, 21, 3, 16.971, 3, 12), KdMove(3, 8), KdLine(3, 12), KdLine(7, 12)]);
 
   /// Vergrößern (zoom-in)
   static const KdIconData zoomIn = KdIconData(stroke: [KdMove(16.5, 10.5), KdCubic(16.5, 13.814, 13.814, 16.5, 10.5, 16.5), KdCubic(7.186, 16.5, 4.5, 13.814, 4.5, 10.5), KdCubic(4.5, 7.186, 7.186, 4.5, 10.5, 4.5), KdCubic(13.814, 4.5, 16.5, 7.186, 16.5, 10.5), KdClose(), KdMove(15, 15), KdLine(20.5, 20.5), KdMove(7.5, 10.5), KdLine(13.5, 10.5), KdMove(10.5, 7.5), KdLine(10.5, 13.5)]);

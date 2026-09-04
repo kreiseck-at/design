@@ -2,5 +2,5 @@
 import { createIcon } from "./create-icon.js";
 
 export const ArrowLeft = createIcon("arrow-left", [
-    ["path", { d: "M14 6l-6 6 6 6" }]
+    ["path", { d: "M19 12H5M11 6l-6 6 6 6" }]
 ]);

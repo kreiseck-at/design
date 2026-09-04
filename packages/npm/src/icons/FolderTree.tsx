@@ -2,7 +2,7 @@
 import { createIcon } from "./create-icon.js";
 
 export const FolderTree = createIcon("folder-tree", [
-    ["path", { d: "M6 4v14M6 9h6M6 18h6" }],
-    ["rect", { x: "12", y: "6", width: "8", height: "6", rx: "2.5" }],
-    ["rect", { x: "12", y: "15", width: "8", height: "6", rx: "2.5" }]
+    ["path", { d: "M6 4v14M6 9h4M6 18h4" }],
+    ["rect", { x: "11", y: "6", width: "10", height: "6", rx: "2.5" }],
+    ["rect", { x: "11", y: "15", width: "10", height: "6", rx: "2.5" }]
 ]);
