@@ -419,7 +419,7 @@ abstract final class KdIcons {
   /// Bildschirm (monitor)
   static const KdIconData monitor = KdIconData(stroke: [KdMove(5, 4), KdLine(19, 4), KdCubic(20.381, 4, 21.5, 5.119, 21.5, 6.5), KdLine(21.5, 14.5), KdCubic(21.5, 15.881, 20.381, 17, 19, 17), KdLine(5, 17), KdCubic(3.619, 17, 2.5, 15.881, 2.5, 14.5), KdLine(2.5, 6.5), KdCubic(2.5, 5.119, 3.619, 4, 5, 4), KdClose(), KdMove(12, 17), KdLine(12, 21), KdMove(8, 21), KdLine(16, 21)]);
 
-  /// Gerät / Chip (cpu)
+  /// Prozessor (cpu)
   static const KdIconData cpu = KdIconData(stroke: [KdMove(7.5, 5), KdLine(16.5, 5), KdCubic(17.881, 5, 19, 6.119, 19, 7.5), KdLine(19, 16.5), KdCubic(19, 17.881, 17.881, 19, 16.5, 19), KdLine(7.5, 19), KdCubic(6.119, 19, 5, 17.881, 5, 16.5), KdLine(5, 7.5), KdCubic(5, 6.119, 6.119, 5, 7.5, 5), KdClose(), KdMove(10, 9), KdLine(14, 9), KdCubic(14.552, 9, 15, 9.448, 15, 10), KdLine(15, 14), KdCubic(15, 14.552, 14.552, 15, 14, 15), KdLine(10, 15), KdCubic(9.448, 15, 9, 14.552, 9, 14), KdLine(9, 10), KdCubic(9, 9.448, 9.448, 9, 10, 9), KdClose(), KdMove(9, 2.5), KdLine(9, 5), KdMove(15, 2.5), KdLine(15, 5), KdMove(9, 19), KdLine(9, 21.5), KdMove(15, 19), KdLine(15, 21.5), KdMove(2.5, 9), KdLine(5, 9), KdMove(2.5, 15), KdLine(5, 15), KdMove(19, 9), KdLine(21.5, 9), KdMove(19, 15), KdLine(21.5, 15)]);
 
   /// Netzwerk (network)

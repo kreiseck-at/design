@@ -137,7 +137,7 @@
   "lock":              { "group": "people", "de": "Gesperrt", "terms": ["lock", "locked", "restricted", "versperrt"] },
   "lock-open":         { "group": "people", "de": "Entsperrt", "terms": ["unlock", "unlocked", "accessible", "entsperrt"] },
   "monitor":             { "group": "device", "de": "Bildschirm", "terms": ["monitor", "screen", "display", "bildschirm"] },
-  "cpu":                 { "group": "device", "de": "Gerät / Chip", "terms": ["cpu", "processor", "prozessor", "hardware"] },
+  "cpu":                 { "group": "device", "de": "Prozessor", "terms": ["cpu", "processor", "prozessor", "hardware"] },
   "network":             { "group": "device", "de": "Netzwerk", "terms": ["network", "netzwerk", "lan", "connectivity"] },
   "wifi":                { "group": "device", "de": "WLAN", "terms": ["wifi", "wlan", "wireless", "internet"] },
   "bluetooth":           { "group": "device", "de": "Bluetooth", "terms": ["bluetooth", "bt", "funk", "drahtlos"] },
