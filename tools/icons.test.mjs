@@ -45,6 +45,30 @@ describe("validateIcon", () => {
   it("rejects bad names", () => {
     expect(validateIcon("Arrow_Left", ok, { filled: false })).toEqual(["Arrow_Left: name must match ^[a-z][a-z0-9]*(-[a-z0-9]+)*$"]);
   });
+  it("rejects path commands outside the dialect instead of silently absorbing them", () => {
+    expect(validateIcon("a", `<svg viewBox="0 0 24 24"><path d="M4 4X10 10"/></svg>`, { filled: false }))
+      .toContain(`a: path contains unexpected character "X"`);
+  });
+  it("rejects path text that a command never consumes", () => {
+    expect(validateIcon("a", `<svg viewBox="0 0 24 24"><path d="4 M4 4"/></svg>`, { filled: false }))
+      .toContain("a: path has text before the first command");
+  });
+  it("rejects attribute values with units or other non-numeric garbage", () => {
+    const problems = validateIcon("a", `<svg viewBox="0 0 24 24"><rect x="12px" y="3" width="18" height="18"/></svg>`, { filled: false });
+    expect(problems).toContain("a: value 12px is not a number with at most one decimal");
+  });
+  it("rejects scientific notation in path coordinates", () => {
+    const problems = validateIcon("a", `<svg viewBox="0 0 24 24"><path d="M4 4l1e2 3"/></svg>`, { filled: false });
+    expect(problems).toContain("a: value 1e2 is not a number with at most one decimal");
+  });
+  it("rejects a negative radius", () => {
+    expect(validateIcon("a", `<svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="-4"/></svg>`, { filled: false }))
+      .toContain("a: r must be positive");
+  });
+  it("rejects non-positive width or height", () => {
+    const problems = validateIcon("a", `<svg viewBox="0 0 24 24"><rect x="3" y="3" width="-1" height="18"/></svg>`, { filled: false });
+    expect(problems).toContain("a: width must be positive");
+  });
 });
 
 describe("parseElements", () => {

@@ -33,10 +33,14 @@ export function parseElements(svg) {
   return out;
 }
 
-const numbers = (text) => [...text.matchAll(/-?\d*\.?\d+(?:e-?\d+)?/gi)].map((m) => Number(m[0]));
+// Deliberately no "e" exponent here: the dialect is hand-written coordinates,
+// so scientific notation is garbage, not a valid number in disguise.
+const NUMBER_TOKEN = /-?\d*\.?\d+(?:e-?\d+)?/gi;
+const numberTokens = (text) => [...text.matchAll(NUMBER_TOKEN)].map((m) => m[0]);
 
 function checkNumber(id, value, problems) {
   const s = String(value);
+  if (!/^-?\d*\.?\d+$/.test(s)) { problems.push(`${id}: value ${s} is not a number with at most one decimal`); return; }
   if (/\.\d{2,}/.test(s)) problems.push(`${id}: value ${s} has more than one decimal`);
 }
 
@@ -44,17 +48,24 @@ function checkPoint(id, x, y, problems) {
   if (x < MIN || x > MAX || y < MIN || y > MAX) problems.push(`${id}: point (${x}, ${y}) outside ${MIN}–${MAX}`);
 }
 
+const PATH_CHARS = /[^\s\d.\-eEMLHVCSAZQTmlhvcsaqtz,]/;
+
 // Walk the path once to check every point it touches, including control
 // points and arc end points; relative commands are resolved against the
 // running position so the check is about where lines really go.
 function checkPath(id, d, problems) {
+  const badChar = d.match(PATH_CHARS);
+  if (badChar) { problems.push(`${id}: path contains unexpected character "${badChar[0]}"`); return; }
+  const firstCommand = d.search(/[MLHVCSAZQTmlhvcsaqtz]/);
+  if (firstCommand !== 0) { problems.push(`${id}: path has text before the first command`); return; }
   const cmds = [...d.matchAll(/([MLHVCSAZQTmlhvcsaqtz])([^MLHVCSAZQTmlhvcsaqtz]*)/g)];
   if (cmds.length === 0) problems.push(`${id}: empty path`);
   let x = 0, y = 0, sx = 0, sy = 0;
   for (const [, c, argText] of cmds) {
     if ("QqTt".includes(c)) { problems.push(`${id}: path command ${c.toUpperCase()} is not allowed (use C)`); return; }
-    const args = numbers(argText);
-    args.forEach((v) => checkNumber(id, v, problems));
+    const rawArgs = numberTokens(argText);
+    rawArgs.forEach((raw) => checkNumber(id, raw, problems));
+    const args = rawArgs.map(Number);
     const rel = c === c.toLowerCase();
     const U = c.toUpperCase();
     const arity = { M: 2, L: 2, H: 1, V: 1, C: 6, S: 4, A: 7, Z: 0 }[U];
@@ -98,9 +109,16 @@ export function validateIcon(id, svg, { filled }) {
     }
     for (const k of ALLOWED[tag]) if (k !== "rx" && !(k in attrs)) problems.push(`${id}: <${tag}> is missing ${k}`);
     if (tag === "path" && attrs.d) checkPath(id, attrs.d, problems);
-    if (tag === "circle") { const [cx, cy, r] = ["cx", "cy", "r"].map((k) => Number(attrs[k])); checkPoint(id, cx - r, cy - r, problems); checkPoint(id, cx + r, cy + r, problems); }
+    if (tag === "circle") {
+      const [cx, cy, r] = ["cx", "cy", "r"].map((k) => Number(attrs[k]));
+      // Number(attrs.r) is NaN for garbage values already flagged above; don't pile on.
+      if (!Number.isNaN(r) && !(r > 0)) problems.push(`${id}: r must be positive`);
+      checkPoint(id, cx - r, cy - r, problems); checkPoint(id, cx + r, cy + r, problems);
+    }
     if (tag === "rect") {
       const [x, y, w, h] = ["x", "y", "width", "height"].map((k) => Number(attrs[k]));
+      if (!Number.isNaN(w) && !(w > 0)) problems.push(`${id}: width must be positive`);
+      if (!Number.isNaN(h) && !(h > 0)) problems.push(`${id}: height must be positive`);
       checkPoint(id, x, y, problems); checkPoint(id, x + w, y + h, problems);
       if ("rx" in attrs) { const rx = Number(attrs.rx); if (!(rx === 0 || rx < 2.5)) problems.push(`${id}: rx ${attrs.rx} must be 0 or smaller than 2.5 (omit it for the default)`); }
     }
