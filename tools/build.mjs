@@ -33,7 +33,7 @@ const outputs = async (models) => {
     ["packages/npm/src/tokens.css", css],
     ["packages/npm/src/oklch.mjs", asMjs],
     ["packages/dart/lib/src/tokens.dart", emitDart(primary)],
-    ["gallery/index.html", emitGallery(primary)],
+    ["gallery/index.html", emitGallery(primary, iconsModel)],
     ["packages/dart/lib/src/icons.dart", emitIconsDart(iconsModel)],
     ...emitIconsWeb(iconsModel).files,
     ...models.map((model) => [`golden/${model.brand}.json`, `${JSON.stringify(model, null, 2)}\n`]),
