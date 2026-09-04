@@ -61,12 +61,6 @@ TextStyle kdMonoStyle(KdMode mode, {bool large = false}) {
   );
 }
 
-/// Asset path of the signet. Flips to the inverse only when the ground is
-/// dark — `warm` and `contrast` stay on a light ground and use the normal
-/// mark.
-String kdSignet(KdMode mode) =>
-    mode == KdMode.dark ? 'assets/signet-invers.svg' : 'assets/signet.svg';
-
 /// Elevation by mode. Not a token — the till app tuned these four numbers
 /// by eye per style, and this keeps that tuning rather than inventing a
 /// token for a single call site. `contrast` gets none: a shadow is a soft

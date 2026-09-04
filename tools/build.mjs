@@ -4,6 +4,9 @@ import { check } from "./check.mjs";
 import { emitTs } from "./emit-ts.mjs";
 import { emitDart } from "./emit-dart.mjs";
 import { emitGallery } from "./emit-gallery.mjs";
+import { loadIcons } from "./icons.mjs";
+import { emitIconsDart } from "./emit-icons-dart.mjs";
+import { iconDigests } from "./icons-digest.mjs";
 
 const root = new URL("../", import.meta.url);
 const checkOnly = process.argv.includes("--check");
@@ -29,13 +32,25 @@ const outputs = async (models) => {
     ["packages/npm/src/oklch.mjs", asMjs],
     ["packages/dart/lib/src/tokens.dart", emitDart(primary)],
     ["gallery/index.html", emitGallery(primary)],
+    ["packages/dart/lib/src/icons.dart", emitIconsDart(iconsModel)],
     ...models.map((model) => [`golden/${model.brand}.json`, `${JSON.stringify(model, null, 2)}\n`]),
   ];
 };
 
 const base = JSON.parse(await readFile(new URL("tokens/base.json", root)));
 const brands = await loadBrands();
-const models = brands.map((brand) => resolveTokens(base, brand));
+
+let iconsModel;
+try {
+  iconsModel = await loadIcons(root);
+} catch (e) {
+  if (!e.problems) throw e;
+  console.error("Icon check failed:");
+  for (const p of e.problems) console.error(`  - ${p}`);
+  process.exit(1);
+}
+
+const models = brands.map((brand) => ({ ...resolveTokens(base, brand), icons: iconDigests(iconsModel) }));
 
 for (const model of models) {
   const result = check(model);

@@ -41,12 +41,6 @@ void main() {
     expect(t.labelSmall!.letterSpacing, closeTo(1.1, 0.01)); // +10 % of 11 px
   });
 
-  test('the signet flips for dark ground', () {
-    expect(kdSignet(KdMode.light), 'assets/signet.svg');
-    expect(kdSignet(KdMode.dark), 'assets/signet-invers.svg');
-    expect(kdSignet(KdMode.warm), 'assets/signet.svg');
-  });
-
   test('the theme for the till has a 56 px filled button and 10 px corners', () {
     final theme = kdTheme(KdMode.light);
     final style = theme.filledButtonTheme.style!;

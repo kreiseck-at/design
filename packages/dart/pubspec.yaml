@@ -30,6 +30,3 @@ flutter:
       fonts:
         - { asset: fonts/DMMono-400.ttf, weight: 400 }
         - { asset: fonts/DMMono-500.ttf, weight: 500 }
-  assets:
-    - assets/signet.svg
-    - assets/signet-invers.svg

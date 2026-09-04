@@ -8,3 +8,5 @@ library;
 export 'src/tokens.dart';
 export 'src/theme.dart';
 export 'src/brand_ramp.dart';
+export 'src/icon.dart';
+export 'src/icons.dart';
