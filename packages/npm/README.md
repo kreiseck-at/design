@@ -57,6 +57,14 @@ An external `href` pointing at the sprite file (`sprite.svg#kd-receipt`) works i
 
 Or a single icon file directly: `@kreiseck/design/svg/receipt.svg`.
 
+## Fonts
+
+```ts
+import "@kreiseck/design/fonts.css";
+```
+
+Archivo (400/500/600/700) and DM Mono (400/500) ship as `.woff2` files inside the package — importing `fonts.css` self-hosts them, with no request to a third-party font service and no cookie banner needed for it.
+
 ## Gallery
 
 All tokens, ramps and icons rendered together live in [`/gallery`](https://github.com/kreiseck-at/design/tree/main/gallery) in this repository.

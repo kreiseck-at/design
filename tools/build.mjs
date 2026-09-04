@@ -9,6 +9,7 @@ import { emitIconsDart } from "./emit-icons-dart.mjs";
 import { emitIconsWeb } from "./emit-icons-web.mjs";
 import { iconDigests } from "./icons-digest.mjs";
 import { staleIconFiles, removeStale } from "./stale.mjs";
+import { emitFontsCss } from "./fonts.mjs";
 
 const root = new URL("../", import.meta.url);
 const checkOnly = process.argv.includes("--check");
@@ -32,6 +33,7 @@ const outputs = async (models) => {
     ["packages/npm/src/tokens.ts", ts],
     ["packages/npm/src/tokens.css", css],
     ["packages/npm/src/oklch.mjs", asMjs],
+    ["packages/npm/fonts.css", emitFontsCss()],
     ["packages/dart/lib/src/tokens.dart", emitDart(primary)],
     ["gallery/index.html", emitGallery(primary, iconsModel)],
     ["packages/dart/lib/src/icons.dart", emitIconsDart(iconsModel)],

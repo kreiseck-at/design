@@ -45,6 +45,20 @@ regenerates the Dart, React, plain SVG and sprite outputs, plus the gallery.
 To add an icon: drop the new `icons/<id>.svg`, add its entry to
 `icons/index.json`, then run `pnpm build`.
 
+## Fonts
+
+Archivo and DM Mono ship as TrueType in `packages/dart/fonts` and as `.woff2`
+in `packages/npm/fonts`, both committed. The web faces are not part of a
+normal `pnpm build` — they change only when the TrueType source does, so
+converting them again is a separate, deliberate step:
+
+```bash
+scripts/woff2.sh
+```
+
+`pnpm build` still generates `packages/npm/fonts.css`, the `@font-face`
+rules pointing at those `.woff2` files, from `tools/fonts.mjs`.
+
 ## Why the build fails
 
 Two independent guards protect this repo, and both have been made to fail on

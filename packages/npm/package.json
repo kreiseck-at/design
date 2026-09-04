@@ -1,6 +1,6 @@
 {
   "name": "@kreiseck/design",
-  "version": "0.2.0",
+  "version": "0.3.0",
   "description": "Design tokens, colour roles for four modes, brand ramp and the icon set shared by all Kreiseck surfaces.",
   "license": "MIT",
   "repository": { "type": "git", "url": "https://github.com/kreiseck-at/design", "directory": "packages/npm" },
@@ -11,9 +11,11 @@
     ".": { "types": "./dist/index.d.ts", "import": "./dist/index.js" },
     "./icons": { "types": "./dist/icons.d.ts", "import": "./dist/icons.js" },
     "./tokens.css": "./src/tokens.css",
-    "./svg/*": "./svg/*"
+    "./svg/*": "./svg/*",
+    "./fonts.css": "./fonts.css",
+    "./fonts/*": "./fonts/*"
   },
-  "files": ["dist", "svg", "src/tokens.css", "README.md", "LICENSE"],
+  "files": ["dist", "svg", "src/tokens.css", "fonts", "fonts.css", "README.md", "LICENSE"],
   "sideEffects": ["*.css"],
   "scripts": {
     "build": "tsup",
