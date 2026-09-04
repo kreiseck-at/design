@@ -59,6 +59,45 @@ abstract final class KdIcons {
   /// QR-Code (qr-code)
   static const KdIconData qrCode = KdIconData(stroke: [KdMove(4, 3), KdLine(9, 3), KdCubic(9.552, 3, 10, 3.448, 10, 4), KdLine(10, 9), KdCubic(10, 9.552, 9.552, 10, 9, 10), KdLine(4, 10), KdCubic(3.448, 10, 3, 9.552, 3, 9), KdLine(3, 4), KdCubic(3, 3.448, 3.448, 3, 4, 3), KdClose(), KdMove(15, 3), KdLine(20, 3), KdCubic(20.552, 3, 21, 3.448, 21, 4), KdLine(21, 9), KdCubic(21, 9.552, 20.552, 10, 20, 10), KdLine(15, 10), KdCubic(14.448, 10, 14, 9.552, 14, 9), KdLine(14, 4), KdCubic(14, 3.448, 14.448, 3, 15, 3), KdClose(), KdMove(4, 14), KdLine(9, 14), KdCubic(9.552, 14, 10, 14.448, 10, 15), KdLine(10, 20), KdCubic(10, 20.552, 9.552, 21, 9, 21), KdLine(4, 21), KdCubic(3.448, 21, 3, 20.552, 3, 20), KdLine(3, 15), KdCubic(3, 14.448, 3.448, 14, 4, 14), KdClose(), KdMove(14, 14), KdLine(17, 14), KdLine(17, 17), KdLine(14, 17), KdClose(), KdMove(21, 14), KdLine(21, 17), KdMove(14, 21), KdLine(17, 21), KdMove(21, 21), KdLine(21.1, 21)]);
 
+  /// Beleg mit Zeilen (receipt-text)
+  static const KdIconData receiptText = KdIconData(stroke: [KdMove(6, 3), KdLine(18, 3), KdLine(18, 21), KdLine(16, 19.5), KdLine(14, 21), KdLine(12, 19.5), KdLine(10, 21), KdLine(8, 19.5), KdLine(6, 21), KdClose(), KdMove(9, 7), KdLine(15, 7), KdMove(9, 10), KdLine(15, 10), KdMove(9, 13), KdLine(15, 13), KdMove(9, 16), KdLine(13, 16)]);
+
+  /// Kartenterminal (card-terminal)
+  static const KdIconData cardTerminal = KdIconData(stroke: [KdMove(7.5, 3), KdLine(16.5, 3), KdCubic(17.881, 3, 19, 4.119, 19, 5.5), KdLine(19, 18.5), KdCubic(19, 19.881, 17.881, 21, 16.5, 21), KdLine(7.5, 21), KdCubic(6.119, 21, 5, 19.881, 5, 18.5), KdLine(5, 5.5), KdCubic(5, 4.119, 6.119, 3, 7.5, 3), KdClose(), KdMove(9, 6), KdLine(15, 6), KdCubic(15.552, 6, 16, 6.448, 16, 7), KdLine(16, 9), KdCubic(16, 9.552, 15.552, 10, 15, 10), KdLine(9, 10), KdCubic(8.448, 10, 8, 9.552, 8, 9), KdLine(8, 7), KdCubic(8, 6.448, 8.448, 6, 9, 6), KdClose(), KdMove(8, 14), KdLine(8.1, 14), KdMove(12, 14), KdLine(12.1, 14), KdMove(16, 14), KdLine(16.1, 14), KdMove(8, 18), KdLine(8.1, 18), KdMove(12, 18), KdLine(12.1, 18), KdMove(16, 18), KdLine(16.1, 18), KdMove(3, 14), KdLine(5, 14), KdMove(19, 14), KdLine(21, 14)]);
+
+  /// Münzen (coins)
+  static const KdIconData coins = KdIconData(stroke: [KdMove(15, 9), KdCubic(15, 12.314, 12.314, 15, 9, 15), KdCubic(5.686, 15, 3, 12.314, 3, 9), KdCubic(3, 5.686, 5.686, 3, 9, 3), KdCubic(12.314, 3, 15, 5.686, 15, 9), KdClose(), KdMove(15.5, 8.3), KdCubic(18.387, 8.969, 20.352, 11.645, 20.128, 14.6), KdCubic(19.903, 17.555, 17.555, 19.903, 14.6, 20.128), KdCubic(11.645, 20.352, 8.969, 18.387, 8.3, 15.5), KdMove(8, 6.5), KdLine(9.5, 6.5), KdLine(9.5, 11.5)]);
+
+  /// Geldbörse (wallet)
+  static const KdIconData wallet = KdIconData(stroke: [KdMove(3, 7), KdCubic(3, 5.895, 3.895, 5, 5, 5), KdLine(19, 5), KdLine(19, 9), KdMove(3, 7), KdLine(3, 18), KdCubic(3, 19.105, 3.895, 20, 5, 20), KdLine(19, 20), KdCubic(20.105, 20, 21, 19.105, 21, 18), KdLine(21, 9), KdLine(5, 9), KdCubic(3.895, 9, 3, 8.105, 3, 7), KdMove(17, 14), KdLine(17.1, 14)]);
+
+  /// Euro (euro)
+  static const KdIconData euro = KdIconData(stroke: [KdMove(18, 5.5), KdCubic(15.59, 4.104, 12.628, 4.061, 10.179, 5.387), KdCubic(7.73, 6.714, 6.147, 9.219, 6, 12), KdCubic(6.147, 14.781, 7.73, 17.286, 10.179, 18.613), KdCubic(12.628, 19.939, 15.59, 19.896, 18, 18.5), KdMove(3.5, 10), KdLine(14.5, 10), KdMove(3.5, 14), KdLine(14.5, 14)]);
+
+  /// Prozent (percent)
+  static const KdIconData percent = KdIconData(stroke: [KdMove(19, 5), KdLine(5, 19), KdMove(9.5, 7), KdCubic(9.5, 8.381, 8.381, 9.5, 7, 9.5), KdCubic(5.619, 9.5, 4.5, 8.381, 4.5, 7), KdCubic(4.5, 5.619, 5.619, 4.5, 7, 4.5), KdCubic(8.381, 4.5, 9.5, 5.619, 9.5, 7), KdClose(), KdMove(19.5, 17), KdCubic(19.5, 18.381, 18.381, 19.5, 17, 19.5), KdCubic(15.619, 19.5, 14.5, 18.381, 14.5, 17), KdCubic(14.5, 15.619, 15.619, 14.5, 17, 14.5), KdCubic(18.381, 14.5, 19.5, 15.619, 19.5, 17), KdClose()]);
+
+  /// Bank (landmark)
+  static const KdIconData landmark = KdIconData(stroke: [KdMove(3, 9), KdLine(12, 4), KdLine(21, 9), KdMove(3, 21), KdLine(21, 21), KdMove(5, 18), KdLine(19, 18), KdMove(6, 9), KdLine(6, 18), KdMove(10, 9), KdLine(10, 18), KdMove(14, 9), KdLine(14, 18), KdMove(18, 9), KdLine(18, 18)]);
+
+  /// Strichcode (barcode)
+  static const KdIconData barcode = KdIconData(stroke: [KdMove(3.5, 5), KdLine(3.5, 19), KdMove(6.5, 5), KdLine(6.5, 19), KdMove(9.5, 5), KdLine(9.5, 19), KdMove(12, 5), KdLine(12, 19), KdMove(14.5, 5), KdLine(14.5, 19), KdMove(17.5, 5), KdLine(17.5, 19), KdMove(20.5, 5), KdLine(20.5, 19)]);
+
+  /// Artikel / Preis (tag)
+  static const KdIconData tag = KdIconData(stroke: [KdMove(20.5, 12.5), KdLine(12.5, 20.5), KdLine(3, 11), KdLine(3, 3), KdLine(11, 3), KdLine(20.5, 12.5), KdClose(), KdMove(8.5, 7), KdCubic(8.5, 7.828, 7.828, 8.5, 7, 8.5), KdCubic(6.172, 8.5, 5.5, 7.828, 5.5, 7), KdCubic(5.5, 6.172, 6.172, 5.5, 7, 5.5), KdCubic(7.828, 5.5, 8.5, 6.172, 8.5, 7), KdClose()]);
+
+  /// Warenkorb (shopping-cart)
+  static const KdIconData shoppingCart = KdIconData(stroke: [KdMove(3, 4), KdLine(5, 4), KdLine(7.5, 15), KdLine(18.5, 15), KdLine(20.5, 8), KdLine(7, 8), KdMove(10.5, 20), KdCubic(10.5, 20.828, 9.828, 21.5, 9, 21.5), KdCubic(8.172, 21.5, 7.5, 20.828, 7.5, 20), KdCubic(7.5, 19.172, 8.172, 18.5, 9, 18.5), KdCubic(9.828, 18.5, 10.5, 19.172, 10.5, 20), KdClose(), KdMove(19.5, 20), KdCubic(19.5, 20.828, 18.828, 21.5, 18, 21.5), KdCubic(17.172, 21.5, 16.5, 20.828, 16.5, 20), KdCubic(16.5, 19.172, 17.172, 18.5, 18, 18.5), KdCubic(18.828, 18.5, 19.5, 19.172, 19.5, 20), KdClose()]);
+
+  /// Paket / Lagerartikel (package)
+  static const KdIconData package = KdIconData(stroke: [KdMove(12, 3), KdLine(20.5, 7.5), KdLine(20.5, 16.5), KdLine(12, 21), KdLine(3.5, 16.5), KdLine(3.5, 7.5), KdClose(), KdMove(3.5, 7.5), KdLine(12, 12), KdLine(20.5, 7.5), KdMove(12, 12), KdLine(12, 21)]);
+
+  /// Wareneingang (package-plus)
+  static const KdIconData packagePlus = KdIconData(stroke: [KdMove(12, 3), KdLine(3.5, 7.5), KdLine(3.5, 16.5), KdLine(12, 21), KdLine(20.5, 16.5), KdLine(20.5, 9), KdMove(3.5, 7.5), KdLine(12, 12), KdMove(12, 12), KdLine(12, 21), KdMove(16, 3), KdLine(16, 9), KdMove(13, 6), KdLine(19, 6)]);
+
+  /// Lager (boxes)
+  static const KdIconData boxes = KdIconData(stroke: [KdMove(4, 14), KdLine(9, 14), KdCubic(9.552, 14, 10, 14.448, 10, 15), KdLine(10, 20), KdCubic(10, 20.552, 9.552, 21, 9, 21), KdLine(4, 21), KdCubic(3.448, 21, 3, 20.552, 3, 20), KdLine(3, 15), KdCubic(3, 14.448, 3.448, 14, 4, 14), KdClose(), KdMove(15, 14), KdLine(20, 14), KdCubic(20.552, 14, 21, 14.448, 21, 15), KdLine(21, 20), KdCubic(21, 20.552, 20.552, 21, 20, 21), KdLine(15, 21), KdCubic(14.448, 21, 14, 20.552, 14, 20), KdLine(14, 15), KdCubic(14, 14.448, 14.448, 14, 15, 14), KdClose(), KdMove(9.5, 3), KdLine(14.5, 3), KdCubic(15.052, 3, 15.5, 3.448, 15.5, 4), KdLine(15.5, 9), KdCubic(15.5, 9.552, 15.052, 10, 14.5, 10), KdLine(9.5, 10), KdCubic(8.948, 10, 8.5, 9.552, 8.5, 9), KdLine(8.5, 4), KdCubic(8.5, 3.448, 8.948, 3, 9.5, 3), KdClose()]);
+
   /// Weiter (arrow-right)
   static const KdIconData arrowRight = KdIconData(stroke: [KdMove(5, 12), KdLine(19, 12), KdMove(13, 6), KdLine(19, 12), KdLine(13, 18)]);
 
@@ -334,6 +373,19 @@ abstract final class KdIcons {
     'hand-coins': handCoins,
     'pos': pos,
     'qr-code': qrCode,
+    'receipt-text': receiptText,
+    'card-terminal': cardTerminal,
+    'coins': coins,
+    'wallet': wallet,
+    'euro': euro,
+    'percent': percent,
+    'landmark': landmark,
+    'barcode': barcode,
+    'tag': tag,
+    'shopping-cart': shoppingCart,
+    'package': package,
+    'package-plus': packagePlus,
+    'boxes': boxes,
     'arrow-right': arrowRight,
     'arrow-up': arrowUp,
     'arrow-down': arrowDown,
