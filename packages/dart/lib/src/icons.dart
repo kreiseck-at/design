@@ -180,7 +180,7 @@ abstract final class KdIcons {
   static const KdIconData printOff = KdIconData(stroke: [KdMove(7, 9), KdLine(7, 4), KdLine(17, 4), KdLine(17, 9), KdMove(5.5, 9), KdLine(18.5, 9), KdCubic(19.881, 9, 21, 10.119, 21, 11.5), KdLine(21, 14.5), KdCubic(21, 15.881, 19.881, 17, 18.5, 17), KdLine(5.5, 17), KdCubic(4.119, 17, 3, 15.881, 3, 14.5), KdLine(3, 11.5), KdCubic(3, 10.119, 4.119, 9, 5.5, 9), KdClose(), KdMove(7, 13.5), KdLine(17, 13.5), KdLine(17, 20), KdLine(7, 20), KdClose(), KdMove(4, 4), KdLine(20, 20)]);
 
   /// Radieren (eraser)
-  static const KdIconData eraser = KdIconData(stroke: [KdMove(7, 21), KdLine(3, 17), KdLine(14, 6), KdLine(20, 12), KdLine(11, 21), KdClose(), KdMove(5, 19), KdLine(21, 19)]);
+  static const KdIconData eraser = KdIconData(stroke: [KdMove(7, 18), KdLine(3.5, 14.5), KdLine(13.5, 4.5), KdLine(19.5, 10.5), KdLine(11, 19), KdClose(), KdMove(9.5, 8.5), KdLine(15.5, 14.5), KdMove(5, 22), KdLine(21, 22)]);
 
   /// Zuschneiden (crop)
   static const KdIconData crop = KdIconData(stroke: [KdMove(6, 3), KdLine(6, 16), KdCubic(6, 17.105, 6.895, 18, 8, 18), KdLine(21, 18), KdMove(3, 8), KdLine(16, 8), KdCubic(17.105, 8, 18, 8.895, 18, 10), KdLine(18, 21)]);

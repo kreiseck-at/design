@@ -2,6 +2,7 @@
 import { createIcon } from "./create-icon.js";
 
 export const Eraser = createIcon("eraser", [
-    ["path", { d: "M7 21l-4-4 11-11 6 6-9 9z" }],
-    ["path", { d: "M5 19h16" }]
+    ["path", { d: "M7 18l-3.5-3.5 10-10 6 6-8.5 8.5z" }],
+    ["path", { d: "M9.5 8.5l6 6" }],
+    ["path", { d: "M5 22h16" }]
 ]);
