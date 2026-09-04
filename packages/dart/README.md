@@ -12,7 +12,7 @@ mean hunting down colour literals.
 
 ```yaml
 dependencies:
-  kreiseck_design: ^0.1.0
+  kreiseck_design: ^0.2.0
 ```
 
 ## Usage
@@ -62,11 +62,48 @@ final ramp = brandRamp(const Color(0xFFFFD400));
 final button = ramp[700]!;   // #705C00 — white text on it reads at 6.5:1
 ```
 
-## Icons and the signet
+## Icons
 
-`KdIcon(KdIcons.receipt)` draws one of the till icons; size and colour fall
-back to the ambient `IconTheme` when neither is given. Look one up by its
-source name with `KdIcons.byName['cash-drawer']`.
+Every icon shares one hand: a 24-unit grid, stroke 1.75, round caps and
+joins. `KdIcon` paints it as a `CustomPainter`, so it slots in anywhere a
+Material `Icon` would.
+
+```dart
+KdIcon(KdIcons.receipt);
+```
+
+With no `size` or `color`, it falls back to the ambient `IconTheme` — set
+one on an `IconTheme.merge` or a widget's `iconTheme` and every `KdIcon`
+underneath it follows. Either can also be given explicitly, and a
+`semanticLabel` makes the icon speak to screen readers instead of staying
+decorative:
+
+```dart
+KdIcon(KdIcons.receipt, size: 20, color: kdColor(KdMode.light, 'brand'));
+KdIcon(KdIcons.check, semanticLabel: 'Bestätigt');
+```
+
+Eleven icons also come as a filled variant, named with a `Filled` suffix —
+`KdIcons.receiptFilled`, `KdIcons.checkFilled` — for a selected or emphasised
+state next to the plain outline for the rest. Look any icon up by its source
+name (the id used in the icon repository) instead of the generated Dart
+name with `KdIcons.byName`:
+
+```dart
+KdIcons.byName['cash-drawer'];
+```
+
+The set covers seven groups; one example each:
+
+- **navigation** — `KdIcons.arrowLeft`
+- **action** — `KdIcons.settings`
+- **device** — `KdIcons.pos`
+- **cash** — `KdIcons.receipt`
+- **status** — `KdIcons.checkCircle`
+- **document** — `KdIcons.file`
+- **people** — `KdIcons.user`
+
+## The signet
 
 `KdSignet(size: 40)` draws the Kasseneck mark in two colours: `frame`
 (defaults to the ambient icon colour) and `square` (defaults to

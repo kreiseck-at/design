@@ -1,6 +1,6 @@
 # Design Tokens
 
-Design tokens generated from a single source into two published packages: `@kreiseck/design` (npm) and `kreiseck_design` (pub.dev).
+Design tokens and an icon set generated from a single source into two published packages: `@kreiseck/design` (npm) and `kreiseck_design` (pub.dev).
 
 ## Build
 
@@ -25,6 +25,25 @@ Run the unit test suite:
 ```bash
 pnpm test
 ```
+
+## Icons
+
+Each icon starts as one file, `icons/<id>.svg`, listed by id in
+`icons/index.json` (group, German label, search terms). The source files
+speak a small dialect, not full SVG: every icon is one
+`<svg viewBox="0 0 24 24">` built only from `path`, `circle`, `rect` and
+`line`, with no groups, colours, transforms or stroke attributes, and at
+most one decimal place per coordinate. Points stay within 1.5…22.5 to leave
+a margin at the edge of the grid, and a `rect` without an `rx` gets a
+default corner radius of 2.5.
+
+The hand — stroke 1.75, round caps and joins — is not part of the source;
+the build applies it once, uniformly, when it emits each target. Running
+`pnpm build` both validates every source file against the dialect and
+regenerates the Dart, React, plain SVG and sprite outputs, plus the gallery.
+
+To add an icon: drop the new `icons/<id>.svg`, add its entry to
+`icons/index.json`, then run `pnpm build`.
 
 ## Why the build fails
 

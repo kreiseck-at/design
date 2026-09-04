@@ -1,6 +1,6 @@
 name: kreiseck_design
-description: Design tokens, Material theme and brand assets shared by all Kreiseck surfaces — colour ramps in OKLCH, roles for four modes, Archivo and DM Mono.
-version: 0.1.0
+description: Design tokens, Material theme, brand assets and the icon set shared by all Kreiseck surfaces — colour ramps in OKLCH, roles for four modes, Archivo, DM Mono and 150 stroke icons.
+version: 0.2.0
 homepage: https://github.com/kreiseck-at/design
 repository: https://github.com/kreiseck-at/design
 issue_tracker: https://github.com/kreiseck-at/design/issues
