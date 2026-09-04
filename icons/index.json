@@ -1,0 +1,20 @@
+{
+  "arrow-left":     { "group": "navigation", "de": "Zurück", "terms": ["back"] },
+  "search":         { "group": "action", "de": "Suchen", "terms": ["find", "lupe"] },
+  "check":          { "group": "action", "de": "Bestätigen", "terms": ["haken", "ok", "done"], "filled": false },
+  "x":              { "group": "action", "de": "Schließen", "terms": ["close", "cancel"] },
+  "print":          { "group": "action", "de": "Drucken", "terms": ["printer", "bon"] },
+  "link":           { "group": "action", "de": "Koppeln", "terms": ["pair", "connect"] },
+  "unlink":         { "group": "action", "de": "Entkoppeln", "terms": ["unpair", "disconnect"] },
+  "settings":       { "group": "device", "de": "Einstellungen", "terms": ["regler", "options"] },
+  "receipt":        { "group": "cash", "de": "Beleg", "terms": ["bon", "rechnung"] },
+  "receipt-void":   { "group": "cash", "de": "Storno", "terms": ["cancel", "void"] },
+  "credit-card":    { "group": "cash", "de": "Kartenzahlung", "terms": ["karte", "card"] },
+  "banknote":       { "group": "cash", "de": "Barzahlung", "terms": ["bar", "cash", "schein"] },
+  "cash-drawer":    { "group": "cash", "de": "Kassenlade", "terms": ["lade", "drawer"] },
+  "paper-roll":     { "group": "cash", "de": "Bonrolle", "terms": ["papier", "rolle"] },
+  "signature-unit": { "group": "cash", "de": "Signatureinheit", "terms": ["karte", "rksv", "chip"] },
+  "hand-coins":     { "group": "cash", "de": "Trinkgeld", "terms": ["tip", "trinkgeld"] },
+  "pos":            { "group": "cash", "de": "Kasse (Gerät)", "terms": ["terminal", "kasse"] },
+  "qr-code":        { "group": "cash", "de": "QR-Code", "terms": ["qr", "scan"] }
+}
