@@ -135,5 +135,18 @@
   "fingerprint":       { "group": "people", "de": "Identität", "terms": ["fingerprint", "identity", "biometric", "identität", "biometrie"] },
   "key":               { "group": "people", "de": "Schlüssel", "terms": ["key", "access", "schlüssel", "zugriff"] },
   "lock":              { "group": "people", "de": "Gesperrt", "terms": ["lock", "locked", "restricted", "versperrt"] },
-  "lock-open":         { "group": "people", "de": "Entsperrt", "terms": ["unlock", "unlocked", "accessible", "entsperrt"] }
+  "lock-open":         { "group": "people", "de": "Entsperrt", "terms": ["unlock", "unlocked", "accessible", "entsperrt"] },
+  "monitor":             { "group": "device", "de": "Bildschirm", "terms": ["monitor", "screen", "display", "bildschirm"] },
+  "cpu":                 { "group": "device", "de": "Gerät / Chip", "terms": ["cpu", "processor", "prozessor", "hardware"] },
+  "network":             { "group": "device", "de": "Netzwerk", "terms": ["network", "netzwerk", "lan", "connectivity"] },
+  "wifi":                { "group": "device", "de": "WLAN", "terms": ["wifi", "wlan", "wireless", "internet"] },
+  "bluetooth":           { "group": "device", "de": "Bluetooth", "terms": ["bluetooth", "bt", "funk", "drahtlos"] },
+  "bluetooth-connected": { "group": "device", "de": "Bluetooth verbunden", "terms": ["bluetooth connected", "paired", "verbunden", "gekoppelt"] },
+  "cable":               { "group": "device", "de": "Kabel / USB", "terms": ["cable", "usb", "kabel", "wire"] },
+  "mail":                { "group": "device", "de": "E-Mail", "terms": ["mail", "email", "envelope", "briefumschlag"] },
+  "message":             { "group": "device", "de": "Nachricht / SMS", "terms": ["message", "sms", "chat", "nachricht"] },
+  "phone":               { "group": "device", "de": "Telefon", "terms": ["phone", "call", "telefon", "anruf"] },
+  "map-pin":             { "group": "device", "de": "Ort", "terms": ["map pin", "pin", "ort", "adresse"] },
+  "sun":                 { "group": "device", "de": "Hell", "terms": ["sun", "light mode", "hell", "helligkeit"] },
+  "moon":                { "group": "device", "de": "Dunkel", "terms": ["moon", "dark mode", "dunkel", "nacht"] }
 }

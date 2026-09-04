@@ -416,6 +416,45 @@ abstract final class KdIcons {
   /// Entsperrt (lock-open)
   static const KdIconData lockOpen = KdIconData(stroke: [KdMove(6.5, 11), KdLine(17.5, 11), KdCubic(18.881, 11, 20, 12.119, 20, 13.5), KdLine(20, 18.5), KdCubic(20, 19.881, 18.881, 21, 17.5, 21), KdLine(6.5, 21), KdCubic(5.119, 21, 4, 19.881, 4, 18.5), KdLine(4, 13.5), KdCubic(4, 12.119, 5.119, 11, 6.5, 11), KdClose(), KdMove(8, 11), KdLine(8, 7), KdCubic(7.97, 5.164, 9.195, 3.544, 10.969, 3.071), KdCubic(12.743, 2.597, 14.611, 3.393, 15.5, 5)]);
 
+  /// Bildschirm (monitor)
+  static const KdIconData monitor = KdIconData(stroke: [KdMove(5, 4), KdLine(19, 4), KdCubic(20.381, 4, 21.5, 5.119, 21.5, 6.5), KdLine(21.5, 14.5), KdCubic(21.5, 15.881, 20.381, 17, 19, 17), KdLine(5, 17), KdCubic(3.619, 17, 2.5, 15.881, 2.5, 14.5), KdLine(2.5, 6.5), KdCubic(2.5, 5.119, 3.619, 4, 5, 4), KdClose(), KdMove(12, 17), KdLine(12, 21), KdMove(8, 21), KdLine(16, 21)]);
+
+  /// Gerät / Chip (cpu)
+  static const KdIconData cpu = KdIconData(stroke: [KdMove(7.5, 5), KdLine(16.5, 5), KdCubic(17.881, 5, 19, 6.119, 19, 7.5), KdLine(19, 16.5), KdCubic(19, 17.881, 17.881, 19, 16.5, 19), KdLine(7.5, 19), KdCubic(6.119, 19, 5, 17.881, 5, 16.5), KdLine(5, 7.5), KdCubic(5, 6.119, 6.119, 5, 7.5, 5), KdClose(), KdMove(10, 9), KdLine(14, 9), KdCubic(14.552, 9, 15, 9.448, 15, 10), KdLine(15, 14), KdCubic(15, 14.552, 14.552, 15, 14, 15), KdLine(10, 15), KdCubic(9.448, 15, 9, 14.552, 9, 14), KdLine(9, 10), KdCubic(9, 9.448, 9.448, 9, 10, 9), KdClose(), KdMove(9, 2.5), KdLine(9, 5), KdMove(15, 2.5), KdLine(15, 5), KdMove(9, 19), KdLine(9, 21.5), KdMove(15, 19), KdLine(15, 21.5), KdMove(2.5, 9), KdLine(5, 9), KdMove(2.5, 15), KdLine(5, 15), KdMove(19, 9), KdLine(21.5, 9), KdMove(19, 15), KdLine(21.5, 15)]);
+
+  /// Netzwerk (network)
+  static const KdIconData network = KdIconData(stroke: [KdMove(10, 3), KdLine(14, 3), KdCubic(14.552, 3, 15, 3.448, 15, 4), KdLine(15, 7), KdCubic(15, 7.552, 14.552, 8, 14, 8), KdLine(10, 8), KdCubic(9.448, 8, 9, 7.552, 9, 7), KdLine(9, 4), KdCubic(9, 3.448, 9.448, 3, 10, 3), KdClose(), KdMove(5.5, 16), KdLine(6.5, 16), KdCubic(7.881, 16, 9, 17.119, 9, 18.5), KdLine(9, 18.5), KdCubic(9, 19.881, 7.881, 21, 6.5, 21), KdLine(5.5, 21), KdCubic(4.119, 21, 3, 19.881, 3, 18.5), KdLine(3, 18.5), KdCubic(3, 17.119, 4.119, 16, 5.5, 16), KdClose(), KdMove(17.5, 16), KdLine(18.5, 16), KdCubic(19.881, 16, 21, 17.119, 21, 18.5), KdLine(21, 18.5), KdCubic(21, 19.881, 19.881, 21, 18.5, 21), KdLine(17.5, 21), KdCubic(16.119, 21, 15, 19.881, 15, 18.5), KdLine(15, 18.5), KdCubic(15, 17.119, 16.119, 16, 17.5, 16), KdClose(), KdMove(12, 8), KdLine(12, 12), KdMove(6, 16), KdLine(6, 12), KdLine(18, 12), KdLine(18, 16)]);
+
+  /// WLAN (wifi)
+  static const KdIconData wifi = KdIconData(stroke: [KdMove(8.5, 17), KdCubic(9.204, 15.727, 10.545, 14.936, 12, 14.936), KdCubic(13.455, 14.936, 14.796, 15.727, 15.5, 17), KdMove(5.5, 15.3), KdCubic(6.838, 12.975, 9.317, 11.542, 12, 11.542), KdCubic(14.683, 11.542, 17.162, 12.975, 18.5, 15.3), KdMove(2.5, 13.5), KdCubic(4.472, 10.122, 8.089, 8.045, 12, 8.045), KdCubic(15.911, 8.045, 19.528, 10.122, 21.5, 13.5), KdMove(12, 19), KdLine(12.1, 19)]);
+
+  /// Bluetooth (bluetooth)
+  static const KdIconData bluetooth = KdIconData(stroke: [KdMove(7, 7), KdLine(17, 17), KdLine(12, 22), KdLine(12, 3), KdLine(17, 8), KdLine(7, 17)]);
+
+  /// Bluetooth verbunden (bluetooth-connected)
+  static const KdIconData bluetoothConnected = KdIconData(stroke: [KdMove(7, 7), KdLine(17, 17), KdLine(12, 22), KdLine(12, 3), KdLine(17, 8), KdLine(7, 17), KdMove(4, 12), KdLine(4.1, 12), KdMove(20, 12), KdLine(20.1, 12)]);
+
+  /// Kabel / USB (cable)
+  static const KdIconData cable = KdIconData(stroke: [KdMove(9, 3), KdLine(15, 3), KdCubic(15.552, 3, 16, 3.448, 16, 4), KdLine(16, 9), KdCubic(16, 9.552, 15.552, 10, 15, 10), KdLine(9, 10), KdCubic(8.448, 10, 8, 9.552, 8, 9), KdLine(8, 4), KdCubic(8, 3.448, 8.448, 3, 9, 3), KdClose(), KdMove(10, 10), KdLine(10, 14), KdCubic(10, 15.105, 10.895, 16, 12, 16), KdCubic(13.105, 16, 14, 15.105, 14, 14), KdLine(14, 10), KdMove(12, 16), KdLine(12, 21)]);
+
+  /// E-Mail (mail)
+  static const KdIconData mail = KdIconData(stroke: [KdMove(5, 5), KdLine(19, 5), KdCubic(20.381, 5, 21.5, 6.119, 21.5, 7.5), KdLine(21.5, 16.5), KdCubic(21.5, 17.881, 20.381, 19, 19, 19), KdLine(5, 19), KdCubic(3.619, 19, 2.5, 17.881, 2.5, 16.5), KdLine(2.5, 7.5), KdCubic(2.5, 6.119, 3.619, 5, 5, 5), KdClose(), KdMove(2.5, 8), KdLine(12, 14.5), KdLine(21.5, 8)]);
+
+  /// Nachricht / SMS (message)
+  static const KdIconData message = KdIconData(stroke: [KdMove(21, 12), KdCubic(21.019, 14.787, 19.587, 17.383, 17.219, 18.853), KdCubic(14.851, 20.323, 11.889, 20.454, 9.4, 19.2), KdLine(3, 21), KdLine(4.8, 15.6), KdCubic(3.806, 11.126, 6.626, 6.694, 11.1, 5.7), KdCubic(15.574, 4.706, 20.006, 7.526, 21, 12), KdClose(), KdMove(8.5, 10.5), KdLine(15.5, 10.5), KdMove(8.5, 13.5), KdLine(12.5, 13.5)]);
+
+  /// Telefon (phone)
+  static const KdIconData phone = KdIconData(stroke: [KdMove(5, 3), KdLine(9, 3), KdLine(11, 8), KdLine(8.5, 9.5), KdCubic(9.617, 12.222, 11.778, 14.383, 14.5, 15.5), KdLine(16, 13), KdLine(21, 15), KdLine(21, 19), KdCubic(21, 20.105, 20.105, 21, 19, 21), KdCubic(10.163, 21, 3, 13.837, 3, 5), KdCubic(3, 3.895, 3.895, 3, 5, 3), KdClose()]);
+
+  /// Ort (map-pin)
+  static const KdIconData mapPin = KdIconData(stroke: [KdMove(12, 21), KdCubic(12, 21, 5, 15, 5, 9.5), KdCubic(5, 5.634, 8.134, 2.5, 12, 2.5), KdCubic(15.866, 2.5, 19, 5.634, 19, 9.5), KdCubic(19, 15, 12, 21, 12, 21), KdClose(), KdMove(14.5, 9.5), KdCubic(14.5, 10.881, 13.381, 12, 12, 12), KdCubic(10.619, 12, 9.5, 10.881, 9.5, 9.5), KdCubic(9.5, 8.119, 10.619, 7, 12, 7), KdCubic(13.381, 7, 14.5, 8.119, 14.5, 9.5), KdClose()]);
+
+  /// Hell (sun)
+  static const KdIconData sun = KdIconData(stroke: [KdMove(15.5, 12), KdCubic(15.5, 13.933, 13.933, 15.5, 12, 15.5), KdCubic(10.067, 15.5, 8.5, 13.933, 8.5, 12), KdCubic(8.5, 10.067, 10.067, 8.5, 12, 8.5), KdCubic(13.933, 8.5, 15.5, 10.067, 15.5, 12), KdClose(), KdMove(12, 5.5), KdLine(12, 3), KdMove(12, 18.5), KdLine(12, 21), KdMove(18.5, 12), KdLine(21, 12), KdMove(5.5, 12), KdLine(3, 12), KdMove(16.6, 7.4), KdLine(18.4, 5.6), KdMove(7.4, 7.4), KdLine(5.6, 5.6), KdMove(16.6, 16.6), KdLine(18.4, 18.4), KdMove(7.4, 16.6), KdLine(5.6, 18.4)]);
+
+  /// Dunkel (moon)
+  static const KdIconData moon = KdIconData(stroke: [KdMove(20, 14.5), KdCubic(18.881, 18.437, 15.116, 21.017, 11.04, 20.64), KdCubic(6.965, 20.263, 3.737, 17.035, 3.36, 12.96), KdCubic(2.983, 8.884, 5.563, 5.119, 9.5, 4), KdCubic(7.624, 5.876, 6.892, 8.609, 7.578, 11.172), KdCubic(8.265, 13.734, 10.266, 15.735, 12.828, 16.422), KdCubic(15.391, 17.108, 18.124, 16.376, 20, 14.5), KdClose()]);
+
   /// Lookup by source name, e.g. `KdIcons.byName['id']`.
   static const Map<String, KdIconData> byName = {
     'arrow-left': arrowLeft,
@@ -555,5 +594,18 @@ abstract final class KdIcons {
     'key': key,
     'lock': lock,
     'lock-open': lockOpen,
+    'monitor': monitor,
+    'cpu': cpu,
+    'network': network,
+    'wifi': wifi,
+    'bluetooth': bluetooth,
+    'bluetooth-connected': bluetoothConnected,
+    'cable': cable,
+    'mail': mail,
+    'message': message,
+    'phone': phone,
+    'map-pin': mapPin,
+    'sun': sun,
+    'moon': moon,
   };
 }
