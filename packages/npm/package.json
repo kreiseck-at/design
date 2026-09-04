@@ -1,20 +1,24 @@
 {
   "name": "@kreiseck/design",
-  "version": "0.1.0",
+  "version": "0.2.0",
+  "description": "Design tokens, colour roles for four modes, brand ramp and the icon set shared by all Kreiseck surfaces.",
+  "license": "MIT",
+  "repository": { "type": "git", "url": "https://github.com/kreiseck-at/design", "directory": "packages/npm" },
   "type": "module",
-  "main": "./src/index.ts",
+  "main": "./dist/index.js",
+  "types": "./dist/index.d.ts",
   "exports": {
-    ".": "./src/index.ts",
+    ".": { "types": "./dist/index.d.ts", "import": "./dist/index.js" },
+    "./icons": { "types": "./dist/icons.d.ts", "import": "./dist/icons.js" },
     "./tokens.css": "./src/tokens.css",
-    "./icons": "./src/icons/index.ts",
     "./svg/*": "./svg/*"
   },
-  "files": [
-    "src"
-  ],
-  "sideEffects": [
-    "*.css"
-  ],
+  "files": ["dist", "svg", "src/tokens.css", "README.md", "LICENSE"],
+  "sideEffects": ["*.css"],
+  "scripts": {
+    "build": "tsup",
+    "prepack": "tsup"
+  },
   "peerDependencies": {
     "react": ">=18"
   },
@@ -27,6 +31,7 @@
     "@types/react": "^18.3.31",
     "@types/react-dom": "^18.3.7",
     "react": "^18.3.1",
-    "react-dom": "^18.3.1"
+    "react-dom": "^18.3.1",
+    "tsup": "^8"
   }
 }

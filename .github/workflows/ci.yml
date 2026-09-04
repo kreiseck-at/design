@@ -15,6 +15,9 @@ jobs:
       - name: generated files are up to date
         run: pnpm check
       - run: pnpm typecheck
+      - run: pnpm build:npm
+      - run: npm pack --dry-run
+        working-directory: packages/npm
 
   dart:
     runs-on: ubuntu-latest
