@@ -324,7 +324,7 @@ abstract final class KdIcons {
   static const KdIconData xCircle = KdIconData(stroke: [KdMove(21, 12), KdCubic(21, 16.971, 16.971, 21, 12, 21), KdCubic(7.029, 21, 3, 16.971, 3, 12), KdCubic(3, 7.029, 7.029, 3, 12, 3), KdCubic(16.971, 3, 21, 7.029, 21, 12), KdClose(), KdMove(9, 9), KdLine(15, 15), KdMove(15, 9), KdLine(9, 15)]);
 
   /// Abgelehnt, filled (x-circle-filled)
-  static const KdIconData xCircleFilled = KdIconData(fill: [KdMove(12, 3), KdCubic(7.029, 3, 3, 7.029, 3, 12), KdCubic(3, 16.971, 7.029, 21, 12, 21), KdCubic(16.971, 21, 21, 16.971, 21, 12), KdCubic(21, 7.029, 16.971, 3, 12, 3), KdClose(), KdMove(9, 9), KdLine(12, 10.6), KdLine(15, 9), KdLine(13.4, 12), KdLine(15, 15), KdLine(12, 13.4), KdLine(9, 15), KdLine(10.6, 12), KdClose()]);
+  static const KdIconData xCircleFilled = KdIconData(fill: [KdMove(12, 3), KdCubic(7.029, 3, 3, 7.029, 3, 12), KdCubic(3, 16.971, 7.029, 21, 12, 21), KdCubic(16.971, 21, 21, 16.971, 21, 12), KdCubic(21, 7.029, 16.971, 3, 12, 3), KdClose(), KdMove(8.3, 9.7), KdLine(10.6, 12), KdLine(8.3, 14.3), KdLine(9.7, 15.7), KdLine(12, 13.4), KdLine(14.3, 15.7), KdLine(15.7, 14.3), KdLine(13.4, 12), KdLine(15.7, 9.7), KdLine(14.3, 8.3), KdLine(12, 10.6), KdLine(9.7, 8.3), KdClose()]);
 
   /// Punkt (circle)
   static const KdIconData circle = KdIconData(stroke: [KdMove(21, 12), KdCubic(21, 16.971, 16.971, 21, 12, 21), KdCubic(7.029, 21, 3, 16.971, 3, 12), KdCubic(3, 7.029, 7.029, 3, 12, 3), KdCubic(16.971, 3, 21, 7.029, 21, 12), KdClose()]);
