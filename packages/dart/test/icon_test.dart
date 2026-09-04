@@ -49,6 +49,28 @@ void main() {
     expect(tester.getSize(find.byType(KdSignet)), const Size(48, 48));
   });
 
+  testWidgets('golden: every filled icon at 24, one row', (tester) async {
+    final icons = [
+      KdIcons.checkFilled,
+      KdIcons.settingsFilled,
+      KdIcons.receiptFilled,
+      KdIcons.posFilled,
+      KdIcons.infoFilled,
+      KdIcons.warningFilled,
+      KdIcons.errorFilled,
+      KdIcons.checkCircleFilled,
+      KdIcons.xCircleFilled,
+      KdIcons.circleFilled,
+      KdIcons.userFilled,
+    ];
+    await tester.pumpWidget(MaterialApp(home: Scaffold(backgroundColor: Colors.white, body: Center(
+      child: Row(mainAxisSize: MainAxisSize.min, children: [
+        for (final i in icons) KdIcon(i, size: 24, color: Colors.black),
+      ]),
+    ))));
+    await expectLater(find.byType(Row), matchesGoldenFile('goldens/filled_icons.png'));
+  });
+
   testWidgets('golden: six till icons at 24 and 40', (tester) async {
     final icons = [KdIcons.receipt, KdIcons.receiptVoid, KdIcons.cashDrawer, KdIcons.paperRoll, KdIcons.signatureUnit, KdIcons.pos];
     await tester.pumpWidget(MaterialApp(home: Scaffold(backgroundColor: Colors.white, body: Column(children: [

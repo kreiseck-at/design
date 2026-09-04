@@ -2,5 +2,5 @@
 import { createIcon } from "./create-icon.js";
 
 export const CircleFilled = createIcon("circle-filled", [
-    ["circle", { cx: "12", cy: "12", r: "9", fill: "currentColor" }]
+    ["path", { fill: "currentColor", d: "M21 12C21 17 17 21 12 21C7 21 3 17 3 12C3 7 7 3 12 3C17 3 21 7 21 12Z" }]
 ], { filled: true });

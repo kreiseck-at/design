@@ -95,6 +95,12 @@ export function validateIcon(id, svg, { filled }) {
   for (const k of Object.keys(rootAttrs)) if (k !== "viewBox" && k !== "xmlns") problems.push(`${id}: root attribute ${k} is not allowed`);
   const elements = parseElements(svg);
   if (elements.length === 0) problems.push(`${id}: no elements`);
+  // Dart merges every fill element into one evenodd path; SVG paints them
+  // separately, so the two disagree unless a filled icon already is that
+  // one path.
+  if (filled && !(elements.length === 1 && elements[0].tag === "path" && "fill" in elements[0].attrs)) {
+    problems.push(`${id}: a filled icon is exactly one <path fill="currentColor">`);
+  }
   for (const { tag, attrs } of elements) {
     if (!ALLOWED[tag]) { problems.push(`${id}: element <${tag}> is not allowed`); continue; }
     for (const [k, v] of Object.entries(attrs)) {

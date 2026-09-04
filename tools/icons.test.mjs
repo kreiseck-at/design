@@ -69,6 +69,20 @@ describe("validateIcon", () => {
     const problems = validateIcon("a", `<svg viewBox="0 0 24 24"><rect x="3" y="3" width="-1" height="18"/></svg>`, { filled: false });
     expect(problems).toContain("a: width must be positive");
   });
+  it("rejects a filled icon with more than one element (Dart flattens fill elements into one path; SVG would paint them separately)", () => {
+    const twoElements = `<svg viewBox="0 0 24 24"><rect x="3" y="3" width="18" height="18" fill="currentColor"/><circle cx="12" cy="12" r="4" fill="currentColor"/></svg>`;
+    expect(validateIcon("a-filled", twoElements, { filled: true }))
+      .toContain(`a-filled: a filled icon is exactly one <path fill="currentColor">`);
+  });
+  it("rejects a filled icon whose one element is not a path", () => {
+    const circleOnly = `<svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="9" fill="currentColor"/></svg>`;
+    expect(validateIcon("a-filled", circleOnly, { filled: true }))
+      .toContain(`a-filled: a filled icon is exactly one <path fill="currentColor">`);
+  });
+  it("accepts a filled icon that is exactly one path with fill=currentColor", () => {
+    const onePath = `<svg viewBox="0 0 24 24"><path d="M4 4h16v16H4z" fill="currentColor"/></svg>`;
+    expect(validateIcon("a-filled", onePath, { filled: true })).toEqual([]);
+  });
 });
 
 describe("parseElements", () => {
