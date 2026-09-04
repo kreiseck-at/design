@@ -62,13 +62,22 @@ final ramp = brandRamp(const Color(0xFFFFD400));
 final button = ramp[700]!;   // #705C00 — white text on it reads at 6.5:1
 ```
 
+## Icons and the signet
+
+`KdIcon(KdIcons.receipt)` draws one of the till icons; size and colour fall
+back to the ambient `IconTheme` when neither is given. Look one up by its
+source name with `KdIcons.byName['cash-drawer']`.
+
+`KdSignet(size: 40)` draws the Kasseneck mark in two colours: `frame`
+(defaults to the ambient icon colour) and `square` (defaults to
+`colorScheme.primary`, the brand role). On a dark ground, pass a light
+`frame`.
+
 ## Fonts and licence
 
 Archivo and DM Mono ship with the package (`fonts/`) under the SIL Open
 Font License; the corresponding `OFL-Archivo.txt` and `OFL-DMMono.txt`
-travel with them. The signet ships as `assets/signet.svg` and
-`assets/signet-invers.svg` for dark grounds. The code itself is MIT —
-see `LICENSE`.
+travel with them. The code itself is MIT — see `LICENSE`.
 
 ## Source
 

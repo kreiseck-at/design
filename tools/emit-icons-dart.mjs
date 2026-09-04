@@ -2,7 +2,7 @@ import { normalize } from "./svg-path.mjs";
 
 export const camel = (id) => id.replace(/-([a-z0-9])/g, (_, c) => c.toUpperCase());
 
-const num = (v) => (Number.isInteger(v) ? String(v) : String(v));
+const num = (v) => String(v);
 
 const opsDart = (ops) =>
   ops.map((op) => {

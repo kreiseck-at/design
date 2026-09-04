@@ -124,8 +124,8 @@ class KdIcon extends StatelessWidget {
 /// corner. Two colours, so it is not a [KdIcon]. Defaults: frame in the
 /// ambient icon colour, square in the brand colour.
 ///
-/// Geometry measured from `assets/signet.svg` (48-grid, scaled to 24): the
-/// mark fills the whole box, no margin. Frame is drawn as four rects —
+/// Geometry of the Kasseneck mark on the 24-unit grid: the mark fills the
+/// whole box, no margin. Frame is drawn as four rects —
 /// top, right, left and bottom bar — and the square sits in the notch they
 /// leave open at the lower-right.
 class KdSignetPainter extends CustomPainter {
