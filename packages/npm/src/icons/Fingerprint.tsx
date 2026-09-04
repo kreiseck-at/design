@@ -2,7 +2,9 @@
 import { createIcon } from "./create-icon.js";
 
 export const Fingerprint = createIcon("fingerprint", [
-    ["path", { d: "M21.5 13A9.5 9.5 0 1 1 12 3.5" }],
-    ["path", { d: "M12 19A6 6 0 1 1 18 13" }],
-    ["path", { d: "M9.5 13A2.5 2.5 0 1 1 12 15.5" }]
+    ["path", { d: "M4.5 16a7.5 7.5 0 0 1 15 0" }],
+    ["path", { d: "M4.5 16v3M19.5 16v3" }],
+    ["path", { d: "M7.5 16a4.5 4.5 0 0 1 9 0" }],
+    ["path", { d: "M7.5 16v3.5M16.5 16v3.5" }],
+    ["path", { d: "M12 14.5v6" }]
 ]);
