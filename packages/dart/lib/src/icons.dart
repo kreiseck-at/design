@@ -245,6 +245,75 @@ abstract final class KdIcons {
   /// Zifferntastatur (numpad)
   static const KdIconData numpad = KdIconData(stroke: [KdMove(7, 7), KdLine(7.1, 7), KdMove(12, 7), KdLine(12.1, 7), KdMove(17, 7), KdLine(17.1, 7), KdMove(7, 12), KdLine(7.1, 12), KdMove(12, 12), KdLine(12.1, 12), KdMove(17, 12), KdLine(17.1, 12), KdMove(7, 17), KdLine(7.1, 17), KdMove(12, 17), KdLine(12.1, 17), KdMove(17, 17), KdLine(17.1, 17)]);
 
+  /// Hinweis (info)
+  static const KdIconData info = KdIconData(stroke: [KdMove(21, 12), KdCubic(21, 16.971, 16.971, 21, 12, 21), KdCubic(7.029, 21, 3, 16.971, 3, 12), KdCubic(3, 7.029, 7.029, 3, 12, 3), KdCubic(16.971, 3, 21, 7.029, 21, 12), KdClose(), KdMove(12, 11), KdLine(12, 16), KdMove(12, 8), KdLine(12.1, 8)]);
+
+  /// Warnung (warning)
+  static const KdIconData warning = KdIconData(stroke: [KdMove(12, 3.5), KdLine(21.5, 20), KdLine(2.5, 20), KdClose(), KdMove(12, 10), KdLine(12, 14), KdMove(12, 17.5), KdLine(12.1, 17.5)]);
+
+  /// Fehler (error)
+  static const KdIconData error = KdIconData(stroke: [KdMove(21, 12), KdCubic(21, 16.971, 16.971, 21, 12, 21), KdCubic(7.029, 21, 3, 16.971, 3, 12), KdCubic(3, 7.029, 7.029, 3, 12, 3), KdCubic(16.971, 3, 21, 7.029, 21, 12), KdClose(), KdMove(12, 8), KdLine(12, 13), KdMove(12, 16.5), KdLine(12.1, 16.5)]);
+
+  /// Erledigt (check-circle)
+  static const KdIconData checkCircle = KdIconData(stroke: [KdMove(21, 12), KdCubic(21, 16.971, 16.971, 21, 12, 21), KdCubic(7.029, 21, 3, 16.971, 3, 12), KdCubic(3, 7.029, 7.029, 3, 12, 3), KdCubic(16.971, 3, 21, 7.029, 21, 12), KdClose(), KdMove(8, 12.5), KdLine(10.5, 15), KdLine(16, 9.5)]);
+
+  /// Abgelehnt (x-circle)
+  static const KdIconData xCircle = KdIconData(stroke: [KdMove(21, 12), KdCubic(21, 16.971, 16.971, 21, 12, 21), KdCubic(7.029, 21, 3, 16.971, 3, 12), KdCubic(3, 7.029, 7.029, 3, 12, 3), KdCubic(16.971, 3, 21, 7.029, 21, 12), KdClose(), KdMove(9, 9), KdLine(15, 15), KdMove(15, 9), KdLine(9, 15)]);
+
+  /// Punkt (circle)
+  static const KdIconData circle = KdIconData(stroke: [KdMove(21, 12), KdCubic(21, 16.971, 16.971, 21, 12, 21), KdCubic(7.029, 21, 3, 16.971, 3, 12), KdCubic(3, 7.029, 7.029, 3, 12, 3), KdCubic(16.971, 3, 21, 7.029, 21, 12), KdClose()]);
+
+  /// Ausstehend (circle-dashed)
+  static const KdIconData circleDashed = KdIconData(stroke: [KdMove(21, 12), KdCubic(21.002, 13.579, 20.588, 15.131, 19.8, 16.5), KdMove(18.4, 18.4), KdCubic(17.261, 19.516, 15.846, 20.31, 14.3, 20.7), KdMove(12, 21), KdCubic(10.421, 21.002, 8.869, 20.588, 7.5, 19.8), KdMove(5.6, 18.4), KdCubic(4.484, 17.261, 3.69, 15.846, 3.3, 14.3), KdMove(3, 12), KdCubic(2.998, 10.421, 3.412, 8.869, 4.2, 7.5), KdMove(5.6, 5.6), KdCubic(6.739, 4.484, 8.154, 3.69, 9.7, 3.3), KdMove(12, 3), KdCubic(13.579, 2.998, 15.131, 3.412, 16.5, 4.2), KdMove(18.4, 5.6), KdCubic(19.516, 6.739, 20.31, 8.154, 20.7, 9.7)]);
+
+  /// Lädt (loader)
+  static const KdIconData loader = KdIconData(stroke: [KdMove(12, 3), KdCubic(16.971, 3, 21, 7.029, 21, 12), KdCubic(21, 16.971, 16.971, 21, 12, 21), KdCubic(7.029, 21, 3, 16.971, 3, 12)]);
+
+  /// Geprüft (badge-check)
+  static const KdIconData badgeCheck = KdIconData(stroke: [KdMove(12, 3), KdLine(14.2, 4.6), KdLine(16.9, 4.3), KdLine(17.9, 6.8), KdLine(20.4, 7.8), KdLine(20.1, 10.5), KdLine(21.7, 12), KdLine(20.1, 14.2), KdLine(20.4, 16.9), KdLine(17.9, 17.9), KdLine(16.9, 20.4), KdLine(14.2, 20.1), KdLine(12, 21.7), KdLine(9.8, 20.1), KdLine(7.1, 20.4), KdLine(6.1, 17.9), KdLine(3.6, 16.9), KdLine(3.9, 14.2), KdLine(2.3, 12), KdLine(3.9, 9.8), KdLine(3.6, 7.1), KdLine(6.1, 6.1), KdLine(7.1, 3.6), KdLine(9.8, 3.9), KdClose(), KdMove(8, 12.5), KdLine(10.5, 15), KdLine(16, 9.5)]);
+
+  /// Gesichert (shield-check)
+  static const KdIconData shieldCheck = KdIconData(stroke: [KdMove(12, 3), KdLine(20, 6), KdLine(20, 12), KdCubic(20, 17, 16.5, 20, 12, 21), KdCubic(7.5, 20, 4, 17, 4, 12), KdLine(4, 6), KdClose(), KdMove(8, 12.5), KdLine(10.5, 15), KdLine(16, 9.5)]);
+
+  /// Sicherheitshinweis (shield-alert)
+  static const KdIconData shieldAlert = KdIconData(stroke: [KdMove(12, 3), KdLine(20, 6), KdLine(20, 12), KdCubic(20, 17, 16.5, 20, 12, 21), KdCubic(7.5, 20, 4, 17, 4, 12), KdLine(4, 6), KdClose(), KdMove(12, 8), KdLine(12, 13), KdMove(12, 16.5), KdLine(12.1, 16.5)]);
+
+  /// Sicherheit verletzt (shield-x)
+  static const KdIconData shieldX = KdIconData(stroke: [KdMove(12, 3), KdLine(20, 6), KdLine(20, 12), KdCubic(20, 17, 16.5, 20, 12, 21), KdCubic(7.5, 20, 4, 17, 4, 12), KdLine(4, 6), KdClose(), KdMove(9.5, 9.5), KdLine(14.5, 14.5), KdMove(14.5, 9.5), KdLine(9.5, 14.5)]);
+
+  /// Sicherheit offen (shield-question)
+  static const KdIconData shieldQuestion = KdIconData(stroke: [KdMove(12, 3), KdLine(20, 6), KdLine(20, 12), KdCubic(20, 17, 16.5, 20, 12, 21), KdCubic(7.5, 20, 4, 17, 4, 12), KdLine(4, 6), KdClose(), KdMove(10, 9.5), KdCubic(10.033, 8.469, 10.844, 7.633, 11.873, 7.568), KdCubic(12.902, 7.503, 13.812, 8.231, 13.974, 9.249), KdCubic(14.136, 10.267, 13.498, 11.242, 12.5, 11.5), KdCubic(12, 11.7, 12, 12.2, 12, 12.7), KdMove(12, 16), KdLine(12.1, 16)]);
+
+  /// Frist (timer)
+  static const KdIconData timer = KdIconData(stroke: [KdMove(19.5, 13.5), KdCubic(19.5, 17.642, 16.142, 21, 12, 21), KdCubic(7.858, 21, 4.5, 17.642, 4.5, 13.5), KdCubic(4.5, 9.358, 7.858, 6, 12, 6), KdCubic(16.142, 6, 19.5, 9.358, 19.5, 13.5), KdClose(), KdMove(10, 2.5), KdLine(14, 2.5), KdMove(12, 13.5), KdLine(12, 9)]);
+
+  /// Uhrzeit (clock)
+  static const KdIconData clock = KdIconData(stroke: [KdMove(21, 12), KdCubic(21, 16.971, 16.971, 21, 12, 21), KdCubic(7.029, 21, 3, 16.971, 3, 12), KdCubic(3, 7.029, 7.029, 3, 12, 3), KdCubic(16.971, 3, 21, 7.029, 21, 12), KdClose(), KdMove(12, 7), KdLine(12, 12), KdLine(15, 14)]);
+
+  /// Kalender (calendar)
+  static const KdIconData calendar = KdIconData(stroke: [KdMove(5.5, 5), KdLine(18.5, 5), KdCubic(19.881, 5, 21, 6.119, 21, 7.5), KdLine(21, 18.5), KdCubic(21, 19.881, 19.881, 21, 18.5, 21), KdLine(5.5, 21), KdCubic(4.119, 21, 3, 19.881, 3, 18.5), KdLine(3, 7.5), KdCubic(3, 6.119, 4.119, 5, 5.5, 5), KdClose(), KdMove(3, 10), KdLine(21, 10), KdMove(8, 3), KdLine(8, 7), KdMove(16, 3), KdLine(16, 7)]);
+
+  /// Termin bestätigt (calendar-check)
+  static const KdIconData calendarCheck = KdIconData(stroke: [KdMove(5.5, 5), KdLine(18.5, 5), KdCubic(19.881, 5, 21, 6.119, 21, 7.5), KdLine(21, 18.5), KdCubic(21, 19.881, 19.881, 21, 18.5, 21), KdLine(5.5, 21), KdCubic(4.119, 21, 3, 19.881, 3, 18.5), KdLine(3, 7.5), KdCubic(3, 6.119, 4.119, 5, 5.5, 5), KdClose(), KdMove(3, 10), KdLine(21, 10), KdMove(8, 3), KdLine(8, 7), KdMove(16, 3), KdLine(16, 7), KdMove(9, 15.5), KdLine(11, 17.5), KdLine(15, 13.5)]);
+
+  /// Termin geplant (calendar-clock)
+  static const KdIconData calendarClock = KdIconData(stroke: [KdMove(3, 5), KdLine(15, 5), KdLine(15, 8), KdLine(7, 17), KdLine(3, 17), KdClose(), KdMove(3, 8), KdLine(15, 8), KdMove(6, 3), KdLine(6, 7), KdMove(11, 3), KdLine(11, 7), KdMove(21, 17), KdCubic(21, 19.209, 19.209, 21, 17, 21), KdCubic(14.791, 21, 13, 19.209, 13, 17), KdCubic(13, 14.791, 14.791, 13, 17, 13), KdCubic(19.209, 13, 21, 14.791, 21, 17), KdClose(), KdMove(17, 15), KdLine(17, 17), KdLine(18.5, 18)]);
+
+  /// Überwachung (radar)
+  static const KdIconData radar = KdIconData(stroke: [KdMove(12, 4), KdCubic(16.971, 4, 21, 8.029, 21, 13), KdCubic(21, 17.971, 16.971, 22, 12, 22), KdCubic(7.029, 22, 3, 17.971, 3, 13), KdMove(12, 7), KdCubic(15.314, 7, 18, 9.686, 18, 13), KdCubic(18, 16.314, 15.314, 19, 12, 19), KdCubic(8.686, 19, 6, 16.314, 6, 13), KdMove(12, 10), KdCubic(13.657, 10, 15, 11.343, 15, 13), KdCubic(15, 14.657, 13.657, 16, 12, 16), KdCubic(10.343, 16, 9, 14.657, 9, 13), KdMove(12, 13), KdLine(19, 6)]);
+
+  /// Testumgebung (flask)
+  static const KdIconData flask = KdIconData(stroke: [KdMove(9, 3), KdLine(15, 3), KdMove(10, 3), KdLine(10, 9), KdLine(4, 18), KdCubic(3.705, 18.467, 3.691, 19.058, 3.963, 19.538), KdCubic(4.234, 20.019, 4.748, 20.312, 5.3, 20.3), KdLine(18.7, 20.3), KdCubic(19.252, 20.312, 19.766, 20.019, 20.037, 19.538), KdCubic(20.309, 19.058, 20.295, 18.467, 20, 18), KdLine(14, 9), KdLine(14, 3), KdMove(7, 15), KdLine(17, 15)]);
+
+  /// Steigend (trending-up)
+  static const KdIconData trendingUp = KdIconData(stroke: [KdMove(3, 17), KdLine(9, 11), KdLine(13, 15), KdLine(21, 7), KdMove(15, 7), KdLine(21, 7), KdLine(21, 13)]);
+
+  /// Fallend (trending-down)
+  static const KdIconData trendingDown = KdIconData(stroke: [KdMove(3, 7), KdLine(9, 13), KdLine(13, 9), KdLine(21, 17), KdMove(15, 17), KdLine(21, 17), KdLine(21, 11)]);
+
+  /// Bericht (chart-bar)
+  static const KdIconData chartBar = KdIconData(stroke: [KdMove(3, 3), KdLine(3, 21), KdLine(21, 21), KdMove(8, 17), KdLine(8, 11), KdMove(13, 17), KdLine(13, 7), KdMove(18, 17), KdLine(18, 14)]);
+
   /// Lookup by source name, e.g. `KdIcons.byName['id']`.
   static const Map<String, KdIconData> byName = {
     'arrow-left': arrowLeft,
@@ -327,5 +396,28 @@ abstract final class KdIcons {
     'keyboard': keyboard,
     'keyboard-hide': keyboardHide,
     'numpad': numpad,
+    'info': info,
+    'warning': warning,
+    'error': error,
+    'check-circle': checkCircle,
+    'x-circle': xCircle,
+    'circle': circle,
+    'circle-dashed': circleDashed,
+    'loader': loader,
+    'badge-check': badgeCheck,
+    'shield-check': shieldCheck,
+    'shield-alert': shieldAlert,
+    'shield-x': shieldX,
+    'shield-question': shieldQuestion,
+    'timer': timer,
+    'clock': clock,
+    'calendar': calendar,
+    'calendar-check': calendarCheck,
+    'calendar-clock': calendarClock,
+    'radar': radar,
+    'flask': flask,
+    'trending-up': trendingUp,
+    'trending-down': trendingDown,
+    'chart-bar': chartBar,
   };
 }
