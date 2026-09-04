@@ -1,8 +1,50 @@
+import 'dart:ui' as ui;
+
 import 'package:flutter/material.dart';
 import 'package:flutter_test/flutter_test.dart';
 import 'package:kreiseck_design/kreiseck_design.dart';
 
 void main() {
+  test('KdIconData has value equality; equal data hits the same cache entry', () {
+    // No `const`: each call must build a genuinely separate instance, so the
+    // equality below is real value equality, not the compiler canonicalizing
+    // one constant.
+    KdIconData build() => KdIconData(stroke: [KdMove(4, 4), KdLine(10, 10), KdClose()]);
+    final a = build();
+    final b = build();
+    expect(identical(a, b), isFalse, reason: 'the two icon data below are separately constructed');
+    expect(a, equals(b));
+    expect(a.hashCode, equals(b.hashCode));
+
+    final before = KdIconPainter.debugStrokeCacheSize;
+    final canvas = ui.Canvas(ui.PictureRecorder());
+    KdIconPainter(a, color: Colors.black, strokeWidth: 1.75).paint(canvas, const Size(24, 24));
+    KdIconPainter(b, color: Colors.black, strokeWidth: 1.75).paint(canvas, const Size(24, 24));
+    expect(KdIconPainter.debugStrokeCacheSize, equals(before + 1),
+        reason: 'painting two equal-but-distinct KdIconData must add exactly one cache entry, not two');
+  });
+
+  testWidgets('IconTheme.opacity dims the painted colour', (tester) async {
+    await tester.pumpWidget(MaterialApp(home: IconTheme(
+      data: const IconThemeData(color: Colors.black, opacity: 0.38),
+      child: Center(child: KdIcon(KdIcons.receipt)),
+    )));
+    final painter = tester.widget<CustomPaint>(find.descendant(of: find.byType(KdIcon), matching: find.byType(CustomPaint))).painter as KdIconPainter;
+    expect(painter.color.a, closeTo(0.38, 1e-6));
+  });
+
+  testWidgets('IconTheme.applyTextScaling scales the icon size with the text scaler', (tester) async {
+    await tester.pumpWidget(MaterialApp(home: MediaQuery(
+      data: const MediaQueryData(textScaler: TextScaler.linear(2)),
+      child: const IconTheme(
+        data: IconThemeData(size: 24, applyTextScaling: true),
+        child: Center(child: KdIcon(KdIcons.receipt)),
+      ),
+    )));
+    final box = tester.renderObject<RenderBox>(find.byType(KdIcon));
+    expect(box.size, const Size(48, 48));
+  });
+
   testWidgets('KdIcon takes size and colour from IconTheme when not given', (tester) async {
     await tester.pumpWidget(const MaterialApp(home: IconTheme(
       data: IconThemeData(size: 32, color: Color(0xFF136B6B)),

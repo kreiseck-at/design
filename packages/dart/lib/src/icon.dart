@@ -1,3 +1,4 @@
+import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 
 /// One drawing command on the 24-unit grid.
@@ -11,6 +12,10 @@ class KdMove extends KdOp {
   final double x, y;
   @override
   List<Offset> get points => [Offset(x, y)];
+  @override
+  bool operator ==(Object other) => other is KdMove && other.x == x && other.y == y;
+  @override
+  int get hashCode => Object.hash(KdMove, x, y);
 }
 
 class KdLine extends KdOp {
@@ -18,6 +23,10 @@ class KdLine extends KdOp {
   final double x, y;
   @override
   List<Offset> get points => [Offset(x, y)];
+  @override
+  bool operator ==(Object other) => other is KdLine && other.x == x && other.y == y;
+  @override
+  int get hashCode => Object.hash(KdLine, x, y);
 }
 
 class KdCubic extends KdOp {
@@ -25,12 +34,21 @@ class KdCubic extends KdOp {
   final double x1, y1, x2, y2, x, y;
   @override
   List<Offset> get points => [Offset(x1, y1), Offset(x2, y2), Offset(x, y)];
+  @override
+  bool operator ==(Object other) =>
+      other is KdCubic && other.x1 == x1 && other.y1 == y1 && other.x2 == x2 && other.y2 == y2 && other.x == x && other.y == y;
+  @override
+  int get hashCode => Object.hash(KdCubic, x1, y1, x2, y2, x, y);
 }
 
 class KdClose extends KdOp {
   const KdClose();
   @override
   List<Offset> get points => const [];
+  @override
+  bool operator ==(Object other) => other is KdClose;
+  @override
+  int get hashCode => (KdClose).hashCode;
 }
 
 /// Path data of one icon: stroked ops, filled ops, or both.
@@ -38,6 +56,15 @@ class KdIconData {
   const KdIconData({this.stroke = const [], this.fill = const []});
   final List<KdOp> stroke;
   final List<KdOp> fill;
+
+  // Value equality, not identity: two icons built from equal ops are the
+  // same icon, so a Map keyed on KdIconData (the painters' path cache)
+  // dedupes them instead of growing one entry per construction site.
+  @override
+  bool operator ==(Object other) =>
+      other is KdIconData && listEquals(other.stroke, stroke) && listEquals(other.fill, fill);
+  @override
+  int get hashCode => Object.hash(Object.hashAll(stroke), Object.hashAll(fill));
 }
 
 Path _pathOf(List<KdOp> ops) {
@@ -67,6 +94,13 @@ class KdIconPainter extends CustomPainter {
 
   static final _strokeCache = <KdIconData, Path>{};
   static final _fillCache = <KdIconData, Path>{};
+
+  /// Number of distinct paths currently cached, for tests: equal
+  /// [KdIconData] must hit the same cache entry instead of growing this.
+  @visibleForTesting
+  static int get debugStrokeCacheSize => _strokeCache.length;
+  @visibleForTesting
+  static int get debugFillCacheSize => _fillCache.length;
 
   @override
   void paint(Canvas canvas, Size size) {
@@ -106,8 +140,17 @@ class KdIcon extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final theme = IconTheme.of(context);
-    final s = size ?? theme.size ?? 24;
-    final c = color ?? theme.color ?? const Color(0xFF000000);
+    var s = size ?? theme.size ?? 24;
+    if (theme.applyTextScaling == true) {
+      s = MediaQuery.textScalerOf(context).scale(s);
+    }
+    var c = color ?? theme.color ?? const Color(0xFF000000);
+    final opacity = theme.opacity ?? 1;
+    // Only touch the colour when the theme actually dims it: withValues
+    // always returns a plain Color, so calling it unconditionally would
+    // silently turn a MaterialColor (or any other Color subtype) opaque
+    // callers pass in into a plain one even when nothing changed.
+    if (opacity != 1) c = c.withValues(alpha: c.a * opacity);
     return Semantics(
       label: semanticLabel,
       excludeSemantics: semanticLabel == null,
