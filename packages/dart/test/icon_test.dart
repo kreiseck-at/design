@@ -23,7 +23,7 @@ void main() {
   });
 
   test('every icon has at least one op and stroke icons end inside the grid', () {
-    expect(KdIcons.byName.length, greaterThanOrEqualTo(18));
+    expect(KdIcons.byName.length, equals(161));
     for (final entry in KdIcons.byName.entries) {
       final data = entry.value;
       expect(data.stroke.isNotEmpty || data.fill.isNotEmpty, isTrue, reason: entry.key);

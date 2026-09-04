@@ -14,6 +14,9 @@ abstract final class KdIcons {
   /// Bestätigen (check)
   static const KdIconData check = KdIconData(stroke: [KdMove(5, 12.5), KdLine(9.5, 17), KdLine(19, 7)]);
 
+  /// Bestätigen, filled (check-filled)
+  static const KdIconData checkFilled = KdIconData(fill: [KdMove(9.5, 17.5), KdLine(4, 12), KdLine(6.1, 9.9), KdLine(9.5, 13.3), KdLine(17.9, 5.5), KdLine(20, 7.6), KdClose()]);
+
   /// Schließen (x)
   static const KdIconData x = KdIconData(stroke: [KdMove(6.5, 6.5), KdLine(17.5, 17.5), KdMove(17.5, 6.5), KdLine(6.5, 17.5)]);
 
@@ -29,8 +32,14 @@ abstract final class KdIcons {
   /// Einstellungen (settings)
   static const KdIconData settings = KdIconData(stroke: [KdMove(4, 7), KdLine(20, 7), KdMove(4, 17), KdLine(20, 17), KdMove(11.5, 7), KdCubic(11.5, 8.381, 10.381, 9.5, 9, 9.5), KdCubic(7.619, 9.5, 6.5, 8.381, 6.5, 7), KdCubic(6.5, 5.619, 7.619, 4.5, 9, 4.5), KdCubic(10.381, 4.5, 11.5, 5.619, 11.5, 7), KdClose(), KdMove(17.5, 17), KdCubic(17.5, 18.381, 16.381, 19.5, 15, 19.5), KdCubic(13.619, 19.5, 12.5, 18.381, 12.5, 17), KdCubic(12.5, 15.619, 13.619, 14.5, 15, 14.5), KdCubic(16.381, 14.5, 17.5, 15.619, 17.5, 17), KdClose()]);
 
+  /// Einstellungen, filled (settings-filled)
+  static const KdIconData settingsFilled = KdIconData(fill: [KdMove(5, 6), KdLine(19, 6), KdCubic(19.552, 6, 20, 6.448, 20, 7), KdLine(20, 7), KdCubic(20, 7.552, 19.552, 8, 19, 8), KdLine(5, 8), KdCubic(4.448, 8, 4, 7.552, 4, 7), KdLine(4, 7), KdCubic(4, 6.448, 4.448, 6, 5, 6), KdClose(), KdMove(5, 16), KdLine(19, 16), KdCubic(19.552, 16, 20, 16.448, 20, 17), KdLine(20, 17), KdCubic(20, 17.552, 19.552, 18, 19, 18), KdLine(5, 18), KdCubic(4.448, 18, 4, 17.552, 4, 17), KdLine(4, 17), KdCubic(4, 16.448, 4.448, 16, 5, 16), KdClose(), KdMove(11.5, 7), KdCubic(11.5, 8.381, 10.381, 9.5, 9, 9.5), KdCubic(7.619, 9.5, 6.5, 8.381, 6.5, 7), KdCubic(6.5, 5.619, 7.619, 4.5, 9, 4.5), KdCubic(10.381, 4.5, 11.5, 5.619, 11.5, 7), KdClose(), KdMove(17.5, 17), KdCubic(17.5, 18.381, 16.381, 19.5, 15, 19.5), KdCubic(13.619, 19.5, 12.5, 18.381, 12.5, 17), KdCubic(12.5, 15.619, 13.619, 14.5, 15, 14.5), KdCubic(16.381, 14.5, 17.5, 15.619, 17.5, 17), KdClose()]);
+
   /// Beleg (receipt)
   static const KdIconData receipt = KdIconData(stroke: [KdMove(6, 3), KdLine(18, 3), KdLine(18, 21), KdLine(16, 19.5), KdLine(14, 21), KdLine(12, 19.5), KdLine(10, 21), KdLine(8, 19.5), KdLine(6, 21), KdClose(), KdMove(9, 8), KdLine(15, 8), KdMove(9, 12), KdLine(15, 12), KdMove(9, 16), KdLine(12, 16)]);
+
+  /// Beleg, filled (receipt-filled)
+  static const KdIconData receiptFilled = KdIconData(fill: [KdMove(6, 3), KdLine(18, 3), KdLine(18, 21), KdLine(16, 19.5), KdLine(14, 21), KdLine(12, 19.5), KdLine(10, 21), KdLine(8, 19.5), KdLine(6, 21), KdClose(), KdMove(9, 7), KdLine(15, 7), KdLine(15, 9), KdLine(9, 9), KdClose(), KdMove(9, 11), KdLine(15, 11), KdLine(15, 13), KdLine(9, 13), KdClose(), KdMove(9, 15), KdLine(12, 15), KdLine(12, 17), KdLine(9, 17), KdClose()]);
 
   /// Storno (receipt-void)
   static const KdIconData receiptVoid = KdIconData(stroke: [KdMove(6, 3), KdLine(18, 3), KdLine(18, 21), KdLine(16, 19.5), KdLine(14, 21), KdLine(12, 19.5), KdLine(10, 21), KdLine(8, 19.5), KdLine(6, 21), KdClose(), KdMove(9.5, 8.5), KdLine(14.5, 13.5), KdMove(14.5, 8.5), KdLine(9.5, 13.5)]);
@@ -55,6 +64,9 @@ abstract final class KdIcons {
 
   /// Kasse (Gerät) (pos)
   static const KdIconData pos = KdIconData(stroke: [KdMove(6.5, 3), KdLine(17.5, 3), KdCubic(18.881, 3, 20, 4.119, 20, 5.5), KdLine(20, 18.5), KdCubic(20, 19.881, 18.881, 21, 17.5, 21), KdLine(6.5, 21), KdCubic(5.119, 21, 4, 19.881, 4, 18.5), KdLine(4, 5.5), KdCubic(4, 4.119, 5.119, 3, 6.5, 3), KdClose(), KdMove(8, 6), KdLine(16, 6), KdCubic(16.552, 6, 17, 6.448, 17, 7), KdLine(17, 10), KdCubic(17, 10.552, 16.552, 11, 16, 11), KdLine(8, 11), KdCubic(7.448, 11, 7, 10.552, 7, 10), KdLine(7, 7), KdCubic(7, 6.448, 7.448, 6, 8, 6), KdClose(), KdMove(8, 15), KdLine(8.1, 15), KdMove(12, 15), KdLine(12.1, 15), KdMove(16, 15), KdLine(16.1, 15), KdMove(8, 18), KdLine(8.1, 18), KdMove(12, 18), KdLine(12.1, 18), KdMove(16, 18), KdLine(16.1, 18)]);
+
+  /// Kasse (Gerät), filled (pos-filled)
+  static const KdIconData posFilled = KdIconData(fill: [KdMove(6.5, 3), KdLine(17.5, 3), KdCubic(18.881, 3, 20, 4.119, 20, 5.5), KdLine(20, 18.5), KdCubic(20, 19.881, 18.881, 21, 17.5, 21), KdLine(6.5, 21), KdCubic(5.119, 21, 4, 19.881, 4, 18.5), KdLine(4, 5.5), KdCubic(4, 4.119, 5.119, 3, 6.5, 3), KdClose(), KdMove(7, 6), KdLine(17, 6), KdLine(17, 11), KdLine(7, 11), KdClose()]);
 
   /// QR-Code (qr-code)
   static const KdIconData qrCode = KdIconData(stroke: [KdMove(4, 3), KdLine(9, 3), KdCubic(9.552, 3, 10, 3.448, 10, 4), KdLine(10, 9), KdCubic(10, 9.552, 9.552, 10, 9, 10), KdLine(4, 10), KdCubic(3.448, 10, 3, 9.552, 3, 9), KdLine(3, 4), KdCubic(3, 3.448, 3.448, 3, 4, 3), KdClose(), KdMove(15, 3), KdLine(20, 3), KdCubic(20.552, 3, 21, 3.448, 21, 4), KdLine(21, 9), KdCubic(21, 9.552, 20.552, 10, 20, 10), KdLine(15, 10), KdCubic(14.448, 10, 14, 9.552, 14, 9), KdLine(14, 4), KdCubic(14, 3.448, 14.448, 3, 15, 3), KdClose(), KdMove(4, 14), KdLine(9, 14), KdCubic(9.552, 14, 10, 14.448, 10, 15), KdLine(10, 20), KdCubic(10, 20.552, 9.552, 21, 9, 21), KdLine(4, 21), KdCubic(3.448, 21, 3, 20.552, 3, 20), KdLine(3, 15), KdCubic(3, 14.448, 3.448, 14, 4, 14), KdClose(), KdMove(14, 14), KdLine(17, 14), KdLine(17, 17), KdLine(14, 17), KdClose(), KdMove(21, 14), KdLine(21, 17), KdMove(14, 21), KdLine(17, 21), KdMove(21, 21), KdLine(21.1, 21)]);
@@ -287,20 +299,38 @@ abstract final class KdIcons {
   /// Hinweis (info)
   static const KdIconData info = KdIconData(stroke: [KdMove(21, 12), KdCubic(21, 16.971, 16.971, 21, 12, 21), KdCubic(7.029, 21, 3, 16.971, 3, 12), KdCubic(3, 7.029, 7.029, 3, 12, 3), KdCubic(16.971, 3, 21, 7.029, 21, 12), KdClose(), KdMove(12, 11), KdLine(12, 16), KdMove(12, 8), KdLine(12.1, 8)]);
 
+  /// Hinweis, filled (info-filled)
+  static const KdIconData infoFilled = KdIconData(fill: [KdMove(12, 3), KdCubic(7.029, 3, 3, 7.029, 3, 12), KdCubic(3, 16.971, 7.029, 21, 12, 21), KdCubic(16.971, 21, 21, 16.971, 21, 12), KdCubic(21, 7.029, 16.971, 3, 12, 3), KdClose(), KdMove(11, 8), KdLine(13, 8), KdLine(13, 10), KdLine(11, 10), KdClose(), KdMove(11, 12), KdLine(13, 12), KdLine(13, 17), KdLine(11, 17), KdClose()]);
+
   /// Warnung (warning)
   static const KdIconData warning = KdIconData(stroke: [KdMove(12, 3.5), KdLine(21.5, 20), KdLine(2.5, 20), KdClose(), KdMove(12, 10), KdLine(12, 14), KdMove(12, 17.5), KdLine(12.1, 17.5)]);
+
+  /// Warnung, filled (warning-filled)
+  static const KdIconData warningFilled = KdIconData(fill: [KdMove(12, 3.5), KdLine(21.5, 20), KdLine(2.5, 20), KdClose(), KdMove(11, 9), KdLine(13, 9), KdLine(13, 14), KdLine(11, 14), KdClose(), KdMove(11, 16), KdLine(13, 16), KdLine(13, 18), KdLine(11, 18), KdClose()]);
 
   /// Fehler (error)
   static const KdIconData error = KdIconData(stroke: [KdMove(21, 12), KdCubic(21, 16.971, 16.971, 21, 12, 21), KdCubic(7.029, 21, 3, 16.971, 3, 12), KdCubic(3, 7.029, 7.029, 3, 12, 3), KdCubic(16.971, 3, 21, 7.029, 21, 12), KdClose(), KdMove(12, 8), KdLine(12, 13), KdMove(12, 16.5), KdLine(12.1, 16.5)]);
 
+  /// Fehler, filled (error-filled)
+  static const KdIconData errorFilled = KdIconData(fill: [KdMove(12, 3), KdCubic(7.029, 3, 3, 7.029, 3, 12), KdCubic(3, 16.971, 7.029, 21, 12, 21), KdCubic(16.971, 21, 21, 16.971, 21, 12), KdCubic(21, 7.029, 16.971, 3, 12, 3), KdClose(), KdMove(11, 7), KdLine(13, 7), KdLine(13, 12), KdLine(11, 12), KdClose(), KdMove(11, 15), KdLine(13, 15), KdLine(13, 17), KdLine(11, 17), KdClose()]);
+
   /// Erledigt (check-circle)
   static const KdIconData checkCircle = KdIconData(stroke: [KdMove(21, 12), KdCubic(21, 16.971, 16.971, 21, 12, 21), KdCubic(7.029, 21, 3, 16.971, 3, 12), KdCubic(3, 7.029, 7.029, 3, 12, 3), KdCubic(16.971, 3, 21, 7.029, 21, 12), KdClose(), KdMove(8, 12.5), KdLine(10.5, 15), KdLine(16, 9.5)]);
+
+  /// Erledigt, filled (check-circle-filled)
+  static const KdIconData checkCircleFilled = KdIconData(fill: [KdMove(12, 3), KdCubic(7.029, 3, 3, 7.029, 3, 12), KdCubic(3, 16.971, 7.029, 21, 12, 21), KdCubic(16.971, 21, 21, 16.971, 21, 12), KdCubic(21, 7.029, 16.971, 3, 12, 3), KdClose(), KdMove(10.5, 16.5), KdLine(7.3, 13.2), KdLine(8.7, 11.8), KdLine(10.5, 13.5), KdLine(15.3, 8.8), KdLine(16.7, 10.2), KdClose()]);
 
   /// Abgelehnt (x-circle)
   static const KdIconData xCircle = KdIconData(stroke: [KdMove(21, 12), KdCubic(21, 16.971, 16.971, 21, 12, 21), KdCubic(7.029, 21, 3, 16.971, 3, 12), KdCubic(3, 7.029, 7.029, 3, 12, 3), KdCubic(16.971, 3, 21, 7.029, 21, 12), KdClose(), KdMove(9, 9), KdLine(15, 15), KdMove(15, 9), KdLine(9, 15)]);
 
+  /// Abgelehnt, filled (x-circle-filled)
+  static const KdIconData xCircleFilled = KdIconData(fill: [KdMove(12, 3), KdCubic(7.029, 3, 3, 7.029, 3, 12), KdCubic(3, 16.971, 7.029, 21, 12, 21), KdCubic(16.971, 21, 21, 16.971, 21, 12), KdCubic(21, 7.029, 16.971, 3, 12, 3), KdClose(), KdMove(9, 9), KdLine(12, 10.6), KdLine(15, 9), KdLine(13.4, 12), KdLine(15, 15), KdLine(12, 13.4), KdLine(9, 15), KdLine(10.6, 12), KdClose()]);
+
   /// Punkt (circle)
   static const KdIconData circle = KdIconData(stroke: [KdMove(21, 12), KdCubic(21, 16.971, 16.971, 21, 12, 21), KdCubic(7.029, 21, 3, 16.971, 3, 12), KdCubic(3, 7.029, 7.029, 3, 12, 3), KdCubic(16.971, 3, 21, 7.029, 21, 12), KdClose()]);
+
+  /// Punkt, filled (circle-filled)
+  static const KdIconData circleFilled = KdIconData(fill: [KdMove(21, 12), KdCubic(21, 16.971, 16.971, 21, 12, 21), KdCubic(7.029, 21, 3, 16.971, 3, 12), KdCubic(3, 7.029, 7.029, 3, 12, 3), KdCubic(16.971, 3, 21, 7.029, 21, 12), KdClose()]);
 
   /// Ausstehend (circle-dashed)
   static const KdIconData circleDashed = KdIconData(stroke: [KdMove(21, 12), KdCubic(21.002, 13.579, 20.588, 15.131, 19.8, 16.5), KdMove(18.4, 18.4), KdCubic(17.261, 19.516, 15.846, 20.31, 14.3, 20.7), KdMove(12, 21), KdCubic(10.421, 21.002, 8.869, 20.588, 7.5, 19.8), KdMove(5.6, 18.4), KdCubic(4.484, 17.261, 3.69, 15.846, 3.3, 14.3), KdMove(3, 12), KdCubic(2.998, 10.421, 3.412, 8.869, 4.2, 7.5), KdMove(5.6, 5.6), KdCubic(6.739, 4.484, 8.154, 3.69, 9.7, 3.3), KdMove(12, 3), KdCubic(13.579, 2.998, 15.131, 3.412, 16.5, 4.2), KdMove(18.4, 5.6), KdCubic(19.516, 6.739, 20.31, 8.154, 20.7, 9.7)]);
@@ -389,6 +419,9 @@ abstract final class KdIcons {
   /// Person (user)
   static const KdIconData user = KdIconData(stroke: [KdMove(16, 8), KdCubic(16, 10.209, 14.209, 12, 12, 12), KdCubic(9.791, 12, 8, 10.209, 8, 8), KdCubic(8, 5.791, 9.791, 4, 12, 4), KdCubic(14.209, 4, 16, 5.791, 16, 8), KdClose(), KdMove(4, 21), KdCubic(4, 16.582, 7.582, 13, 12, 13), KdCubic(16.418, 13, 20, 16.582, 20, 21)]);
 
+  /// Person, filled (user-filled)
+  static const KdIconData userFilled = KdIconData(fill: [KdMove(16, 8), KdCubic(16, 10.209, 14.209, 12, 12, 12), KdCubic(9.791, 12, 8, 10.209, 8, 8), KdCubic(8, 5.791, 9.791, 4, 12, 4), KdCubic(14.209, 4, 16, 5.791, 16, 8), KdClose(), KdMove(4, 21), KdCubic(4, 16.582, 7.582, 13, 12, 13), KdCubic(16.418, 13, 20, 16.582, 20, 21), KdClose()]);
+
   /// Person hinzufügen (user-plus)
   static const KdIconData userPlus = KdIconData(stroke: [KdMove(13, 8), KdCubic(13, 10.209, 11.209, 12, 9, 12), KdCubic(6.791, 12, 5, 10.209, 5, 8), KdCubic(5, 5.791, 6.791, 4, 9, 4), KdCubic(11.209, 4, 13, 5.791, 13, 8), KdClose(), KdMove(2.5, 21), KdCubic(2.5, 17.41, 5.41, 14.5, 9, 14.5), KdCubic(12.59, 14.5, 15.5, 17.41, 15.5, 21), KdMove(16, 10), KdLine(22, 10), KdMove(19, 7), KdLine(19, 13)]);
 
@@ -460,12 +493,15 @@ abstract final class KdIcons {
     'arrow-left': arrowLeft,
     'search': search,
     'check': check,
+    'check-filled': checkFilled,
     'x': x,
     'print': print,
     'link': link,
     'unlink': unlink,
     'settings': settings,
+    'settings-filled': settingsFilled,
     'receipt': receipt,
+    'receipt-filled': receiptFilled,
     'receipt-void': receiptVoid,
     'credit-card': creditCard,
     'banknote': banknote,
@@ -474,6 +510,7 @@ abstract final class KdIcons {
     'signature-unit': signatureUnit,
     'hand-coins': handCoins,
     'pos': pos,
+    'pos-filled': posFilled,
     'qr-code': qrCode,
     'receipt-text': receiptText,
     'card-terminal': cardTerminal,
@@ -551,11 +588,17 @@ abstract final class KdIcons {
     'keyboard-hide': keyboardHide,
     'numpad': numpad,
     'info': info,
+    'info-filled': infoFilled,
     'warning': warning,
+    'warning-filled': warningFilled,
     'error': error,
+    'error-filled': errorFilled,
     'check-circle': checkCircle,
+    'check-circle-filled': checkCircleFilled,
     'x-circle': xCircle,
+    'x-circle-filled': xCircleFilled,
     'circle': circle,
+    'circle-filled': circleFilled,
     'circle-dashed': circleDashed,
     'loader': loader,
     'badge-check': badgeCheck,
@@ -585,6 +628,7 @@ abstract final class KdIcons {
     'image-off': imageOff,
     'image-plus': imagePlus,
     'user': user,
+    'user-filled': userFilled,
     'user-plus': userPlus,
     'users': users,
     'contact': contact,
