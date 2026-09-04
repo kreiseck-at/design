@@ -386,6 +386,36 @@ abstract final class KdIcons {
   /// Bild hinzufügen (image-plus)
   static const KdIconData imagePlus = KdIconData(stroke: [KdMove(21, 9), KdLine(21, 19), KdCubic(21, 20.105, 20.105, 21, 19, 21), KdLine(5, 21), KdCubic(3.895, 21, 3, 20.105, 3, 19), KdLine(3, 5), KdCubic(3, 3.895, 3.895, 3, 5, 3), KdLine(15, 3), KdMove(15, 6), KdLine(21, 6), KdMove(18, 3), KdLine(18, 9)]);
 
+  /// Person (user)
+  static const KdIconData user = KdIconData(stroke: [KdMove(16, 8), KdCubic(16, 10.209, 14.209, 12, 12, 12), KdCubic(9.791, 12, 8, 10.209, 8, 8), KdCubic(8, 5.791, 9.791, 4, 12, 4), KdCubic(14.209, 4, 16, 5.791, 16, 8), KdClose(), KdMove(4, 21), KdCubic(4, 16.582, 7.582, 13, 12, 13), KdCubic(16.418, 13, 20, 16.582, 20, 21)]);
+
+  /// Person hinzufügen (user-plus)
+  static const KdIconData userPlus = KdIconData(stroke: [KdMove(13, 8), KdCubic(13, 10.209, 11.209, 12, 9, 12), KdCubic(6.791, 12, 5, 10.209, 5, 8), KdCubic(5, 5.791, 6.791, 4, 9, 4), KdCubic(11.209, 4, 13, 5.791, 13, 8), KdClose(), KdMove(2.5, 21), KdCubic(2.5, 17.41, 5.41, 14.5, 9, 14.5), KdCubic(12.59, 14.5, 15.5, 17.41, 15.5, 21), KdMove(16, 10), KdLine(22, 10), KdMove(19, 7), KdLine(19, 13)]);
+
+  /// Personen (users)
+  static const KdIconData users = KdIconData(stroke: [KdMove(13, 8), KdCubic(13, 10.209, 11.209, 12, 9, 12), KdCubic(6.791, 12, 5, 10.209, 5, 8), KdCubic(5, 5.791, 6.791, 4, 9, 4), KdCubic(11.209, 4, 13, 5.791, 13, 8), KdClose(), KdMove(2.5, 21), KdCubic(2.5, 17.41, 5.41, 14.5, 9, 14.5), KdCubic(12.59, 14.5, 15.5, 17.41, 15.5, 21), KdMove(16, 4), KdCubic(18.209, 4, 20, 5.791, 20, 8), KdCubic(20, 10.209, 18.209, 12, 16, 12), KdMove(21, 21), KdCubic(21.018, 18.637, 19.648, 16.484, 17.5, 15.5)]);
+
+  /// Kontakt (contact)
+  static const KdIconData contact = KdIconData(stroke: [KdMove(5.5, 4), KdLine(18.5, 4), KdCubic(19.881, 4, 21, 5.119, 21, 6.5), KdLine(21, 17.5), KdCubic(21, 18.881, 19.881, 20, 18.5, 20), KdLine(5.5, 20), KdCubic(4.119, 20, 3, 18.881, 3, 17.5), KdLine(3, 6.5), KdCubic(3, 5.119, 4.119, 4, 5.5, 4), KdClose(), KdMove(11, 10), KdCubic(11, 11.105, 10.105, 12, 9, 12), KdCubic(7.895, 12, 7, 11.105, 7, 10), KdCubic(7, 8.895, 7.895, 8, 9, 8), KdCubic(10.105, 8, 11, 8.895, 11, 10), KdClose(), KdMove(5.5, 17), KdCubic(5.5, 15.067, 7.067, 13.5, 9, 13.5), KdCubic(10.933, 13.5, 12.5, 15.067, 12.5, 17), KdMove(15, 10), KdLine(18, 10), KdMove(15, 14), KdLine(18, 14)]);
+
+  /// Betrieb / Beruf (briefcase)
+  static const KdIconData briefcase = KdIconData(stroke: [KdMove(5.5, 7), KdLine(18.5, 7), KdCubic(19.881, 7, 21, 8.119, 21, 9.5), KdLine(21, 17.5), KdCubic(21, 18.881, 19.881, 20, 18.5, 20), KdLine(5.5, 20), KdCubic(4.119, 20, 3, 18.881, 3, 17.5), KdLine(3, 9.5), KdCubic(3, 8.119, 4.119, 7, 5.5, 7), KdClose(), KdMove(9, 7), KdLine(9, 4), KdLine(15, 4), KdLine(15, 7), KdMove(3, 13), KdLine(21, 13)]);
+
+  /// Standort / Firma (building)
+  static const KdIconData building = KdIconData(stroke: [KdMove(6.5, 3), KdLine(17.5, 3), KdCubic(18.881, 3, 20, 4.119, 20, 5.5), KdLine(20, 18.5), KdCubic(20, 19.881, 18.881, 21, 17.5, 21), KdLine(6.5, 21), KdCubic(5.119, 21, 4, 19.881, 4, 18.5), KdLine(4, 5.5), KdCubic(4, 4.119, 5.119, 3, 6.5, 3), KdClose(), KdMove(9, 8), KdLine(9.1, 8), KdMove(15, 8), KdLine(15.1, 8), KdMove(9, 13), KdLine(9.1, 13), KdMove(15, 13), KdLine(15.1, 13), KdMove(10, 21), KdLine(10, 17), KdLine(14, 17), KdLine(14, 21)]);
+
+  /// Identität (fingerprint)
+  static const KdIconData fingerprint = KdIconData(stroke: [KdMove(21.5, 13), KdCubic(21.5, 18.247, 17.247, 22.5, 12, 22.5), KdCubic(6.753, 22.5, 2.5, 18.247, 2.5, 13), KdCubic(2.5, 7.753, 6.753, 3.5, 12, 3.5), KdMove(12, 19), KdCubic(8.686, 19, 6, 16.314, 6, 13), KdCubic(6, 9.686, 8.686, 7, 12, 7), KdCubic(15.314, 7, 18, 9.686, 18, 13), KdMove(9.5, 13), KdCubic(9.5, 11.619, 10.619, 10.5, 12, 10.5), KdCubic(13.381, 10.5, 14.5, 11.619, 14.5, 13), KdCubic(14.5, 14.381, 13.381, 15.5, 12, 15.5)]);
+
+  /// Schlüssel (key)
+  static const KdIconData key = KdIconData(stroke: [KdMove(12.5, 16), KdCubic(12.5, 18.485, 10.485, 20.5, 8, 20.5), KdCubic(5.515, 20.5, 3.5, 18.485, 3.5, 16), KdCubic(3.5, 13.515, 5.515, 11.5, 8, 11.5), KdCubic(10.485, 11.5, 12.5, 13.515, 12.5, 16), KdClose(), KdMove(11.2, 12.8), KdLine(20, 4), KdMove(17, 7), KdLine(19.5, 9.5), KdMove(14.5, 9.5), KdLine(17, 12)]);
+
+  /// Gesperrt (lock)
+  static const KdIconData lock = KdIconData(stroke: [KdMove(6.5, 11), KdLine(17.5, 11), KdCubic(18.881, 11, 20, 12.119, 20, 13.5), KdLine(20, 18.5), KdCubic(20, 19.881, 18.881, 21, 17.5, 21), KdLine(6.5, 21), KdCubic(5.119, 21, 4, 19.881, 4, 18.5), KdLine(4, 13.5), KdCubic(4, 12.119, 5.119, 11, 6.5, 11), KdClose(), KdMove(8, 11), KdLine(8, 7), KdCubic(8, 4.791, 9.791, 3, 12, 3), KdCubic(14.209, 3, 16, 4.791, 16, 7), KdLine(16, 11)]);
+
+  /// Entsperrt (lock-open)
+  static const KdIconData lockOpen = KdIconData(stroke: [KdMove(6.5, 11), KdLine(17.5, 11), KdCubic(18.881, 11, 20, 12.119, 20, 13.5), KdLine(20, 18.5), KdCubic(20, 19.881, 18.881, 21, 17.5, 21), KdLine(6.5, 21), KdCubic(5.119, 21, 4, 19.881, 4, 18.5), KdLine(4, 13.5), KdCubic(4, 12.119, 5.119, 11, 6.5, 11), KdClose(), KdMove(8, 11), KdLine(8, 7), KdCubic(7.97, 5.164, 9.195, 3.544, 10.969, 3.071), KdCubic(12.743, 2.597, 14.611, 3.393, 15.5, 5)]);
+
   /// Lookup by source name, e.g. `KdIcons.byName['id']`.
   static const Map<String, KdIconData> byName = {
     'arrow-left': arrowLeft,
@@ -515,5 +545,15 @@ abstract final class KdIcons {
     'image': image,
     'image-off': imageOff,
     'image-plus': imagePlus,
+    'user': user,
+    'user-plus': userPlus,
+    'users': users,
+    'contact': contact,
+    'briefcase': briefcase,
+    'building': building,
+    'fingerprint': fingerprint,
+    'key': key,
+    'lock': lock,
+    'lock-open': lockOpen,
   };
 }

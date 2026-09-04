@@ -125,5 +125,15 @@
   "inbox":             { "group": "document", "de": "Eingang", "terms": ["inbox", "tray", "eingang", "posteingang"] },
   "image":             { "group": "document", "de": "Bild", "terms": ["image", "picture", "bild", "foto", "photo"] },
   "image-off":         { "group": "document", "de": "Kein Bild", "terms": ["image off", "no image", "kein bild", "bild fehlt"] },
-  "image-plus":        { "group": "document", "de": "Bild hinzufügen", "terms": ["image plus", "add image", "bild hinzufügen", "bild hochladen"] }
+  "image-plus":        { "group": "document", "de": "Bild hinzufügen", "terms": ["image plus", "add image", "bild hinzufügen", "bild hochladen"] },
+  "user":              { "group": "people", "de": "Person", "terms": ["account", "profile", "konto", "benutzer"] },
+  "user-plus":         { "group": "people", "de": "Person hinzufügen", "terms": ["invite", "add account", "einladen", "neuer benutzer"] },
+  "users":             { "group": "people", "de": "Personen", "terms": ["people", "team", "group", "gruppe"] },
+  "contact":           { "group": "people", "de": "Kontakt", "terms": ["contact", "address book", "kontaktkarte", "visitenkarte"] },
+  "briefcase":         { "group": "people", "de": "Betrieb / Beruf", "terms": ["business", "work", "beruf", "betrieb"] },
+  "building":          { "group": "people", "de": "Standort / Firma", "terms": ["building", "location", "company", "firma", "standort"] },
+  "fingerprint":       { "group": "people", "de": "Identität", "terms": ["fingerprint", "identity", "biometric", "identität", "biometrie"] },
+  "key":               { "group": "people", "de": "Schlüssel", "terms": ["key", "access", "schlüssel", "zugriff"] },
+  "lock":              { "group": "people", "de": "Gesperrt", "terms": ["lock", "locked", "restricted", "versperrt"] },
+  "lock-open":         { "group": "people", "de": "Entsperrt", "terms": ["unlock", "unlocked", "accessible", "entsperrt"] }
 }
