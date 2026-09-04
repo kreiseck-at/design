@@ -1,4 +1,4 @@
-import { readFile, readdir, writeFile, mkdir } from "node:fs/promises";
+import { readFile, readdir, writeFile, mkdir, unlink } from "node:fs/promises";
 import { resolve as resolveTokens } from "./resolve.mjs";
 import { check } from "./check.mjs";
 import { emitTs } from "./emit-ts.mjs";
@@ -6,10 +6,32 @@ import { emitDart } from "./emit-dart.mjs";
 import { emitGallery } from "./emit-gallery.mjs";
 import { loadIcons } from "./icons.mjs";
 import { emitIconsDart } from "./emit-icons-dart.mjs";
+import { emitIconsWeb } from "./emit-icons-web.mjs";
 import { iconDigests } from "./icons-digest.mjs";
 
 const root = new URL("../", import.meta.url);
 const checkOnly = process.argv.includes("--check");
+
+// The two directories the web icon generator owns entirely: every file in
+// them comes from outputs(), so a deleted or renamed icon must not leave a
+// stale component or svg behind.
+const ICON_OUTPUT_DIRS = ["packages/npm/src/icons", "packages/npm/svg"];
+const KEEP = new Set(["packages/npm/src/icons/create-icon.tsx"]);
+
+async function staleIconFiles(known) {
+  const stale = [];
+  for (const dir of ICON_OUTPUT_DIRS) {
+    const dirUrl = new URL(`${dir}/`, root);
+    const entries = await readdir(dirUrl).catch(() => []);
+    for (const entry of entries) {
+      const path = `${dir}/${entry}`;
+      if (KEEP.has(path)) continue;
+      if (dir.endsWith("icons") && !entry.endsWith(".tsx")) continue;
+      if (!known.has(path)) stale.push(path);
+    }
+  }
+  return stale;
+}
 
 // A new brand costs one file with about twenty values: drop it in
 // tokens/brands/ and it gets its own golden fixture, checked the same way.
@@ -33,6 +55,7 @@ const outputs = async (models) => {
     ["packages/dart/lib/src/tokens.dart", emitDart(primary)],
     ["gallery/index.html", emitGallery(primary)],
     ["packages/dart/lib/src/icons.dart", emitIconsDart(iconsModel)],
+    ...emitIconsWeb(iconsModel).files,
     ...models.map((model) => [`golden/${model.brand}.json`, `${JSON.stringify(model, null, 2)}\n`]),
   ];
 };
@@ -61,8 +84,20 @@ for (const model of models) {
   }
 }
 
+const built = await outputs(models);
+const orphans = await staleIconFiles(new Set(built.map(([path]) => path)));
 let stale = false;
-for (const [path, content] of await outputs(models)) {
+
+if (checkOnly) {
+  for (const orphan of orphans) {
+    console.error(`Out of date: ${orphan}`);
+    stale = true;
+  }
+} else {
+  for (const orphan of orphans) await unlink(new URL(orphan, root));
+}
+
+for (const [path, content] of built) {
   const target = new URL(path, root);
   if (checkOnly) {
     const current = await readFile(target, "utf8").catch(() => null);
