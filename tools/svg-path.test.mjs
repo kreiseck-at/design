@@ -16,6 +16,14 @@ describe("toOps", () => {
     expect(endPoint(last(ops))).toEqual([16, 11.5]);
     expect(ops.length - 1).toBeLessThanOrEqual(2); // ≤ 90° per piece, this arc is 90°
   });
+  it("never drops an arc whose sweep rounds below one piece (huge radius, tiny chord)", () => {
+    // With a big enough radius the swept angle underflows the ceil()'s
+    // epsilon and used to round down to 0 pieces, silently dropping the
+    // whole arc (the path just stopped at its start point).
+    const ops = toOps({ tag: "path", attrs: { d: "M10 10A100000000 100000000 0 0 1 10.001 10" } }, {});
+    expect(ops.length).toBeGreaterThan(1);
+    expect(endPoint(last(ops))).toEqual([10.001, 10]);
+  });
   it("splits a 180° arc into two pieces and keeps the midpoint on the circle", () => {
     const ops = toOps({ tag: "path", attrs: { d: "M4 12a8 8 0 0 1 16 0" } }, {});
     expect(ops.length).toBe(3);

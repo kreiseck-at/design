@@ -17,6 +17,7 @@ beforeEach(async () => {
   await writeFile(join(dir, "packages/npm/src/icons/Kept.tsx"), "// kept\n");
   await writeFile(join(dir, "packages/npm/src/icons/Ghost.tsx"), "// orphan\n");
   await writeFile(join(dir, "packages/npm/src/icons/index.ts"), "// generated, not tsx\n");
+  await writeFile(join(dir, "packages/npm/src/icons/ghost-types.ts"), "// orphan .ts\n");
   await writeFile(join(dir, "packages/npm/svg/kept.svg"), "<svg/>\n");
   await writeFile(join(dir, "packages/npm/svg/ghost.svg"), "<svg/>\n");
   await writeFile(join(dir, "other/Ghost.tsx"), "// outside the owned directories\n");
@@ -39,6 +40,13 @@ describe("staleIconFiles", () => {
     expect(stale).toContain("packages/npm/svg/ghost.svg");
   });
 
+  it("also considers .ts files in src/icons, not just .tsx", async () => {
+    const stale = await staleIconFiles(root, produced);
+    expect(stale).toContain("packages/npm/src/icons/ghost-types.ts");
+    // index.ts is generated too, but it's accounted for in `produced`.
+    expect(stale).not.toContain("packages/npm/src/icons/index.ts");
+  });
+
   it("never lists create-icon.tsx", async () => {
     const stale = await staleIconFiles(root, produced);
     expect(stale).not.toContain("packages/npm/src/icons/create-icon.tsx");
@@ -54,9 +62,14 @@ describe("staleIconFiles", () => {
 describe("removeStale", () => {
   it("deletes exactly the listed files", async () => {
     const removed = await removeStale(root, produced);
-    expect(removed.sort()).toEqual(["packages/npm/src/icons/Ghost.tsx", "packages/npm/svg/ghost.svg"]);
+    expect(removed.sort()).toEqual([
+      "packages/npm/src/icons/Ghost.tsx",
+      "packages/npm/src/icons/ghost-types.ts",
+      "packages/npm/svg/ghost.svg",
+    ]);
 
     await expect(stat(join(dir, "packages/npm/src/icons/Ghost.tsx"))).rejects.toThrow();
+    await expect(stat(join(dir, "packages/npm/src/icons/ghost-types.ts"))).rejects.toThrow();
     await expect(stat(join(dir, "packages/npm/svg/ghost.svg"))).rejects.toThrow();
 
     await expect(stat(join(dir, "packages/npm/src/icons/create-icon.tsx"))).resolves.toBeTruthy();

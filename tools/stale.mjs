@@ -15,7 +15,9 @@ export async function staleIconFiles(root, produced) {
     for (const entry of entries) {
       const path = `${dir}/${entry}`;
       if (KEEP.has(path)) continue;
-      if (dir.endsWith("icons") && !entry.endsWith(".tsx")) continue;
+      // create-icon.tsx aside, everything else under src/icons is generated,
+      // both the .tsx components and the .ts index/barrel files.
+      if (dir.endsWith("icons") && !(entry.endsWith(".tsx") || entry.endsWith(".ts"))) continue;
       if (!produced.has(path)) stale.push(path);
     }
   }

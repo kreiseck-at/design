@@ -96,8 +96,8 @@ KdIcons.byName['cash-drawer'];
 The set covers seven groups; one example each:
 
 - **navigation** — `KdIcons.arrowLeft`
-- **action** — `KdIcons.settings`
-- **device** — `KdIcons.pos`
+- **action** — `KdIcons.edit`
+- **device** — `KdIcons.monitor`
 - **cash** — `KdIcons.receipt`
 - **status** — `KdIcons.checkCircle`
 - **document** — `KdIcons.file`

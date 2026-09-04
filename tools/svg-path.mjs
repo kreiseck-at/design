@@ -28,7 +28,9 @@ function arcToCubics(x1, y1, rx, ry, phiDeg, largeArc, sweep, x2, y2) {
   let delta = angle((x1p - cxp) / rx, (y1p - cyp) / ry, (-x1p - cxp) / rx, (-y1p - cyp) / ry);
   if (!sweep && delta > 0) delta -= 2 * Math.PI;
   if (sweep && delta < 0) delta += 2 * Math.PI;
-  const pieces = Math.ceil(Math.abs(delta) / (Math.PI / 2) - 1e-9);
+  // A near-zero sweep (delta ~ 0) would round down to 0 pieces, dividing by
+  // zero below and silently dropping the arc; every real arc is at least one.
+  const pieces = Math.max(1, Math.ceil(Math.abs(delta) / (Math.PI / 2) - 1e-9));
   const step = delta / pieces;
   const out = [];
   let t = theta1;

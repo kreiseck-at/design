@@ -41,11 +41,19 @@ Icons are React components on a 24×24 grid, stroked in `currentColor` by defaul
 
 ### Sprite
 
-Every icon is also available as a standalone SVG and inside one sprite sheet, for places a React component doesn't reach (email templates, print, non-React apps):
+Every icon is also available as a standalone SVG and inside one sprite sheet, for places a React component doesn't reach (email templates, print, non-React apps). Import the sprite as a string with your bundler, inject it once, then reference symbols by id:
+
+```ts
+import spriteSource from "@kreiseck/design/svg/sprite.svg?raw"; // Vite; adjust the query for your bundler
+
+document.body.insertAdjacentHTML("afterbegin", spriteSource);
+```
 
 ```html
-<svg><use href="node_modules/@kreiseck/design/svg/sprite.svg#kd-receipt" /></svg>
+<svg><use href="#kd-receipt" /></svg>
 ```
+
+An external `href` pointing at the sprite file (`sprite.svg#kd-receipt`) works in Chrome and Firefox but not in Safari, which only resolves `<use>` against fragments already in the document — inline the sprite once as above and reference it by id everywhere.
 
 Or a single icon file directly: `@kreiseck/design/svg/receipt.svg`.
 
