@@ -134,6 +134,117 @@ abstract final class KdIcons {
   /// Griff zum Ziehen (drag)
   static const KdIconData drag = KdIconData(stroke: [KdMove(9, 6), KdLine(9.1, 6), KdMove(9, 12), KdLine(9.1, 12), KdMove(9, 18), KdLine(9.1, 18), KdMove(15, 6), KdLine(15.1, 6), KdMove(15, 12), KdLine(15.1, 12), KdMove(15, 18), KdLine(15.1, 18)]);
 
+  /// Hinzufügen (plus)
+  static const KdIconData plus = KdIconData(stroke: [KdMove(12, 5), KdLine(12, 19), KdMove(5, 12), KdLine(19, 12)]);
+
+  /// Verringern (minus)
+  static const KdIconData minus = KdIconData(stroke: [KdMove(5, 12), KdLine(19, 12)]);
+
+  /// Menge erhöhen (plus-circle)
+  static const KdIconData plusCircle = KdIconData(stroke: [KdMove(21, 12), KdCubic(21, 16.971, 16.971, 21, 12, 21), KdCubic(7.029, 21, 3, 16.971, 3, 12), KdCubic(3, 7.029, 7.029, 3, 12, 3), KdCubic(16.971, 3, 21, 7.029, 21, 12), KdClose(), KdMove(12, 8), KdLine(12, 16), KdMove(8, 12), KdLine(16, 12)]);
+
+  /// Menge verringern (minus-circle)
+  static const KdIconData minusCircle = KdIconData(stroke: [KdMove(21, 12), KdCubic(21, 16.971, 16.971, 21, 12, 21), KdCubic(7.029, 21, 3, 16.971, 3, 12), KdCubic(3, 7.029, 7.029, 3, 12, 3), KdCubic(16.971, 3, 21, 7.029, 21, 12), KdClose(), KdMove(8, 12), KdLine(16, 12)]);
+
+  /// Filtern (filter)
+  static const KdIconData filter = KdIconData(stroke: [KdMove(3, 5), KdLine(21, 5), KdLine(14, 13), KdLine(14, 19), KdLine(10, 17), KdLine(10, 13), KdClose()]);
+
+  /// Bearbeiten (edit)
+  static const KdIconData edit = KdIconData(stroke: [KdMove(16.5, 3.5), KdCubic(17.328, 2.672, 18.672, 2.672, 19.5, 3.5), KdCubic(20.328, 4.328, 20.328, 5.672, 19.5, 6.5), KdLine(7, 19), KdLine(3, 20), KdLine(4, 16), KdClose(), KdMove(13, 20), KdLine(20.5, 20)]);
+
+  /// Löschen (trash)
+  static const KdIconData trash = KdIconData(stroke: [KdMove(5, 7), KdLine(19, 7), KdMove(9, 7), KdLine(9, 4), KdLine(15, 4), KdLine(15, 7), KdMove(6, 7), KdLine(7, 20), KdLine(17, 20), KdLine(18, 7), KdMove(10, 11), KdLine(10, 17), KdMove(14, 11), KdLine(14, 17)]);
+
+  /// Zeichen löschen (backspace)
+  static const KdIconData backspace = KdIconData(stroke: [KdMove(21, 5), KdLine(9, 5), KdLine(3, 12), KdLine(9, 19), KdLine(21, 19), KdCubic(21.828, 19, 22.5, 18.328, 22.5, 17.5), KdLine(22.5, 6.5), KdCubic(22.5, 5.672, 21.828, 5, 21, 5), KdClose(), KdMove(12.5, 9.5), KdLine(17.5, 14.5), KdMove(17.5, 9.5), KdLine(12.5, 14.5)]);
+
+  /// Kopieren (copy)
+  static const KdIconData copy = KdIconData(stroke: [KdMove(8, 8), KdLine(8, 5), KdCubic(8, 3.895, 8.895, 3, 10, 3), KdLine(19, 3), KdCubic(20.105, 3, 21, 3.895, 21, 5), KdLine(21, 14), KdCubic(21, 15.105, 20.105, 16, 19, 16), KdLine(16, 16), KdMove(5.5, 8), KdLine(13.5, 8), KdCubic(14.881, 8, 16, 9.119, 16, 10.5), KdLine(16, 18.5), KdCubic(16, 19.881, 14.881, 21, 13.5, 21), KdLine(5.5, 21), KdCubic(4.119, 21, 3, 19.881, 3, 18.5), KdLine(3, 10.5), KdCubic(3, 9.119, 4.119, 8, 5.5, 8), KdClose()]);
+
+  /// In Zwischenablage (clipboard)
+  static const KdIconData clipboard = KdIconData(stroke: [KdMove(7.5, 4), KdLine(16.5, 4), KdCubic(17.881, 4, 19, 5.119, 19, 6.5), KdLine(19, 18.5), KdCubic(19, 19.881, 17.881, 21, 16.5, 21), KdLine(7.5, 21), KdCubic(6.119, 21, 5, 19.881, 5, 18.5), KdLine(5, 6.5), KdCubic(5, 5.119, 6.119, 4, 7.5, 4), KdClose(), KdMove(9, 4), KdLine(9, 3), KdLine(15, 3), KdLine(15, 4), KdMove(9, 11), KdLine(15, 11), KdMove(9, 15), KdLine(13, 15)]);
+
+  /// Speichern (save)
+  static const KdIconData save = KdIconData(stroke: [KdMove(4, 4), KdLine(17, 4), KdLine(20, 7), KdLine(20, 20), KdLine(4, 20), KdClose(), KdMove(8, 4), KdLine(8, 9), KdLine(15, 9), KdLine(15, 4), KdMove(7, 20), KdLine(7, 14), KdLine(17, 14), KdLine(17, 20)]);
+
+  /// Herunterladen (download)
+  static const KdIconData download = KdIconData(stroke: [KdMove(4, 16), KdLine(4, 19), KdCubic(4, 20.105, 4.895, 21, 6, 21), KdLine(18, 21), KdCubic(19.105, 21, 20, 20.105, 20, 19), KdLine(20, 16), KdMove(12, 4), KdLine(12, 15), KdMove(7, 10), KdLine(12, 15), KdLine(17, 10)]);
+
+  /// Hochladen (upload)
+  static const KdIconData upload = KdIconData(stroke: [KdMove(4, 16), KdLine(4, 19), KdCubic(4, 20.105, 4.895, 21, 6, 21), KdLine(18, 21), KdCubic(19.105, 21, 20, 20.105, 20, 19), KdLine(20, 16), KdMove(12, 15), KdLine(12, 4), KdMove(7, 9), KdLine(12, 4), KdLine(17, 9)]);
+
+  /// Senden (send)
+  static const KdIconData send = KdIconData(stroke: [KdMove(21, 3), KdLine(3, 10), KdLine(11, 12), KdLine(13, 20), KdClose(), KdMove(11, 12), KdLine(21, 3)]);
+
+  /// Drucker fehlt (print-off)
+  static const KdIconData printOff = KdIconData(stroke: [KdMove(7, 9), KdLine(7, 4), KdLine(17, 4), KdLine(17, 9), KdMove(5.5, 9), KdLine(18.5, 9), KdCubic(19.881, 9, 21, 10.119, 21, 11.5), KdLine(21, 14.5), KdCubic(21, 15.881, 19.881, 17, 18.5, 17), KdLine(5.5, 17), KdCubic(4.119, 17, 3, 15.881, 3, 14.5), KdLine(3, 11.5), KdCubic(3, 10.119, 4.119, 9, 5.5, 9), KdClose(), KdMove(7, 13.5), KdLine(17, 13.5), KdLine(17, 20), KdLine(7, 20), KdClose(), KdMove(4, 4), KdLine(20, 20)]);
+
+  /// Radieren (eraser)
+  static const KdIconData eraser = KdIconData(stroke: [KdMove(7, 21), KdLine(3, 17), KdLine(14, 6), KdLine(20, 12), KdLine(11, 21), KdClose(), KdMove(5, 19), KdLine(21, 19)]);
+
+  /// Zuschneiden (crop)
+  static const KdIconData crop = KdIconData(stroke: [KdMove(6, 3), KdLine(6, 16), KdCubic(6, 17.105, 6.895, 18, 8, 18), KdLine(21, 18), KdMove(3, 8), KdLine(16, 8), KdCubic(17.105, 8, 18, 8.895, 18, 10), KdLine(18, 21)]);
+
+  /// Gestalten (brush)
+  static const KdIconData brush = KdIconData(stroke: [KdMove(18.4, 3.6), KdLine(9, 13), KdLine(11, 15), KdLine(20.4, 5.6), KdCubic(20.757, 5.243, 20.897, 4.722, 20.766, 4.234), KdCubic(20.635, 3.746, 20.254, 3.365, 19.766, 3.234), KdCubic(19.278, 3.103, 18.757, 3.243, 18.4, 3.6), KdClose(), KdMove(9, 13), KdCubic(6, 13, 5, 15, 5, 17), KdCubic(5, 19, 3, 19, 3, 19), KdCubic(6, 20, 10, 19, 11, 17), KdCubic(12, 15, 11, 13, 11, 13)]);
+
+  /// Automatisch (wand)
+  static const KdIconData wand = KdIconData(stroke: [KdMove(4, 20), KdLine(15, 9), KdLine(17, 11), KdMove(18, 2), KdLine(18, 4), KdMove(18, 6), KdLine(18, 8), KdMove(15, 5), KdLine(17, 5), KdMove(19, 5), KdLine(21, 5)]);
+
+  /// Vorschlag (KI) (sparkles)
+  static const KdIconData sparkles = KdIconData(stroke: [KdMove(12, 4), KdLine(13.8, 9.2), KdLine(19, 11), KdLine(13.8, 12.8), KdLine(12, 18), KdLine(10.2, 12.8), KdLine(5, 11), KdLine(10.2, 9.2), KdClose(), KdMove(19, 17), KdLine(19.6, 18.4), KdLine(21, 19), KdLine(19.6, 19.6), KdLine(19, 21), KdLine(18.4, 19.6), KdLine(17, 19), KdLine(18.4, 18.4), KdClose()]);
+
+  /// Archivieren (archive)
+  static const KdIconData archive = KdIconData(stroke: [KdMove(5, 4), KdLine(19, 4), KdCubic(20.105, 4, 21, 4.895, 21, 6), KdLine(21, 6), KdCubic(21, 7.105, 20.105, 8, 19, 8), KdLine(5, 8), KdCubic(3.895, 8, 3, 7.105, 3, 6), KdLine(3, 6), KdCubic(3, 4.895, 3.895, 4, 5, 4), KdClose(), KdMove(5, 8), KdLine(5, 19), KdCubic(5, 20.105, 5.895, 21, 7, 21), KdLine(17, 21), KdCubic(18.105, 21, 19, 20.105, 19, 19), KdLine(19, 8), KdMove(10, 12), KdLine(14, 12)]);
+
+  /// Aus Archiv holen (archive-restore)
+  static const KdIconData archiveRestore = KdIconData(stroke: [KdMove(5, 4), KdLine(19, 4), KdCubic(20.105, 4, 21, 4.895, 21, 6), KdLine(21, 6), KdCubic(21, 7.105, 20.105, 8, 19, 8), KdLine(5, 8), KdCubic(3.895, 8, 3, 7.105, 3, 6), KdLine(3, 6), KdCubic(3, 4.895, 3.895, 4, 5, 4), KdClose(), KdMove(5, 8), KdLine(5, 19), KdCubic(5, 20.105, 5.895, 21, 7, 21), KdLine(17, 21), KdCubic(18.105, 21, 19, 20.105, 19, 19), KdLine(19, 8), KdMove(12, 17), KdLine(12, 11), KdMove(9.5, 13.5), KdLine(12, 11), KdLine(14.5, 13.5)]);
+
+  /// Anzeigen (eye)
+  static const KdIconData eye = KdIconData(stroke: [KdMove(2.5, 12), KdCubic(5, 7, 8.5, 4.5, 12, 4.5), KdCubic(15.5, 4.5, 19, 7, 21.5, 12), KdCubic(19, 17, 15.5, 19.5, 12, 19.5), KdCubic(8.5, 19.5, 5, 17, 2.5, 12), KdClose(), KdMove(15, 12), KdCubic(15, 13.657, 13.657, 15, 12, 15), KdCubic(10.343, 15, 9, 13.657, 9, 12), KdCubic(9, 10.343, 10.343, 9, 12, 9), KdCubic(13.657, 9, 15, 10.343, 15, 12), KdClose()]);
+
+  /// Verbergen (eye-off)
+  static const KdIconData eyeOff = KdIconData(stroke: [KdMove(2.5, 12), KdCubic(5, 7, 8.5, 4.5, 12, 4.5), KdCubic(15.5, 4.5, 19, 7, 21.5, 12), KdCubic(19, 17, 15.5, 19.5, 12, 19.5), KdCubic(8.5, 19.5, 5, 17, 2.5, 12), KdClose(), KdMove(15, 12), KdCubic(15, 13.657, 13.657, 15, 12, 15), KdCubic(10.343, 15, 9, 13.657, 9, 12), KdCubic(9, 10.343, 10.343, 9, 12, 9), KdCubic(13.657, 9, 15, 10.343, 15, 12), KdClose(), KdMove(4, 4), KdLine(20, 20)]);
+
+  /// Anhang (paperclip)
+  static const KdIconData paperclip = KdIconData(stroke: [KdMove(21, 11.1), KdLine(12, 20.1), KdCubic(9.791, 22.309, 6.209, 22.309, 4, 20.1), KdCubic(1.791, 17.891, 1.791, 14.309, 4, 12.1), KdLine(13, 3.1), KdCubic(14.381, 1.719, 16.619, 1.719, 18, 3.1), KdCubic(19.381, 4.481, 19.381, 6.719, 18, 8.1), KdLine(9, 17.1), KdCubic(8.426, 17.374, 7.742, 17.257, 7.293, 16.807), KdCubic(6.843, 16.358, 6.726, 15.674, 7, 15.1), KdLine(15.5, 6.6)]);
+
+  /// Markieren (flag)
+  static const KdIconData flag = KdIconData(stroke: [KdMove(5, 21), KdLine(5, 4), KdMove(5, 4), KdLine(18, 4), KdLine(15, 8), KdLine(18, 12), KdLine(5, 12)]);
+
+  /// Nummer (hash)
+  static const KdIconData hash = KdIconData(stroke: [KdMove(5, 9), KdLine(19, 9), KdMove(5, 15), KdLine(19, 15), KdMove(10, 4), KdLine(8, 20), KdMove(16, 4), KdLine(14, 20)]);
+
+  /// Zufall (dice)
+  static const KdIconData dice = KdIconData(stroke: [KdMove(5.5, 3), KdLine(18.5, 3), KdCubic(19.881, 3, 21, 4.119, 21, 5.5), KdLine(21, 18.5), KdCubic(21, 19.881, 19.881, 21, 18.5, 21), KdLine(5.5, 21), KdCubic(4.119, 21, 3, 19.881, 3, 18.5), KdLine(3, 5.5), KdCubic(3, 4.119, 4.119, 3, 5.5, 3), KdClose(), KdMove(8, 8), KdLine(8.1, 8), KdMove(16, 8), KdLine(16.1, 8), KdMove(12, 12), KdLine(12.1, 12), KdMove(8, 16), KdLine(8.1, 16), KdMove(16, 16), KdLine(16.1, 16)]);
+
+  /// Sofort (zap)
+  static const KdIconData zap = KdIconData(stroke: [KdMove(13, 3), KdLine(4, 14), KdLine(11, 14), KdLine(10, 21), KdLine(19, 10), KdLine(12, 10), KdClose()]);
+
+  /// Starten (rocket)
+  static const KdIconData rocket = KdIconData(stroke: [KdMove(12, 3), KdCubic(15, 5, 17, 9, 17, 13), KdLine(15, 16), KdLine(9, 16), KdLine(7, 13), KdCubic(7, 9, 9, 5, 12, 3), KdClose(), KdMove(7, 13), KdLine(4, 16), KdLine(7, 17), KdMove(17, 13), KdLine(20, 16), KdLine(17, 17), KdMove(13.5, 10), KdCubic(13.5, 10.828, 12.828, 11.5, 12, 11.5), KdCubic(11.172, 11.5, 10.5, 10.828, 10.5, 10), KdCubic(10.5, 9.172, 11.172, 8.5, 12, 8.5), KdCubic(12.828, 8.5, 13.5, 9.172, 13.5, 10), KdClose(), KdMove(10, 19), KdLine(12, 21.5), KdLine(14, 19)]);
+
+  /// Außer Betrieb (power-off)
+  static const KdIconData powerOff = KdIconData(stroke: [KdMove(18.4, 6.2), KdCubic(21.885, 9.725, 21.864, 15.405, 18.352, 18.904), KdCubic(14.84, 22.402, 9.16, 22.402, 5.648, 18.904), KdCubic(2.136, 15.405, 2.115, 9.725, 5.6, 6.2), KdMove(12, 2.6), KdLine(12, 11.6)]);
+
+  /// Anmelden (log-in)
+  static const KdIconData logIn = KdIconData(stroke: [KdMove(14, 4), KdLine(19, 4), KdCubic(19.828, 4, 20.5, 4.672, 20.5, 5.5), KdLine(20.5, 18.5), KdCubic(20.5, 19.328, 19.828, 20, 19, 20), KdLine(14, 20), KdMove(3, 12), KdLine(14, 12), KdMove(10, 8), KdLine(14, 12), KdLine(10, 16)]);
+
+  /// Abmelden (log-out)
+  static const KdIconData logOut = KdIconData(stroke: [KdMove(10, 4), KdLine(5, 4), KdCubic(4.172, 4, 3.5, 4.672, 3.5, 5.5), KdLine(3.5, 18.5), KdCubic(3.5, 19.328, 4.172, 20, 5, 20), KdLine(10, 20), KdMove(10, 12), KdLine(21, 12), KdMove(17, 8), KdLine(21, 12), KdLine(17, 16)]);
+
+  /// Sperren (ban)
+  static const KdIconData ban = KdIconData(stroke: [KdMove(21, 12), KdCubic(21, 16.971, 16.971, 21, 12, 21), KdCubic(7.029, 21, 3, 16.971, 3, 12), KdCubic(3, 7.029, 7.029, 3, 12, 3), KdCubic(16.971, 3, 21, 7.029, 21, 12), KdClose(), KdMove(5.6, 5.6), KdLine(18.4, 18.4)]);
+
+  /// Tastatur (keyboard)
+  static const KdIconData keyboard = KdIconData(stroke: [KdMove(5, 6), KdLine(19, 6), KdCubic(20.381, 6, 21.5, 7.119, 21.5, 8.5), KdLine(21.5, 15.5), KdCubic(21.5, 16.881, 20.381, 18, 19, 18), KdLine(5, 18), KdCubic(3.619, 18, 2.5, 16.881, 2.5, 15.5), KdLine(2.5, 8.5), KdCubic(2.5, 7.119, 3.619, 6, 5, 6), KdClose(), KdMove(6, 10), KdLine(6.1, 10), KdMove(10, 10), KdLine(10.1, 10), KdMove(14, 10), KdLine(14.1, 10), KdMove(18, 10), KdLine(18.1, 10), KdMove(6, 14), KdLine(6.1, 14), KdMove(18, 14), KdLine(18.1, 14), KdMove(9, 14), KdLine(15, 14)]);
+
+  /// Tastatur ausblenden (keyboard-hide)
+  static const KdIconData keyboardHide = KdIconData(stroke: [KdMove(5, 4), KdLine(19, 4), KdCubic(20.381, 4, 21.5, 5.119, 21.5, 6.5), KdLine(21.5, 13.5), KdCubic(21.5, 14.881, 20.381, 16, 19, 16), KdLine(5, 16), KdCubic(3.619, 16, 2.5, 14.881, 2.5, 13.5), KdLine(2.5, 6.5), KdCubic(2.5, 5.119, 3.619, 4, 5, 4), KdClose(), KdMove(6, 8), KdLine(6.1, 8), KdMove(10, 8), KdLine(10.1, 8), KdMove(14, 8), KdLine(14.1, 8), KdMove(18, 8), KdLine(18.1, 8), KdMove(6, 12), KdLine(6.1, 12), KdMove(18, 12), KdLine(18.1, 12), KdMove(9, 12), KdLine(15, 12), KdMove(9, 18), KdLine(12, 21), KdLine(15, 18)]);
+
+  /// Zifferntastatur (numpad)
+  static const KdIconData numpad = KdIconData(stroke: [KdMove(7, 7), KdLine(7.1, 7), KdMove(12, 7), KdLine(12.1, 7), KdMove(17, 7), KdLine(17.1, 7), KdMove(7, 12), KdLine(7.1, 12), KdMove(12, 12), KdLine(12.1, 12), KdMove(17, 12), KdLine(17.1, 12), KdMove(7, 17), KdLine(7.1, 17), KdMove(12, 17), KdLine(12.1, 17), KdMove(17, 17), KdLine(17.1, 17)]);
+
   /// Lookup by source name, e.g. `KdIcons.byName['id']`.
   static const Map<String, KdIconData> byName = {
     'arrow-left': arrowLeft,
@@ -179,5 +290,42 @@ abstract final class KdIcons {
     'fullscreen': fullscreen,
     'fullscreen-exit': fullscreenExit,
     'drag': drag,
+    'plus': plus,
+    'minus': minus,
+    'plus-circle': plusCircle,
+    'minus-circle': minusCircle,
+    'filter': filter,
+    'edit': edit,
+    'trash': trash,
+    'backspace': backspace,
+    'copy': copy,
+    'clipboard': clipboard,
+    'save': save,
+    'download': download,
+    'upload': upload,
+    'send': send,
+    'print-off': printOff,
+    'eraser': eraser,
+    'crop': crop,
+    'brush': brush,
+    'wand': wand,
+    'sparkles': sparkles,
+    'archive': archive,
+    'archive-restore': archiveRestore,
+    'eye': eye,
+    'eye-off': eyeOff,
+    'paperclip': paperclip,
+    'flag': flag,
+    'hash': hash,
+    'dice': dice,
+    'zap': zap,
+    'rocket': rocket,
+    'power-off': powerOff,
+    'log-in': logIn,
+    'log-out': logOut,
+    'ban': ban,
+    'keyboard': keyboard,
+    'keyboard-hide': keyboardHide,
+    'numpad': numpad,
   };
 }
