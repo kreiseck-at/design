@@ -15,7 +15,7 @@ beforeAll(async () => {
 describe("emitDart", () => {
   test("writes colours as ARGB literals", () => {
     expect(dart).toContain("0xFF136B6B");
-    expect(dart).toContain("0xFF131B1B");
+    expect(dart).toContain("0xFF181A1A");
   });
 
   test("exposes roles for both modes", () => {

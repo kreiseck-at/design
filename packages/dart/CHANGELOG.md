@@ -1,3 +1,11 @@
+## 0.3.0
+
+- Changed: the neutral ramp is near-neutral now (chroma 0.006 instead of
+  0.030), and its two anchored steps are gone — every other ramp and anchor
+  is unchanged. Surfaces, borders and muted text in dark mode lose the green
+  cast the old chroma gave them; light mode shifts by the same small amount.
+  All contrast pairings still clear their thresholds.
+
 ## 0.2.0
 
 - Added: `KdIcon`, `KdIconData`/`KdOp`, `KdIcons` (150 icons in seven groups —

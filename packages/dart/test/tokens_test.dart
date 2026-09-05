@@ -79,8 +79,6 @@ void main() {
   test('the anchors are exact', () {
     expect(KdRamps.brand[700]!.toARGB32(), 0xFF136B6B);
     expect(KdRamps.brand[500]!.toARGB32(), 0xFF139E9B);
-    expect(KdRamps.neutral[900]!.toARGB32(), 0xFF132A2A);
-    expect(KdRamps.neutral[950]!.toARGB32(), 0xFF131B1B);
   });
 
   test('an unknown role throws instead of returning a wrong colour', () {

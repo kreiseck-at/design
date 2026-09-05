@@ -22,18 +22,18 @@ describe("resolve", () => {
   });
 
   test("hits every anchor", () => {
+    // Neutral carries no anchors any more — it is a plain generated ramp,
+    // same as every other colour ramp except brand.
     expect(model.ramps.brand[500]).toBe("#139E9B");
     expect(model.ramps.brand[700]).toBe("#136B6B");
-    expect(model.ramps.neutral[900]).toBe("#132A2A");
-    expect(model.ramps.neutral[950]).toBe("#131B1B");
   });
 
   test("resolves roles to real colours in both modes", () => {
     expect(model.roles.light.brand).toBe("#136B6B");
     expect(model.roles.dark.brand).toBe("#139E9B");
     expect(model.roles.light["on-brand"]).toBe("#FFFFFF");
-    expect(model.roles.dark.ground).toBe("#131B1B");
-    expect(model.roles.light.ink).toBe("#132A2A");
+    expect(model.roles.dark.ground).toBe("#181A1A");
+    expect(model.roles.light.ink).toBe("#222626");
   });
 
   test("carries form, type and data through untouched", () => {
