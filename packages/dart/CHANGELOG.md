@@ -1,3 +1,14 @@
+## 0.4.0
+
+- Added: `on-success`, `on-warning` and `on-info` — text/icon colours for the
+  solid `success`, `warning` and `info` fills, completing the semantic pairs
+  that already existed for `brand` and `danger`.
+- Changed: `success-surface`, `warning-surface`, `danger-surface` and
+  `info-surface` move to the same ramp step as `brand-surface` (100 in light
+  mode, 900 in dark, up from 50/950) — the tinted semantic surfaces were a
+  shade paler than the brand's for no reason. The paired `on-*-surface`
+  tokens still clear 4.5:1 against the stronger fill.
+
 ## 0.3.0
 
 - Changed: the neutral ramp is near-neutral now (chroma 0.006 instead of

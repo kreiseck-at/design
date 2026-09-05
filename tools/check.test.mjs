@@ -109,6 +109,17 @@ describe("check", () => {
     expect(result.problems.join(" ")).toMatch(/"danger" is missing/);
   });
 
+  test.each(["success", "warning", "info"])(
+    "catches a pale on-%s that fails against its fill",
+    (role) => {
+      const broken = structuredClone(model);
+      broken.roles.light[`on-${role}`] = broken.roles.light[role];
+      const result = check(broken);
+      expect(result.ok).toBe(false);
+      expect(result.problems.join(" ")).toMatch(new RegExp(`on-${role}.*${role}`));
+    },
+  );
+
   test("every role can be dropped without the checker throwing", () => {
     for (const role of Object.keys(model.roles.light)) {
       const broken = structuredClone(model);
