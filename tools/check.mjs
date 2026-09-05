@@ -64,6 +64,17 @@ export function check(model) {
       ["border", "surface"],
       ["border", "ground"],
       ["border", "surface-raised"],
+      // `control` carries the same tone as `border` but does a different
+      // job: it FILLS a control (a switch track, an unchecked box) instead
+      // of drawing its edge. A filled control still has to be identifiable
+      // against whatever it sits on, and the thing riding on it (a switch
+      // knob) has to be identifiable against the fill -- both are 1.4.11
+      // boundaries, not text, so they gate at 3:1 and stay out of
+      // `surfacePairs` (which gates at 4.5 for text).
+      ["control", "surface"],
+      ["control", "ground"],
+      ["control", "surface-raised"],
+      ["on-control", "control"],
       ["focus", "ground"],
       ["focus", "surface-raised"],
       ["focus", "surface"],

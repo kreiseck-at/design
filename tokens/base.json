@@ -25,6 +25,8 @@
     "ink":             { "light": "neutral-900", "dark": "neutral-50", "warm": "neutralWarm-900", "contrast": "#000000" },
     "ink-muted":       { "light": "neutral-600", "dark": "neutral-400", "warm": "neutralWarm-600", "contrast": "neutral-800" },
     "border":          { "light": "neutral-600", "dark": "neutral-500", "warm": "neutralWarm-600", "contrast": "#000000" },
+    "control":         { "light": "neutral-600", "dark": "neutral-500", "warm": "neutralWarm-600", "contrast": "#000000" },
+    "on-control":      { "light": "#FFFFFF",     "dark": "#FFFFFF",     "warm": "#FFFFFF",         "contrast": "#FFFFFF" },
     "divider":         { "light": "neutral-200", "dark": "neutral-800", "warm": "neutralWarm-200", "contrast": "#000000" },
     "focus":           { "light": "brand-600",   "dark": "brand-400",   "contrast": "#000000" },
     "success":         { "light": "success-700", "dark": "success-400" },

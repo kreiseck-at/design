@@ -15,6 +15,8 @@
   --kd-ink: #222626;
   --kd-ink-muted: #646868;
   --kd-border: #646868;
+  --kd-control: #646868;
+  --kd-on-control: #FFFFFF;
   --kd-divider: #DCDEDE;
   --kd-focus: #268686;
   --kd-success: #136F47;
@@ -73,6 +75,8 @@
   --kd-ink: #222626;
   --kd-ink-muted: #646868;
   --kd-border: #646868;
+  --kd-control: #646868;
+  --kd-on-control: #FFFFFF;
   --kd-divider: #DCDEDE;
   --kd-focus: #268686;
   --kd-success: #136F47;
@@ -109,6 +113,8 @@
   --kd-ink: #2C2419;
   --kd-ink-muted: #716656;
   --kd-border: #716656;
+  --kd-control: #716656;
+  --kd-on-control: #FFFFFF;
   --kd-divider: #E4DDD2;
   --kd-focus: #268686;
   --kd-success: #136F47;
@@ -145,6 +151,8 @@
   --kd-ink: #F6F7F7;
   --kd-ink-muted: #ABAFAF;
   --kd-border: #8F9393;
+  --kd-control: #8F9393;
+  --kd-on-control: #FFFFFF;
   --kd-divider: #3A3E3E;
   --kd-focus: #71B6B5;
   --kd-success: #71BA91;
@@ -181,6 +189,8 @@
   --kd-ink: #000000;
   --kd-ink-muted: #3A3E3E;
   --kd-border: #000000;
+  --kd-control: #000000;
+  --kd-on-control: #FFFFFF;
   --kd-divider: #000000;
   --kd-focus: #000000;
   --kd-success: #136F47;
@@ -224,6 +234,8 @@
     --kd-ink: #F6F7F7;
     --kd-ink-muted: #ABAFAF;
     --kd-border: #8F9393;
+    --kd-control: #8F9393;
+    --kd-on-control: #FFFFFF;
     --kd-divider: #3A3E3E;
     --kd-focus: #71B6B5;
     --kd-success: #71BA91;
