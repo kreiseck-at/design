@@ -22,12 +22,15 @@ export function emitTs(model) {
     `export type Role = keyof typeof roles.light;\n` +
     `export type Mode = ${model.modes.map((m) => `"${m}"`).join(" | ")};\n`;
 
-  // One block per mode besides `light` (which lives in `:root`), each with
-  // the full role set — a mode is never just its overrides, so a page
-  // pinned to it never falls back to `:root`'s light colours for a role
-  // the override list did not think to mention.
+  // One block per mode, each with the full role set — a mode is never just
+  // its overrides, so a page pinned to it never falls back to `:root`'s
+  // light colours for a role the override list did not think to mention.
+  // `light` gets a block too (in addition to `:root`, which stays the
+  // default): without it, a subtree could be switched to warm/dark/contrast
+  // but never switched *back* to light — nothing would match
+  // `[data-kd-mode="light"]`, so `:root`'s dark-media fallback would keep
+  // winning underneath it on a device whose system theme is dark.
   const modeBlocks = model.modes
-    .filter((mode) => mode !== "light")
     .map((mode) => {
       const overrides = model.modeOverrides[mode];
       const overrideVars = overrides

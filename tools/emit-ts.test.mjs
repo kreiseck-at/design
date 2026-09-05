@@ -89,4 +89,25 @@ describe("emitTs", () => {
     }
     expect(out.ts).toContain('"light" | "warm" | "dark" | "contrast"');
   });
+
+  test("light is also selectable on a subtree, not only the default at :root", () => {
+    // Without an explicit [data-kd-mode="light"] block, a subtree switched
+    // to warm/dark/contrast could never be switched back to light: nothing
+    // would match the attribute selector, and on a dark-scheme device the
+    // `:root:not([data-kd-mode])` media guard would keep winning underneath
+    // it. `:root` stays the default; `[data-kd-mode="light"]` makes light
+    // pinnable the same way the other three modes already are.
+    expect(out.css).toContain('[data-kd-mode="light"] {');
+
+    const rootBlock = out.css.split(":root {")[1].split("}")[0];
+    const lightBlock = out.css.split('[data-kd-mode="light"]')[1].split("}")[0];
+    const groundIn = (block) => block.match(/--kd-ground: [^;]+;/)[0];
+    expect(groundIn(lightBlock)).toBe(groundIn(rootBlock));
+
+    const order = ["light", "warm", "dark", "contrast"].map((mode) =>
+      out.css.indexOf(`[data-kd-mode="${mode}"]`),
+    );
+    expect(order.every((i) => i !== -1)).toBe(true);
+    expect(order).toEqual([...order].sort((a, b) => a - b));
+  });
 });
