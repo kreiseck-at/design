@@ -262,7 +262,8 @@ KdLogoSample kdSampleLogo(KdLogoAnimation anim, double t, {int seed = 0}) {
       var local = T - track.start - i * track.stagger;
       if (track.wrap) local = ((local % anim.duration) + anim.duration) % anim.duration;
       if (local < 0 && track.before == KdLogoHold.none) continue;
-      if (local > track.duration && track.after == KdLogoHold.none) continue;
+      // End exclusive: a still that ends where the next begins never shows both.
+      if (local >= track.duration && track.after == KdLogoHold.none) continue;
       final u = track.duration <= 0 ? (local < 0 ? 0.0 : 1.0) : math.min(1.0, math.max(0.0, local / track.duration));
       final e = kdEase(track.easing, u);
       var style = targets[index];

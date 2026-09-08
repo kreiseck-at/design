@@ -159,11 +159,11 @@ describe("morph", () => {
     const cornerBound = a.tracks.filter((t) => t.vectors)[1];
     expect(cornerBound.keyframes.at(-1)).toMatchObject({ move: 1, accent: 1 });
     expect(tr.keyframes.at(-1).accent).toBeUndefined();
-    const tEnd = (tr.start + tr.duration) / a.duration; // local time == duration: still on the track, move = 1
+    const tEnd = (tr.start + tr.duration - 0.01) / a.duration; // just before the track releases: move ≈ 1
     const s = sample(a, tEnd);
     tr.indices.forEach((i, k) => {
-      expect(s.pixels[i].dx).toBeCloseTo(tr.vectors[k][0], 6);
-      expect(s.pixels[i].dy).toBeCloseTo(tr.vectors[k][1], 6);
+      expect(s.pixels[i].dx).toBeCloseTo(tr.vectors[k][0], 3);
+      expect(s.pixels[i].dy).toBeCloseTo(tr.vectors[k][1], 3);
     });
     const c = animations.find((x) => x.name === "check");
     const ct = c.tracks.find((t) => t.vectors);
@@ -212,5 +212,26 @@ describe("heart", () => {
       prev = lit;
     }
     expect(prev).toBe(first.indices.length);
+  });
+});
+
+describe("heart — into the corner", () => {
+  it("from the small heart on, the lit pixels in the corner only ever grow, up to the full block", () => {
+    const a = animations.find((x) => x.name === "heart");
+    const corner = new Set(logo.cells.filter((c) => c.part === "corner").map((c) => c.row * 8 + c.col));
+    const stills = a.tracks.filter((t) => t.kind === "pixel" && t.before === "none" && t.duration > 0);
+    const from = stills[1].start, to = stills.at(-1).start + stills.at(-1).duration;
+    // lit = a pixel or the cell itself, so the handover pixel → cell counts as one thing
+    const cellAt = new Map(logo.cells.filter((c) => c.part === "corner").map((c) => [c.row * 8 + c.col, c.index]));
+    let prev = 0;
+    for (let T = from; T <= to + 1; T += 10) {
+      const s = sample(a, T / a.duration);
+      const lit = [...corner].filter((i) => s.pixels[i].opacity > 0 || s.cells[cellAt.get(i)].opacity > 0).length;
+      expect(lit, `${T} ms`).toBeGreaterThanOrEqual(prev);
+      prev = lit;
+    }
+    expect(prev).toBe(9);
+    const after = sample(a, (to + 1) / a.duration);
+    for (const c of logo.cells.filter((c) => c.part === "corner")) expect(after.cells[c.index].opacity).toBe(1);
   });
 });
