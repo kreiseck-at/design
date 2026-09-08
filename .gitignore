@@ -4,3 +4,4 @@ packages/dart/build/
 packages/dart/pubspec.lock
 packages/npm/dist
 .DS_Store
+playground/dist

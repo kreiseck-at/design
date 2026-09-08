@@ -103,12 +103,62 @@ The set covers seven groups; one example each:
 - **document** — `KdIcons.file`
 - **people** — `KdIcons.user`
 
-## The signet
+## The logo
 
-`KdSignet(size: 40)` draws the Kasseneck mark in two colours: `frame`
-(defaults to the ambient icon colour) and `square` (defaults to
-`colorScheme.primary`, the brand role). On a dark ground, pass a light
-`frame`.
+The Kasseneck logo is drawn from geometry, no asset and no font: the mark as
+the three brand paths, the wordmark as Archivo 600 outlines. What you see is
+pixel for pixel the brand's SVG.
+
+```dart
+KdSignet(size: 40)            // the mark: frame in the icon colour, corner in colorScheme.primary
+KdLogo(height: 28)            // mark + wordmark, 332/48 as wide as tall
+KdWordmark(height: 28)        // the wordmark alone
+```
+
+Colours: `frame`/`ink` and `square`/`accent` (on a dark ground pass a light
+ink); `highlight` is the light petrol a tinted cell blends toward.
+
+### Animations
+
+The mark is an 8×8 grid: 32 cells of the frame and the corner, plus a pixel
+layer over all 64 fields that is invisible at rest — so the mark can show
+pixel art and *become* the logo. Every animation is data
+(`brand/animations.json`), identical in this package and `@kreiseck/design`.
+
+```dart
+KdLogoMotion(animation: KdLogoAnimations.heart, height: 40)
+KdLogoMotion(animation: KdLogoAnimations.breathe, wordmark: false, height: 64)   // the mark alone, loops
+KdLogoMotion(animation: KdLogoAnimations.byName['euro']!, onDone: () => go())
+```
+
+| name | label | scenario | length |
+|---|---|---|---|
+| `rain` | Regen | splash | 1600 ms |
+| `bloom` | Aufblühen | splash | 1400 ms |
+| `scatter` | Zufall | splash | 1400 ms |
+| `heart` | Herz | splash | 2100 ms |
+| `euro` | Euro | splash | 2100 ms |
+| `check` | Haken | splash | 2100 ms |
+| `star` | Stern | splash | 2100 ms |
+| `lock` | Schloss | splash | 2100 ms |
+| `receipt` | Bon | splash | 2100 ms |
+| `breathe` | Atmen | waiting | 2400 ms · loops |
+
+`loop` overrides the animation's own flag, `autoplay: false` shows the last
+frame, and `KdLogoMotionState.play()` restarts (each run draws its own order
+for tracks marked random).
+
+For your own motion, sample the data and hand the styles to the widgets:
+
+```dart
+final s = kdSampleLogo(KdLogoAnimations.rain, t);       // t 0..1
+KdLogo(height: 28, cells: s.cells, glyphs: s.glyphs, pixels: s.pixels)
+```
+
+A `KdLogoStyle` per element carries `opacity`, `scale`, `dx`/`dy` (in cells),
+`tint` (toward `highlight`) and `accent` (toward the corner's petrol). At rest
+the widgets paint the brand paths, so a static logo never shows seams
+between cells.
 
 ## Fonts and licence
 
