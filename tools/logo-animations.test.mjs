@@ -180,8 +180,8 @@ describe("handover: landed / unlanded", () => {
     const a = animations.find((x) => x.name === "euro");
     const morph = a.tracks.find((t) => t.vectors);
     expect(a.tracks.filter((t) => t.vectors).length).toBe(2); // split by landing part: frame-bound and corner-bound
-    const landedTrack = a.tracks.find((t) => t.kind === "cell" && t.duration <= 1);
-    const restTrack = a.tracks.find((t) => t.kind === "cell" && t.duration > 1);
+    const landedTrack = a.tracks.find((t) => t.kind === "cell" && t.duration === 0);
+    const restTrack = a.tracks.find((t) => t.kind === "cell" && t.duration > 0);
     expect(landedTrack.indices.length + restTrack.indices.length).toBe(32);
     expect(new Set([...landedTrack.indices, ...restTrack.indices]).size).toBe(32);
     const handover = landedTrack.start;
@@ -206,7 +206,7 @@ describe("heart", () => {
     const done = first.start + first.stagger * (first.indices.length - 1) + first.duration;
     const hand = a.tracks.find((t) => t.kind === "pixel" && t.start > done).start;
     let prev = 0;
-    for (let T = 0; T <= hand; T += 10) {
+    for (let T = 0; T < hand; T += 10) { // up to the instant the smaller heart takes over
       const lit = sample(a, T / a.duration).pixels.filter((p) => p.opacity >= 0.999).length;
       expect(lit, `${T} ms`).toBeGreaterThanOrEqual(prev);
       prev = lit;

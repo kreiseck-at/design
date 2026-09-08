@@ -160,14 +160,14 @@ abstract final class KdLogoAnimations {
       KdLogoTrack(
         kind: KdLogoTarget.pixel,
         indices: [9, 10, 13, 14, 16, 17, 18, 19, 20, 21, 22, 23, 24, 25, 26, 27, 28, 29, 30, 31, 33, 34, 35, 36, 37, 38, 42, 43, 44, 45, 51, 52], shuffle: false,
-        start: 1000, stagger: 0, duration: 1,
+        start: 1000, stagger: 0, duration: 0,
         easing: KdEasing.step, wrap: false,
         before: KdLogoHold.none, after: KdLogoHold.hold,
         keyframes: [KdLogoKeyframe(0, opacity: 1, accent: 1), KdLogoKeyframe(1, opacity: 0, accent: 1)],
       ),
       KdLogoTrack(
         kind: KdLogoTarget.pixel,
-        indices: [18, 20, 25, 26, 27, 28, 29, 33, 34, 35, 36, 37, 42, 43, 44, 51], shuffle: false,
+        indices: [20, 22, 27, 28, 29, 30, 31, 35, 36, 37, 38, 39, 44, 45, 46, 53], shuffle: false,
         start: 1000, stagger: 0, duration: 180,
         easing: KdEasing.linear, wrap: false,
         before: KdLogoHold.none, after: KdLogoHold.none,
@@ -175,7 +175,7 @@ abstract final class KdLogoAnimations {
       ),
       KdLogoTrack(
         kind: KdLogoTarget.pixel,
-        indices: [36, 38, 44, 45, 46, 53], shuffle: false,
+        indices: [37, 39, 45, 46, 47, 54], shuffle: false,
         start: 1180, stagger: 0, duration: 180,
         easing: KdEasing.linear, wrap: false,
         before: KdLogoHold.none, after: KdLogoHold.none,
@@ -184,7 +184,7 @@ abstract final class KdLogoAnimations {
       KdLogoTrack(
         kind: KdLogoTarget.cell,
         indices: [17, 18, 19, 21, 22, 23, 29, 30, 31], shuffle: false,
-        start: 1360, stagger: 0, duration: 1,
+        start: 1360, stagger: 0, duration: 0,
         easing: KdEasing.step, wrap: false,
         before: KdLogoHold.hold, after: KdLogoHold.hold,
         keyframes: [KdLogoKeyframe(0, opacity: 0), KdLogoKeyframe(1, opacity: 1)],
@@ -241,7 +241,7 @@ abstract final class KdLogoAnimations {
       KdLogoTrack(
         kind: KdLogoTarget.pixel,
         indices: [3, 4, 5, 6, 10, 15, 17, 24, 25, 26, 27, 33, 40, 41, 42, 43, 50, 55, 59, 60, 61, 62], shuffle: false,
-        start: 1300, stagger: 0, duration: 1,
+        start: 1300, stagger: 0, duration: 0,
         easing: KdEasing.step, wrap: false,
         before: KdLogoHold.none, after: KdLogoHold.hold,
         keyframes: [KdLogoKeyframe(0, opacity: 1), KdLogoKeyframe(1, opacity: 0)],
@@ -249,7 +249,7 @@ abstract final class KdLogoAnimations {
       KdLogoTrack(
         kind: KdLogoTarget.cell,
         indices: [1, 2, 3, 4, 5, 6, 8, 9, 10, 12, 14, 16, 17, 18, 20, 23, 25, 26, 27, 28, 29, 30], shuffle: false,
-        start: 1300, stagger: 0, duration: 1,
+        start: 1300, stagger: 0, duration: 0,
         easing: KdEasing.step, wrap: false,
         before: KdLogoHold.hold, after: KdLogoHold.hold,
         keyframes: [KdLogoKeyframe(0, opacity: 0), KdLogoKeyframe(1, opacity: 1)],
@@ -306,7 +306,7 @@ abstract final class KdLogoAnimations {
       KdLogoTrack(
         kind: KdLogoTarget.pixel,
         indices: [15, 22, 23, 29, 30, 32, 36, 37, 40, 41, 43, 44, 49, 50, 51, 58], shuffle: false,
-        start: 1300, stagger: 0, duration: 1,
+        start: 1300, stagger: 0, duration: 0,
         easing: KdEasing.step, wrap: false,
         before: KdLogoHold.none, after: KdLogoHold.hold,
         keyframes: [KdLogoKeyframe(0, opacity: 1), KdLogoKeyframe(1, opacity: 0)],
@@ -314,7 +314,7 @@ abstract final class KdLogoAnimations {
       KdLogoTrack(
         kind: KdLogoTarget.cell,
         indices: [6, 9, 11, 12, 13, 14, 15, 16, 17, 18, 20, 21, 25, 26, 27, 28], shuffle: false,
-        start: 1300, stagger: 0, duration: 1,
+        start: 1300, stagger: 0, duration: 0,
         easing: KdEasing.step, wrap: false,
         before: KdLogoHold.hold, after: KdLogoHold.hold,
         keyframes: [KdLogoKeyframe(0, opacity: 0), KdLogoKeyframe(1, opacity: 1)],
@@ -371,7 +371,7 @@ abstract final class KdLogoAnimations {
       KdLogoTrack(
         kind: KdLogoTarget.pixel,
         indices: [3, 10, 11, 12, 16, 17, 18, 19, 20, 21, 22, 25, 26, 27, 28, 29, 34, 35, 36, 41, 42, 44, 45, 48, 54], shuffle: false,
-        start: 1300, stagger: 0, duration: 1,
+        start: 1300, stagger: 0, duration: 0,
         easing: KdEasing.step, wrap: false,
         before: KdLogoHold.none, after: KdLogoHold.hold,
         keyframes: [KdLogoKeyframe(0, opacity: 1), KdLogoKeyframe(1, opacity: 0)],
@@ -379,7 +379,7 @@ abstract final class KdLogoAnimations {
       KdLogoTrack(
         kind: KdLogoTarget.cell,
         indices: [0, 1, 2, 3, 4, 5, 6, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 20, 21, 22, 25, 26, 27, 28], shuffle: false,
-        start: 1300, stagger: 0, duration: 1,
+        start: 1300, stagger: 0, duration: 0,
         easing: KdEasing.step, wrap: false,
         before: KdLogoHold.hold, after: KdLogoHold.hold,
         keyframes: [KdLogoKeyframe(0, opacity: 0), KdLogoKeyframe(1, opacity: 1)],
@@ -436,7 +436,7 @@ abstract final class KdLogoAnimations {
       KdLogoTrack(
         kind: KdLogoTarget.pixel,
         indices: [2, 3, 4, 5, 9, 14, 17, 22, 24, 25, 26, 27, 28, 29, 30, 31, 32, 33, 34, 35, 36, 37, 38, 39, 40, 41, 42, 45, 46, 47, 48, 49, 50, 53, 54, 55, 56, 57, 58, 59, 60, 61, 62, 63], shuffle: false,
-        start: 1300, stagger: 0, duration: 1,
+        start: 1300, stagger: 0, duration: 0,
         easing: KdEasing.step, wrap: false,
         before: KdLogoHold.none, after: KdLogoHold.hold,
         keyframes: [KdLogoKeyframe(0, opacity: 1), KdLogoKeyframe(1, opacity: 0)],
@@ -444,7 +444,7 @@ abstract final class KdLogoAnimations {
       KdLogoTrack(
         kind: KdLogoTarget.cell,
         indices: [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20, 21, 22, 23, 24, 25, 26, 27, 28, 29, 30, 31], shuffle: false,
-        start: 1300, stagger: 0, duration: 1,
+        start: 1300, stagger: 0, duration: 0,
         easing: KdEasing.step, wrap: false,
         before: KdLogoHold.hold, after: KdLogoHold.hold,
         keyframes: [KdLogoKeyframe(0, opacity: 0), KdLogoKeyframe(1, opacity: 1)],
@@ -501,7 +501,7 @@ abstract final class KdLogoAnimations {
       KdLogoTrack(
         kind: KdLogoTarget.pixel,
         indices: [1, 2, 3, 4, 5, 6, 9, 14, 17, 19, 20, 22, 25, 30, 33, 35, 36, 38, 41, 46, 49, 51, 52, 54, 57, 59, 61, 62], shuffle: false,
-        start: 1300, stagger: 0, duration: 1,
+        start: 1300, stagger: 0, duration: 0,
         easing: KdEasing.step, wrap: false,
         before: KdLogoHold.none, after: KdLogoHold.hold,
         keyframes: [KdLogoKeyframe(0, opacity: 1), KdLogoKeyframe(1, opacity: 0)],
@@ -509,7 +509,7 @@ abstract final class KdLogoAnimations {
       KdLogoTrack(
         kind: KdLogoTarget.cell,
         indices: [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 20, 21, 22, 25, 26, 27, 28, 29, 30], shuffle: false,
-        start: 1300, stagger: 0, duration: 1,
+        start: 1300, stagger: 0, duration: 0,
         easing: KdEasing.step, wrap: false,
         before: KdLogoHold.hold, after: KdLogoHold.hold,
         keyframes: [KdLogoKeyframe(0, opacity: 0), KdLogoKeyframe(1, opacity: 1)],

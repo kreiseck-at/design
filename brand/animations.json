@@ -156,7 +156,7 @@
             "........"
           ],
           "start": 1000,
-          "duration": 1,
+          "duration": 0,
           "easing": "step",
           "before": "none",
           "from": {
@@ -173,11 +173,11 @@
           "art": [
             "........",
             "........",
-            "..#.#...",
-            ".#####..",
-            ".#####..",
-            "..###...",
-            "...#....",
+            "....#.#.",
+            "...#####",
+            "...#####",
+            "....###.",
+            ".....#..",
             "........"
           ],
           "start": 1000,
@@ -200,9 +200,9 @@
             "........",
             "........",
             "........",
-            "....#.#.",
-            "....###.",
-            ".....#..",
+            ".....#.#",
+            ".....###",
+            "......#.",
             "........"
           ],
           "start": 1180,
@@ -221,7 +221,7 @@
         {
           "target": "corner",
           "start": 1360,
-          "duration": 1,
+          "duration": 0,
           "easing": "step",
           "from": {
             "opacity": 0
@@ -337,7 +337,7 @@
             "...####."
           ],
           "start": 1300,
-          "duration": 1,
+          "duration": 0,
           "easing": "step",
           "before": "none",
           "from": {
@@ -350,7 +350,7 @@
         {
           "target": "landed",
           "start": 1300,
-          "duration": 1,
+          "duration": 0,
           "easing": "step",
           "from": {
             "opacity": 0
@@ -466,7 +466,7 @@
             "..#....."
           ],
           "start": 1300,
-          "duration": 1,
+          "duration": 0,
           "easing": "step",
           "before": "none",
           "from": {
@@ -479,7 +479,7 @@
         {
           "target": "landed",
           "start": 1300,
-          "duration": 1,
+          "duration": 0,
           "easing": "step",
           "from": {
             "opacity": 0
@@ -595,7 +595,7 @@
             "........"
           ],
           "start": 1300,
-          "duration": 1,
+          "duration": 0,
           "easing": "step",
           "before": "none",
           "from": {
@@ -608,7 +608,7 @@
         {
           "target": "landed",
           "start": 1300,
-          "duration": 1,
+          "duration": 0,
           "easing": "step",
           "from": {
             "opacity": 0
@@ -724,7 +724,7 @@
             "########"
           ],
           "start": 1300,
-          "duration": 1,
+          "duration": 0,
           "easing": "step",
           "before": "none",
           "from": {
@@ -737,7 +737,7 @@
         {
           "target": "landed",
           "start": 1300,
-          "duration": 1,
+          "duration": 0,
           "easing": "step",
           "from": {
             "opacity": 0
@@ -853,7 +853,7 @@
             ".#.#.##."
           ],
           "start": 1300,
-          "duration": 1,
+          "duration": 0,
           "easing": "step",
           "before": "none",
           "from": {
@@ -866,7 +866,7 @@
         {
           "target": "landed",
           "start": 1300,
-          "duration": 1,
+          "duration": 0,
           "easing": "step",
           "from": {
             "opacity": 0
