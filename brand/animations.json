@@ -116,7 +116,7 @@
     "heart": {
       "de": "Herz",
       "scenario": "splash",
-      "duration": 2100,
+      "duration": 2150,
       "tracks": [
         {
           "target": "pixels",
@@ -200,13 +200,63 @@
             "........",
             "........",
             "........",
+            "........",
             ".....#.#",
             ".....###",
-            "......#.",
-            "........"
+            "......#."
           ],
           "start": 1180,
-          "duration": 180,
+          "duration": 110,
+          "easing": "linear",
+          "before": "none",
+          "after": "none",
+          "keyframes": [
+            {
+              "at": 0,
+              "opacity": 1,
+              "accent": 1
+            }
+          ]
+        },
+        {
+          "target": "pixels",
+          "art": [
+            "........",
+            "........",
+            "........",
+            "........",
+            "........",
+            ".....###",
+            ".....###",
+            "......#."
+          ],
+          "start": 1290,
+          "duration": 70,
+          "easing": "linear",
+          "before": "none",
+          "after": "none",
+          "keyframes": [
+            {
+              "at": 0,
+              "opacity": 1,
+              "accent": 1
+            }
+          ]
+        },
+        {
+          "target": "pixels",
+          "art": [
+            "........",
+            "........",
+            "........",
+            "........",
+            "........",
+            ".....###",
+            ".....###",
+            ".....##."
+          ],
+          "start": 1360,
+          "duration": 70,
           "easing": "linear",
           "before": "none",
           "after": "none",
@@ -220,7 +270,7 @@
         },
         {
           "target": "corner",
-          "start": 1360,
+          "start": 1430,
           "duration": 0,
           "easing": "step",
           "from": {
@@ -249,7 +299,358 @@
         {
           "target": "glyphs",
           "order": "ltr",
-          "start": 1450,
+          "start": 1500,
+          "stagger": 40,
+          "duration": 300,
+          "easing": "out-cubic",
+          "from": {
+            "opacity": 0,
+            "dy": 0.5
+          },
+          "to": {
+            "opacity": 1,
+            "dy": 0
+          }
+        }
+      ]
+    },
+    "heartbeat": {
+      "de": "Herzschlag",
+      "scenario": "splash",
+      "duration": 2850,
+      "tracks": [
+        {
+          "target": "pixels",
+          "art": [
+            "........",
+            ".##..##.",
+            "########",
+            "########",
+            ".######.",
+            "..####..",
+            "...##...",
+            "........"
+          ],
+          "duration": 120,
+          "easing": "out-cubic",
+          "after": "none",
+          "from": {
+            "opacity": 0,
+            "accent": 1
+          },
+          "to": {
+            "opacity": 1,
+            "accent": 1
+          },
+          "start": 0
+        },
+        {
+          "target": "pixels",
+          "art": [
+            "........",
+            ".##..##.",
+            "########",
+            "########",
+            ".######.",
+            "..####..",
+            "...##...",
+            "........"
+          ],
+          "start": 120,
+          "duration": 330,
+          "easing": "linear",
+          "before": "none",
+          "after": "none",
+          "keyframes": [
+            {
+              "at": 0,
+              "opacity": 1,
+              "accent": 1
+            }
+          ]
+        },
+        {
+          "target": "pixels",
+          "art": [
+            "........",
+            "........",
+            "..#..#..",
+            ".######.",
+            ".######.",
+            "..####..",
+            "...##...",
+            "........"
+          ],
+          "start": 450,
+          "duration": 120,
+          "easing": "linear",
+          "before": "none",
+          "after": "none",
+          "keyframes": [
+            {
+              "at": 0,
+              "opacity": 1,
+              "accent": 1
+            }
+          ]
+        },
+        {
+          "target": "pixels",
+          "art": [
+            "........",
+            ".##..##.",
+            "########",
+            "########",
+            ".######.",
+            "..####..",
+            "...##...",
+            "........"
+          ],
+          "start": 570,
+          "duration": 330,
+          "easing": "linear",
+          "before": "none",
+          "after": "none",
+          "keyframes": [
+            {
+              "at": 0,
+              "opacity": 1,
+              "accent": 1
+            }
+          ]
+        },
+        {
+          "target": "pixels",
+          "art": [
+            "........",
+            "........",
+            "..#..#..",
+            ".######.",
+            ".######.",
+            "..####..",
+            "...##...",
+            "........"
+          ],
+          "start": 900,
+          "duration": 120,
+          "easing": "linear",
+          "before": "none",
+          "after": "none",
+          "keyframes": [
+            {
+              "at": 0,
+              "opacity": 1,
+              "accent": 1
+            }
+          ]
+        },
+        {
+          "target": "pixels",
+          "art": [
+            "........",
+            ".##..##.",
+            "########",
+            "########",
+            ".######.",
+            "..####..",
+            "...##...",
+            "........"
+          ],
+          "start": 1020,
+          "duration": 330,
+          "easing": "linear",
+          "before": "none",
+          "after": "none",
+          "keyframes": [
+            {
+              "at": 0,
+              "opacity": 1,
+              "accent": 1
+            }
+          ]
+        },
+        {
+          "target": "pixels",
+          "art": [
+            "........",
+            "........",
+            "..#..#..",
+            ".######.",
+            ".######.",
+            "..####..",
+            "...##...",
+            "........"
+          ],
+          "start": 1350,
+          "duration": 120,
+          "easing": "linear",
+          "before": "none",
+          "after": "none",
+          "keyframes": [
+            {
+              "at": 0,
+              "opacity": 1,
+              "accent": 1
+            }
+          ]
+        },
+        {
+          "target": "pixels",
+          "art": [
+            "........",
+            ".##..##.",
+            "########",
+            "########",
+            ".######.",
+            "..####..",
+            "...##...",
+            "........"
+          ],
+          "start": 1470,
+          "duration": 230,
+          "easing": "linear",
+          "before": "none",
+          "after": "none",
+          "keyframes": [
+            {
+              "at": 0,
+              "opacity": 1,
+              "accent": 1
+            }
+          ]
+        },
+        {
+          "target": "pixels",
+          "art": [
+            "........",
+            "........",
+            "....#.#.",
+            "...#####",
+            "...#####",
+            "....###.",
+            ".....#..",
+            "........"
+          ],
+          "start": 1700,
+          "duration": 180,
+          "easing": "linear",
+          "before": "none",
+          "after": "none",
+          "keyframes": [
+            {
+              "at": 0,
+              "opacity": 1,
+              "accent": 1
+            }
+          ]
+        },
+        {
+          "target": "pixels",
+          "art": [
+            "........",
+            "........",
+            "........",
+            "........",
+            "........",
+            ".....#.#",
+            ".....###",
+            "......#."
+          ],
+          "start": 1880,
+          "duration": 110,
+          "easing": "linear",
+          "before": "none",
+          "after": "none",
+          "keyframes": [
+            {
+              "at": 0,
+              "opacity": 1,
+              "accent": 1
+            }
+          ]
+        },
+        {
+          "target": "pixels",
+          "art": [
+            "........",
+            "........",
+            "........",
+            "........",
+            "........",
+            ".....###",
+            ".....###",
+            "......#."
+          ],
+          "start": 1990,
+          "duration": 70,
+          "easing": "linear",
+          "before": "none",
+          "after": "none",
+          "keyframes": [
+            {
+              "at": 0,
+              "opacity": 1,
+              "accent": 1
+            }
+          ]
+        },
+        {
+          "target": "pixels",
+          "art": [
+            "........",
+            "........",
+            "........",
+            "........",
+            "........",
+            ".....###",
+            ".....###",
+            ".....##."
+          ],
+          "start": 2060,
+          "duration": 70,
+          "easing": "linear",
+          "before": "none",
+          "after": "none",
+          "keyframes": [
+            {
+              "at": 0,
+              "opacity": 1,
+              "accent": 1
+            }
+          ]
+        },
+        {
+          "target": "corner",
+          "start": 2130,
+          "duration": 0,
+          "easing": "step",
+          "from": {
+            "opacity": 0
+          },
+          "to": {
+            "opacity": 1
+          }
+        },
+        {
+          "target": "frame",
+          "order": "random",
+          "start": 1700,
+          "stagger": 16,
+          "duration": 220,
+          "easing": "out-back",
+          "from": {
+            "opacity": 0,
+            "scale": 0.3
+          },
+          "to": {
+            "opacity": 1,
+            "scale": 1
+          }
+        },
+        {
+          "target": "glyphs",
+          "order": "ltr",
+          "start": 2200,
           "stagger": 40,
           "duration": 300,
           "easing": "out-cubic",

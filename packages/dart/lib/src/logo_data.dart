@@ -145,9 +145,9 @@ abstract final class KdLogoAnimations {
     ],
   );
 
-  /// Herz (splash, 2100 ms)
+  /// Herz (splash, 2150 ms)
   static const KdLogoAnimation heart = KdLogoAnimation(
-    name: 'heart', label: 'Herz', scenario: 'splash', duration: 2100, loop: false,
+    name: 'heart', label: 'Herz', scenario: 'splash', duration: 2150, loop: false,
     tracks: [
       KdLogoTrack(
         kind: KdLogoTarget.pixel,
@@ -175,8 +175,24 @@ abstract final class KdLogoAnimations {
       ),
       KdLogoTrack(
         kind: KdLogoTarget.pixel,
-        indices: [37, 39, 45, 46, 47, 54], shuffle: false,
-        start: 1180, stagger: 0, duration: 180,
+        indices: [45, 47, 53, 54, 55, 62], shuffle: false,
+        start: 1180, stagger: 0, duration: 110,
+        easing: KdEasing.linear, wrap: false,
+        before: KdLogoHold.none, after: KdLogoHold.none,
+        keyframes: [KdLogoKeyframe(0, opacity: 1, accent: 1)],
+      ),
+      KdLogoTrack(
+        kind: KdLogoTarget.pixel,
+        indices: [45, 46, 47, 53, 54, 55, 62], shuffle: false,
+        start: 1290, stagger: 0, duration: 70,
+        easing: KdEasing.linear, wrap: false,
+        before: KdLogoHold.none, after: KdLogoHold.none,
+        keyframes: [KdLogoKeyframe(0, opacity: 1, accent: 1)],
+      ),
+      KdLogoTrack(
+        kind: KdLogoTarget.pixel,
+        indices: [45, 46, 47, 53, 54, 55, 61, 62], shuffle: false,
+        start: 1360, stagger: 0, duration: 70,
         easing: KdEasing.linear, wrap: false,
         before: KdLogoHold.none, after: KdLogoHold.none,
         keyframes: [KdLogoKeyframe(0, opacity: 1, accent: 1)],
@@ -184,7 +200,7 @@ abstract final class KdLogoAnimations {
       KdLogoTrack(
         kind: KdLogoTarget.cell,
         indices: [17, 18, 19, 21, 22, 23, 29, 30, 31], shuffle: false,
-        start: 1360, stagger: 0, duration: 0,
+        start: 1430, stagger: 0, duration: 0,
         easing: KdEasing.step, wrap: false,
         before: KdLogoHold.hold, after: KdLogoHold.hold,
         keyframes: [KdLogoKeyframe(0, opacity: 0), KdLogoKeyframe(1, opacity: 1)],
@@ -200,7 +216,134 @@ abstract final class KdLogoAnimations {
       KdLogoTrack(
         kind: KdLogoTarget.glyph,
         indices: [0, 1, 2, 3, 4, 5, 6, 7, 8], shuffle: false,
-        start: 1450, stagger: 40, duration: 300,
+        start: 1500, stagger: 40, duration: 300,
+        easing: KdEasing.outCubic, wrap: false,
+        before: KdLogoHold.hold, after: KdLogoHold.hold,
+        keyframes: [KdLogoKeyframe(0, opacity: 0, dy: 0.5), KdLogoKeyframe(1, opacity: 1, dy: 0)],
+      ),
+    ],
+  );
+
+  /// Herzschlag (splash, 2850 ms)
+  static const KdLogoAnimation heartbeat = KdLogoAnimation(
+    name: 'heartbeat', label: 'Herzschlag', scenario: 'splash', duration: 2850, loop: false,
+    tracks: [
+      KdLogoTrack(
+        kind: KdLogoTarget.pixel,
+        indices: [9, 10, 13, 14, 16, 17, 18, 19, 20, 21, 22, 23, 24, 25, 26, 27, 28, 29, 30, 31, 33, 34, 35, 36, 37, 38, 42, 43, 44, 45, 51, 52], shuffle: false,
+        start: 0, stagger: 0, duration: 120,
+        easing: KdEasing.outCubic, wrap: false,
+        before: KdLogoHold.hold, after: KdLogoHold.none,
+        keyframes: [KdLogoKeyframe(0, opacity: 0, accent: 1), KdLogoKeyframe(1, opacity: 1, accent: 1)],
+      ),
+      KdLogoTrack(
+        kind: KdLogoTarget.pixel,
+        indices: [9, 10, 13, 14, 16, 17, 18, 19, 20, 21, 22, 23, 24, 25, 26, 27, 28, 29, 30, 31, 33, 34, 35, 36, 37, 38, 42, 43, 44, 45, 51, 52], shuffle: false,
+        start: 120, stagger: 0, duration: 330,
+        easing: KdEasing.linear, wrap: false,
+        before: KdLogoHold.none, after: KdLogoHold.none,
+        keyframes: [KdLogoKeyframe(0, opacity: 1, accent: 1)],
+      ),
+      KdLogoTrack(
+        kind: KdLogoTarget.pixel,
+        indices: [18, 21, 25, 26, 27, 28, 29, 30, 33, 34, 35, 36, 37, 38, 42, 43, 44, 45, 51, 52], shuffle: false,
+        start: 450, stagger: 0, duration: 120,
+        easing: KdEasing.linear, wrap: false,
+        before: KdLogoHold.none, after: KdLogoHold.none,
+        keyframes: [KdLogoKeyframe(0, opacity: 1, accent: 1)],
+      ),
+      KdLogoTrack(
+        kind: KdLogoTarget.pixel,
+        indices: [9, 10, 13, 14, 16, 17, 18, 19, 20, 21, 22, 23, 24, 25, 26, 27, 28, 29, 30, 31, 33, 34, 35, 36, 37, 38, 42, 43, 44, 45, 51, 52], shuffle: false,
+        start: 570, stagger: 0, duration: 330,
+        easing: KdEasing.linear, wrap: false,
+        before: KdLogoHold.none, after: KdLogoHold.none,
+        keyframes: [KdLogoKeyframe(0, opacity: 1, accent: 1)],
+      ),
+      KdLogoTrack(
+        kind: KdLogoTarget.pixel,
+        indices: [18, 21, 25, 26, 27, 28, 29, 30, 33, 34, 35, 36, 37, 38, 42, 43, 44, 45, 51, 52], shuffle: false,
+        start: 900, stagger: 0, duration: 120,
+        easing: KdEasing.linear, wrap: false,
+        before: KdLogoHold.none, after: KdLogoHold.none,
+        keyframes: [KdLogoKeyframe(0, opacity: 1, accent: 1)],
+      ),
+      KdLogoTrack(
+        kind: KdLogoTarget.pixel,
+        indices: [9, 10, 13, 14, 16, 17, 18, 19, 20, 21, 22, 23, 24, 25, 26, 27, 28, 29, 30, 31, 33, 34, 35, 36, 37, 38, 42, 43, 44, 45, 51, 52], shuffle: false,
+        start: 1020, stagger: 0, duration: 330,
+        easing: KdEasing.linear, wrap: false,
+        before: KdLogoHold.none, after: KdLogoHold.none,
+        keyframes: [KdLogoKeyframe(0, opacity: 1, accent: 1)],
+      ),
+      KdLogoTrack(
+        kind: KdLogoTarget.pixel,
+        indices: [18, 21, 25, 26, 27, 28, 29, 30, 33, 34, 35, 36, 37, 38, 42, 43, 44, 45, 51, 52], shuffle: false,
+        start: 1350, stagger: 0, duration: 120,
+        easing: KdEasing.linear, wrap: false,
+        before: KdLogoHold.none, after: KdLogoHold.none,
+        keyframes: [KdLogoKeyframe(0, opacity: 1, accent: 1)],
+      ),
+      KdLogoTrack(
+        kind: KdLogoTarget.pixel,
+        indices: [9, 10, 13, 14, 16, 17, 18, 19, 20, 21, 22, 23, 24, 25, 26, 27, 28, 29, 30, 31, 33, 34, 35, 36, 37, 38, 42, 43, 44, 45, 51, 52], shuffle: false,
+        start: 1470, stagger: 0, duration: 230,
+        easing: KdEasing.linear, wrap: false,
+        before: KdLogoHold.none, after: KdLogoHold.none,
+        keyframes: [KdLogoKeyframe(0, opacity: 1, accent: 1)],
+      ),
+      KdLogoTrack(
+        kind: KdLogoTarget.pixel,
+        indices: [20, 22, 27, 28, 29, 30, 31, 35, 36, 37, 38, 39, 44, 45, 46, 53], shuffle: false,
+        start: 1700, stagger: 0, duration: 180,
+        easing: KdEasing.linear, wrap: false,
+        before: KdLogoHold.none, after: KdLogoHold.none,
+        keyframes: [KdLogoKeyframe(0, opacity: 1, accent: 1)],
+      ),
+      KdLogoTrack(
+        kind: KdLogoTarget.pixel,
+        indices: [45, 47, 53, 54, 55, 62], shuffle: false,
+        start: 1880, stagger: 0, duration: 110,
+        easing: KdEasing.linear, wrap: false,
+        before: KdLogoHold.none, after: KdLogoHold.none,
+        keyframes: [KdLogoKeyframe(0, opacity: 1, accent: 1)],
+      ),
+      KdLogoTrack(
+        kind: KdLogoTarget.pixel,
+        indices: [45, 46, 47, 53, 54, 55, 62], shuffle: false,
+        start: 1990, stagger: 0, duration: 70,
+        easing: KdEasing.linear, wrap: false,
+        before: KdLogoHold.none, after: KdLogoHold.none,
+        keyframes: [KdLogoKeyframe(0, opacity: 1, accent: 1)],
+      ),
+      KdLogoTrack(
+        kind: KdLogoTarget.pixel,
+        indices: [45, 46, 47, 53, 54, 55, 61, 62], shuffle: false,
+        start: 2060, stagger: 0, duration: 70,
+        easing: KdEasing.linear, wrap: false,
+        before: KdLogoHold.none, after: KdLogoHold.none,
+        keyframes: [KdLogoKeyframe(0, opacity: 1, accent: 1)],
+      ),
+      KdLogoTrack(
+        kind: KdLogoTarget.cell,
+        indices: [17, 18, 19, 21, 22, 23, 29, 30, 31], shuffle: false,
+        start: 2130, stagger: 0, duration: 0,
+        easing: KdEasing.step, wrap: false,
+        before: KdLogoHold.hold, after: KdLogoHold.hold,
+        keyframes: [KdLogoKeyframe(0, opacity: 0), KdLogoKeyframe(1, opacity: 1)],
+      ),
+      KdLogoTrack(
+        kind: KdLogoTarget.cell,
+        indices: [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 20, 24, 25, 26, 27, 28], shuffle: true,
+        start: 1700, stagger: 16, duration: 220,
+        easing: KdEasing.outBack, wrap: false,
+        before: KdLogoHold.hold, after: KdLogoHold.hold,
+        keyframes: [KdLogoKeyframe(0, opacity: 0, scale: 0.3), KdLogoKeyframe(1, opacity: 1, scale: 1)],
+      ),
+      KdLogoTrack(
+        kind: KdLogoTarget.glyph,
+        indices: [0, 1, 2, 3, 4, 5, 6, 7, 8], shuffle: false,
+        start: 2200, stagger: 40, duration: 300,
         easing: KdEasing.outCubic, wrap: false,
         before: KdLogoHold.hold, after: KdLogoHold.hold,
         keyframes: [KdLogoKeyframe(0, opacity: 0, dy: 0.5), KdLogoKeyframe(1, opacity: 1, dy: 0)],
@@ -548,13 +691,14 @@ abstract final class KdLogoAnimations {
     ],
   );
 
-  static const List<KdLogoAnimation> all = [rain, bloom, scatter, heart, euro, check, star, lock, receipt, breathe];
+  static const List<KdLogoAnimation> all = [rain, bloom, scatter, heart, heartbeat, euro, check, star, lock, receipt, breathe];
 
   static const Map<String, KdLogoAnimation> byName = {
     'rain': rain,
     'bloom': bloom,
     'scatter': scatter,
     'heart': heart,
+    'heartbeat': heartbeat,
     'euro': euro,
     'check': check,
     'star': star,

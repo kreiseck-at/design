@@ -5,8 +5,8 @@
   layer over all 64 fields (`pixels`) for pixel art that turns into the mark.
   The wordmark is Archivo 600 set as outlines, so nothing depends on a font.
 - Added: `KdLogoMotion` plays the data-defined animations in
-  `KdLogoAnimations` (rain, bloom, scatter, heart, euro, check, star, lock,
-  receipt, breathe); `kdSampleLogo` gives the per-element styles for custom
+  `KdLogoAnimations` (rain, bloom, scatter, heart, heartbeat, euro, check,
+  star, lock, receipt, breathe); `kdSampleLogo` gives the per-element styles for custom
   motion. The same data drives `@kreiseck/design`; the golden fixture holds
   sampled frames both packages must reproduce.
 - Changed: `KdSignetPainter` names its colours `ink`/`accent` (was

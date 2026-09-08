@@ -368,7 +368,7 @@ export const animations: Readonly<Record<string, Animation>> = {
     "name": "heart",
     "de": "Herz",
     "scenario": "splash",
-    "duration": 2100,
+    "duration": 2150,
     "loop": false,
     "tracks": [
       {
@@ -524,17 +524,72 @@ export const animations: Readonly<Record<string, Animation>> = {
       {
         "kind": "pixel",
         "indices": [
-          37,
-          39,
           45,
-          46,
           47,
-          54
+          53,
+          54,
+          55,
+          62
         ],
         "shuffle": false,
         "start": 1180,
         "stagger": 0,
-        "duration": 180,
+        "duration": 110,
+        "easing": "linear",
+        "wrap": false,
+        "before": "none",
+        "after": "none",
+        "keyframes": [
+          {
+            "at": 0,
+            "opacity": 1,
+            "accent": 1
+          }
+        ]
+      },
+      {
+        "kind": "pixel",
+        "indices": [
+          45,
+          46,
+          47,
+          53,
+          54,
+          55,
+          62
+        ],
+        "shuffle": false,
+        "start": 1290,
+        "stagger": 0,
+        "duration": 70,
+        "easing": "linear",
+        "wrap": false,
+        "before": "none",
+        "after": "none",
+        "keyframes": [
+          {
+            "at": 0,
+            "opacity": 1,
+            "accent": 1
+          }
+        ]
+      },
+      {
+        "kind": "pixel",
+        "indices": [
+          45,
+          46,
+          47,
+          53,
+          54,
+          55,
+          61,
+          62
+        ],
+        "shuffle": false,
+        "start": 1360,
+        "stagger": 0,
+        "duration": 70,
         "easing": "linear",
         "wrap": false,
         "before": "none",
@@ -561,7 +616,7 @@ export const animations: Readonly<Record<string, Animation>> = {
           31
         ],
         "shuffle": false,
-        "start": 1360,
+        "start": 1430,
         "stagger": 0,
         "duration": 0,
         "easing": "step",
@@ -641,7 +696,632 @@ export const animations: Readonly<Record<string, Animation>> = {
           8
         ],
         "shuffle": false,
-        "start": 1450,
+        "start": 1500,
+        "stagger": 40,
+        "duration": 300,
+        "easing": "out-cubic",
+        "wrap": false,
+        "before": "hold",
+        "after": "hold",
+        "keyframes": [
+          {
+            "at": 0,
+            "opacity": 0,
+            "dy": 0.5
+          },
+          {
+            "at": 1,
+            "opacity": 1,
+            "dy": 0
+          }
+        ]
+      }
+    ]
+  },
+  "heartbeat": {
+    "name": "heartbeat",
+    "de": "Herzschlag",
+    "scenario": "splash",
+    "duration": 2850,
+    "loop": false,
+    "tracks": [
+      {
+        "kind": "pixel",
+        "indices": [
+          9,
+          10,
+          13,
+          14,
+          16,
+          17,
+          18,
+          19,
+          20,
+          21,
+          22,
+          23,
+          24,
+          25,
+          26,
+          27,
+          28,
+          29,
+          30,
+          31,
+          33,
+          34,
+          35,
+          36,
+          37,
+          38,
+          42,
+          43,
+          44,
+          45,
+          51,
+          52
+        ],
+        "shuffle": false,
+        "start": 0,
+        "stagger": 0,
+        "duration": 120,
+        "easing": "out-cubic",
+        "wrap": false,
+        "before": "hold",
+        "after": "none",
+        "keyframes": [
+          {
+            "at": 0,
+            "opacity": 0,
+            "accent": 1
+          },
+          {
+            "at": 1,
+            "opacity": 1,
+            "accent": 1
+          }
+        ]
+      },
+      {
+        "kind": "pixel",
+        "indices": [
+          9,
+          10,
+          13,
+          14,
+          16,
+          17,
+          18,
+          19,
+          20,
+          21,
+          22,
+          23,
+          24,
+          25,
+          26,
+          27,
+          28,
+          29,
+          30,
+          31,
+          33,
+          34,
+          35,
+          36,
+          37,
+          38,
+          42,
+          43,
+          44,
+          45,
+          51,
+          52
+        ],
+        "shuffle": false,
+        "start": 120,
+        "stagger": 0,
+        "duration": 330,
+        "easing": "linear",
+        "wrap": false,
+        "before": "none",
+        "after": "none",
+        "keyframes": [
+          {
+            "at": 0,
+            "opacity": 1,
+            "accent": 1
+          }
+        ]
+      },
+      {
+        "kind": "pixel",
+        "indices": [
+          18,
+          21,
+          25,
+          26,
+          27,
+          28,
+          29,
+          30,
+          33,
+          34,
+          35,
+          36,
+          37,
+          38,
+          42,
+          43,
+          44,
+          45,
+          51,
+          52
+        ],
+        "shuffle": false,
+        "start": 450,
+        "stagger": 0,
+        "duration": 120,
+        "easing": "linear",
+        "wrap": false,
+        "before": "none",
+        "after": "none",
+        "keyframes": [
+          {
+            "at": 0,
+            "opacity": 1,
+            "accent": 1
+          }
+        ]
+      },
+      {
+        "kind": "pixel",
+        "indices": [
+          9,
+          10,
+          13,
+          14,
+          16,
+          17,
+          18,
+          19,
+          20,
+          21,
+          22,
+          23,
+          24,
+          25,
+          26,
+          27,
+          28,
+          29,
+          30,
+          31,
+          33,
+          34,
+          35,
+          36,
+          37,
+          38,
+          42,
+          43,
+          44,
+          45,
+          51,
+          52
+        ],
+        "shuffle": false,
+        "start": 570,
+        "stagger": 0,
+        "duration": 330,
+        "easing": "linear",
+        "wrap": false,
+        "before": "none",
+        "after": "none",
+        "keyframes": [
+          {
+            "at": 0,
+            "opacity": 1,
+            "accent": 1
+          }
+        ]
+      },
+      {
+        "kind": "pixel",
+        "indices": [
+          18,
+          21,
+          25,
+          26,
+          27,
+          28,
+          29,
+          30,
+          33,
+          34,
+          35,
+          36,
+          37,
+          38,
+          42,
+          43,
+          44,
+          45,
+          51,
+          52
+        ],
+        "shuffle": false,
+        "start": 900,
+        "stagger": 0,
+        "duration": 120,
+        "easing": "linear",
+        "wrap": false,
+        "before": "none",
+        "after": "none",
+        "keyframes": [
+          {
+            "at": 0,
+            "opacity": 1,
+            "accent": 1
+          }
+        ]
+      },
+      {
+        "kind": "pixel",
+        "indices": [
+          9,
+          10,
+          13,
+          14,
+          16,
+          17,
+          18,
+          19,
+          20,
+          21,
+          22,
+          23,
+          24,
+          25,
+          26,
+          27,
+          28,
+          29,
+          30,
+          31,
+          33,
+          34,
+          35,
+          36,
+          37,
+          38,
+          42,
+          43,
+          44,
+          45,
+          51,
+          52
+        ],
+        "shuffle": false,
+        "start": 1020,
+        "stagger": 0,
+        "duration": 330,
+        "easing": "linear",
+        "wrap": false,
+        "before": "none",
+        "after": "none",
+        "keyframes": [
+          {
+            "at": 0,
+            "opacity": 1,
+            "accent": 1
+          }
+        ]
+      },
+      {
+        "kind": "pixel",
+        "indices": [
+          18,
+          21,
+          25,
+          26,
+          27,
+          28,
+          29,
+          30,
+          33,
+          34,
+          35,
+          36,
+          37,
+          38,
+          42,
+          43,
+          44,
+          45,
+          51,
+          52
+        ],
+        "shuffle": false,
+        "start": 1350,
+        "stagger": 0,
+        "duration": 120,
+        "easing": "linear",
+        "wrap": false,
+        "before": "none",
+        "after": "none",
+        "keyframes": [
+          {
+            "at": 0,
+            "opacity": 1,
+            "accent": 1
+          }
+        ]
+      },
+      {
+        "kind": "pixel",
+        "indices": [
+          9,
+          10,
+          13,
+          14,
+          16,
+          17,
+          18,
+          19,
+          20,
+          21,
+          22,
+          23,
+          24,
+          25,
+          26,
+          27,
+          28,
+          29,
+          30,
+          31,
+          33,
+          34,
+          35,
+          36,
+          37,
+          38,
+          42,
+          43,
+          44,
+          45,
+          51,
+          52
+        ],
+        "shuffle": false,
+        "start": 1470,
+        "stagger": 0,
+        "duration": 230,
+        "easing": "linear",
+        "wrap": false,
+        "before": "none",
+        "after": "none",
+        "keyframes": [
+          {
+            "at": 0,
+            "opacity": 1,
+            "accent": 1
+          }
+        ]
+      },
+      {
+        "kind": "pixel",
+        "indices": [
+          20,
+          22,
+          27,
+          28,
+          29,
+          30,
+          31,
+          35,
+          36,
+          37,
+          38,
+          39,
+          44,
+          45,
+          46,
+          53
+        ],
+        "shuffle": false,
+        "start": 1700,
+        "stagger": 0,
+        "duration": 180,
+        "easing": "linear",
+        "wrap": false,
+        "before": "none",
+        "after": "none",
+        "keyframes": [
+          {
+            "at": 0,
+            "opacity": 1,
+            "accent": 1
+          }
+        ]
+      },
+      {
+        "kind": "pixel",
+        "indices": [
+          45,
+          47,
+          53,
+          54,
+          55,
+          62
+        ],
+        "shuffle": false,
+        "start": 1880,
+        "stagger": 0,
+        "duration": 110,
+        "easing": "linear",
+        "wrap": false,
+        "before": "none",
+        "after": "none",
+        "keyframes": [
+          {
+            "at": 0,
+            "opacity": 1,
+            "accent": 1
+          }
+        ]
+      },
+      {
+        "kind": "pixel",
+        "indices": [
+          45,
+          46,
+          47,
+          53,
+          54,
+          55,
+          62
+        ],
+        "shuffle": false,
+        "start": 1990,
+        "stagger": 0,
+        "duration": 70,
+        "easing": "linear",
+        "wrap": false,
+        "before": "none",
+        "after": "none",
+        "keyframes": [
+          {
+            "at": 0,
+            "opacity": 1,
+            "accent": 1
+          }
+        ]
+      },
+      {
+        "kind": "pixel",
+        "indices": [
+          45,
+          46,
+          47,
+          53,
+          54,
+          55,
+          61,
+          62
+        ],
+        "shuffle": false,
+        "start": 2060,
+        "stagger": 0,
+        "duration": 70,
+        "easing": "linear",
+        "wrap": false,
+        "before": "none",
+        "after": "none",
+        "keyframes": [
+          {
+            "at": 0,
+            "opacity": 1,
+            "accent": 1
+          }
+        ]
+      },
+      {
+        "kind": "cell",
+        "indices": [
+          17,
+          18,
+          19,
+          21,
+          22,
+          23,
+          29,
+          30,
+          31
+        ],
+        "shuffle": false,
+        "start": 2130,
+        "stagger": 0,
+        "duration": 0,
+        "easing": "step",
+        "wrap": false,
+        "before": "hold",
+        "after": "hold",
+        "keyframes": [
+          {
+            "at": 0,
+            "opacity": 0
+          },
+          {
+            "at": 1,
+            "opacity": 1
+          }
+        ]
+      },
+      {
+        "kind": "cell",
+        "indices": [
+          0,
+          1,
+          2,
+          3,
+          4,
+          5,
+          6,
+          7,
+          8,
+          9,
+          10,
+          11,
+          12,
+          13,
+          14,
+          15,
+          16,
+          20,
+          24,
+          25,
+          26,
+          27,
+          28
+        ],
+        "shuffle": true,
+        "start": 1700,
+        "stagger": 16,
+        "duration": 220,
+        "easing": "out-back",
+        "wrap": false,
+        "before": "hold",
+        "after": "hold",
+        "keyframes": [
+          {
+            "at": 0,
+            "opacity": 0,
+            "scale": 0.3
+          },
+          {
+            "at": 1,
+            "opacity": 1,
+            "scale": 1
+          }
+        ]
+      },
+      {
+        "kind": "glyph",
+        "indices": [
+          0,
+          1,
+          2,
+          3,
+          4,
+          5,
+          6,
+          7,
+          8
+        ],
+        "shuffle": false,
+        "start": 2200,
         "stagger": 40,
         "duration": 300,
         "easing": "out-cubic",
@@ -2792,5 +3472,5 @@ export const animations: Readonly<Record<string, Animation>> = {
   },
 };
 
-export const animationNames = ["rain","bloom","scatter","heart","euro","check","star","lock","receipt","breathe"] as const;
+export const animationNames = ["rain","bloom","scatter","heart","heartbeat","euro","check","star","lock","receipt","breathe"] as const;
 export type AnimationName = (typeof animationNames)[number];

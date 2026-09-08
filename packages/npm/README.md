@@ -92,7 +92,8 @@ pixel art and *become* the logo. Every animation is data
 | `rain` | Regen | splash | 1600 ms |
 | `bloom` | Aufblühen | splash | 1400 ms |
 | `scatter` | Zufall | splash | 1400 ms |
-| `heart` | Herz | splash | 2100 ms |
+| `heart` | Herz | splash | 2150 ms |
+| `heartbeat` | Herzschlag | splash | 2850 ms |
 | `euro` | Euro | splash | 2100 ms |
 | `check` | Haken | splash | 2100 ms |
 | `star` | Stern | splash | 2100 ms |

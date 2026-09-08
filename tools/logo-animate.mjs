@@ -138,7 +138,8 @@ export function sample(anim, t, seed = 0) {
       let local = T - track.start - i * track.stagger;
       if (track.wrap) local = ((local % anim.duration) + anim.duration) % anim.duration;
       if (local < 0 && track.before === "none") return;
-      if (local > track.duration && track.after === "none") return;
+      // End exclusive: a still that ends where the next begins never shows both.
+      if (local >= track.duration && track.after === "none") return;
       const u = track.duration <= 0 ? (local < 0 ? 0 : 1) : Math.min(1, Math.max(0, local / track.duration));
       const e = ease(track.easing, u);
       for (const prop of PROPS) {

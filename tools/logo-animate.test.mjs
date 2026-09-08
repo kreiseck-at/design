@@ -73,6 +73,7 @@ describe("sample", () => {
     const a = anim([track({ before: "none", after: "none", stagger: 0 })]);
     expect(sample(a, 0.05).cells[0]).toEqual(resting());
     expect(sample(a, 0.2).cells[0].opacity).toBeCloseTo(0.5, 9);
+    expect(sample(a, 0.3).cells[0]).toEqual(resting()); // local == duration: already released
     expect(sample(a, 0.5).cells[0]).toEqual(resting());
   });
   it("a later track overrides the props it defines, and only those", () => {
