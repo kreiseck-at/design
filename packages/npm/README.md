@@ -1,6 +1,6 @@
 # @kreiseck/design
 
-Design tokens, colour roles for four modes, a brand ramp and the icon set shared by all Kreiseck surfaces.
+Design tokens, colour roles for four modes, a brand ramp, the icon set and the Kasseneck logo (with its animations) shared by all Kreiseck surfaces.
 
 ## Install
 
@@ -56,6 +56,68 @@ document.body.insertAdjacentHTML("afterbegin", spriteSource);
 An external `href` pointing at the sprite file (`sprite.svg#kd-receipt`) works in Chrome and Firefox but not in Safari, which only resolves `<use>` against fragments already in the document — inline the sprite once as above and reference it by id everywhere.
 
 Or a single icon file directly: `@kreiseck/design/svg/receipt.svg`.
+
+## Logo
+
+The Kasseneck logo as React components, drawn from geometry — no asset, no
+font: the mark as the three brand paths, the wordmark as Archivo 600
+outlines. What renders is byte for byte the brand's SVG.
+
+```tsx
+import { Signet, Logo, Wordmark, LogoMotion } from "@kreiseck/design/logo";
+
+<Signet size={40} />                 // the mark: frame in currentColor, corner in var(--kd-brand)
+<Logo height={28} />                 // mark + wordmark, 332/48 as wide as tall
+<Wordmark height={28} />             // the wordmark alone
+```
+
+`ink`, `accent` and `highlight` take any CSS colour (on a dark ground pass a
+light `ink`); `title` names the graphic, without one it is decorative.
+
+### Animations
+
+The mark is an 8×8 grid: 32 cells of the frame and the corner, plus a pixel
+layer over all 64 fields that is invisible at rest — so the mark can show
+pixel art and *become* the logo. Every animation is data
+(`brand/animations.json`), identical here and in the Flutter package.
+
+```tsx
+<LogoMotion animation="heart" height={40} />
+<LogoMotion animation="breathe" wordmark={false} height={64} />   // the mark alone, loops
+<LogoMotion animation="euro" onDone={() => go()} playKey={run} />  // change playKey to replay
+```
+
+| name | label | scenario | length |
+|---|---|---|---|
+| `rain` | Regen | splash | 1600 ms |
+| `bloom` | Aufblühen | splash | 1400 ms |
+| `scatter` | Zufall | splash | 1400 ms |
+| `heart` | Herz | splash | 2100 ms |
+| `euro` | Euro | splash | 2100 ms |
+| `check` | Haken | splash | 2100 ms |
+| `star` | Stern | splash | 2100 ms |
+| `lock` | Schloss | splash | 2100 ms |
+| `receipt` | Bon | splash | 2100 ms |
+| `breathe` | Atmen | waiting | 2400 ms · loops |
+
+`loop` overrides the animation's own flag, `rate` scales playback,
+`autoplay={false}` shows the last frame. Tracks marked random draw a fresh
+order every run.
+
+For your own motion, sample the data and hand the styles to the components:
+
+```tsx
+import { sample, animations } from "@kreiseck/design/logo";
+
+const s = sample(animations.rain, t);     // t 0..1
+<Logo height={28} cells={s.cells} glyphs={s.glyphs} pixels={s.pixels} />
+```
+
+A `Style` per element carries `opacity`, `scale`, `dx`/`dy` (in cells),
+`tint` (toward `highlight`) and `accent` (toward the corner's petrol).
+Intermediate tints use `color-mix()`, so a tinted frame needs a 2023+
+browser; at rest the components render the plain brand paths and never show
+seams between cells.
 
 ## Fonts
 

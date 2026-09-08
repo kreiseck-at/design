@@ -10,3 +10,6 @@ export 'src/theme.dart';
 export 'src/brand_ramp.dart';
 export 'src/icon.dart';
 export 'src/icons.dart';
+export 'src/logo.dart';
+export 'src/logo_animate.dart';
+export 'src/logo_data.dart';

@@ -10,6 +10,11 @@ import { emitIconsWeb } from "./emit-icons-web.mjs";
 import { iconDigests } from "./icons-digest.mjs";
 import { staleIconFiles, removeStale } from "./stale.mjs";
 import { emitFontsCss } from "./fonts.mjs";
+import { loadLogo } from "./logo.mjs";
+import { loadAnimations } from "./logo-animations.mjs";
+import { emitLogoDart } from "./emit-logo-dart.mjs";
+import { emitLogoWeb } from "./emit-logo-web.mjs";
+import { logoDigest } from "./logo-digest.mjs";
 
 const root = new URL("../", import.meta.url);
 const checkOnly = process.argv.includes("--check");
@@ -29,6 +34,8 @@ const outputs = async (models) => {
   const { ts, css } = emitTs(primary);
   const colourSource = await readFile(new URL("tools/color.mjs", root), "utf8");
   const asMjs = "// Generated from tools/color.mjs. Do not edit.\n\n" + colourSource;
+  const animateSource = await readFile(new URL("tools/logo-animate.mjs", root), "utf8");
+  const animateMjs = "// Generated from tools/logo-animate.mjs. Do not edit.\n\n" + animateSource;
   return [
     ["packages/npm/src/tokens.ts", ts],
     ["packages/npm/src/tokens.css", css],
@@ -38,6 +45,9 @@ const outputs = async (models) => {
     ["gallery/index.html", emitGallery(primary, iconsModel)],
     ["packages/dart/lib/src/icons.dart", emitIconsDart(iconsModel)],
     ...emitIconsWeb(iconsModel).files,
+    ["packages/npm/src/logo/animate.mjs", animateMjs],
+    ["packages/npm/src/logo/data.ts", emitLogoWeb(logo, animations)],
+    ["packages/dart/lib/src/logo_data.dart", emitLogoDart(logo, animations)],
     ...models.map((model) => [`golden/${model.brand}.json`, `${JSON.stringify(model, null, 2)}\n`]),
   ];
 };
@@ -55,7 +65,10 @@ try {
   process.exit(1);
 }
 
-const models = brands.map((brand) => ({ ...resolveTokens(base, brand), icons: iconDigests(iconsModel) }));
+const logo = await loadLogo(root);
+const animations = await loadAnimations(root, logo);
+
+const models = brands.map((brand) => ({ ...resolveTokens(base, brand), icons: iconDigests(iconsModel), logo: logoDigest(logo, animations) }));
 
 for (const model of models) {
   const result = check(model);

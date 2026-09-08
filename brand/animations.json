@@ -1,0 +1,943 @@
+{
+  "_": "Logo animations as data. Units: ms for time; dx/dy in cells (one cell = 1/8 of the mark); scale around the element's centre; tint 0..1 blends toward the counter colour (frame → accent, corner → ink, glyph → accent). Orders for cells: reading, columns, clockwise, counter, ring, from-corner, to-corner, from-center, random (a fresh order every run) or random:<seed> (fixed). Orders for glyphs: ltr, rtl, center-out, edges-in, random:<seed>. A track holds its first keyframe before it starts and its last after it ends unless before/after is \"none\"; wrap runs it modulo the animation duration. Target \"pixels\" takes an \"art\": eight rows of eight characters, \"#\" lit, \".\" dark — the pixel layer is invisible at rest and sits on the whole 8×8 grid; orders: reading, columns, from-center, from-corner, random:<seed>. A pixels track may \"morph\" into \"mark\", \"corner\" or \"frame\": every lit pixel gets a nearest free cell, and the keyframe prop \"move\" (0..1) walks it there. Targets \"landed\"/\"unlanded\" are the cells a morph track of the same animation hands over to, and the others. \"accent\" (0..1) blends toward the brand petrol. A morph track with \"colour\": \"landing\" tints pixels bound for the corner petrol on the way.",
+  "animations": {
+    "rain": {
+      "de": "Regen",
+      "scenario": "splash",
+      "duration": 1600,
+      "tracks": [
+        {
+          "target": "cells",
+          "order": "random",
+          "stagger": 22,
+          "duration": 520,
+          "easing": "out-cubic",
+          "from": {
+            "opacity": 0,
+            "dy": -9
+          },
+          "to": {
+            "opacity": 1,
+            "dy": 0
+          }
+        },
+        {
+          "target": "glyphs",
+          "order": "ltr",
+          "start": 900,
+          "stagger": 30,
+          "duration": 300,
+          "easing": "out-cubic",
+          "from": {
+            "opacity": 0
+          },
+          "to": {
+            "opacity": 1
+          }
+        }
+      ]
+    },
+    "bloom": {
+      "de": "Aufblühen",
+      "scenario": "splash",
+      "duration": 1400,
+      "tracks": [
+        {
+          "target": "cells",
+          "order": "from-corner",
+          "stagger": 26,
+          "duration": 360,
+          "easing": "out-back",
+          "from": {
+            "opacity": 0,
+            "scale": 0
+          },
+          "to": {
+            "opacity": 1,
+            "scale": 1
+          }
+        },
+        {
+          "target": "glyphs",
+          "order": "ltr",
+          "start": 600,
+          "stagger": 40,
+          "duration": 400,
+          "easing": "out-cubic",
+          "from": {
+            "opacity": 0,
+            "scale": 0.6
+          },
+          "to": {
+            "opacity": 1,
+            "scale": 1
+          }
+        }
+      ]
+    },
+    "scatter": {
+      "de": "Zufall",
+      "scenario": "splash",
+      "duration": 1400,
+      "tracks": [
+        {
+          "target": "cells",
+          "order": "random",
+          "stagger": 22,
+          "duration": 320,
+          "easing": "out-back",
+          "from": {
+            "opacity": 0,
+            "scale": 0
+          },
+          "to": {
+            "opacity": 1,
+            "scale": 1
+          }
+        },
+        {
+          "target": "glyphs",
+          "order": "random",
+          "start": 500,
+          "stagger": 70,
+          "duration": 260,
+          "easing": "out-cubic",
+          "from": {
+            "opacity": 0,
+            "scale": 0.7
+          },
+          "to": {
+            "opacity": 1,
+            "scale": 1
+          }
+        }
+      ]
+    },
+    "heart": {
+      "de": "Herz",
+      "scenario": "splash",
+      "duration": 2100,
+      "tracks": [
+        {
+          "target": "pixels",
+          "art": [
+            "........",
+            ".##..##.",
+            "########",
+            "########",
+            ".######.",
+            "..####..",
+            "...##...",
+            "........"
+          ],
+          "order": "random",
+          "stagger": 22,
+          "duration": 120,
+          "easing": "out-cubic",
+          "from": {
+            "opacity": 0,
+            "accent": 1
+          },
+          "to": {
+            "opacity": 1,
+            "accent": 1
+          }
+        },
+        {
+          "target": "pixels",
+          "art": [
+            "........",
+            ".##..##.",
+            "########",
+            "########",
+            ".######.",
+            "..####..",
+            "...##...",
+            "........"
+          ],
+          "start": 1000,
+          "duration": 1,
+          "easing": "step",
+          "before": "none",
+          "from": {
+            "opacity": 1,
+            "accent": 1
+          },
+          "to": {
+            "opacity": 0,
+            "accent": 1
+          }
+        },
+        {
+          "target": "pixels",
+          "art": [
+            "........",
+            "........",
+            "..#.#...",
+            ".#####..",
+            ".#####..",
+            "..###...",
+            "...#....",
+            "........"
+          ],
+          "start": 1000,
+          "duration": 180,
+          "easing": "linear",
+          "before": "none",
+          "after": "none",
+          "keyframes": [
+            {
+              "at": 0,
+              "opacity": 1,
+              "accent": 1
+            }
+          ]
+        },
+        {
+          "target": "pixels",
+          "art": [
+            "........",
+            "........",
+            "........",
+            "........",
+            "....#.#.",
+            "....###.",
+            ".....#..",
+            "........"
+          ],
+          "start": 1180,
+          "duration": 180,
+          "easing": "linear",
+          "before": "none",
+          "after": "none",
+          "keyframes": [
+            {
+              "at": 0,
+              "opacity": 1,
+              "accent": 1
+            }
+          ]
+        },
+        {
+          "target": "corner",
+          "start": 1360,
+          "duration": 1,
+          "easing": "step",
+          "from": {
+            "opacity": 0
+          },
+          "to": {
+            "opacity": 1
+          }
+        },
+        {
+          "target": "frame",
+          "order": "random",
+          "start": 1000,
+          "stagger": 16,
+          "duration": 220,
+          "easing": "out-back",
+          "from": {
+            "opacity": 0,
+            "scale": 0.3
+          },
+          "to": {
+            "opacity": 1,
+            "scale": 1
+          }
+        },
+        {
+          "target": "glyphs",
+          "order": "ltr",
+          "start": 1450,
+          "stagger": 40,
+          "duration": 300,
+          "easing": "out-cubic",
+          "from": {
+            "opacity": 0,
+            "dy": 0.5
+          },
+          "to": {
+            "opacity": 1,
+            "dy": 0
+          }
+        }
+      ]
+    },
+    "euro": {
+      "de": "Euro",
+      "scenario": "splash",
+      "duration": 2100,
+      "tracks": [
+        {
+          "target": "pixels",
+          "art": [
+            "...####.",
+            "..#....#",
+            ".#......",
+            "####....",
+            ".#......",
+            "####....",
+            "..#....#",
+            "...####."
+          ],
+          "order": "random",
+          "stagger": 16,
+          "duration": 220,
+          "easing": "out-back",
+          "from": {
+            "opacity": 0,
+            "scale": 0.3
+          },
+          "to": {
+            "opacity": 1,
+            "scale": 1
+          }
+        },
+        {
+          "target": "pixels",
+          "art": [
+            "...####.",
+            "..#....#",
+            ".#......",
+            "####....",
+            ".#......",
+            "####....",
+            "..#....#",
+            "...####."
+          ],
+          "morph": "mark",
+          "colour": "landing",
+          "start": 800,
+          "duration": 500,
+          "easing": "in-out-cubic",
+          "before": "none",
+          "after": "none",
+          "keyframes": [
+            {
+              "at": 0,
+              "move": 0
+            },
+            {
+              "at": 1,
+              "move": 1
+            }
+          ]
+        },
+        {
+          "target": "pixels",
+          "art": [
+            "...####.",
+            "..#....#",
+            ".#......",
+            "####....",
+            ".#......",
+            "####....",
+            "..#....#",
+            "...####."
+          ],
+          "start": 1300,
+          "duration": 1,
+          "easing": "step",
+          "before": "none",
+          "from": {
+            "opacity": 1
+          },
+          "to": {
+            "opacity": 0
+          }
+        },
+        {
+          "target": "landed",
+          "start": 1300,
+          "duration": 1,
+          "easing": "step",
+          "from": {
+            "opacity": 0
+          },
+          "to": {
+            "opacity": 1
+          }
+        },
+        {
+          "target": "unlanded",
+          "order": "random",
+          "start": 1300,
+          "stagger": 10,
+          "duration": 200,
+          "easing": "out-back",
+          "from": {
+            "opacity": 0,
+            "scale": 0.3
+          },
+          "to": {
+            "opacity": 1,
+            "scale": 1
+          }
+        },
+        {
+          "target": "glyphs",
+          "order": "ltr",
+          "start": 1400,
+          "stagger": 40,
+          "duration": 300,
+          "easing": "out-cubic",
+          "from": {
+            "opacity": 0,
+            "dy": 0.5
+          },
+          "to": {
+            "opacity": 1,
+            "dy": 0
+          }
+        }
+      ]
+    },
+    "check": {
+      "de": "Haken",
+      "scenario": "splash",
+      "duration": 2100,
+      "tracks": [
+        {
+          "target": "pixels",
+          "art": [
+            "........",
+            ".......#",
+            "......##",
+            ".....##.",
+            "#...##..",
+            "##.##...",
+            ".###....",
+            "..#....."
+          ],
+          "order": "random",
+          "stagger": 16,
+          "duration": 220,
+          "easing": "out-back",
+          "from": {
+            "opacity": 0,
+            "scale": 0.3
+          },
+          "to": {
+            "opacity": 1,
+            "scale": 1
+          }
+        },
+        {
+          "target": "pixels",
+          "art": [
+            "........",
+            ".......#",
+            "......##",
+            ".....##.",
+            "#...##..",
+            "##.##...",
+            ".###....",
+            "..#....."
+          ],
+          "morph": "mark",
+          "colour": "landing",
+          "start": 800,
+          "duration": 500,
+          "easing": "in-out-cubic",
+          "before": "none",
+          "after": "none",
+          "keyframes": [
+            {
+              "at": 0,
+              "move": 0
+            },
+            {
+              "at": 1,
+              "move": 1
+            }
+          ]
+        },
+        {
+          "target": "pixels",
+          "art": [
+            "........",
+            ".......#",
+            "......##",
+            ".....##.",
+            "#...##..",
+            "##.##...",
+            ".###....",
+            "..#....."
+          ],
+          "start": 1300,
+          "duration": 1,
+          "easing": "step",
+          "before": "none",
+          "from": {
+            "opacity": 1
+          },
+          "to": {
+            "opacity": 0
+          }
+        },
+        {
+          "target": "landed",
+          "start": 1300,
+          "duration": 1,
+          "easing": "step",
+          "from": {
+            "opacity": 0
+          },
+          "to": {
+            "opacity": 1
+          }
+        },
+        {
+          "target": "unlanded",
+          "order": "random",
+          "start": 1300,
+          "stagger": 10,
+          "duration": 200,
+          "easing": "out-back",
+          "from": {
+            "opacity": 0,
+            "scale": 0.3
+          },
+          "to": {
+            "opacity": 1,
+            "scale": 1
+          }
+        },
+        {
+          "target": "glyphs",
+          "order": "ltr",
+          "start": 1400,
+          "stagger": 40,
+          "duration": 300,
+          "easing": "out-cubic",
+          "from": {
+            "opacity": 0,
+            "dy": 0.5
+          },
+          "to": {
+            "opacity": 1,
+            "dy": 0
+          }
+        }
+      ]
+    },
+    "star": {
+      "de": "Stern",
+      "scenario": "splash",
+      "duration": 2100,
+      "tracks": [
+        {
+          "target": "pixels",
+          "art": [
+            "...#....",
+            "..###...",
+            "#######.",
+            ".#####..",
+            "..###...",
+            ".##.##..",
+            "#.....#.",
+            "........"
+          ],
+          "order": "random",
+          "stagger": 16,
+          "duration": 220,
+          "easing": "out-back",
+          "from": {
+            "opacity": 0,
+            "scale": 0.3
+          },
+          "to": {
+            "opacity": 1,
+            "scale": 1
+          }
+        },
+        {
+          "target": "pixels",
+          "art": [
+            "...#....",
+            "..###...",
+            "#######.",
+            ".#####..",
+            "..###...",
+            ".##.##..",
+            "#.....#.",
+            "........"
+          ],
+          "morph": "mark",
+          "colour": "landing",
+          "start": 800,
+          "duration": 500,
+          "easing": "in-out-cubic",
+          "before": "none",
+          "after": "none",
+          "keyframes": [
+            {
+              "at": 0,
+              "move": 0
+            },
+            {
+              "at": 1,
+              "move": 1
+            }
+          ]
+        },
+        {
+          "target": "pixels",
+          "art": [
+            "...#....",
+            "..###...",
+            "#######.",
+            ".#####..",
+            "..###...",
+            ".##.##..",
+            "#.....#.",
+            "........"
+          ],
+          "start": 1300,
+          "duration": 1,
+          "easing": "step",
+          "before": "none",
+          "from": {
+            "opacity": 1
+          },
+          "to": {
+            "opacity": 0
+          }
+        },
+        {
+          "target": "landed",
+          "start": 1300,
+          "duration": 1,
+          "easing": "step",
+          "from": {
+            "opacity": 0
+          },
+          "to": {
+            "opacity": 1
+          }
+        },
+        {
+          "target": "unlanded",
+          "order": "random",
+          "start": 1300,
+          "stagger": 10,
+          "duration": 200,
+          "easing": "out-back",
+          "from": {
+            "opacity": 0,
+            "scale": 0.3
+          },
+          "to": {
+            "opacity": 1,
+            "scale": 1
+          }
+        },
+        {
+          "target": "glyphs",
+          "order": "ltr",
+          "start": 1400,
+          "stagger": 40,
+          "duration": 300,
+          "easing": "out-cubic",
+          "from": {
+            "opacity": 0,
+            "dy": 0.5
+          },
+          "to": {
+            "opacity": 1,
+            "dy": 0
+          }
+        }
+      ]
+    },
+    "lock": {
+      "de": "Schloss",
+      "scenario": "splash",
+      "duration": 2100,
+      "tracks": [
+        {
+          "target": "pixels",
+          "art": [
+            "..####..",
+            ".#....#.",
+            ".#....#.",
+            "########",
+            "########",
+            "###..###",
+            "###..###",
+            "########"
+          ],
+          "order": "random",
+          "stagger": 16,
+          "duration": 220,
+          "easing": "out-back",
+          "from": {
+            "opacity": 0,
+            "scale": 0.3
+          },
+          "to": {
+            "opacity": 1,
+            "scale": 1
+          }
+        },
+        {
+          "target": "pixels",
+          "art": [
+            "..####..",
+            ".#....#.",
+            ".#....#.",
+            "########",
+            "########",
+            "###..###",
+            "###..###",
+            "########"
+          ],
+          "morph": "mark",
+          "colour": "landing",
+          "start": 800,
+          "duration": 500,
+          "easing": "in-out-cubic",
+          "before": "none",
+          "after": "none",
+          "keyframes": [
+            {
+              "at": 0,
+              "move": 0
+            },
+            {
+              "at": 1,
+              "move": 1
+            }
+          ]
+        },
+        {
+          "target": "pixels",
+          "art": [
+            "..####..",
+            ".#....#.",
+            ".#....#.",
+            "########",
+            "########",
+            "###..###",
+            "###..###",
+            "########"
+          ],
+          "start": 1300,
+          "duration": 1,
+          "easing": "step",
+          "before": "none",
+          "from": {
+            "opacity": 1
+          },
+          "to": {
+            "opacity": 0
+          }
+        },
+        {
+          "target": "landed",
+          "start": 1300,
+          "duration": 1,
+          "easing": "step",
+          "from": {
+            "opacity": 0
+          },
+          "to": {
+            "opacity": 1
+          }
+        },
+        {
+          "target": "unlanded",
+          "order": "random",
+          "start": 1300,
+          "stagger": 10,
+          "duration": 200,
+          "easing": "out-back",
+          "from": {
+            "opacity": 0,
+            "scale": 0.3
+          },
+          "to": {
+            "opacity": 1,
+            "scale": 1
+          }
+        },
+        {
+          "target": "glyphs",
+          "order": "ltr",
+          "start": 1400,
+          "stagger": 40,
+          "duration": 300,
+          "easing": "out-cubic",
+          "from": {
+            "opacity": 0,
+            "dy": 0.5
+          },
+          "to": {
+            "opacity": 1,
+            "dy": 0
+          }
+        }
+      ]
+    },
+    "receipt": {
+      "de": "Bon",
+      "scenario": "splash",
+      "duration": 2100,
+      "tracks": [
+        {
+          "target": "pixels",
+          "art": [
+            ".######.",
+            ".#....#.",
+            ".#.##.#.",
+            ".#....#.",
+            ".#.##.#.",
+            ".#....#.",
+            ".#.##.#.",
+            ".#.#.##."
+          ],
+          "order": "random",
+          "stagger": 16,
+          "duration": 220,
+          "easing": "out-back",
+          "from": {
+            "opacity": 0,
+            "scale": 0.3
+          },
+          "to": {
+            "opacity": 1,
+            "scale": 1
+          }
+        },
+        {
+          "target": "pixels",
+          "art": [
+            ".######.",
+            ".#....#.",
+            ".#.##.#.",
+            ".#....#.",
+            ".#.##.#.",
+            ".#....#.",
+            ".#.##.#.",
+            ".#.#.##."
+          ],
+          "morph": "mark",
+          "colour": "landing",
+          "start": 800,
+          "duration": 500,
+          "easing": "in-out-cubic",
+          "before": "none",
+          "after": "none",
+          "keyframes": [
+            {
+              "at": 0,
+              "move": 0
+            },
+            {
+              "at": 1,
+              "move": 1
+            }
+          ]
+        },
+        {
+          "target": "pixels",
+          "art": [
+            ".######.",
+            ".#....#.",
+            ".#.##.#.",
+            ".#....#.",
+            ".#.##.#.",
+            ".#....#.",
+            ".#.##.#.",
+            ".#.#.##."
+          ],
+          "start": 1300,
+          "duration": 1,
+          "easing": "step",
+          "before": "none",
+          "from": {
+            "opacity": 1
+          },
+          "to": {
+            "opacity": 0
+          }
+        },
+        {
+          "target": "landed",
+          "start": 1300,
+          "duration": 1,
+          "easing": "step",
+          "from": {
+            "opacity": 0
+          },
+          "to": {
+            "opacity": 1
+          }
+        },
+        {
+          "target": "unlanded",
+          "order": "random",
+          "start": 1300,
+          "stagger": 10,
+          "duration": 200,
+          "easing": "out-back",
+          "from": {
+            "opacity": 0,
+            "scale": 0.3
+          },
+          "to": {
+            "opacity": 1,
+            "scale": 1
+          }
+        },
+        {
+          "target": "glyphs",
+          "order": "ltr",
+          "start": 1400,
+          "stagger": 40,
+          "duration": 300,
+          "easing": "out-cubic",
+          "from": {
+            "opacity": 0,
+            "dy": 0.5
+          },
+          "to": {
+            "opacity": 1,
+            "dy": 0
+          }
+        }
+      ]
+    },
+    "breathe": {
+      "de": "Atmen",
+      "scenario": "waiting",
+      "duration": 2400,
+      "loop": true,
+      "tracks": [
+        {
+          "target": "cells",
+          "order": "from-corner",
+          "stagger": 30,
+          "duration": 1200,
+          "easing": "in-out-sine",
+          "wrap": true,
+          "keyframes": [
+            {
+              "at": 0,
+              "scale": 1
+            },
+            {
+              "at": 0.5,
+              "scale": 0.6
+            },
+            {
+              "at": 1,
+              "scale": 1
+            }
+          ]
+        }
+      ]
+    }
+  }
+}

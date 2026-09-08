@@ -47,14 +47,14 @@ function arcToCubics(x1, y1, rx, ry, phiDeg, largeArc, sweep, x2, y2) {
 }
 
 function pathOps(d) {
-  const cmds = [...d.matchAll(/([MLHVCSAZmlhvcsaz])([^MLHVCSAZmlhvcsaz]*)/g)];
+  const cmds = [...d.matchAll(/([MLHVCSQTAZmlhvcsqtaz])([^MLHVCSQTAZmlhvcsqtaz]*)/g)];
   const ops = [];
-  let x = 0, y = 0, sx = 0, sy = 0, lastC = null;
+  let x = 0, y = 0, sx = 0, sy = 0, lastC = null, lastQ = null;
   for (const [, c, argText] of cmds) {
     const args = [...argText.matchAll(/-?\d*\.?\d+(?:e-?\d+)?/gi)].map((m) => Number(m[0]));
     const rel = c === c.toLowerCase(), U = c.toUpperCase();
-    const arity = { M: 2, L: 2, H: 1, V: 1, C: 6, S: 4, A: 7, Z: 0 }[U];
-    if (U === "Z") { ops.push(["Z"]); x = sx; y = sy; lastC = null; continue; }
+    const arity = { M: 2, L: 2, H: 1, V: 1, C: 6, S: 4, Q: 4, T: 2, A: 7, Z: 0 }[U];
+    if (U === "Z") { ops.push(["Z"]); x = sx; y = sy; lastC = null; lastQ = null; continue; }
     for (let i = 0; i < args.length; i += arity) {
       const a = args.slice(i, i + arity);
       const px = (v) => (rel ? x + v : v), py = (v) => (rel ? y + v : v);
@@ -64,7 +64,14 @@ function pathOps(d) {
       else if (U === "V") { y = py(a[0]); ops.push(["L", x, y]); lastC = null; }
       else if (U === "C") { const op = ["C", px(a[0]), py(a[1]), px(a[2]), py(a[3]), px(a[4]), py(a[5])]; ops.push(op); x = op[5]; y = op[6]; lastC = [op[3], op[4]]; }
       else if (U === "S") { const c1 = lastC ? [2 * x - lastC[0], 2 * y - lastC[1]] : [x, y]; const op = ["C", c1[0], c1[1], px(a[0]), py(a[1]), px(a[2]), py(a[3])]; ops.push(op); x = op[5]; y = op[6]; lastC = [op[3], op[4]]; }
+      else if (U === "Q" || U === "T") {
+        const q = U === "Q" ? [px(a[0]), py(a[1])] : lastQ ? [2 * x - lastQ[0], 2 * y - lastQ[1]] : [x, y];
+        const e = U === "Q" ? [px(a[2]), py(a[3])] : [px(a[0]), py(a[1])];
+        ops.push(["C", x + (2 / 3) * (q[0] - x), y + (2 / 3) * (q[1] - y), e[0] + (2 / 3) * (q[0] - e[0]), e[1] + (2 / 3) * (q[1] - e[1]), e[0], e[1]]);
+        x = e[0]; y = e[1]; lastQ = q; lastC = null;
+      }
       else if (U === "A") { const ex = px(a[5]), ey = py(a[6]); ops.push(...arcToCubics(x, y, a[0], a[1], a[2], a[3] !== 0, a[4] !== 0, ex, ey)); x = ex; y = ey; lastC = null; }
+      if (U !== "Q" && U !== "T") lastQ = null;
     }
   }
   return ops;

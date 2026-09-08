@@ -1,3 +1,19 @@
+## 0.6.0
+
+- Added: the Kasseneck logo as code — `KdLogo`, `KdWordmark` and a `KdSignet`
+  that can be animated cell by cell on its 8×8 grid (`cells`), plus a pixel
+  layer over all 64 fields (`pixels`) for pixel art that turns into the mark.
+  The wordmark is Archivo 600 set as outlines, so nothing depends on a font.
+- Added: `KdLogoMotion` plays the data-defined animations in
+  `KdLogoAnimations` (rain, bloom, scatter, heart, euro, check, star, lock,
+  receipt, breathe); `kdSampleLogo` gives the per-element styles for custom
+  motion. The same data drives `@kreiseck/design`; the golden fixture holds
+  sampled frames both packages must reproduce.
+- Changed: `KdSignetPainter` names its colours `ink`/`accent` (was
+  `frame`/`square`) and takes `highlight`, `cells` and `pixels`; the
+  `KdSignet` widget keeps `frame`/`square`.
+- Added: `kdPathOf` builds a `Path` from icon op data (was private).
+
 ## 0.4.0
 
 - Added: `on-success`, `on-warning` and `on-info` — text/icon colours for the

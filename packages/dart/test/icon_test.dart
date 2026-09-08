@@ -83,14 +83,6 @@ void main() {
     expect(find.bySemanticsLabel('Beleg'), findsOneWidget);
   });
 
-  testWidgets('KdSignet paints frame and square in two colours', (tester) async {
-    await tester.pumpWidget(const MaterialApp(home: Center(child: KdSignet(size: 48, frame: Colors.black, square: Colors.teal))));
-    final painter = tester.widget<CustomPaint>(find.descendant(of: find.byType(KdSignet), matching: find.byType(CustomPaint))).painter as KdSignetPainter;
-    expect(painter.frame, Colors.black);
-    expect(painter.square, Colors.teal);
-    expect(tester.getSize(find.byType(KdSignet)), const Size(48, 48));
-  });
-
   testWidgets('golden: every filled icon at 24, one row', (tester) async {
     final icons = [
       KdIcons.checkFilled,

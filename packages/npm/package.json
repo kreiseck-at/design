@@ -1,7 +1,7 @@
 {
   "name": "@kreiseck/design",
-  "version": "0.6.0",
-  "description": "Design tokens, colour roles for four modes, brand ramp and the icon set shared by all Kreiseck surfaces.",
+  "version": "0.7.0",
+  "description": "Design tokens, colour roles for four modes, brand ramp, the icon set and the Kasseneck logo with its animations, shared by all Kreiseck surfaces.",
   "license": "MIT",
   "repository": { "type": "git", "url": "https://github.com/kreiseck-at/design", "directory": "packages/npm" },
   "type": "module",
@@ -10,12 +10,13 @@
   "exports": {
     ".": { "types": "./dist/index.d.ts", "import": "./dist/index.js" },
     "./icons": { "types": "./dist/icons.d.ts", "import": "./dist/icons.js" },
+    "./logo": { "types": "./dist/logo.d.ts", "import": "./dist/logo.js" },
     "./tokens.css": "./src/tokens.css",
     "./svg/*": "./svg/*",
     "./fonts.css": "./fonts.css",
     "./fonts/*": "./fonts/*"
   },
-  "files": ["dist", "svg", "src/tokens.css", "fonts", "fonts.css", "README.md", "LICENSE"],
+  "files": ["dist", "svg", "src/tokens.css", "fonts", "fonts.css", "README.md", "CHANGELOG.md", "LICENSE"],
   "sideEffects": ["*.css"],
   "scripts": {
     "build": "tsup",

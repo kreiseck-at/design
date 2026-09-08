@@ -67,7 +67,8 @@ class KdIconData {
   int get hashCode => Object.hash(Object.hashAll(stroke), Object.hashAll(fill));
 }
 
-Path _pathOf(List<KdOp> ops) {
+/// A [Path] from op data — the same builder the icons and the logo use.
+Path kdPathOf(List<KdOp> ops) {
   final path = Path();
   for (final op in ops) {
     switch (op) {
@@ -108,11 +109,11 @@ class KdIconPainter extends CustomPainter {
     canvas.save();
     canvas.scale(scale);
     if (data.fill.isNotEmpty) {
-      final path = _fillCache.putIfAbsent(data, () => _pathOf(data.fill)..fillType = PathFillType.evenOdd);
+      final path = _fillCache.putIfAbsent(data, () => kdPathOf(data.fill)..fillType = PathFillType.evenOdd);
       canvas.drawPath(path, Paint()..color = color..style = PaintingStyle.fill);
     }
     if (data.stroke.isNotEmpty) {
-      final path = _strokeCache.putIfAbsent(data, () => _pathOf(data.stroke));
+      final path = _strokeCache.putIfAbsent(data, () => kdPathOf(data.stroke));
       canvas.drawPath(path, Paint()
         ..color = color
         ..style = PaintingStyle.stroke
@@ -160,47 +161,5 @@ class KdIcon extends StatelessWidget {
         child: CustomPaint(painter: KdIconPainter(data, color: c, strokeWidth: 1.75 * s / 24)),
       ),
     );
-  }
-}
-
-/// The Kreiseck mark: an open frame with a solid square in the lower-right
-/// corner. Two colours, so it is not a [KdIcon]. Defaults: frame in the
-/// ambient icon colour, square in the brand colour.
-///
-/// Geometry of the Kasseneck mark on the 24-unit grid: the mark fills the
-/// whole box, no margin. Frame is drawn as four rects —
-/// top, right, left and bottom bar — and the square sits in the notch they
-/// leave open at the lower-right.
-class KdSignetPainter extends CustomPainter {
-  KdSignetPainter({required this.frame, required this.square});
-  final Color frame;
-  final Color square;
-
-  @override
-  void paint(Canvas canvas, Size size) {
-    final u = size.width / 24;
-    final framePaint = Paint()..color = frame;
-    canvas.drawRect(Rect.fromLTWH(0 * u, 0 * u, 24 * u, 3 * u), framePaint);
-    canvas.drawRect(Rect.fromLTWH(21 * u, 0 * u, 3 * u, 15 * u), framePaint);
-    canvas.drawRect(Rect.fromLTWH(0 * u, 3 * u, 3 * u, 21 * u), framePaint);
-    canvas.drawRect(Rect.fromLTWH(0 * u, 21 * u, 15 * u, 3 * u), framePaint);
-    canvas.drawRect(Rect.fromLTWH(15 * u, 15 * u, 9 * u, 9 * u), Paint()..color = square);
-  }
-
-  @override
-  bool shouldRepaint(KdSignetPainter old) => old.frame != frame || old.square != square;
-}
-
-class KdSignet extends StatelessWidget {
-  const KdSignet({super.key, this.size = 40, this.frame, this.square});
-  final double size;
-  final Color? frame;
-  final Color? square;
-
-  @override
-  Widget build(BuildContext context) {
-    final f = frame ?? IconTheme.of(context).color ?? const Color(0xFF000000);
-    final q = square ?? Theme.of(context).colorScheme.primary;
-    return SizedBox(width: size, height: size, child: CustomPaint(painter: KdSignetPainter(frame: f, square: q)));
   }
 }

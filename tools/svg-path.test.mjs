@@ -5,6 +5,21 @@ const last = (ops) => ops[ops.length - 1];
 const endPoint = (op) => op.slice(-2);
 
 describe("toOps", () => {
+  it("lifts a quadratic to the exact cubic and keeps the end point", () => {
+    // Degree elevation: c1 = p0 + 2/3 (q - p0), c2 = p2 + 2/3 (q - p2). Exact, no sampling.
+    const ops = toOps({ tag: "path", attrs: { d: "M0 0Q6 9 12 0" } }, {});
+    expect(ops).toEqual([["M", 0, 0], ["C", 4, 6, 8, 6, 12, 0]]);
+  });
+  it("reflects the previous control point for T, and falls back to the current point", () => {
+    const ops = toOps({ tag: "path", attrs: { d: "M0 0Q3 6 6 0T12 0" } }, {});
+    expect(ops[2]).toEqual(["C", 8, -4, 10, -4, 12, 0]);
+    const lone = toOps({ tag: "path", attrs: { d: "M0 0T12 0" } }, {});
+    expect(lone[1]).toEqual(["C", 0, 0, 4, 0, 12, 0]);
+  });
+  it("handles relative q/t", () => {
+    const ops = toOps({ tag: "path", attrs: { d: "M10 10q3 3 6 0" } }, {});
+    expect(ops[1]).toEqual(["C", 12, 12, 14, 12, 16, 10]);
+  });
   it("resolves relative commands and H/V into absolute L", () => {
     expect(toOps({ tag: "path", attrs: { d: "M14 6l-6 6 6 6" } }, {})).toEqual([["M", 14, 6], ["L", 8, 12], ["L", 14, 18]]);
     expect(toOps({ tag: "path", attrs: { d: "M4 7h16V17" } }, {})).toEqual([["M", 4, 7], ["L", 20, 7], ["L", 20, 17]]);
