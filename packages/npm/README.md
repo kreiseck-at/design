@@ -74,6 +74,12 @@ import { Signet, Logo, Wordmark, LogoMotion } from "@kreiseck/design/logo";
 `ink`, `accent` and `highlight` take any CSS colour (on a dark ground pass a
 light `ink`); `title` names the graphic, without one it is decorative.
 
+The mark carries the brand, not the business. On a surface themed in a
+customer's own colour pass the brand petrol explicitly — `accent="var(--kd-brand)"`
+(or `roles[mode].brand`) — and never recolour the corner with the customer's
+colour: a mark in another colour is a different mark. The customer's colour
+belongs to the controls around it.
+
 ### Animations
 
 The mark is an 8×8 grid: 32 cells of the frame and the corner, plus a pixel

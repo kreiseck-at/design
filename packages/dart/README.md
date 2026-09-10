@@ -118,6 +118,12 @@ KdWordmark(height: 28)        // the wordmark alone
 Colours: `frame`/`ink` and `square`/`accent` (on a dark ground pass a light
 ink); `highlight` is the light petrol a tinted cell blends toward.
 
+The mark carries the brand, not the business. On a surface themed in a
+customer's own colour (`colorScheme.primary` is theirs there) pass the brand
+petrol explicitly — `square: KdRoles.light['brand']` (or the mode's roles) — and never recolour the
+corner with the customer's colour: a mark in another colour is a different
+mark. The customer's colour belongs to the controls around it.
+
 ### Animations
 
 The mark is an 8×8 grid: 32 cells of the frame and the corner, plus a pixel
