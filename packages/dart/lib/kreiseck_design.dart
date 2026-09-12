@@ -13,3 +13,4 @@ export 'src/icons.dart';
 export 'src/logo.dart';
 export 'src/logo_animate.dart';
 export 'src/logo_data.dart';
+export 'src/sound.dart';

@@ -1,9 +1,10 @@
 export { Signet, Wordmark, Logo, WORDMARK_START, WORDMARK_WIDTH, DEFAULT_INK, DEFAULT_ACCENT, DEFAULT_HIGHLIGHT } from "./Logo.js";
 export type { SignetProps, WordmarkProps, LogoProps } from "./Logo.js";
-export { LogoMotion } from "./LogoMotion.js";
+export { LogoMotion, animationHighlight } from "./LogoMotion.js";
+export { playSound, tapHaptic, fireCue } from "./feedback.js";
 export type { LogoMotionProps } from "./LogoMotion.js";
 export { signetNodes, wordmarkNodes, mix } from "./paint.js";
 export { sample, flatten, ease, rng, shuffle, resting, restingPixel, EASINGS, PROPS, SAMPLE_TIMES, CELL_COUNT, GLYPH_COUNT, PIXEL_COUNT } from "./animate.mjs";
-export type { Style, Keyframe, Track, Animation } from "./types.js";
-export { LOGO_WIDTH, LOGO_HEIGHT, GRID, UNIT, FRAME_PATHS, CORNER_PATH, cells, glyphs, animations, animationNames } from "./data.js";
+export type { Style, Keyframe, Track, Animation , Sound, Note, Cue, Haptic, Wave } from "./types.js";
+export { LOGO_WIDTH, LOGO_HEIGHT, GRID, UNIT, FRAME_PATHS, CORNER_PATH, cells, glyphs, animations, animationNames , sounds } from "./data.js";
 export type { LogoCell, LogoGlyph, LogoPart, AnimationName } from "./data.js";

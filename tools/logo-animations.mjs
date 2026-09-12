@@ -2,6 +2,8 @@ import { readFile } from "node:fs/promises";
 import { EASINGS, PROPS, shuffle } from "./logo-animate.mjs";
 
 const TARGETS = ["frame", "corner", "cells", "glyphs", "pixels", "landed", "unlanded"];
+const HAPTICS = ["selection", "light", "medium", "heavy"];
+const WAVES = ["sine", "triangle", "square", "sawtooth"];
 const CELL_ORDERS = ["reading", "columns", "clockwise", "counter", "ring", "from-corner", "to-corner", "from-center"];
 const GLYPH_ORDERS = ["ltr", "rtl", "center-out", "edges-in"];
 
@@ -130,9 +132,57 @@ function checkProps(where, obj) {
   }
 }
 
-export function resolveAnimation(name, def, logo) {
+/**
+ * A tone is a spec, not a file: notes played in order, each a frequency and a
+ * length, under one wave and one gain. Both runtimes build the same sound from
+ * it, so nothing has to be shipped or kept in sync as bytes.
+ */
+export function checkSounds(sounds) {
+  for (const [name, s] of Object.entries(sounds ?? {})) {
+    const where = `sounds.${name}`;
+    if (!WAVES.includes(s.wave)) throw new Error(`${where}: unknown wave ${s.wave} (${WAVES.join(", ")})`);
+    if (!(s.gain > 0 && s.gain <= 1)) throw new Error(`${where}: gain must lie in 0..1`);
+    if (!Array.isArray(s.notes) || s.notes.length === 0 || s.notes.length > 8) throw new Error(`${where}: 1 to 8 notes`);
+    for (const n of s.notes) {
+      // A note may glide: "to" is the frequency it arrives at by its own end.
+      for (const hz of [n.hz, ...(n.to === undefined ? [] : [n.to])]) {
+        if (!(hz >= 20 && hz <= 20000)) throw new Error(`${where}: ${hz} Hz is outside hearing`);
+      }
+      if (!(n.ms >= 10 && n.ms <= 2000)) throw new Error(`${where}: a note lasts 10 to 2000 ms`);
+    }
+  }
+  return sounds ?? {};
+}
+
+/** Cues fire as the playhead passes them: a haptic tap, a tone, or both. */
+function resolveCues(name, def, sounds) {
+  const cues = def.cues ?? [];
+  if (!Array.isArray(cues)) throw new Error(`${name}: cues must be a list`);
+  return cues.map((c, i) => {
+    const where = `${name}.cues[${i}]`;
+    if (!(c.at >= 0 && c.at <= def.duration)) throw new Error(`${where}: at must lie inside the animation`);
+    if (c.haptic !== undefined && !HAPTICS.includes(c.haptic)) throw new Error(`${where}: unknown haptic ${c.haptic} (${HAPTICS.join(", ")})`);
+    if (c.sound !== undefined && !(c.sound in (sounds ?? {}))) throw new Error(`${where}: unknown sound ${c.sound}`);
+    if (c.haptic === undefined && c.sound === undefined) throw new Error(`${where}: a cue that neither taps nor sounds does nothing`);
+    return { at: c.at, ...(c.haptic ? { haptic: c.haptic } : {}), ...(c.sound ? { sound: c.sound } : {}) };
+  }).sort((a, b) => a.at - b.at);
+}
+
+export function resolveAnimation(name, def, logo, roles, sounds) {
   const duration = def.duration;
   if (!(duration > 0)) throw new Error(`${name}: duration must be positive`);
+  // An animation may name the colour role its `tint` blends toward — "success"
+  // for a confirmation, "danger" for an error. The name is a role, never a
+  // value, so every surface resolves it in its own light and dark.
+  // The hold point: where the sign stands finished and nothing is on its way,
+  // so a player can be asked to stop there and stay.
+  if (def.hold !== undefined && !(def.hold > 0 && def.hold <= duration)) {
+    throw new Error(`${name}: hold must lie inside the animation`);
+  }
+  if (def.highlight !== undefined) {
+    if (typeof def.highlight !== "string") throw new Error(`${name}: highlight must be a role name`);
+    if (roles && !roles.includes(def.highlight)) throw new Error(`${name}: unknown colour role ${def.highlight}`);
+  }
   // "landed"/"unlanded" refer to the cells the morph tracks of this animation
   // hand over to, so those resolve first.
   const landed = new Set();
@@ -196,10 +246,19 @@ export function resolveAnimation(name, def, logo) {
   const resolved = new Array(def.tracks.length);
   def.tracks.forEach((t, i) => { if (!isLanded(t)) resolved[i] = resolveTrack(t, i); });
   def.tracks.forEach((t, i) => { if (isLanded(t)) resolved[i] = resolveTrack(t, i); });
-  return { name, de: def.de, scenario: def.scenario, duration, loop: def.loop ?? false, tracks: resolved.flat() };
+  const cues = resolveCues(name, def, sounds);
+  return { name, de: def.de, scenario: def.scenario, duration, loop: def.loop ?? false, ...(def.highlight ? { highlight: def.highlight } : {}), ...(def.hold ? { hold: def.hold } : {}), ...(cues.length ? { cues } : {}), tracks: resolved.flat() };
+}
+
+export async function loadSounds(root) {
+  const json = JSON.parse(await readFile(new URL("brand/animations.json", root), "utf8"));
+  return checkSounds(json.sounds);
 }
 
 export async function loadAnimations(root, logo) {
   const json = JSON.parse(await readFile(new URL("brand/animations.json", root), "utf8"));
-  return Object.entries(json.animations).map(([name, def]) => resolveAnimation(name, def, logo));
+  const base = JSON.parse(await readFile(new URL("tokens/base.json", root), "utf8"));
+  const roles = Object.keys(base.roles);
+  const sounds = checkSounds(json.sounds);
+  return Object.entries(json.animations).map(([name, def]) => resolveAnimation(name, def, logo, roles, sounds));
 }

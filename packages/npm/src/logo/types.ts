@@ -26,4 +26,22 @@ export interface Track {
   /** sorted by `at`, 0..1 */
   keyframes: Keyframe[];
 }
-export interface Animation { name: string; de: string; scenario: string; duration: number; loop: boolean; tracks: Track[] }
+export type Haptic = "selection" | "light" | "medium" | "heavy";
+export type Wave = "sine" | "triangle" | "square" | "sawtooth";
+/** One note of a tone: a frequency in hertz, a length in ms, optionally gliding to `to`. */
+export interface Note { hz: number; ms: number; to?: number }
+/** A tone as a spec, not a file: notes played in order under one wave and gain. */
+export interface Sound { wave: Wave; gain: number; notes: Note[] }
+/** A moment in an animation that taps, sounds, or both. */
+export interface Cue { at: number; haptic?: Haptic; sound?: string }
+
+export interface Animation {
+  name: string; de: string; scenario: string; duration: number; loop: boolean;
+  /** Colour role `tint` blends toward — "success", "danger" … Resolved per surface. */
+  highlight?: string;
+  /** Where the sign stands finished and nothing is moving — `hold` stops here. */
+  hold?: number;
+  /** Moments to tap or sound as the playhead passes them. */
+  cues?: Cue[];
+  tracks: Track[];
+}

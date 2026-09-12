@@ -118,6 +118,40 @@ class KdLogoTrack {
   final List<KdLogoKeyframe> keyframes;
 }
 
+/// How hard a cue taps the device.
+enum KdHaptic { selection, light, medium, heavy }
+
+/// Wave a tone is built on.
+enum KdWave { sine, triangle, square, sawtooth }
+
+/// One note of a tone: a frequency in hertz, a length in milliseconds.
+class KdNote {
+  const KdNote(this.hz, this.ms, {this.to});
+  final double hz;
+  final double ms;
+  /// Where the note arrives by its own end, if it glides.
+  final double? to;
+}
+
+/// A tone as a spec, not a file: the notes are played in order on one wave,
+/// each struck hard and left to decay. Render it with `kdRenderWav`.
+class KdSound {
+  const KdSound({required this.wave, required this.gain, required this.notes});
+  final KdWave wave;
+  final double gain;
+  final List<KdNote> notes;
+}
+
+/// A moment in an animation that taps, sounds, or both.
+class KdLogoCue {
+  const KdLogoCue({required this.at, this.haptic, this.sound});
+  /// Milliseconds from the start of the animation.
+  final double at;
+  final KdHaptic? haptic;
+  /// Name of a tone in `KdSounds.byName`.
+  final String? sound;
+}
+
 class KdLogoAnimation {
   const KdLogoAnimation({
     required this.name,
@@ -125,6 +159,9 @@ class KdLogoAnimation {
     required this.scenario,
     required this.duration,
     required this.loop,
+    this.highlight,
+    this.hold,
+    this.cues = const [],
     required this.tracks,
   });
   final String name;
@@ -133,6 +170,14 @@ class KdLogoAnimation {
   /// Milliseconds.
   final double duration;
   final bool loop;
+  /// Colour role `tint` blends toward — 'success', 'danger' … Resolved per
+  /// surface, so the same animation reads right in light and in dark.
+  final String? highlight;
+  /// Milliseconds at which the sign stands finished and nothing is moving.
+  /// `KdLogoMotion(hold: true)` plays to here and stays.
+  final double? hold;
+  /// Moments to tap or sound as the playhead passes them, in time order.
+  final List<KdLogoCue> cues;
   final List<KdLogoTrack> tracks;
 }
 

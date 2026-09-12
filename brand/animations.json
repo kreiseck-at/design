@@ -1,5 +1,73 @@
 {
-  "_": "Logo animations as data. Units: ms for time; dx/dy in cells (one cell = 1/8 of the mark); scale around the element's centre; tint 0..1 blends toward the counter colour (frame → accent, corner → ink, glyph → accent). Orders for cells: reading, columns, clockwise, counter, ring, from-corner, to-corner, from-center, random (a fresh order every run) or random:<seed> (fixed). Orders for glyphs: ltr, rtl, center-out, edges-in, random:<seed>. A track holds its first keyframe before it starts and its last after it ends unless before/after is \"none\"; wrap runs it modulo the animation duration. Target \"pixels\" takes an \"art\": eight rows of eight characters, \"#\" lit, \".\" dark — the pixel layer is invisible at rest and sits on the whole 8×8 grid; orders: reading, columns, from-center, from-corner, random:<seed>. A pixels track may \"morph\" into \"mark\", \"corner\" or \"frame\": every lit pixel gets a nearest free cell, and the keyframe prop \"move\" (0..1) walks it there. Targets \"landed\"/\"unlanded\" are the cells a morph track of the same animation hands over to, and the others. \"accent\" (0..1) blends toward the brand petrol. A morph track with \"colour\": \"landing\" tints pixels bound for the corner petrol on the way.",
+  "_": "Logo animations as data. Units: ms for time; dx/dy in cells (one cell = 1/8 of the mark); scale around the element's centre; tint 0..1 blends toward the counter colour (frame → accent, corner → ink, glyph → accent). Orders for cells: reading, columns, clockwise, counter, ring, from-corner, to-corner, from-center, random (a fresh order every run) or random:<seed> (fixed). Orders for glyphs: ltr, rtl, center-out, edges-in, random:<seed>. A track holds its first keyframe before it starts and its last after it ends unless before/after is \"none\"; wrap runs it modulo the animation duration. Target \"pixels\" takes an \"art\": eight rows of eight characters, \"#\" lit, \".\" dark — the pixel layer is invisible at rest and sits on the whole 8×8 grid; orders: reading, columns, from-center, from-corner, random:<seed>. A pixels track may \"morph\" into \"mark\", \"corner\" or \"frame\": every lit pixel gets a nearest free cell, and the keyframe prop \"move\" (0..1) walks it there. Targets \"landed\"/\"unlanded\" are the cells a morph track of the same animation hands over to, and the others. \"accent\" (0..1) blends toward the brand petrol. A morph track with \"colour\": \"landing\" tints pixels bound for the corner petrol on the way. An animation may name a colour role in \"highlight\" (\"success\", \"danger\", … from tokens/base.json): that is what its \"tint\" blends toward, resolved per surface in light and dark, and a highlight passed to the player still wins. Sounds are specs, not files: \"sounds\" holds named tones (notes played in order, each a frequency in hertz and a length in ms, optionally gliding to a second frequency with \"to\"; \"gain\" 0..1, \"wave\" sine/triangle/square/sawtooth), and an animation's \"cues\" fire them as the playhead passes: {\"at\": ms, \"haptic\": light/medium/heavy/selection, \"sound\": <tone name>}. Both are silent until a player is asked for them.",
+  "sounds": {
+    "confirm": {
+      "wave": "sine",
+      "gain": 0.16,
+      "notes": [
+        {
+          "hz": 880,
+          "ms": 80
+        },
+        {
+          "hz": 1318.51,
+          "ms": 170
+        }
+      ]
+    },
+    "error": {
+      "wave": "triangle",
+      "gain": 0.18,
+      "notes": [
+        {
+          "hz": 233.08,
+          "ms": 110
+        },
+        {
+          "hz": 196,
+          "ms": 200
+        }
+      ]
+    },
+    "sent": {
+      "wave": "sine",
+      "gain": 0.12,
+      "notes": [
+        {
+          "hz": 520,
+          "to": 1760,
+          "ms": 190
+        },
+        {
+          "hz": 1760,
+          "to": 2350,
+          "ms": 90
+        }
+      ]
+    },
+    "heart-in": {
+      "wave": "sine",
+      "gain": 0.3,
+      "notes": [
+        {
+          "hz": 150,
+          "to": 92,
+          "ms": 120
+        }
+      ]
+    },
+    "heart-out": {
+      "wave": "sine",
+      "gain": 0.24,
+      "notes": [
+        {
+          "hz": 120,
+          "to": 70,
+          "ms": 150
+        }
+      ]
+    }
+  },
   "animations": {
     "rain": {
       "de": "Regen",
@@ -357,7 +425,7 @@
             "........"
           ],
           "start": 120,
-          "duration": 330,
+          "duration": 310,
           "easing": "linear",
           "before": "none",
           "after": "none",
@@ -381,8 +449,8 @@
             "...##...",
             "........"
           ],
-          "start": 450,
-          "duration": 120,
+          "start": 430,
+          "duration": 115,
           "easing": "linear",
           "before": "none",
           "after": "none",
@@ -390,7 +458,14 @@
             {
               "at": 0,
               "opacity": 1,
-              "accent": 1
+              "accent": 1,
+              "tint": 0.55
+            },
+            {
+              "at": 1,
+              "opacity": 1,
+              "accent": 1,
+              "tint": 0
             }
           ]
         },
@@ -406,8 +481,8 @@
             "...##...",
             "........"
           ],
-          "start": 570,
-          "duration": 330,
+          "start": 545,
+          "duration": 80,
           "easing": "linear",
           "before": "none",
           "after": "none",
@@ -431,8 +506,8 @@
             "...##...",
             "........"
           ],
-          "start": 900,
-          "duration": 120,
+          "start": 625,
+          "duration": 145,
           "easing": "linear",
           "before": "none",
           "after": "none",
@@ -440,7 +515,14 @@
             {
               "at": 0,
               "opacity": 1,
-              "accent": 1
+              "accent": 1,
+              "tint": 0.4
+            },
+            {
+              "at": 1,
+              "opacity": 1,
+              "accent": 1,
+              "tint": 0
             }
           ]
         },
@@ -456,8 +538,8 @@
             "...##...",
             "........"
           ],
-          "start": 1020,
-          "duration": 330,
+          "start": 770,
+          "duration": 420,
           "easing": "linear",
           "before": "none",
           "after": "none",
@@ -481,8 +563,8 @@
             "...##...",
             "........"
           ],
-          "start": 1350,
-          "duration": 120,
+          "start": 1190,
+          "duration": 115,
           "easing": "linear",
           "before": "none",
           "after": "none",
@@ -490,7 +572,14 @@
             {
               "at": 0,
               "opacity": 1,
-              "accent": 1
+              "accent": 1,
+              "tint": 0.55
+            },
+            {
+              "at": 1,
+              "opacity": 1,
+              "accent": 1,
+              "tint": 0
             }
           ]
         },
@@ -506,8 +595,65 @@
             "...##...",
             "........"
           ],
-          "start": 1470,
-          "duration": 230,
+          "start": 1305,
+          "duration": 80,
+          "easing": "linear",
+          "before": "none",
+          "after": "none",
+          "keyframes": [
+            {
+              "at": 0,
+              "opacity": 1,
+              "accent": 1
+            }
+          ]
+        },
+        {
+          "target": "pixels",
+          "art": [
+            "........",
+            "........",
+            "..#..#..",
+            ".######.",
+            ".######.",
+            "..####..",
+            "...##...",
+            "........"
+          ],
+          "start": 1385,
+          "duration": 145,
+          "easing": "linear",
+          "before": "none",
+          "after": "none",
+          "keyframes": [
+            {
+              "at": 0,
+              "opacity": 1,
+              "accent": 1,
+              "tint": 0.4
+            },
+            {
+              "at": 1,
+              "opacity": 1,
+              "accent": 1,
+              "tint": 0
+            }
+          ]
+        },
+        {
+          "target": "pixels",
+          "art": [
+            "........",
+            ".##..##.",
+            "########",
+            "########",
+            ".######.",
+            "..####..",
+            "...##...",
+            "........"
+          ],
+          "start": 1530,
+          "duration": 170,
           "easing": "linear",
           "before": "none",
           "after": "none",
@@ -662,6 +808,28 @@
             "opacity": 1,
             "dy": 0
           }
+        }
+      ],
+      "cues": [
+        {
+          "at": 430,
+          "haptic": "heavy",
+          "sound": "heart-in"
+        },
+        {
+          "at": 625,
+          "haptic": "medium",
+          "sound": "heart-out"
+        },
+        {
+          "at": 1190,
+          "haptic": "heavy",
+          "sound": "heart-in"
+        },
+        {
+          "at": 1385,
+          "haptic": "medium",
+          "sound": "heart-out"
         }
       ]
     },
@@ -1310,6 +1478,157 @@
         }
       ]
     },
+    "mail": {
+      "de": "Brief",
+      "scenario": "exit",
+      "duration": 2100,
+      "cues": [
+        {
+          "at": 700,
+          "haptic": "selection"
+        },
+        {
+          "at": 1350,
+          "haptic": "light",
+          "sound": "sent"
+        }
+      ],
+      "tracks": [
+        {
+          "target": "glyphs",
+          "order": "ltr",
+          "stagger": 40,
+          "duration": 300,
+          "easing": "in-cubic",
+          "from": {
+            "opacity": 1,
+            "dy": 0
+          },
+          "to": {
+            "opacity": 0,
+            "dy": 0.5
+          }
+        },
+        {
+          "target": "unlanded",
+          "order": "random",
+          "start": 250,
+          "stagger": 60,
+          "duration": 220,
+          "easing": "in-back",
+          "from": {
+            "opacity": 1,
+            "scale": 1
+          },
+          "to": {
+            "opacity": 0,
+            "scale": 0.3
+          }
+        },
+        {
+          "target": "landed",
+          "start": 700,
+          "duration": 0,
+          "easing": "step",
+          "from": {
+            "opacity": 1
+          },
+          "to": {
+            "opacity": 0
+          }
+        },
+        {
+          "target": "pixels",
+          "art": [
+            "........",
+            "########",
+            "##....##",
+            "#.#..#.#",
+            "#..##..#",
+            "#......#",
+            "########",
+            "........"
+          ],
+          "start": 700,
+          "duration": 0,
+          "easing": "step",
+          "before": "none",
+          "from": {
+            "opacity": 0
+          },
+          "to": {
+            "opacity": 1
+          }
+        },
+        {
+          "target": "pixels",
+          "art": [
+            "........",
+            "########",
+            "##....##",
+            "#.#..#.#",
+            "#..##..#",
+            "#......#",
+            "########",
+            "........"
+          ],
+          "morph": "mark",
+          "colour": "landing",
+          "start": 700,
+          "duration": 500,
+          "easing": "in-out-cubic",
+          "before": "none",
+          "after": "none",
+          "keyframes": [
+            {
+              "at": 0,
+              "move": 1
+            },
+            {
+              "at": 1,
+              "move": 0
+            }
+          ]
+        },
+        {
+          "target": "pixels",
+          "art": [
+            "........",
+            "########",
+            "##....##",
+            "#.#..#.#",
+            "#..##..#",
+            "#......#",
+            "########",
+            "........"
+          ],
+          "order": "reading",
+          "start": 1350,
+          "stagger": 8,
+          "duration": 460,
+          "easing": "in-cubic",
+          "before": "none",
+          "keyframes": [
+            {
+              "at": 0,
+              "opacity": 1,
+              "scale": 1,
+              "dy": 0
+            },
+            {
+              "at": 0.65,
+              "opacity": 0
+            },
+            {
+              "at": 1,
+              "scale": 0.35,
+              "dy": -1.5
+            }
+          ]
+        }
+      ],
+      "hold": 1250
+    },
     "breathe": {
       "de": "Atmen",
       "scenario": "waiting",
@@ -1339,6 +1658,756 @@
           ]
         }
       ]
+    },
+    "mailslot": {
+      "de": "Brief (Einwurf)",
+      "scenario": "exit",
+      "duration": 2100,
+      "cues": [
+        {
+          "at": 700,
+          "haptic": "selection"
+        },
+        {
+          "at": 1350,
+          "haptic": "medium",
+          "sound": "sent"
+        }
+      ],
+      "tracks": [
+        {
+          "target": "glyphs",
+          "order": "ltr",
+          "stagger": 40,
+          "duration": 300,
+          "easing": "in-cubic",
+          "from": {
+            "opacity": 1,
+            "dy": 0
+          },
+          "to": {
+            "opacity": 0,
+            "dy": 0.5
+          }
+        },
+        {
+          "target": "unlanded",
+          "order": "random",
+          "start": 250,
+          "stagger": 60,
+          "duration": 220,
+          "easing": "in-back",
+          "from": {
+            "opacity": 1,
+            "scale": 1
+          },
+          "to": {
+            "opacity": 0,
+            "scale": 0.3
+          }
+        },
+        {
+          "target": "landed",
+          "start": 700,
+          "duration": 0,
+          "easing": "step",
+          "from": {
+            "opacity": 1
+          },
+          "to": {
+            "opacity": 0
+          }
+        },
+        {
+          "target": "pixels",
+          "art": [
+            "........",
+            "########",
+            "##....##",
+            "#.#..#.#",
+            "#..##..#",
+            "#......#",
+            "########",
+            "........"
+          ],
+          "start": 700,
+          "duration": 0,
+          "easing": "step",
+          "before": "none",
+          "from": {
+            "opacity": 0
+          },
+          "to": {
+            "opacity": 1
+          }
+        },
+        {
+          "target": "pixels",
+          "art": [
+            "........",
+            "########",
+            "##....##",
+            "#.#..#.#",
+            "#..##..#",
+            "#......#",
+            "########",
+            "........"
+          ],
+          "morph": "mark",
+          "colour": "landing",
+          "start": 700,
+          "duration": 500,
+          "easing": "in-out-cubic",
+          "before": "none",
+          "after": "none",
+          "keyframes": [
+            {
+              "at": 0,
+              "move": 1
+            },
+            {
+              "at": 1,
+              "move": 0
+            }
+          ]
+        },
+        {
+          "target": "pixels",
+          "art": [
+            "........",
+            "########",
+            "##....##",
+            "#.#..#.#",
+            "#..##..#",
+            "#......#",
+            "########",
+            "........"
+          ],
+          "morph": "corner",
+          "colour": "landing",
+          "start": 1350,
+          "duration": 420,
+          "easing": "in-cubic",
+          "before": "none",
+          "after": "none",
+          "keyframes": [
+            {
+              "at": 0,
+              "move": 0
+            },
+            {
+              "at": 1,
+              "move": 1
+            }
+          ]
+        },
+        {
+          "target": "pixels",
+          "art": [
+            "........",
+            "########",
+            "##....##",
+            "#.#..#.#",
+            "#..##..#",
+            "#......#",
+            "########",
+            "........"
+          ],
+          "start": 1350,
+          "duration": 620,
+          "easing": "out-cubic",
+          "before": "none",
+          "keyframes": [
+            {
+              "at": 0,
+              "opacity": 1,
+              "scale": 1
+            },
+            {
+              "at": 0.7,
+              "opacity": 1,
+              "scale": 0.5
+            },
+            {
+              "at": 1,
+              "opacity": 0,
+              "scale": 0.15
+            }
+          ]
+        }
+      ],
+      "hold": 1250
+    },
+    "confirm": {
+      "de": "Bestätigt",
+      "scenario": "state",
+      "highlight": "success",
+      "duration": 1600,
+      "cues": [
+        {
+          "at": 380,
+          "haptic": "light",
+          "sound": "confirm"
+        }
+      ],
+      "tracks": [
+        {
+          "target": "unlanded",
+          "order": "random",
+          "start": 40,
+          "stagger": 6,
+          "duration": 160,
+          "easing": "in-back",
+          "from": {
+            "opacity": 1,
+            "scale": 1
+          },
+          "to": {
+            "opacity": 0,
+            "scale": 0.3
+          }
+        },
+        {
+          "target": "landed",
+          "start": 220,
+          "duration": 0,
+          "easing": "step",
+          "from": {
+            "opacity": 1
+          },
+          "to": {
+            "opacity": 0
+          }
+        },
+        {
+          "target": "pixels",
+          "art": [
+            "........",
+            ".......#",
+            "......##",
+            ".....##.",
+            "#...##..",
+            "##.##...",
+            ".###....",
+            "..#....."
+          ],
+          "start": 220,
+          "duration": 0,
+          "easing": "step",
+          "before": "none",
+          "from": {
+            "opacity": 0
+          },
+          "to": {
+            "opacity": 1
+          }
+        },
+        {
+          "target": "pixels",
+          "art": [
+            "........",
+            ".......#",
+            "......##",
+            ".....##.",
+            "#...##..",
+            "##.##...",
+            ".###....",
+            "..#....."
+          ],
+          "morph": "mark",
+          "start": 220,
+          "duration": 300,
+          "easing": "out-cubic",
+          "before": "none",
+          "keyframes": [
+            {
+              "at": 0,
+              "move": 1,
+              "tint": 0
+            },
+            {
+              "at": 1,
+              "move": 0,
+              "tint": 1
+            }
+          ]
+        },
+        {
+          "target": "pixels",
+          "art": [
+            "........",
+            ".......#",
+            "......##",
+            ".....##.",
+            "#...##..",
+            "##.##...",
+            ".###....",
+            "..#....."
+          ],
+          "morph": "mark",
+          "start": 1000,
+          "duration": 280,
+          "easing": "in-out-cubic",
+          "before": "none",
+          "after": "none",
+          "keyframes": [
+            {
+              "at": 0,
+              "move": 0,
+              "tint": 1
+            },
+            {
+              "at": 1,
+              "move": 1,
+              "tint": 0
+            }
+          ]
+        },
+        {
+          "target": "pixels",
+          "art": [
+            "........",
+            ".......#",
+            "......##",
+            ".....##.",
+            "#...##..",
+            "##.##...",
+            ".###....",
+            "..#....."
+          ],
+          "start": 1280,
+          "duration": 0,
+          "easing": "step",
+          "before": "none",
+          "from": {
+            "opacity": 1
+          },
+          "to": {
+            "opacity": 0
+          }
+        },
+        {
+          "target": "landed",
+          "start": 1280,
+          "duration": 0,
+          "easing": "step",
+          "before": "none",
+          "from": {
+            "opacity": 0
+          },
+          "to": {
+            "opacity": 1
+          }
+        },
+        {
+          "target": "unlanded",
+          "order": "random",
+          "start": 1280,
+          "stagger": 6,
+          "duration": 180,
+          "easing": "out-back",
+          "before": "none",
+          "from": {
+            "opacity": 0,
+            "scale": 0.3
+          },
+          "to": {
+            "opacity": 1,
+            "scale": 1
+          }
+        },
+        {
+          "target": "pixels",
+          "art": [
+            "........",
+            ".......#",
+            "......##",
+            ".....##.",
+            "#...##..",
+            "##.##...",
+            ".###....",
+            "..#....."
+          ],
+          "start": 520,
+          "duration": 300,
+          "easing": "out-back",
+          "before": "none",
+          "from": {
+            "scale": 0.62
+          },
+          "to": {
+            "scale": 1
+          }
+        },
+        {
+          "target": "pixels",
+          "art": [
+            "........",
+            "........",
+            ".#......",
+            "........",
+            "..#.....",
+            "........",
+            "....#...",
+            "........"
+          ],
+          "order": "random",
+          "start": 520,
+          "stagger": 20,
+          "duration": 380,
+          "easing": "out-cubic",
+          "before": "none",
+          "keyframes": [
+            {
+              "at": 0,
+              "opacity": 0,
+              "scale": 0,
+              "dx": 0,
+              "dy": 0,
+              "tint": 1
+            },
+            {
+              "at": 0.18,
+              "opacity": 1,
+              "scale": 0.45
+            },
+            {
+              "at": 0.7,
+              "dy": -1.6
+            },
+            {
+              "at": 1,
+              "opacity": 0,
+              "scale": 0.28,
+              "dx": -0.8,
+              "dy": -1.2480000000000002
+            }
+          ]
+        },
+        {
+          "target": "pixels",
+          "art": [
+            "........",
+            "........",
+            "........",
+            "...#....",
+            "........",
+            "......#.",
+            "........",
+            "....#..."
+          ],
+          "order": "random",
+          "start": 545,
+          "stagger": 20,
+          "duration": 380,
+          "easing": "out-cubic",
+          "before": "none",
+          "keyframes": [
+            {
+              "at": 0,
+              "opacity": 0,
+              "scale": 0,
+              "dx": 0,
+              "dy": 0,
+              "tint": 0
+            },
+            {
+              "at": 0.18,
+              "opacity": 1,
+              "scale": 0.45
+            },
+            {
+              "at": 0.7,
+              "dy": -1.8
+            },
+            {
+              "at": 1,
+              "opacity": 0,
+              "scale": 0.28,
+              "dx": 0,
+              "dy": -1.4040000000000001
+            }
+          ]
+        },
+        {
+          "target": "pixels",
+          "art": [
+            "........",
+            "........",
+            "........",
+            ".#......",
+            "........",
+            ".....#..",
+            "........",
+            "......#."
+          ],
+          "order": "random",
+          "start": 500,
+          "stagger": 20,
+          "duration": 380,
+          "easing": "out-cubic",
+          "before": "none",
+          "keyframes": [
+            {
+              "at": 0,
+              "opacity": 0,
+              "scale": 0,
+              "dx": 0,
+              "dy": 0,
+              "tint": 1
+            },
+            {
+              "at": 0.18,
+              "opacity": 1,
+              "scale": 0.45
+            },
+            {
+              "at": 0.7,
+              "dy": -1.4
+            },
+            {
+              "at": 1,
+              "opacity": 0,
+              "scale": 0.28,
+              "dx": 0.9,
+              "dy": -1.0919999999999999
+            }
+          ]
+        }
+      ],
+      "hold": 1000
+    },
+    "error": {
+      "de": "Fehler",
+      "scenario": "state",
+      "highlight": "danger-deep",
+      "duration": 1450,
+      "cues": [
+        {
+          "at": 520,
+          "haptic": "heavy",
+          "sound": "error"
+        },
+        {
+          "at": 660,
+          "haptic": "medium"
+        }
+      ],
+      "tracks": [
+        {
+          "target": "unlanded",
+          "order": "random",
+          "start": 40,
+          "stagger": 6,
+          "duration": 160,
+          "easing": "in-back",
+          "from": {
+            "opacity": 1,
+            "scale": 1
+          },
+          "to": {
+            "opacity": 0,
+            "scale": 0.3
+          }
+        },
+        {
+          "target": "landed",
+          "start": 220,
+          "duration": 0,
+          "easing": "step",
+          "from": {
+            "opacity": 1
+          },
+          "to": {
+            "opacity": 0
+          }
+        },
+        {
+          "target": "pixels",
+          "art": [
+            "........",
+            ".##..##.",
+            "..####..",
+            "...##...",
+            "...##...",
+            "..####..",
+            ".##..##.",
+            "........"
+          ],
+          "start": 220,
+          "duration": 0,
+          "easing": "step",
+          "before": "none",
+          "from": {
+            "opacity": 0
+          },
+          "to": {
+            "opacity": 1
+          }
+        },
+        {
+          "target": "pixels",
+          "art": [
+            "........",
+            ".##..##.",
+            "..####..",
+            "...##...",
+            "...##...",
+            "..####..",
+            ".##..##.",
+            "........"
+          ],
+          "morph": "mark",
+          "start": 220,
+          "duration": 300,
+          "easing": "out-cubic",
+          "before": "none",
+          "keyframes": [
+            {
+              "at": 0,
+              "move": 1,
+              "tint": 0
+            },
+            {
+              "at": 1,
+              "move": 0,
+              "tint": 1
+            }
+          ]
+        },
+        {
+          "target": "pixels",
+          "art": [
+            "........",
+            ".##..##.",
+            "..####..",
+            "...##...",
+            "...##...",
+            "..####..",
+            ".##..##.",
+            "........"
+          ],
+          "start": 520,
+          "duration": 340,
+          "easing": "linear",
+          "before": "none",
+          "keyframes": [
+            {
+              "at": 0,
+              "dx": 0
+            },
+            {
+              "at": 0.15,
+              "dx": -0.45
+            },
+            {
+              "at": 0.35,
+              "dx": 0.45
+            },
+            {
+              "at": 0.55,
+              "dx": -0.3
+            },
+            {
+              "at": 0.75,
+              "dx": 0.3
+            },
+            {
+              "at": 0.9,
+              "dx": -0.15
+            },
+            {
+              "at": 1,
+              "dx": 0
+            }
+          ]
+        },
+        {
+          "target": "pixels",
+          "art": [
+            "........",
+            ".##..##.",
+            "..####..",
+            "...##...",
+            "...##...",
+            "..####..",
+            ".##..##.",
+            "........"
+          ],
+          "morph": "mark",
+          "start": 880,
+          "duration": 280,
+          "easing": "in-out-cubic",
+          "before": "none",
+          "after": "none",
+          "keyframes": [
+            {
+              "at": 0,
+              "move": 0,
+              "tint": 1
+            },
+            {
+              "at": 1,
+              "move": 1,
+              "tint": 0
+            }
+          ]
+        },
+        {
+          "target": "pixels",
+          "art": [
+            "........",
+            ".##..##.",
+            "..####..",
+            "...##...",
+            "...##...",
+            "..####..",
+            ".##..##.",
+            "........"
+          ],
+          "start": 1160,
+          "duration": 0,
+          "easing": "step",
+          "before": "none",
+          "from": {
+            "opacity": 1
+          },
+          "to": {
+            "opacity": 0
+          }
+        },
+        {
+          "target": "landed",
+          "start": 1160,
+          "duration": 0,
+          "easing": "step",
+          "before": "none",
+          "from": {
+            "opacity": 0
+          },
+          "to": {
+            "opacity": 1
+          }
+        },
+        {
+          "target": "unlanded",
+          "order": "random",
+          "start": 1160,
+          "stagger": 6,
+          "duration": 180,
+          "easing": "out-back",
+          "before": "none",
+          "from": {
+            "opacity": 0,
+            "scale": 0.3
+          },
+          "to": {
+            "opacity": 1,
+            "scale": 1
+          }
+        }
+      ],
+      "hold": 880
     }
   }
 }

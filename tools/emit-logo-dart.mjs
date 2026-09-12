@@ -28,14 +28,18 @@ const trackDart = (t) => `KdLogoTrack(
       )`;
 const camel = (id) => id.replace(/-([a-z0-9])/g, (_, c) => c.toUpperCase());
 
-export function emitLogoDart(logo, animations) {
+const cueDart = (c) => `KdLogoCue(at: ${num(c.at)}${c.haptic ? `, haptic: KdHaptic.${c.haptic}` : ""}${c.sound ? `, sound: '${c.sound}'` : ""})`;
+const soundDart = (s) => `KdSound(wave: KdWave.${s.wave}, gain: ${num(s.gain)}, notes: [${s.notes.map((n) => `KdNote(${num(n.hz)}, ${num(n.ms)}${n.to === undefined ? "" : `, to: ${num(n.to)}`})`).join(", ")}])`;
+
+export function emitLogoDart(logo, animations, sounds = {}) {
   const cells = logo.cells.map((c) => `KdLogoCell(${c.index}, ${c.row}, ${c.col}, KdLogoPart.${c.part})`).join(",\n    ");
   const glyphs = logo.glyphs
     .map((g) => `KdLogoGlyph('${g.char}', bounds: Rect.fromLTWH(${num(g.bbox.x)}, ${num(g.bbox.y)}, ${num(g.bbox.width)}, ${num(g.bbox.height)}), ops: [${opsDart(g.ops)}])`)
     .join(",\n    ");
   const anims = animations.map((a) => `  /// ${a.de} (${a.scenario}, ${a.duration} ms${a.loop ? ", loops" : ""})
   static const KdLogoAnimation ${camel(a.name)} = KdLogoAnimation(
-    name: '${a.name}', label: '${a.de}', scenario: '${a.scenario}', duration: ${a.duration}, loop: ${a.loop},
+    name: '${a.name}', label: '${a.de}', scenario: '${a.scenario}', duration: ${a.duration}, loop: ${a.loop},${a.highlight ? ` highlight: '${a.highlight}',` : ""}${a.hold ? ` hold: ${num(a.hold)},` : ""}${a.cues ? `
+    cues: [${a.cues.map(cueDart).join(", ")}],` : ""}
     tracks: [
       ${a.tracks.map(trackDart).join(",\n      ")},
     ],
@@ -75,6 +79,15 @@ abstract final class KdLogoData {
   static const List<KdLogoGlyph> glyphs = [
     ${glyphs},
   ];
+}
+
+/// The named tones the cues reach for — specs, not files.
+abstract final class KdSounds {
+${Object.entries(sounds).map(([n, s]) => `  static const KdSound ${camel(n)} = ${soundDart(s)};`).join("\n")}
+
+  static const Map<String, KdSound> byName = {
+${Object.keys(sounds).map((n) => `    '${n}': ${camel(n)},`).join("\n")}
+  };
 }
 
 /// Every logo animation, data-defined and identical to the web package.
