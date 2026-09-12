@@ -40,6 +40,7 @@
     "danger":          { "light": "danger-700",  "dark": "danger-400" },
     "on-danger":       { "light": "#FFFFFF",     "dark": "neutral-950" },
     "danger-strong":   { "light": "danger-600",  "dark": "danger-500" },
+    "danger-deep":     { "light": "danger-800",  "dark": "danger-400" },
     "danger-surface":  { "light": "danger-100",  "dark": "danger-900" },
     "on-danger-surface": { "light": "danger-900","dark": "danger-50" },
     "info":            { "light": "info-700",    "dark": "info-400" },

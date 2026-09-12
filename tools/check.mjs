@@ -103,7 +103,7 @@ export function check(model) {
     //    its own tinted surface. `surface-raised` is deliberately absent:
     //    it carries header text and active-field chrome in `ink`, never
     //    coloured text.
-    for (const role of ["success", "warning", "danger", "info", "brand"]) {
+    for (const role of ["success", "warning", "danger", "danger-deep", "info", "brand"]) {
       for (const against of ["surface", "ground"]) {
         pairContrast(mode, roles, role, against, TEXT, "on", problems);
       }

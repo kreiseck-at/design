@@ -117,6 +117,32 @@ void main() {
       expect(find.byType(KdSignet), findsOneWidget);
       expect(find.byType(KdLogo), findsNothing);
     });
+    testWidgets('an animation that names a colour role is drawn in it, light and dark; a given highlight wins', (tester) async {
+      Color highlight() => (tester.widget<CustomPaint>(find.descendant(of: find.byType(KdLogo), matching: find.byType(CustomPaint))).painter as KdLogoPainter).highlight;
+      // A fresh key per case: MaterialApp eases one theme into the next, so
+      // reusing the tree would read a colour still on its way.
+      var run = 0;
+      Future<void> show(KdMode mode, Widget motion) => tester.pumpWidget(MaterialApp(key: ValueKey(run++), theme: kdTheme(mode), home: Center(child: motion)));
+
+      // The expected colour is read from the animation itself: which role it
+      // names is the data's business, not this test's.
+      for (final a in [KdLogoAnimations.error, KdLogoAnimations.confirm]) {
+        for (final mode in [KdMode.light, KdMode.dark]) {
+          await show(mode, KdLogoMotion(animation: a));
+          expect(highlight(), kdColor(mode, a.highlight!), reason: '${a.name} in $mode');
+        }
+      }
+
+      // An animation with no role keeps the light petrol.
+      await show(KdMode.light, const KdLogoMotion(animation: KdLogoAnimations.rain));
+      expect(highlight(), kdLogoHighlight);
+
+      // What the caller passes is what gets drawn.
+      await show(KdMode.dark, const KdLogoMotion(animation: KdLogoAnimations.error, highlight: Color(0xFF00FF00)));
+      expect(highlight(), const Color(0xFF00FF00));
+      await tester.pumpAndSettle();
+    });
+
     testWidgets('golden: the logo at rest, 96 tall on paper', (tester) async {
       await tester.pumpWidget(const MaterialApp(home: ColoredBox(
         color: Color(0xFFF6F8F8),

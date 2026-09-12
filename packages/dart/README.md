@@ -143,11 +143,40 @@ KdLogoMotion(animation: KdLogoAnimations.byName['euro']!, onDone: () => go())
 | `star` | Stern | splash | 2100 ms |
 | `lock` | Schloss | splash | 2100 ms |
 | `receipt` | Bon | splash | 2100 ms |
+| `mail` | Brief | exit | 2100 ms · hält bei 1250 |
+| `confirm` | Bestätigt | state · success | 1600 ms · hält bei 1000 |
+| `error` | Fehler | state · danger | 1450 ms · hält bei 880 |
 | `breathe` | Atmen | waiting | 2400 ms · loops |
 
 `loop` overrides the animation's own flag, `autoplay: false` shows the last
 frame, and `KdLogoMotionState.play()` restarts (each run draws its own order
 for tracks marked random).
+
+An animation in the `state` column names a **colour role** rather than a colour,
+and is drawn in `kdColor(mode, 'success' | 'danger')` for the ambient
+brightness; a `highlight:` you pass in wins.
+
+Some animations also carry **cues** — moments that tap and sound. `haptics: true`
+turns on the touch half, which Flutter carries itself. The sound half is handed
+to you, so this package needs no audio dependency: a tone is a spec, and
+`kdRenderWav` turns it into bytes for whatever player the app already has.
+
+`hold: true` stops at the animation's **hold point** and stays there: the check
+keeps standing, the cross keeps showing, the envelope waits instead of flying
+off. It is the moment the sign is finished and nothing is on its way any more
+(`KdLogoAnimations.confirm.hold`, in ms). A held run plays only the cues it
+reaches, and never loops.
+
+```dart
+KdLogoMotion(
+  animation: KdLogoAnimations.confirm,
+  haptics: true,
+  onCue: (cue) {
+    final tone = KdSounds.byName[cue.sound];
+    if (tone != null) player.play(BytesSource(kdRenderWav(tone)));
+  },
+)
+```
 
 For your own motion, sample the data and hand the styles to the widgets:
 

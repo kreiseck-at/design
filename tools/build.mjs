@@ -11,7 +11,7 @@ import { iconDigests } from "./icons-digest.mjs";
 import { staleIconFiles, removeStale } from "./stale.mjs";
 import { emitFontsCss } from "./fonts.mjs";
 import { loadLogo } from "./logo.mjs";
-import { loadAnimations } from "./logo-animations.mjs";
+import { loadAnimations, loadSounds } from "./logo-animations.mjs";
 import { emitLogoDart } from "./emit-logo-dart.mjs";
 import { emitLogoWeb } from "./emit-logo-web.mjs";
 import { logoDigest } from "./logo-digest.mjs";
@@ -46,8 +46,8 @@ const outputs = async (models) => {
     ["packages/dart/lib/src/icons.dart", emitIconsDart(iconsModel)],
     ...emitIconsWeb(iconsModel).files,
     ["packages/npm/src/logo/animate.mjs", animateMjs],
-    ["packages/npm/src/logo/data.ts", emitLogoWeb(logo, animations)],
-    ["packages/dart/lib/src/logo_data.dart", emitLogoDart(logo, animations)],
+    ["packages/npm/src/logo/data.ts", emitLogoWeb(logo, animations, sounds)],
+    ["packages/dart/lib/src/logo_data.dart", emitLogoDart(logo, animations, sounds)],
     ...models.map((model) => [`golden/${model.brand}.json`, `${JSON.stringify(model, null, 2)}\n`]),
   ];
 };
@@ -67,8 +67,9 @@ try {
 
 const logo = await loadLogo(root);
 const animations = await loadAnimations(root, logo);
+const sounds = await loadSounds(root);
 
-const models = brands.map((brand) => ({ ...resolveTokens(base, brand), icons: iconDigests(iconsModel), logo: logoDigest(logo, animations) }));
+const models = brands.map((brand) => ({ ...resolveTokens(base, brand), icons: iconDigests(iconsModel), logo: logoDigest(logo, animations, sounds) }));
 
 for (const model of models) {
   const result = check(model);

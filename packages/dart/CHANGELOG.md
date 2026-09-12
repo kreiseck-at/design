@@ -1,3 +1,25 @@
+## 0.7.0
+
+- Added: five animations. `mail` and `mailslot` are the first of a new kind —
+  the logo becomes a sign and the sign leaves, one flying off, the other posted
+  into the corner. `confirm` and `error` go the same way and come back, so the
+  mark can answer an action. `heartbeat` now beats lub-dub instead of ticking.
+- Added: `KdLogoMotion(hold: true)` stops at the animation's hold point and
+  stays there — the check keeps standing, the cross keeps showing, the envelope
+  waits. The point itself is data (`KdLogoAnimations.confirm.hold`), chosen
+  where nothing is mid-move.
+- Added: an animation may name a **colour role** rather than a colour.
+  `confirm` is drawn in `success`, `error` in `danger-deep`, resolved from the
+  ambient brightness; a `highlight:` you pass in still wins.
+- Added: **cues** — moments that tap and sound. `haptics: true` turns on the
+  touch half, which Flutter carries itself. The sound half comes to `onCue`:
+  a tone is a spec (`KdSounds`), and `kdRenderWav` turns it into bytes for
+  whatever player the app already has, so this package stays free of audio.
+  A note may glide to a second frequency.
+- Added: role `danger-deep` — danger that sits quietly against a light page.
+- Changed: `KdLogoMotion.highlight` is nullable; left out, an animation that
+  names a colour role is drawn in it.
+
 ## 0.6.0
 
 - Added: the Kasseneck logo as code — `KdLogo`, `KdWordmark` and a `KdSignet`

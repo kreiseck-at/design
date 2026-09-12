@@ -6,6 +6,9 @@ import 'package:flutter/material.dart';
 import 'icon.dart';
 import 'logo_animate.dart';
 import 'logo_data.dart';
+import 'sound.dart';
+import 'theme.dart';
+import 'tokens.dart';
 
 /// The Kasseneck logo drawn from geometry: no asset, no font. At rest the
 /// mark is painted as the three brand paths (byte for byte the brand file)
@@ -240,6 +243,14 @@ class KdLogo extends StatelessWidget {
 /// Plays one of [KdLogoAnimations] on the logo (or the mark alone with
 /// [wordmark] false). Looping animations repeat unless [loop] says otherwise;
 /// [onDone] fires once a non-looping run ends.
+/// The colour a named role has on this surface; the light petrol when the
+/// animation names none.
+Color _roleColour(BuildContext context, String? role) {
+  if (role == null) return kdLogoHighlight;
+  final mode = Theme.of(context).brightness == Brightness.dark ? KdMode.dark : KdMode.light;
+  return kdColor(mode, role);
+}
+
 class KdLogoMotion extends StatefulWidget {
   const KdLogoMotion({
     super.key,
@@ -248,20 +259,36 @@ class KdLogoMotion extends StatefulWidget {
     this.wordmark = true,
     this.ink,
     this.accent,
-    this.highlight = kdLogoHighlight,
+    this.highlight,
     this.loop,
     this.autoplay = true,
     this.onDone,
+    this.haptics = false,
+    this.hold = false,
+    this.onCue,
   });
   final KdLogoAnimation animation;
   final double height;
   final bool wordmark;
   final Color? ink;
   final Color? accent;
-  final Color highlight;
+  /// What a tinted element blends toward. Left out, an animation that names a
+  /// colour role (a confirmation is 'success', an error 'danger') is drawn in
+  /// that role for the ambient brightness; any other animation keeps the light
+  /// petrol.
+  final Color? highlight;
   final bool? loop;
   final bool autoplay;
   final VoidCallback? onDone;
+  /// Tap the device at the animation's cues. Off by default.
+  final bool haptics;
+  /// Stop at the animation's hold point and stay there — the check keeps
+  /// standing, the cross keeps showing.
+  final bool hold;
+  /// Every cue as the playhead passes it — where the sound half belongs: hand
+  /// `KdSounds.byName[cue.sound]` to `kdRenderWav` and play the bytes with
+  /// whatever the app already uses, so this package stays free of audio.
+  final void Function(KdLogoCue cue)? onCue;
 
   @override
   State<KdLogoMotion> createState() => KdLogoMotionState();
@@ -270,10 +297,26 @@ class KdLogoMotion extends StatefulWidget {
 class KdLogoMotionState extends State<KdLogoMotion> with SingleTickerProviderStateMixin {
   late final AnimationController controller = AnimationController(vsync: this, duration: Duration(milliseconds: widget.animation.duration.round()));
 
-  bool get _loops => widget.loop ?? widget.animation.loop;
+  /// Where the run ends: the hold point when asked for, otherwise the end.
+  double get _stop => widget.hold && widget.animation.hold != null ? widget.animation.hold! / widget.animation.duration : 1;
+
+  // Holding ends the run at the hold point, so it cannot also loop.
+  bool get _loops => (widget.loop ?? widget.animation.loop) && _stop == 1;
 
   /// The order of every shuffled track for this run; a new one per [play].
   int seed = 0;
+
+  /// How many cues of the current round have fired.
+  int _fired = 0;
+
+  void _passCues(double ms) {
+    final cues = widget.animation.cues;
+    while (_fired < cues.length && cues[_fired].at <= ms) {
+      final cue = cues[_fired++];
+      if (widget.haptics && cue.haptic != null) kdTapHaptic(cue.haptic!);
+      widget.onCue?.call(cue);
+    }
+  }
 
   @override
   void initState() {
@@ -287,7 +330,7 @@ class KdLogoMotionState extends State<KdLogoMotion> with SingleTickerProviderSta
   @override
   void didUpdateWidget(KdLogoMotion old) {
     super.didUpdateWidget(old);
-    if (old.animation != widget.animation || old.loop != widget.loop) {
+    if (old.animation != widget.animation || old.loop != widget.loop || old.hold != widget.hold) {
       controller.duration = Duration(milliseconds: widget.animation.duration.round());
       play();
     }
@@ -296,11 +339,12 @@ class KdLogoMotionState extends State<KdLogoMotion> with SingleTickerProviderSta
   /// Starts from the beginning.
   void play() {
     seed = math.Random().nextInt(0x100000000);
+    _fired = 0;
     controller.reset();
     if (_loops) {
       controller.repeat();
     } else {
-      controller.forward();
+      controller.animateTo(_stop, duration: Duration(milliseconds: (controller.duration!.inMilliseconds * _stop).round()), curve: Curves.linear);
     }
   }
 
@@ -315,9 +359,15 @@ class KdLogoMotionState extends State<KdLogoMotion> with SingleTickerProviderSta
         animation: controller,
         builder: (context, _) {
           final s = kdSampleLogo(widget.animation, controller.value, seed: seed);
+          // A loop arms its cues again every round, so a repeating animation
+          // keeps its beat.
+          final ms = controller.value * widget.animation.duration;
+          if (_fired > 0 && ms < widget.animation.cues[_fired - 1].at) _fired = 0;
+          _passCues(ms);
+          final signal = widget.highlight ?? _roleColour(context, widget.animation.highlight);
           return widget.wordmark
-              ? KdLogo(height: widget.height, ink: widget.ink, accent: widget.accent, highlight: widget.highlight, cells: s.cells, glyphs: s.glyphs, pixels: s.pixels)
-              : KdSignet(size: widget.height, frame: widget.ink, square: widget.accent, highlight: widget.highlight, cells: s.cells, pixels: s.pixels);
+              ? KdLogo(height: widget.height, ink: widget.ink, accent: widget.accent, highlight: signal, cells: s.cells, glyphs: s.glyphs, pixels: s.pixels)
+              : KdSignet(size: widget.height, frame: widget.ink, square: widget.accent, highlight: signal, cells: s.cells, pixels: s.pixels);
         },
       );
 }

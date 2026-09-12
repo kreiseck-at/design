@@ -1,6 +1,7 @@
+import { readFileSync } from "node:fs";
 import { describe, it, expect } from "vitest";
 import { loadLogo } from "./logo.mjs";
-import { loadAnimations, resolveAnimation, orderCells, orderGlyphs, pixelIndices, morphVectors } from "./logo-animations.mjs";
+import { loadAnimations, loadSounds, resolveAnimation, checkSounds, orderCells, orderGlyphs, pixelIndices, morphVectors } from "./logo-animations.mjs";
 import { sample, flatten, SAMPLE_TIMES } from "./logo-animate.mjs";
 
 const root = new URL("../", import.meta.url);
@@ -126,6 +127,119 @@ describe("brand/animations.json", () => {
       const moved = [...start.cells, ...start.glyphs].some((st) => st.opacity < 1 || st.dx !== 0 || st.dy !== 0 || st.scale !== 1);
       expect(moved, a.name).toBe(true);
       for (const st of [...end.cells, ...end.glyphs]) expect(st, a.name).toEqual({ opacity: 1, scale: 1, dx: 0, dy: 0, tint: 0, accent: 0 });
+    }
+  });
+  it("exit animations start at rest, fully visible, and end with nothing left", () => {
+    const exits = animations.filter((x) => x.scenario === "exit");
+    expect(exits.length).toBeGreaterThan(0);
+    for (const a of exits) {
+      const start = sample(a, 0), end = sample(a, 1);
+      for (const st of [...start.cells, ...start.glyphs]) expect(st, a.name).toEqual({ opacity: 1, scale: 1, dx: 0, dy: 0, tint: 0, accent: 0 });
+      for (const st of start.pixels) expect(st.opacity, `${a.name} pixel`).toBe(0);
+      for (const st of [...end.cells, ...end.glyphs, ...end.pixels]) expect(st.opacity, a.name).toBe(0);
+    }
+  });
+  // A hold point is only worth stopping at if the picture there is finished:
+  // a frozen frame with something half-way through a move reads as a stall.
+  it("at its hold point an animation stands still — nothing is part-way anywhere", () => {
+    const held = animations.filter((a) => a.hold);
+    expect(held.length).toBeGreaterThan(0);
+    for (const a of held) {
+      const s = sample(a, a.hold / a.duration);
+      for (const st of [...s.cells, ...s.glyphs, ...s.pixels]) {
+        expect([0, 1], `${a.name} opacity`).toContain(st.opacity);
+        if (st.opacity === 0) continue;
+        expect(st.dx, `${a.name} still sliding`).toBe(0);
+        expect(st.dy, `${a.name} still sliding`).toBe(0);
+        expect(st.scale, `${a.name} still growing`).toBe(1);
+      }
+      // And the sign itself must be what stands there.
+      expect(s.pixels.some((st) => st.opacity > 0), `${a.name} holds on nothing`).toBe(true);
+    }
+  });
+  it("a hold point outside the animation is refused", () => {
+    const base = { de: "T", scenario: "state", highlight: "success", duration: 1000, tracks: [{ target: "cells", duration: 100 }] };
+    expect(() => resolveAnimation("t", { ...base, hold: 1200 }, logo, ["success"])).toThrow(/hold must lie inside/);
+    expect(() => resolveAnimation("t", { ...base, hold: 0 }, logo, ["success"])).toThrow(/hold must lie inside/);
+  });
+  it("a state animation names the colour role it signals, and the role exists", () => {
+    const roleNames = Object.keys(JSON.parse(readFileSync(new URL("tokens/base.json", root), "utf8")).roles);
+    for (const a of animations) {
+      if (a.scenario === "state") expect(a.highlight, `${a.name} signals nothing`).toBeTruthy();
+      if (a.highlight) expect(roleNames, a.name).toContain(a.highlight);
+    }
+  });
+  it("an unknown colour role is refused", () => {
+    const base = { de: "T", scenario: "state", duration: 1000, tracks: [{ target: "cells", duration: 100 }] };
+    expect(() => resolveAnimation("t", { ...base, highlight: "grellgruen" }, logo, ["success", "danger"])).toThrow(/unknown colour role/);
+    expect(() => resolveAnimation("t", { ...base, highlight: 7 }, logo, ["success"])).toThrow(/must be a role name/);
+  });
+  it("state animations begin and end at the logo itself", () => {
+    const states = animations.filter((x) => x.scenario === "state");
+    expect(states.length).toBeGreaterThan(0);
+    for (const a of states) {
+      for (const t of [0, 1]) {
+        const s = sample(a, t);
+        for (const st of [...s.cells, ...s.glyphs]) expect(st, `${a.name} at t=${t}`).toEqual({ opacity: 1, scale: 1, dx: 0, dy: 0, tint: 0, accent: 0 });
+        for (const st of s.pixels) expect(st.opacity, `${a.name} pixel at t=${t}`).toBe(0);
+      }
+      // A state that never leaves the logo says nothing.
+      const middle = sample(a, 0.5);
+      expect(middle.pixels.some((st) => st.opacity > 0), a.name).toBe(true);
+    }
+  });
+  // The mark is drawn in its own 8×8 box (viewBox 0 0 48 48), so anything an
+  // animation pushes past an edge is cut off. Arriving out of an edge reads as
+  // entering, but a farewell that gets clipped just looks broken — so an exit
+  // has to be gone before it reaches one.
+  it("nothing an exit or state animation still shows is drawn outside the 8×8", () => {
+    const pos = new Map(logo.cells.map((c) => [c.index, c]));
+    for (const a of animations.filter((x) => x.scenario === "exit" || x.scenario === "state")) {
+      for (let i = 0; i <= 600; i++) {
+        const s = sample(a, i / 600);
+        const inside = (st, col, row, what) => {
+          if (st.opacity <= 0.001 || st.scale <= 0) return;
+          const half = st.scale / 2, x = col + 0.5 + st.dx, y = row + 0.5 + st.dy;
+          const out = Math.max(-(x - half), x + half - logo.grid, -(y - half), y + half - logo.grid);
+          expect(out, `${a.name} ${what} at t=${(i / 600).toFixed(3)}`).toBeLessThanOrEqual(0);
+        };
+        s.cells.forEach((st, k) => { const c = pos.get(k); if (c) inside(st, c.col, c.row, `cell ${k}`); });
+        s.pixels.forEach((st, k) => inside(st, k % logo.grid, Math.floor(k / logo.grid), `pixel ${k}`));
+      }
+    }
+  });
+});
+
+const sounds = await loadSounds(root);
+
+describe("cues and sounds", () => {
+  const base = { de: "T", scenario: "splash", duration: 1000, tracks: [{ target: "cells", duration: 100 }] };
+  const cued = (cues) => resolveAnimation("t", { ...base, cues }, logo, null, sounds);
+
+  it("every tone is a playable spec, and every tone is used", () => {
+    const used = new Set(animations.flatMap((a) => (a.cues ?? []).map((c) => c.sound)).filter(Boolean));
+    for (const [name, s] of Object.entries(sounds)) {
+      expect(s.notes.length, name).toBeGreaterThan(0);
+      expect(used, `${name} is never cued`).toContain(name);
+    }
+  });
+  it("a tone outside hearing, out of gain or without notes is refused", () => {
+    expect(() => checkSounds({ t: { wave: "sine", gain: 0.2, notes: [{ hz: 4, ms: 100 }] } })).toThrow(/outside hearing/);
+    expect(() => checkSounds({ t: { wave: "sine", gain: 2, notes: [{ hz: 440, ms: 100 }] } })).toThrow(/gain/);
+    expect(() => checkSounds({ t: { wave: "sine", gain: 0.2, notes: [] } })).toThrow(/1 to 8 notes/);
+    expect(() => checkSounds({ t: { wave: "kazoo", gain: 0.2, notes: [{ hz: 440, ms: 100 }] } })).toThrow(/unknown wave/);
+  });
+  it("a cue names a tone that exists, lands inside the animation, and does something", () => {
+    expect(() => cued([{ at: 10, sound: "nope" }])).toThrow(/unknown sound/);
+    expect(() => cued([{ at: 1200, haptic: "light" }])).toThrow(/inside the animation/);
+    expect(() => cued([{ at: 10, haptic: "kick" }])).toThrow(/unknown haptic/);
+    expect(() => cued([{ at: 10 }])).toThrow(/neither taps nor sounds/);
+  });
+  it("cues come out in time order", () => {
+    expect(cued([{ at: 800, haptic: "light" }, { at: 200, haptic: "heavy" }]).cues.map((c) => c.at)).toEqual([200, 800]);
+    for (const a of animations.filter((x) => x.cues)) {
+      const times = a.cues.map((c) => c.at);
+      expect([...times].sort((x, y) => x - y), a.name).toEqual(times);
     }
   });
 });

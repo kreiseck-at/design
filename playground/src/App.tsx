@@ -1,5 +1,5 @@
 import { useEffect, useMemo, useState } from "react";
-import { Logo, LogoMotion, Signet, Wordmark, animations, animationNames, sample, type AnimationName } from "@kreiseck/design/logo";
+import { Logo, LogoMotion, Signet, Wordmark, animationHighlight, animations, animationNames, playSound, sounds, sample, type AnimationName } from "@kreiseck/design/logo";
 import fileUrl from "../../brand/kasseneck-logo.svg?url";
 
 const SCENARIOS: Record<string, string> = {
@@ -20,6 +20,9 @@ export function App() {
   const [dark, setDark] = useState(false);
   const [rate, setRate] = useState(1);
   const [markOnly, setMarkOnly] = useState(false);
+  const [sound, setSound] = useState(false);
+  const [haptics, setHaptics] = useState(false);
+  const [hold, setHold] = useState(false);
   const [diff, setDiff] = useState(false);
   const [kept, setKept] = useState<string[]>(load);
   const [replay, setReplay] = useState(0);
@@ -28,12 +31,20 @@ export function App() {
   const [scrubName, setScrubName] = useState<AnimationName>((params.get("anim") as AnimationName) || "heart");
   const [scrubT, setScrubT] = useState(Number(params.get("t") ?? 0.5));
 
-  useEffect(() => { document.body.dataset.mode = dark ? "dark" : "light"; }, [dark]);
+  // Two switches, one truth: the page's own look, and the token sheet, which
+  // reads data-kd-mode on the root and otherwise follows the system. Without
+  // the second one a dark system would hand light pages their dark colours.
+  useEffect(() => {
+    document.body.dataset.mode = dark ? "dark" : "light";
+    document.documentElement.dataset.kdMode = dark ? "dark" : "light";
+  }, [dark]);
   useEffect(() => { try { localStorage.setItem("kd-logo-keep", JSON.stringify(kept)); } catch { /* ignore */ } }, [kept]);
 
   const ink = dark ? "#F6F8F8" : "#0F2B33";
   const accent = dark ? "#2E9E9B" : "#116B6B";
-  const highlight = dark ? "#139E9B" : "#139E9B";
+  const highlight = "#139E9B";
+  // Eine Animation mit Farbrolle faerbt sich selbst; der Regler zeigt das mit.
+  const scrubHighlight = animationHighlight(scrubName) ?? highlight;
   const toggleKeep = (n: string) => setKept((k) => (k.includes(n) ? k.filter((x) => x !== n) : [...k, n]));
   const groups = useMemo(() => {
     const g: Record<string, AnimationName[]> = {};
@@ -83,12 +94,21 @@ export function App() {
 
       <h2>Animationen</h2>
       <p className="lead">Häkchen setzen bei allem, was bleiben soll — die Liste steht oben in der Leiste.</p>
+      <p className="lead">
+        <label><input type="checkbox" checked={sound} onChange={(e) => setSound(e.target.checked)} /> Ton</label>{" "}
+        <label><input type="checkbox" checked={haptics} onChange={(e) => setHaptics(e.target.checked)} /> Haptik</label>{" "}
+        <label><input type="checkbox" checked={hold} onChange={(e) => setHold(e.target.checked)} /> Beim Zeichen bleiben</label>{" "}
+        {Object.keys(sounds).map((n) => (
+          <button key={n} className="mono" onClick={() => playSound(n)} style={{ marginRight: 6 }}>▶ {n}</button>
+        ))}{" "}
+        <span className="mono">Ton braucht einen Klick auf der Seite, bevor der Browser ihn erlaubt — die Knöpfe sind dieser Klick; Haptik gibt es im Browser nur auf Android.</span>
+      </p>
       {Object.entries(groups).map(([scenario, names]) => (
         <section key={scenario}>
           <div className="tag" style={{ margin: "20px 0 8px" }}>{SCENARIOS[scenario] ?? scenario}</div>
           <div className="grid">
             {names.map((n) => (
-              <Card key={n} name={n} ink={ink} accent={accent} highlight={highlight} rate={rate} markOnly={markOnly} replay={replay} kept={kept.includes(n)} onKeep={() => toggleKeep(n)} />
+              <Card key={n} name={n} ink={ink} accent={accent} rate={rate} markOnly={markOnly} replay={replay} sound={sound} haptics={haptics} hold={hold} kept={kept.includes(n)} onKeep={() => toggleKeep(n)} />
             ))}
           </div>
         </section>
@@ -104,7 +124,7 @@ export function App() {
           <span className="mono">t = {scrubT.toFixed(3)} · {Math.round(scrubT * animations[scrubName].duration)} ms</span>
         </div>
         <div className="stage">
-          {markOnly ? <Signet size={96} ink={ink} accent={accent} highlight={highlight} cells={scrubSample.cells} pixels={scrubSample.pixels} /> : <Logo height={96} ink={ink} accent={accent} highlight={highlight} cells={scrubSample.cells} glyphs={scrubSample.glyphs} pixels={scrubSample.pixels} />}
+          {markOnly ? <Signet size={96} ink={ink} accent={accent} highlight={scrubHighlight} cells={scrubSample.cells} pixels={scrubSample.pixels} /> : <Logo height={96} ink={ink} accent={accent} highlight={scrubHighlight} cells={scrubSample.cells} glyphs={scrubSample.glyphs} pixels={scrubSample.pixels} />}
         </div>
       </div>
 
@@ -114,7 +134,7 @@ export function App() {
   );
 }
 
-function Card({ name, ink, accent, highlight, rate, markOnly, replay, kept, onKeep }: { name: AnimationName; ink: string; accent: string; highlight: string; rate: number; markOnly: boolean; replay: number; kept: boolean; onKeep: () => void }) {
+function Card({ name, ink, accent, rate, markOnly, replay, sound, haptics, hold, kept, onKeep }: { name: AnimationName; ink: string; accent: string; rate: number; sound: boolean; haptics: boolean; hold: boolean; markOnly: boolean; replay: number; kept: boolean; onKeep: () => void }) {
   const a = animations[name];
   const [key, setKey] = useState(0);
   const [loop, setLoop] = useState<boolean | undefined>(undefined);
@@ -127,7 +147,7 @@ function Card({ name, ink, accent, highlight, rate, markOnly, replay, kept, onKe
         <span className="mono">{name} · {a.duration} ms{a.loop ? " · Schleife" : ""}{done ? " · fertig" : ""}</span>
       </header>
       <div className={"stage" + (markOnly ? " mark" : "")}>
-        <LogoMotion animation={name} height={markOnly ? 80 : 48} wordmark={!markOnly} ink={ink} accent={accent} highlight={highlight} rate={rate} loop={loop} playKey={`${key}-${replay}`} onDone={() => setDone(true)} />
+        <LogoMotion animation={name} height={markOnly ? 80 : 48} wordmark={!markOnly} ink={ink} accent={accent} rate={rate} sound={sound} haptics={haptics} hold={hold} loop={loop} playKey={`${key}-${replay}`} onDone={() => setDone(true)} />
       </div>
       <div className="tools">
         <button onClick={() => setKey((k) => k + 1)}>Abspielen</button>

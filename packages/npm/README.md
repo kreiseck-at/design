@@ -99,11 +99,42 @@ pixel art and *become* the logo. Every animation is data
 | `star` | Stern | splash | 2100 ms |
 | `lock` | Schloss | splash | 2100 ms |
 | `receipt` | Bon | splash | 2100 ms |
+| `mail` | Brief | exit | 2100 ms · hält bei 1250 |
+| `confirm` | Bestätigt | state · success | 1600 ms · hält bei 1000 |
+| `error` | Fehler | state · danger | 1450 ms · hält bei 880 |
 | `breathe` | Atmen | waiting | 2400 ms · loops |
 
 `loop` overrides the animation's own flag, `rate` scales playback,
 `autoplay={false}` shows the last frame. Tracks marked random draw a fresh
 order every run.
+
+An animation in the `state` column names a **colour role** rather than a colour:
+it is drawn in `var(--kd-success, …)` or `var(--kd-danger, …)`, so it reads
+right in light and in dark. `animationHighlight(name)` gives you that value when
+you sample by hand; a `highlight` you pass in wins.
+
+Some animations also carry **cues** — moments that tap and sound. Both are off
+until asked for, because a page should make noise only when it means to:
+
+```tsx
+<LogoMotion animation="confirm" sound haptics />
+```
+
+`hold` stops at the animation's **hold point** and stays there: the check keeps
+standing, the cross keeps showing, the envelope waits instead of flying off. It
+is the moment the sign is finished and nothing is on its way any more
+(`animations.confirm.hold`, in ms), so the frozen frame never catches something
+mid-move. A held run plays only the cues it reaches, and never loops.
+
+```tsx
+<LogoMotion animation="error" hold />
+```
+
+Tones are specs, not files (`sounds`), played on the Web Audio API: nothing is
+shipped or decoded. A browser allows sound only after a gesture on the page, and
+`navigator.vibrate` — the haptic half — does not exist on iOS Safari, where it
+stays silent rather than failing. `playSound("confirm")` and `tapHaptic("light")`
+are there for feedback outside an animation.
 
 For your own motion, sample the data and hand the styles to the components:
 

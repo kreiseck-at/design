@@ -30,6 +30,7 @@
   --kd-danger: #AB1F18;
   --kd-on-danger: #FFFFFF;
   --kd-danger-strong: #D13329;
+  --kd-danger-deep: #861510;
   --kd-danger-surface: #FFE4E0;
   --kd-on-danger-surface: #61130E;
   --kd-info: #3659A7;
@@ -90,6 +91,7 @@
   --kd-danger: #AB1F18;
   --kd-on-danger: #FFFFFF;
   --kd-danger-strong: #D13329;
+  --kd-danger-deep: #861510;
   --kd-danger-surface: #FFE4E0;
   --kd-on-danger-surface: #61130E;
   --kd-info: #3659A7;
@@ -128,6 +130,7 @@
   --kd-danger: #AB1F18;
   --kd-on-danger: #FFFFFF;
   --kd-danger-strong: #D13329;
+  --kd-danger-deep: #861510;
   --kd-danger-surface: #FFE4E0;
   --kd-on-danger-surface: #61130E;
   --kd-info: #3659A7;
@@ -166,6 +169,7 @@
   --kd-danger: #FC7B6C;
   --kd-on-danger: #181A1A;
   --kd-danger-strong: #F04E41;
+  --kd-danger-deep: #FC7B6C;
   --kd-danger-surface: #61130E;
   --kd-on-danger-surface: #FFF3F1;
   --kd-info: #81A6F3;
@@ -204,6 +208,7 @@
   --kd-danger: #AB1F18;
   --kd-on-danger: #FFFFFF;
   --kd-danger-strong: #D13329;
+  --kd-danger-deep: #861510;
   --kd-danger-surface: #FFE4E0;
   --kd-on-danger-surface: #61130E;
   --kd-info: #3659A7;
@@ -249,6 +254,7 @@
     --kd-danger: #FC7B6C;
     --kd-on-danger: #181A1A;
     --kd-danger-strong: #F04E41;
+    --kd-danger-deep: #FC7B6C;
     --kd-danger-surface: #61130E;
     --kd-on-danger-surface: #FFF3F1;
     --kd-info: #81A6F3;
