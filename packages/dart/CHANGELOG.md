@@ -1,3 +1,13 @@
+## 0.8.0
+
+- Added: `kdTheme(mode, roles: {...})` and `kdTextTheme(mode, roles: {...})`
+  replace colour roles by name, so another product of the family keeps the
+  forms and puts its own colour on them. Reason: karteck (taxi) uses the
+  Kasseneck forms in graphite; until now every button, focus ring, switch
+  and selection was hard-wired to the brand's petrol, and an app could only
+  copy the whole theme to change it. A name that is not a role throws.
+  Without `roles` the theme resolves exactly as in 0.7.0 (test).
+
 ## 0.7.0
 
 - Added: five animations. `mail` and `mailslot` are the first of a new kind —
