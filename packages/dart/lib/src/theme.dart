@@ -9,11 +9,26 @@ Color kdColor(KdMode mode, String role) {
   return colour;
 }
 
+/// Resolves a role: an app's override first, the brand's role otherwise.
+typedef _KdRoleOf = Color Function(String role);
+
+_KdRoleOf _kdRoles(KdMode mode, Map<String, Color> roles) {
+  final known = KdRoles.byMode[mode]!;
+  for (final name in roles.keys) {
+    // A typo ('brnad') would otherwise fall through to the brand's colour
+    // without a word -- the very colour the app set out to replace.
+    if (!known.containsKey(name)) throw ArgumentError('unknown role: $name');
+  }
+  return (role) => roles[role] ?? kdColor(mode, role);
+}
+
 /// The type scale as a Material text theme. Sizes, leading, weight and
 /// tracking come from the generated `KdType`; nothing here is typed by hand.
-TextTheme kdTextTheme(KdMode mode) {
-  final ink = kdColor(mode, 'ink');
-  final muted = kdColor(mode, 'ink-muted');
+/// [roles] overrides colour roles, as in [kdTheme].
+TextTheme kdTextTheme(KdMode mode, {Map<String, Color> roles = const {}}) {
+  final c = _kdRoles(mode, roles);
+  final ink = c('ink');
+  final muted = c('ink-muted');
   TextStyle s(KdTypeStyle t, {Color? color, int? weight}) => TextStyle(
         fontFamily: t.mono ? KdFonts.mono : KdFonts.sans,
         package: KdFonts.package,
@@ -83,66 +98,73 @@ double _kdElevation(KdMode mode) {
 /// counter lighting; a flat `surface-raised` fill with an `ink-muted`
 /// label and a `border` outline stays legible as a control that is there,
 /// just not pressable right now.
-WidgetStateProperty<Color?> _kdDisabledBackground(KdMode mode, Color? enabled) =>
+WidgetStateProperty<Color?> _kdDisabledBackground(_KdRoleOf c, Color? enabled) =>
     WidgetStateProperty.resolveWith(
-      (s) => s.contains(WidgetState.disabled) ? kdColor(mode, 'surface-raised') : enabled,
+      (s) => s.contains(WidgetState.disabled) ? c('surface-raised') : enabled,
     );
 
-WidgetStateProperty<Color?> _kdDisabledForeground(KdMode mode, Color? enabled) =>
+WidgetStateProperty<Color?> _kdDisabledForeground(_KdRoleOf c, Color? enabled) =>
     WidgetStateProperty.resolveWith(
-      (s) => s.contains(WidgetState.disabled) ? kdColor(mode, 'ink-muted') : enabled,
+      (s) => s.contains(WidgetState.disabled) ? c('ink-muted') : enabled,
     );
 
 WidgetStateProperty<BorderSide?> _kdDisabledSide(
-  KdMode mode,
+  _KdRoleOf c,
   double borderWidth,
   BorderSide? enabled,
 ) =>
     WidgetStateProperty.resolveWith(
       (s) => s.contains(WidgetState.disabled)
-          ? BorderSide(color: kdColor(mode, 'border'), width: borderWidth)
+          ? BorderSide(color: c('border'), width: borderWidth)
           : enabled,
     );
 
 /// A Flutter theme built from the roles, so widgets nobody styles by hand
 /// still look right.
-ThemeData kdTheme(KdMode mode) {
+///
+/// [roles] lets an app put its own colours on the same forms: every role
+/// named there replaces the brand's (`{'brand': graphite, 'on-brand': white}`
+/// paints buttons, focus and selection in graphite). A name that is not a
+/// role throws. The override colours controls, not the Kasseneck mark --
+/// `KdLogo` takes its colours itself.
+ThemeData kdTheme(KdMode mode, {Map<String, Color> roles = const {}}) {
+  final c = _kdRoles(mode, roles);
   final dark = mode == KdMode.dark;
   final contrast = mode == KdMode.contrast;
   final scheme = ColorScheme(
     brightness: dark ? Brightness.dark : Brightness.light,
-    primary: kdColor(mode, 'brand'),
-    onPrimary: kdColor(mode, 'on-brand'),
-    primaryContainer: kdColor(mode, 'brand-surface'),
-    onPrimaryContainer: kdColor(mode, 'on-brand-surface'),
+    primary: c('brand'),
+    onPrimary: c('on-brand'),
+    primaryContainer: c('brand-surface'),
+    onPrimaryContainer: c('on-brand-surface'),
     // One colour for action. Two would compete for the same glance.
-    secondary: kdColor(mode, 'brand'),
-    onSecondary: kdColor(mode, 'on-brand'),
-    secondaryContainer: kdColor(mode, 'brand-surface'),
-    onSecondaryContainer: kdColor(mode, 'on-brand-surface'),
-    error: kdColor(mode, 'danger'),
-    onError: kdColor(mode, 'on-danger'),
-    errorContainer: kdColor(mode, 'danger-surface'),
-    onErrorContainer: kdColor(mode, 'on-danger-surface'),
-    surface: kdColor(mode, 'surface'),
-    onSurface: kdColor(mode, 'on-surface'),
-    onSurfaceVariant: kdColor(mode, 'ink-muted'),
-    outline: kdColor(mode, 'border'),
-    outlineVariant: kdColor(mode, 'divider'),
+    secondary: c('brand'),
+    onSecondary: c('on-brand'),
+    secondaryContainer: c('brand-surface'),
+    onSecondaryContainer: c('on-brand-surface'),
+    error: c('danger'),
+    onError: c('on-danger'),
+    errorContainer: c('danger-surface'),
+    onErrorContainer: c('on-danger-surface'),
+    surface: c('surface'),
+    onSurface: c('on-surface'),
+    onSurfaceVariant: c('ink-muted'),
+    outline: c('border'),
+    outlineVariant: c('divider'),
     // Shadows are black, in every mode — a role, not a token.
     shadow: const Color(0xFF000000),
     scrim: const Color(0xFF000000),
-    inverseSurface: kdColor(mode, 'ink'),
-    onInverseSurface: kdColor(mode, 'surface'),
-    inversePrimary: kdColor(mode, 'brand-surface'),
-    surfaceContainerLowest: kdColor(mode, 'surface'),
-    surfaceContainerLow: kdColor(mode, 'surface-raised'),
-    surfaceContainer: kdColor(mode, 'surface-raised'),
-    surfaceContainerHigh: kdColor(mode, 'surface-raised'),
-    surfaceContainerHighest: kdColor(mode, 'surface-raised'),
+    inverseSurface: c('ink'),
+    onInverseSurface: c('surface'),
+    inversePrimary: c('brand-surface'),
+    surfaceContainerLowest: c('surface'),
+    surfaceContainerLow: c('surface-raised'),
+    surfaceContainer: c('surface-raised'),
+    surfaceContainerHigh: c('surface-raised'),
+    surfaceContainerHighest: c('surface-raised'),
   );
 
-  final text = kdTextTheme(mode);
+  final text = kdTextTheme(mode, roles: roles);
   final elevation = _kdElevation(mode);
   final borderWidth = contrast ? 2.0 : KdForm.borderWidth;
   final controlShape = RoundedRectangleBorder(
@@ -155,15 +177,15 @@ ThemeData kdTheme(KdMode mode) {
   return ThemeData(
     useMaterial3: true,
     colorScheme: scheme,
-    scaffoldBackgroundColor: kdColor(mode, 'ground'),
+    scaffoldBackgroundColor: c('ground'),
     fontFamily: KdFonts.sans,
     package: KdFonts.package,
     textTheme: text,
     // Nobody aims precisely at a till: no control under 56 dp.
     materialTapTargetSize: MaterialTapTargetSize.padded,
     appBarTheme: AppBarTheme(
-      backgroundColor: kdColor(mode, 'surface'),
-      foregroundColor: kdColor(mode, 'ink'),
+      backgroundColor: c('surface'),
+      foregroundColor: c('ink'),
       surfaceTintColor: Colors.transparent,
       elevation: 0,
       scrolledUnderElevation: elevation * 2,
@@ -171,16 +193,16 @@ ThemeData kdTheme(KdMode mode) {
       titleTextStyle: text.titleLarge,
     ),
     cardTheme: CardThemeData(
-      color: kdColor(mode, 'surface'),
+      color: c('surface'),
       surfaceTintColor: Colors.transparent,
       elevation: elevation * 1.5,
       shape: cardShape.copyWith(
-        side: BorderSide(color: kdColor(mode, 'border'), width: borderWidth),
+        side: BorderSide(color: c('border'), width: borderWidth),
       ),
       margin: EdgeInsets.zero,
     ),
     dividerTheme: DividerThemeData(
-      color: kdColor(mode, 'divider'),
+      color: c('divider'),
       thickness: borderWidth,
       space: borderWidth,
     ),
@@ -191,12 +213,12 @@ ThemeData kdTheme(KdMode mode) {
         textStyle: text.titleMedium,
         elevation: elevation,
       ).copyWith(
-        backgroundColor: _kdDisabledBackground(mode, kdColor(mode, 'brand')),
-        foregroundColor: _kdDisabledForeground(mode, kdColor(mode, 'on-brand')),
+        backgroundColor: _kdDisabledBackground(c, c('brand')),
+        foregroundColor: _kdDisabledForeground(c, c('on-brand')),
         side: _kdDisabledSide(
-          mode,
+          c,
           borderWidth,
-          contrast ? BorderSide(color: kdColor(mode, 'ink'), width: 2) : BorderSide.none,
+          contrast ? BorderSide(color: c('ink'), width: 2) : BorderSide.none,
         ),
       ),
     ),
@@ -206,12 +228,12 @@ ThemeData kdTheme(KdMode mode) {
         shape: controlShape,
         textStyle: text.titleMedium,
       ).copyWith(
-        backgroundColor: _kdDisabledBackground(mode, null),
-        foregroundColor: _kdDisabledForeground(mode, kdColor(mode, 'ink')),
+        backgroundColor: _kdDisabledBackground(c, null),
+        foregroundColor: _kdDisabledForeground(c, c('ink')),
         side: _kdDisabledSide(
-          mode,
+          c,
           borderWidth,
-          BorderSide(color: kdColor(mode, 'border'), width: borderWidth),
+          BorderSide(color: c('border'), width: borderWidth),
         ),
       ),
     ),
@@ -220,9 +242,9 @@ ThemeData kdTheme(KdMode mode) {
         minimumSize: const Size(KdForm.tapMin, KdForm.controlPos),
         shape: controlShape,
       ).copyWith(
-        backgroundColor: _kdDisabledBackground(mode, null),
-        foregroundColor: _kdDisabledForeground(mode, kdColor(mode, 'brand')),
-        side: _kdDisabledSide(mode, borderWidth, BorderSide.none),
+        backgroundColor: _kdDisabledBackground(c, null),
+        foregroundColor: _kdDisabledForeground(c, c('brand')),
+        side: _kdDisabledSide(c, borderWidth, BorderSide.none),
       ),
     ),
     chipTheme: ChipThemeData(
@@ -230,43 +252,43 @@ ThemeData kdTheme(KdMode mode) {
       // till is a switch.
       shape: RoundedRectangleBorder(
         borderRadius: BorderRadius.circular(KdForm.radius),
-        side: BorderSide(color: kdColor(mode, 'border'), width: borderWidth),
+        side: BorderSide(color: c('border'), width: borderWidth),
       ),
-      backgroundColor: kdColor(mode, 'surface'),
-      disabledColor: kdColor(mode, 'surface-raised'),
-      selectedColor: kdColor(mode, 'brand-surface'),
+      backgroundColor: c('surface'),
+      disabledColor: c('surface-raised'),
+      selectedColor: c('brand-surface'),
       labelStyle: text.bodyMedium,
       secondaryLabelStyle: text.bodyMedium?.copyWith(
-        color: kdColor(mode, 'brand'),
+        color: c('brand'),
         fontWeight: FontWeight.w600,
       ),
-      side: BorderSide(color: kdColor(mode, 'border'), width: borderWidth),
+      side: BorderSide(color: c('border'), width: borderWidth),
       showCheckmark: false,
       padding: const EdgeInsets.symmetric(horizontal: 11, vertical: 8),
     ),
     inputDecorationTheme: InputDecorationTheme(
       filled: true,
-      fillColor: kdColor(mode, 'surface-raised'),
+      fillColor: c('surface-raised'),
       border: OutlineInputBorder(
         borderRadius: BorderRadius.circular(KdForm.radius),
-        borderSide: BorderSide(color: kdColor(mode, 'border'), width: borderWidth),
+        borderSide: BorderSide(color: c('border'), width: borderWidth),
       ),
       enabledBorder: OutlineInputBorder(
         borderRadius: BorderRadius.circular(KdForm.radius),
-        borderSide: BorderSide(color: kdColor(mode, 'border'), width: borderWidth),
+        borderSide: BorderSide(color: c('border'), width: borderWidth),
       ),
       focusedBorder: OutlineInputBorder(
         borderRadius: BorderRadius.circular(KdForm.radius),
-        borderSide: BorderSide(color: kdColor(mode, 'brand'), width: borderWidth + 1),
+        borderSide: BorderSide(color: c('brand'), width: borderWidth + 1),
       ),
-      labelStyle: text.bodyMedium?.copyWith(color: kdColor(mode, 'ink-muted')),
+      labelStyle: text.bodyMedium?.copyWith(color: c('ink-muted')),
       helperStyle: text.bodySmall,
       helperMaxLines: 3,
     ),
     listTileTheme: ListTileThemeData(
       titleTextStyle: text.bodyLarge,
       subtitleTextStyle: text.bodySmall,
-      iconColor: kdColor(mode, 'ink-muted'),
+      iconColor: c('ink-muted'),
       shape: controlShape,
     ),
     switchTheme: SwitchThemeData(
@@ -276,41 +298,41 @@ ThemeData kdTheme(KdMode mode) {
         // is an empty patch of surface, and the owner is left hunting
         // for the switch that is right in front of them.
         (s) => s.contains(WidgetState.selected)
-            ? kdColor(mode, 'on-brand')
-            : kdColor(mode, 'ink-muted'),
+            ? c('on-brand')
+            : c('ink-muted'),
       ),
       trackColor: WidgetStateProperty.resolveWith(
         (s) => s.contains(WidgetState.disabled)
-            ? kdColor(mode, 'surface-raised')
+            ? c('surface-raised')
             : s.contains(WidgetState.selected)
-                ? kdColor(mode, 'brand')
-                : kdColor(mode, 'surface'),
+                ? c('brand')
+                : c('surface'),
       ),
       // The outline keeps the track separate from the ground.
       trackOutlineColor: WidgetStateProperty.resolveWith(
         (s) => s.contains(WidgetState.selected)
-            ? kdColor(mode, 'brand')
-            : kdColor(mode, 'border'),
+            ? c('brand')
+            : c('border'),
       ),
       trackOutlineWidth: WidgetStateProperty.all(borderWidth + 0.5),
     ),
     sliderTheme: SliderThemeData(
-      activeTrackColor: kdColor(mode, 'brand'),
-      thumbColor: kdColor(mode, 'brand'),
-      inactiveTrackColor: kdColor(mode, 'border'),
+      activeTrackColor: c('brand'),
+      thumbColor: c('brand'),
+      inactiveTrackColor: c('border'),
     ),
     snackBarTheme: SnackBarThemeData(
-      backgroundColor: kdColor(mode, 'ink'),
-      contentTextStyle: text.bodyLarge?.copyWith(color: kdColor(mode, 'surface')),
+      backgroundColor: c('ink'),
+      contentTextStyle: text.bodyLarge?.copyWith(color: c('surface')),
       shape: controlShape,
       behavior: SnackBarBehavior.floating,
     ),
-    progressIndicatorTheme: ProgressIndicatorThemeData(color: kdColor(mode, 'brand')),
+    progressIndicatorTheme: ProgressIndicatorThemeData(color: c('brand')),
     expansionTileTheme: ExpansionTileThemeData(
-      textColor: kdColor(mode, 'ink'),
-      collapsedTextColor: kdColor(mode, 'ink'),
-      iconColor: kdColor(mode, 'ink-muted'),
-      collapsedIconColor: kdColor(mode, 'ink-muted'),
+      textColor: c('ink'),
+      collapsedTextColor: c('ink'),
+      iconColor: c('ink-muted'),
+      collapsedIconColor: c('ink-muted'),
     ),
   );
 }

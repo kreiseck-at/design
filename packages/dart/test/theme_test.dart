@@ -100,4 +100,81 @@ void main() {
     expect(s.inverseSurface, kdColor(KdMode.light, 'ink'));
     expect(s.shadow, const Color(0xFF000000));
   });
+
+  group('roles override', () {
+    const graphite = Color(0xFF2E3133);
+    const white = Color(0xFFFFFFFF);
+    const family = {
+      'brand': graphite,
+      'on-brand': white,
+      'brand-pressed': Color(0xFF1E2022),
+      'brand-surface': Color(0xFFE4E5E6),
+      'on-brand-surface': graphite,
+    };
+
+    // Every colour the theme resolves for controls, in the states a till shows.
+    List<Color?> resolved(ThemeData t) {
+      const states = [<WidgetState>{}, {WidgetState.pressed}, {WidgetState.selected}, {WidgetState.disabled}];
+      return [
+        t.colorScheme.primary,
+        t.colorScheme.secondary,
+        t.colorScheme.primaryContainer,
+        t.colorScheme.inversePrimary,
+        for (final s in states) ...[
+          t.filledButtonTheme.style?.backgroundColor?.resolve(s),
+          t.filledButtonTheme.style?.foregroundColor?.resolve(s),
+          t.textButtonTheme.style?.foregroundColor?.resolve(s),
+          t.outlinedButtonTheme.style?.foregroundColor?.resolve(s),
+          t.switchTheme.trackColor?.resolve(s),
+          t.switchTheme.thumbColor?.resolve(s),
+          t.switchTheme.trackOutlineColor?.resolve(s),
+        ],
+        t.chipTheme.selectedColor,
+        t.chipTheme.secondaryLabelStyle?.color,
+        (t.inputDecorationTheme.focusedBorder as OutlineInputBorder?)?.borderSide.color,
+        t.sliderTheme.activeTrackColor,
+        t.sliderTheme.thumbColor,
+        t.progressIndicatorTheme.color,
+      ];
+    }
+
+    for (final mode in [KdMode.light, KdMode.dark]) {
+      test('$mode: without roles the theme resolves exactly as before', () {
+        expect(resolved(kdTheme(mode, roles: const {})), resolved(kdTheme(mode)));
+      });
+
+      test('$mode: the overridden brand reaches buttons, focus, selection and switches', () {
+        final t = kdTheme(mode, roles: family);
+        expect(t.colorScheme.primary, graphite);
+        expect(t.filledButtonTheme.style!.backgroundColor!.resolve({}), graphite);
+        expect(t.filledButtonTheme.style!.foregroundColor!.resolve({}), white);
+        expect(t.textButtonTheme.style!.foregroundColor!.resolve({}), graphite);
+        expect(t.switchTheme.trackColor!.resolve({WidgetState.selected}), graphite);
+        expect((t.inputDecorationTheme.focusedBorder as OutlineInputBorder).borderSide.color, graphite);
+        expect(t.progressIndicatorTheme.color, graphite);
+      });
+
+      test('$mode: with the brand family overridden no petrol is left', () {
+        final petrol = {
+          for (final m in KdMode.values)
+            for (final r in ['brand', 'on-brand', 'brand-pressed', 'brand-surface', 'on-brand-surface'])
+              KdRoles.byMode[m]?[r],
+        }..remove(null);
+        // Neutral roles may coincide with an on-brand white; only the brand hues count.
+        petrol.removeAll([white, kdColor(mode, 'ink'), kdColor(mode, 'surface')]);
+        for (final c in resolved(kdTheme(mode, roles: family))) {
+          expect(petrol.contains(c), isFalse, reason: '$c');
+        }
+      });
+    }
+
+    test('a name that is not a role throws', () {
+      expect(() => kdTheme(KdMode.light, roles: const {'brnad': graphite}), throwsArgumentError);
+      expect(() => kdTextTheme(KdMode.light, roles: const {'inc': graphite}), throwsArgumentError);
+    });
+
+    test('kdTextTheme takes the override too', () {
+      expect(kdTextTheme(KdMode.light, roles: const {'ink': graphite}).bodyMedium!.color, graphite);
+    });
+  });
 }

@@ -49,6 +49,32 @@ Text('€ 42,00', style: kdMonoStyle(KdMode.light));
 `KdMode` has four values — `light`, `dark`, `warm` and `contrast` — and
 `kdTheme`, `kdColor` and `kdTextTheme` all take one to resolve against.
 
+## Another brand on the same forms
+
+A product of the family can keep the forms — tap heights, corners, borders,
+disabled states — and put its own colour on them. `kdTheme` and
+`kdTextTheme` take `roles`, which replace the brand's roles by name:
+
+```dart
+const graphite = Color(0xFF2E3133);
+MaterialApp(
+  theme: kdTheme(KdMode.light, roles: const {
+    'brand': graphite,
+    'on-brand': Color(0xFFFFFFFF),
+    'brand-pressed': Color(0xFF1E2022),
+    'brand-surface': Color(0xFFE4E5E6),
+    'on-brand-surface': graphite,
+  }),
+);
+```
+
+Override the whole `brand` family, or petrol shows through where a role was
+left out. A name that is not a role throws, so a typo cannot fall back to
+the brand's colour unnoticed. The override colours the controls, not the
+Kasseneck mark: `KdLogo` takes its colours itself (see below). Unlike the
+brand files under `tokens/brands/`, overrides are not contrast-checked by the
+build — check `on-brand` on `brand` (4.5:1) yourself.
+
 ## Brand colour at runtime
 
 `brandRamp` turns an arbitrary seed colour into the same eleven-step ramp
